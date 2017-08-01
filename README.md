@@ -35,3 +35,5 @@
  * 코드 관련 이슈는 gitter에서
  * 일반적인 이슈는 slack에서
 
+ #### 기획서 초안(작성중)
+https://docs.google.com/document/d/1TcUyQYjvQZ4czte1YkAl4l8rGsATRYmtd5_T4IUlcrc/edit?usp=sharing
