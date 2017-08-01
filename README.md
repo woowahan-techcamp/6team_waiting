@@ -19,6 +19,7 @@
 
 #### 코딩스타일
  * 커밋 메세지는 한글로
+ > ex) [이슈#3] 로그아웃 기능 구현
  * 커밋 메세지 빈도는 자주 작은 기능 기준으로 작성
  * PullRequest를 통한 이슈관리
     - Web : https://github.com/airbnb/javascript
