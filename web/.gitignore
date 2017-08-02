@@ -1,0 +1,8 @@
+# compiled output
+/dist
+
+# depedencies
+/node_modules
+
+# system files
+.DS_Store
