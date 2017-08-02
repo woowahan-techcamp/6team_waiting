@@ -56,3 +56,5 @@
 [기획서 ppt](https://docs.google.com/presentation/d/1tO2MAt91zLZ4XJ8BjgEq69rn6emBIgcHJ56IK1axbRg/edit?usp=sharing)
 
 [기획서 문서](https://docs.google.com/document/d/1TcUyQYjvQZ4czte1YkAl4l8rGsATRYmtd5_T4IUlcrc/edit?usp=sharing)
+
+[백로그](https://docs.google.com/spreadsheets/d/1sA4d282j67KcqoBuMlROVYIhCIuDnVJyANbYvu1r9-4/edit?usp=sharing)
