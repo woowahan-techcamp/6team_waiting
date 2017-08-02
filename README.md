@@ -7,6 +7,9 @@
 
 #### 회의 방식과 시간
  1. 부스트 미팅(주간 계획) 매주 월요일 - 월요일 주간 미팅(오전 13:00 ~ 14:00)
+    - 월요일 오후 미팅에 주간 계획을 얘기하면서 Sprint 시작을 위한 backLog를 작성한다.
+    - 월요일에 해당 backLog를 기반으로 스크럼 보드의 포스트잇을 작성한다. 
+    - 월요일에 Github 프로젝트 보드를 업데이트한다.
  2. 데일리 미팅 - 매일 오전 미팅(30분 내외), 코드리뷰 30분
  3. 포스트잇 활용(todo List 관리) 
 ![포스트잇 예제](https://dl.dropboxusercontent.com/s/04kxbac26x669aa/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202017-08-01%20%EC%98%A4%ED%9B%84%205.39.45.png)
@@ -39,4 +42,5 @@
 
  #### 기획서 초안(작성중)
 [기획서 ppt](https://docs.google.com/presentation/d/1tO2MAt91zLZ4XJ8BjgEq69rn6emBIgcHJ56IK1axbRg/edit?usp=sharing)
+
 [기획서 문서](https://docs.google.com/document/d/1TcUyQYjvQZ4czte1YkAl4l8rGsATRYmtd5_T4IUlcrc/edit?usp=sharing)
