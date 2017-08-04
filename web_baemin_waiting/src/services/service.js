@@ -46,6 +46,10 @@ const service = (() => {
         fireAuth.signOut();
     }
 
+    const getCurrentUid = function() {
+        return fireAuth.currentUser.uid;
+    }
+
     return {
         // Public member 
         
