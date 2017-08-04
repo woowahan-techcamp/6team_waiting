@@ -50,6 +50,15 @@ const service = (() => {
         return fireAuth.currentUser.uid;
     }
 
+    const isAuthenticated = function() {
+        const user = fireAuth.currentUser;
+        
+        if (user) 
+            return true;
+        else 
+            return false;
+    }
+
     return {
         // Public member 
         
