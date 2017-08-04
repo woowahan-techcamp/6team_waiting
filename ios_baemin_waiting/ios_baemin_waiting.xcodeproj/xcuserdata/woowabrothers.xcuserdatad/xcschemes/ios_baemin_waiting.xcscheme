@@ -48,6 +48,26 @@
                ReferencedContainer = "container:ios_baemin_waiting.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9879D9E01F342CAE00B4131A"
+               BuildableName = "BaeminWaitingTest.xctest"
+               BlueprintName = "BaeminWaitingTest"
+               ReferencedContainer = "container:ios_baemin_waiting.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9879D9EE1F342CCC00B4131A"
+               BuildableName = "BaeminWaitingUnitTests.xctest"
+               BlueprintName = "BaeminWaitingUnitTests"
+               ReferencedContainer = "container:ios_baemin_waiting.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
