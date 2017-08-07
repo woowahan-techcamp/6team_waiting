@@ -1,5 +1,6 @@
 export class StoreModel {
 
+    // @haeun.kim : 변수 갯수가 충분히 많아서 builder pattern 을 고려해볼 필요가 있을 듯 합니다. 
     constructor(owner, title, store_tel, address, picture, description, is_opened) {
         this._owner = owner;
         this._title = title; 
@@ -49,6 +50,7 @@ export class StoreModel {
     get picture() {
         return this._picture;
     }
+
     set description(description) {
         this._description = description;
     } 
