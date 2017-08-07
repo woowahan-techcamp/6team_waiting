@@ -1,42 +1,42 @@
-class User {
+export class UserModel {
 
     constructor(email, name, role, user_tel) {
-        this.email = email;
-        this.name = name; 
-        this.role = role;
-        this.user_tel = user_tel;
+        this._email = email;
+        this._name = name; 
+        this._role = role;
+        this._user_tel = user_tel;
     }
 
     set email(email) {
-        this.email = email;
+        this._email = email;
     }
 
     get email() {
-        return this.email;
+        return this._email;
     }
 
     set name(name) {
-        this.name = name;
+        this._name = name;
     }
 
     get name() {
-        return this.name;
+        return this._name;
     }
 
     set role(role) {
-        this.role = role;
+        this._role = role;
     }
 
     get role() {
-        return this.role;
+        return this._role;
     }
 
     set user_tel(tel) {
-        this.user_tel = tel;
+        this._user_tel = tel;
     } 
 
     get user_tel() {
-        return this.user_tel;
+        return this._user_tel;
     }
 
 
