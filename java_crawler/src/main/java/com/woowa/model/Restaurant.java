@@ -1,22 +1,25 @@
 package com.woowa.model;
 
+import org.json.JSONArray;
+
 /**
  * Created by woowabrothers on 2017. 8. 4..
  */
 public class Restaurant {
 
     private String restaurantsName;
-    private String restaurantsAddress;
+//    private String restaurantsAddress;
     private String restaurantsTel;
     private String restaurantsImgUrl;
     private String restaurantsDescription;
     private String restaurantsRunningTime;
+    private LocationInfo restaurantsLocationInfo;
 
     public Restaurant(String restaurantsName,
-                      String restaurantsAddress,
+//                      String restaurantsAddress,
                       String restaurantsTel) {
         this.restaurantsName = restaurantsName;
-        this.restaurantsAddress = restaurantsAddress;
+//        this.restaurantsAddress = restaurantsAddress;
         this.restaurantsTel = restaurantsTel;
     }
 
@@ -28,13 +31,13 @@ public class Restaurant {
         this.restaurantsName = restaurantsName;
     }
 
-    public String getRestaurantsAddress() {
-        return restaurantsAddress;
-    }
-
-    public void setRestaurantsAddress(String restaurantsAddress) {
-        this.restaurantsAddress = restaurantsAddress;
-    }
+//    public String getRestaurantsAddress() {
+//        return restaurantsAddress;
+//    }
+//
+//    public void setRestaurantsAddress(String restaurantsAddress) {
+//        this.restaurantsAddress = restaurantsAddress;
+//    }
 
     public String getRestaurantsTel() {
         return restaurantsTel;
@@ -64,12 +67,14 @@ public class Restaurant {
         return restaurantsRunningTime;
     }
 
-    public void setRestaurantsRunningTime(String restaurantsRunningTime) {
-        this.restaurantsRunningTime = restaurantsRunningTime;
-    }
+    public void setRestaurantsRunningTime(String restaurantsRunningTime) { this.restaurantsRunningTime = restaurantsRunningTime; }
+
+    public LocationInfo getRestaurantsLocationInfo() { return restaurantsLocationInfo; }
+
+    public void setRestaurantsLocationInfo(LocationInfo restaurantsLocationInfo) { this.restaurantsLocationInfo = restaurantsLocationInfo; }
 
     public String[] toStringArray() {
-        String[] strings = new String[]{restaurantsName, restaurantsAddress, restaurantsTel, restaurantsImgUrl, restaurantsDescription, restaurantsRunningTime};
+        String[] strings = new String[]{restaurantsName, restaurantsTel, restaurantsImgUrl, restaurantsDescription, restaurantsRunningTime};
         return strings;
     }
 }

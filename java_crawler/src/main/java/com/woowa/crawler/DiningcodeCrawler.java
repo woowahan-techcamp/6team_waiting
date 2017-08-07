@@ -1,5 +1,6 @@
 package com.woowa.crawler;
 
+import com.woowa.model.LocationInfo;
 import com.woowa.model.Restaurant;
 
 import org.jsoup.Jsoup;
@@ -77,10 +78,13 @@ public class DiningcodeCrawler implements Crawler {
 
         logging(restaurantName, restaurantAddress, restaurantTel, restaurantPictureUrl, restaurantDescription, restaurantWorkingTime );
 
-        Restaurant restaurant = new Restaurant(restaurantName, restaurantAddress, restaurantTel);
+        Restaurant restaurant = new Restaurant(restaurantName, restaurantTel);
+        LocationInfo locationInfo = new LocationInfo(restaurantAddress);
+
         restaurant.setRestaurantsImgUrl(restaurantPictureUrl);
         restaurant.setRestaurantsDescription(restaurantDescription);
         restaurant.setRestaurantsRunningTime(restaurantWorkingTime);
+        restaurant.setRestaurantsLocationInfo(locationInfo);
 
         return restaurant;
     }
