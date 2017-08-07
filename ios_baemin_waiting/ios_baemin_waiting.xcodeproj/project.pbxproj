@@ -8,38 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		15371BC4CBDBAEF9C06D02E6 /* Pods_ios_baemin_waiting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE0B0CD4AA736ADBEA24003 /* Pods_ios_baemin_waiting.framework */; };
-		19B7AA529A2CC58869FB4415 /* Pods_ios_baemin_waitingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE8A07507AB1D69E3FEA829 /* Pods_ios_baemin_waitingUITests.framework */; };
-		8A9920303350295F7C15EE31 /* Pods_ios_baemin_waitingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADB60FE316797CD094CF719E /* Pods_ios_baemin_waitingTests.framework */; };
 		9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9879D9AE1F34054900B4131A /* AppDelegate.swift */; };
 		9879D9B11F34054900B4131A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9879D9B01F34054900B4131A /* ViewController.swift */; };
 		9879D9B41F34054900B4131A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9879D9B21F34054900B4131A /* Main.storyboard */; };
 		9879D9B61F34054900B4131A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9879D9B51F34054900B4131A /* Assets.xcassets */; };
 		9879D9B91F34054900B4131A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9879D9B71F34054900B4131A /* LaunchScreen.storyboard */; };
 		9879D9F21F342CCC00B4131A /* BaeminWaitingUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */; };
+		AF5489859C11DE89EC835DC0 /* Pods_BaeminWaitingUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4A8D10F8DA142944CB645A /* Pods_BaeminWaitingUnitTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9879D9C01F34054900B4131A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9879D9A31F34054900B4131A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9879D9AA1F34054900B4131A;
-			remoteInfo = ios_baemin_waiting;
-		};
-		9879D9CB1F34054A00B4131A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9879D9A31F34054900B4131A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9879D9AA1F34054900B4131A;
-			remoteInfo = ios_baemin_waiting;
-		};
-		9879D9E61F342CAE00B4131A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9879D9A31F34054900B4131A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9879D9AA1F34054900B4131A;
-			remoteInfo = ios_baemin_waiting;
-		};
 		9879D9F41F342CCC00B4131A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9879D9A31F34054900B4131A /* Project object */;
@@ -52,9 +30,12 @@
 /* Begin PBXFileReference section */
 		0CE0B0CD4AA736ADBEA24003 /* Pods_ios_baemin_waiting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_baemin_waiting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13DBA5084DF289E739D7B131 /* Pods-ios_baemin_waitingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_baemin_waitingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios_baemin_waitingTests/Pods-ios_baemin_waitingTests.release.xcconfig"; sourceTree = "<group>"; };
+		18F59FA31D335960EA9BB38B /* Pods-BaeminWaitingUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		34EC86D727F1B6E3D43CA506 /* Pods-ios_baemin_waitingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_baemin_waitingUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios_baemin_waitingUITests/Pods-ios_baemin_waitingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5C4A8D10F8DA142944CB645A /* Pods_BaeminWaitingUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaeminWaitingUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		669B6554E4102D490884F63C /* Pods-ios_baemin_waitingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_baemin_waitingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios_baemin_waitingUITests/Pods-ios_baemin_waitingUITests.release.xcconfig"; sourceTree = "<group>"; };
 		78CA19BD2EF06C25F4DFB637 /* Pods-ios_baemin_waitingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_baemin_waitingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios_baemin_waitingTests/Pods-ios_baemin_waitingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9879D9AB1F34054900B4131A /* ios_baemin_waiting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_baemin_waiting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9879D9AE1F34054900B4131A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9879D9B01F34054900B4131A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,9 +43,6 @@
 		9879D9B51F34054900B4131A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9879D9B81F34054900B4131A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9879D9BA1F34054900B4131A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9879D9BF1F34054900B4131A /* ios_baemin_waitingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ios_baemin_waitingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9879D9CA1F34054A00B4131A /* ios_baemin_waitingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ios_baemin_waitingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9879D9E11F342CAE00B4131A /* BaeminWaitingTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaeminWaitingTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9879D9EF1F342CCC00B4131A /* BaeminWaitingUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaeminWaitingUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaeminWaitingUnitTests.swift; sourceTree = "<group>"; };
 		9879D9F31F342CCC00B4131A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,33 +61,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9879D9BC1F34054900B4131A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8A9920303350295F7C15EE31 /* Pods_ios_baemin_waitingTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9879D9C71F34054900B4131A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				19B7AA529A2CC58869FB4415 /* Pods_ios_baemin_waitingUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9879D9DE1F342CAE00B4131A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9879D9EC1F342CCC00B4131A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF5489859C11DE89EC835DC0 /* Pods_BaeminWaitingUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +78,7 @@
 				0CE0B0CD4AA736ADBEA24003 /* Pods_ios_baemin_waiting.framework */,
 				ADB60FE316797CD094CF719E /* Pods_ios_baemin_waitingTests.framework */,
 				9CE8A07507AB1D69E3FEA829 /* Pods_ios_baemin_waitingUITests.framework */,
+				5C4A8D10F8DA142944CB645A /* Pods_BaeminWaitingUnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -135,6 +92,8 @@
 				13DBA5084DF289E739D7B131 /* Pods-ios_baemin_waitingTests.release.xcconfig */,
 				34EC86D727F1B6E3D43CA506 /* Pods-ios_baemin_waitingUITests.debug.xcconfig */,
 				669B6554E4102D490884F63C /* Pods-ios_baemin_waitingUITests.release.xcconfig */,
+				981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */,
+				18F59FA31D335960EA9BB38B /* Pods-BaeminWaitingUnitTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -154,9 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				9879D9AB1F34054900B4131A /* ios_baemin_waiting.app */,
-				9879D9BF1F34054900B4131A /* ios_baemin_waitingTests.xctest */,
-				9879D9CA1F34054A00B4131A /* ios_baemin_waitingUITests.xctest */,
-				9879D9E11F342CAE00B4131A /* BaeminWaitingTest.xctest */,
 				9879D9EF1F342CCC00B4131A /* BaeminWaitingUnitTests.xctest */,
 			);
 			name = Products;
@@ -197,7 +153,7 @@
 				9879D9A91F34054900B4131A /* Resources */,
 				8A42FB99DC3263F75E762DC1 /* [CP] Embed Pods Frameworks */,
 				46F032BF4679300CA4410190 /* [CP] Copy Pods Resources */,
-				9879D9DC1F342C2700B4131A /* ShellScript */,
+				9879D9DC1F342C2700B4131A /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -208,73 +164,16 @@
 			productReference = 9879D9AB1F34054900B4131A /* ios_baemin_waiting.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9879D9BE1F34054900B4131A /* ios_baemin_waitingTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9879D9D61F34054A00B4131A /* Build configuration list for PBXNativeTarget "ios_baemin_waitingTests" */;
-			buildPhases = (
-				559D41BDAF617218495A9FCF /* [CP] Check Pods Manifest.lock */,
-				9879D9BB1F34054900B4131A /* Sources */,
-				9879D9BC1F34054900B4131A /* Frameworks */,
-				9879D9BD1F34054900B4131A /* Resources */,
-				F9B53FE502B5FD025B1DC258 /* [CP] Embed Pods Frameworks */,
-				4B96B5388E809D1A11330A10 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9879D9C11F34054900B4131A /* PBXTargetDependency */,
-			);
-			name = ios_baemin_waitingTests;
-			productName = ios_baemin_waitingTests;
-			productReference = 9879D9BF1F34054900B4131A /* ios_baemin_waitingTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		9879D9C91F34054900B4131A /* ios_baemin_waitingUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9879D9D91F34054A00B4131A /* Build configuration list for PBXNativeTarget "ios_baemin_waitingUITests" */;
-			buildPhases = (
-				ABA11AD49813744C06A1A1B4 /* [CP] Check Pods Manifest.lock */,
-				9879D9C61F34054900B4131A /* Sources */,
-				9879D9C71F34054900B4131A /* Frameworks */,
-				9879D9C81F34054900B4131A /* Resources */,
-				AF3596FE1BA8EEF1D3D43367 /* [CP] Embed Pods Frameworks */,
-				049C51C04F02D760BDA9AB3D /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9879D9CC1F34054A00B4131A /* PBXTargetDependency */,
-			);
-			name = ios_baemin_waitingUITests;
-			productName = ios_baemin_waitingUITests;
-			productReference = 9879D9CA1F34054A00B4131A /* ios_baemin_waitingUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		9879D9E01F342CAE00B4131A /* BaeminWaitingTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9879D9E81F342CAE00B4131A /* Build configuration list for PBXNativeTarget "BaeminWaitingTest" */;
-			buildPhases = (
-				9879D9DD1F342CAE00B4131A /* Sources */,
-				9879D9DE1F342CAE00B4131A /* Frameworks */,
-				9879D9DF1F342CAE00B4131A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9879D9E71F342CAE00B4131A /* PBXTargetDependency */,
-			);
-			name = BaeminWaitingTest;
-			productName = BaeminWaitingTest;
-			productReference = 9879D9E11F342CAE00B4131A /* BaeminWaitingTest.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		9879D9EE1F342CCC00B4131A /* BaeminWaitingUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9879D9F61F342CCC00B4131A /* Build configuration list for PBXNativeTarget "BaeminWaitingUnitTests" */;
 			buildPhases = (
+				CA48A719E7FD091E43A83D34 /* [CP] Check Pods Manifest.lock */,
 				9879D9EB1F342CCC00B4131A /* Sources */,
 				9879D9EC1F342CCC00B4131A /* Frameworks */,
 				9879D9ED1F342CCC00B4131A /* Resources */,
+				68BCA459A63049372B089909 /* [CP] Embed Pods Frameworks */,
+				5484B5F8DD94AD9394FC91DA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -301,24 +200,6 @@
 						DevelopmentTeam = B3PWYBKFUK;
 						ProvisioningStyle = Automatic;
 					};
-					9879D9BE1F34054900B4131A = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = B3PWYBKFUK;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 9879D9AA1F34054900B4131A;
-					};
-					9879D9C91F34054900B4131A = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = B3PWYBKFUK;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 9879D9AA1F34054900B4131A;
-					};
-					9879D9E01F342CAE00B4131A = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = B3PWYBKFUK;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 9879D9AA1F34054900B4131A;
-					};
 					9879D9EE1F342CCC00B4131A = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = B3PWYBKFUK;
@@ -341,9 +222,6 @@
 			projectRoot = "";
 			targets = (
 				9879D9AA1F34054900B4131A /* ios_baemin_waiting */,
-				9879D9BE1F34054900B4131A /* ios_baemin_waitingTests */,
-				9879D9C91F34054900B4131A /* ios_baemin_waitingUITests */,
-				9879D9E01F342CAE00B4131A /* BaeminWaitingTest */,
 				9879D9EE1F342CCC00B4131A /* BaeminWaitingUnitTests */,
 			);
 		};
@@ -360,27 +238,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9879D9BD1F34054900B4131A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9879D9C81F34054900B4131A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9879D9DF1F342CAE00B4131A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9879D9ED1F342CCC00B4131A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -391,21 +248,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		049C51C04F02D760BDA9AB3D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios_baemin_waitingUITests/Pods-ios_baemin_waitingUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		46F032BF4679300CA4410190 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -421,7 +263,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios_baemin_waiting/Pods-ios_baemin_waiting-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4B96B5388E809D1A11330A10 /* [CP] Copy Pods Resources */ = {
+		5484B5F8DD94AD9394FC91DA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -433,22 +275,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios_baemin_waitingTests/Pods-ios_baemin_waitingTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		559D41BDAF617218495A9FCF /* [CP] Check Pods Manifest.lock */ = {
+		68BCA459A63049372B089909 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8A42FB99DC3263F75E762DC1 /* [CP] Embed Pods Frameworks */ = {
@@ -466,48 +308,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios_baemin_waiting/Pods-ios_baemin_waiting-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9879D9DC1F342C2700B4131A /* ShellScript */ = {
+		9879D9DC1F342C2700B4131A /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = SwiftLint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
-		ABA11AD49813744C06A1A1B4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		AF3596FE1BA8EEF1D3D43367 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios_baemin_waitingUITests/Pods-ios_baemin_waitingUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		BE2E6C1F17E4C5172E036120 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -524,19 +337,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F9B53FE502B5FD025B1DC258 /* [CP] Embed Pods Frameworks */ = {
+		CA48A719E7FD091E43A83D34 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios_baemin_waitingTests/Pods-ios_baemin_waitingTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -551,27 +364,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9879D9BB1F34054900B4131A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9879D9C61F34054900B4131A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9879D9DD1F342CAE00B4131A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9879D9EB1F342CCC00B4131A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -583,21 +375,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9879D9C11F34054900B4131A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9879D9AA1F34054900B4131A /* ios_baemin_waiting */;
-			targetProxy = 9879D9C01F34054900B4131A /* PBXContainerItemProxy */;
-		};
-		9879D9CC1F34054A00B4131A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9879D9AA1F34054900B4131A /* ios_baemin_waiting */;
-			targetProxy = 9879D9CB1F34054A00B4131A /* PBXContainerItemProxy */;
-		};
-		9879D9E71F342CAE00B4131A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9879D9AA1F34054900B4131A /* ios_baemin_waiting */;
-			targetProxy = 9879D9E61F342CAE00B4131A /* PBXContainerItemProxy */;
-		};
 		9879D9F51F342CCC00B4131A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9879D9AA1F34054900B4131A /* ios_baemin_waiting */;
@@ -748,98 +525,9 @@
 			};
 			name = Release;
 		};
-		9879D9D71F34054A00B4131A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78CA19BD2EF06C25F4DFB637 /* Pods-ios_baemin_waitingTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = ios_baemin_waitingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.woowabrothers.ios-baemin-waitingTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios_baemin_waiting.app/ios_baemin_waiting";
-			};
-			name = Debug;
-		};
-		9879D9D81F34054A00B4131A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13DBA5084DF289E739D7B131 /* Pods-ios_baemin_waitingTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = ios_baemin_waitingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.woowabrothers.ios-baemin-waitingTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios_baemin_waiting.app/ios_baemin_waiting";
-			};
-			name = Release;
-		};
-		9879D9DA1F34054A00B4131A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34EC86D727F1B6E3D43CA506 /* Pods-ios_baemin_waitingUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = ios_baemin_waitingUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.woowabrothers.ios-baemin-waitingUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = ios_baemin_waiting;
-			};
-			name = Debug;
-		};
-		9879D9DB1F34054A00B4131A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 669B6554E4102D490884F63C /* Pods-ios_baemin_waitingUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = ios_baemin_waitingUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.woowabrothers.ios-baemin-waitingUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = ios_baemin_waiting;
-			};
-			name = Release;
-		};
-		9879D9E91F342CAE00B4131A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = BaeminWaitingTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.woowabrothers.BaeminWaitingTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios_baemin_waiting.app/ios_baemin_waiting";
-			};
-			name = Debug;
-		};
-		9879D9EA1F342CAE00B4131A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = B3PWYBKFUK;
-				INFOPLIST_FILE = BaeminWaitingTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.woowabrothers.BaeminWaitingTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios_baemin_waiting.app/ios_baemin_waiting";
-			};
-			name = Release;
-		};
 		9879D9F71F342CCC00B4131A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
@@ -854,6 +542,7 @@
 		};
 		9879D9F81F342CCC00B4131A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18F59FA31D335960EA9BB38B /* Pods-BaeminWaitingUnitTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
@@ -887,32 +576,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9879D9D61F34054A00B4131A /* Build configuration list for PBXNativeTarget "ios_baemin_waitingTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9879D9D71F34054A00B4131A /* Debug */,
-				9879D9D81F34054A00B4131A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9879D9D91F34054A00B4131A /* Build configuration list for PBXNativeTarget "ios_baemin_waitingUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9879D9DA1F34054A00B4131A /* Debug */,
-				9879D9DB1F34054A00B4131A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9879D9E81F342CAE00B4131A /* Build configuration list for PBXNativeTarget "BaeminWaitingTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9879D9E91F342CAE00B4131A /* Debug */,
-				9879D9EA1F342CAE00B4131A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
 		9879D9F61F342CCC00B4131A /* Build configuration list for PBXNativeTarget "BaeminWaitingUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -920,6 +583,7 @@
 				9879D9F81F342CCC00B4131A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
