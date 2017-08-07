@@ -1,0 +1,8 @@
+#General
+
+/.idea
+*.html
+*.csv
+*.json
+*.DS_Store
+
