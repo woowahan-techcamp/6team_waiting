@@ -41,5 +41,18 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
+    <!--네이버 지도 설정 -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>LSApplicationCategoryType</key>
+    <string>NSLocationWhenInUseUsageDescription</string>
+    <key>NaverMapAPIKey</key>
+    <string>YEvta8tADN28aqgyik6v</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>현재 위치에 접근하고자 합니다.</string>
 </dict>
 </plist>
