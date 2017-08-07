@@ -1,4 +1,4 @@
-export class StoreModel {
+export class WaitingTicketModel {
 
     // @haeun.kim : 변수 갯수가 충분히 많아서 builder pattern 을 고려해볼 필요가 있을 듯 합니다. 
     constructor(user, store, name, user_tel, head_count, is_staying, create_time, push, ticket_number) {
