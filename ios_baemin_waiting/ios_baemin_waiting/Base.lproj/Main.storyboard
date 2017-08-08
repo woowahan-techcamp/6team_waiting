@@ -26,14 +26,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="844" y="-546"/>
+            <point key="canvasLocation" x="913" y="-546"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UIn-nS-9Y6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v80-h8-ply" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="akp-Df-fPf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="akp-Df-fPf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

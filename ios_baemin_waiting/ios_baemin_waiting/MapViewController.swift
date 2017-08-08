@@ -9,135 +9,62 @@
 import UIKit
 
 class MapViewController: UIViewController {
-    enum State {
-        case disabled
-        case tracking
-    }
 
-    var currentState: State = .disabled
+    let naverMap = NaverMapHandler()
+
     var mapView: NMapView?
+    var myLocation: NGeoPoint?
+    var circleArea: NMapCircleData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setMap()
+        mapView = naverMap.initMap(frame: self.view.bounds)
 
-        switch currentState {
-        case .disabled:
-            enableLocationUpdate()
-            updateState(to: .tracking)
-        default:
-            disableLocationUpdate()
-            updateState(to: .disabled)
+        if let mapView = mapView {
+            mapView.delegate = naverMap
+            mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            view.addSubview(mapView)
         }
 
+        switch naverMap.currentState {
+        case .disabled:
+            enableLocationUpdate()
+            naverMap.currentState = .tracking
+        default:
+            disableLocationUpdate()
+            naverMap.currentState = .disabled
+        }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
 
-        mapView?.viewWillAppear()
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        mapView?.viewDidAppear()
-    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         mapView?.viewWillDisappear()
-
         disableLocationUpdate()
     }
 
-    func setMap() {
-        guard let filePath = Bundle.main.path(forResource: "Info", ofType: "plist") else { return }
-
-        let info = NSDictionary(contentsOfFile: filePath)
-        guard let APIKey = info?["NaverMapAPIKey"] as? String else { return }
-
-        mapView = NMapView(frame: self.view.bounds)
-
-        if let mapView = mapView {
-
-            mapView.setClientId(APIKey)
-            mapView.delegate = self
-
-            mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
-            view.addSubview(mapView)
-        }
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
-
-// MARK: NMapViewDelegate
-// 지도 상태 변경 및 터치 이벤트 발생 시 호출되는 콜백 프로토콜
-
-extension MapViewController: NMapViewDelegate {
-
-    func onMapView(_ mapView: NMapView!, initHandler error: NMapError!) {
-        if error == nil {
-            mapView.setMapCenter(NGeoPoint(longitude:126.978371, latitude:37.5666091), atLevel:11)
-
-            mapView.setMapEnlarged(true, mapHD: true)
-
-            mapView.mapViewMode = .vector
-        } else {
-            print("onMapView:initHandler: \(error.description)")
-        }
-    }
-
-}
-
-// MARK: NMapPOIdataOverlayDelegate
-// 지도 위에 표시되는 오버레이 아이템 클래스이며 NMapPOIdataOverlay 클래스에서 표시하는 기본 객체로 사용됩니다.
-// 지도에 표시되는 마커 이미지는 NMapPOIdataOverlayDelegate 프로토콜을 통해서 전달합니다.
-
-extension MapViewController: NMapPOIdataOverlayDelegate {
-
-    // 마커에 해당하는 이미지를 반환
-    // 마커 선택 시 표시되는 이미지는 selected 값이 YES인 경우 반환
-    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, imageForOverlayItem poiItem: NMapPOIitem!, selected: Bool) -> UIImage! {
-        return NMapViewResources.imageWithType(poiItem.poiFlagType, selected: selected)
-    }
-
-    // 마커의 기준 위치를 설정한다.
-    // 범위는 0.0 1.0 이며 마커의 왼쪽 하단이 원점이다.
-    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, anchorPointWithType poiFlagType: NMapPOIflagType) -> CGPoint {
-        return NMapViewResources.anchorPoint(withType: poiFlagType)
-    }
-
-    // 마커 선택 시 표시되는 말풍선의 상대 위치를 설정한다.
-    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, calloutOffsetWithType poiFlagType: NMapPOIflagType) -> CGPoint {
-        return CGPoint(x: 0, y: 0)
-    }
-
-    // 마커 선택 시 표시되는 말풍선의 내용을 이미지로 반환
-    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, imageForCalloutOverlayItem poiItem: NMapPOIitem!,
-                      constraintSize: CGSize, selected: Bool, imageForCalloutRightAccessory: UIImage!,
-                      calloutPosition: UnsafeMutablePointer<CGPoint>!, calloutHit calloutHitRect: UnsafeMutablePointer<CGRect>!) -> UIImage! {
-        return nil
-    }
-}
-
-// MARK: - NMapLocationManagerDelegate
-// 현재 위치 표시
 
 extension MapViewController: NMapLocationManagerDelegate {
     // 현재 위치 변경시 호출
     func locationManager(_ locationManager: NMapLocationManager!, didUpdateTo location: CLLocation!) {
         let coordinate = location.coordinate
 
-        let myLocation = NGeoPoint(longitude: coordinate.longitude, latitude: coordinate.latitude)
+        myLocation = NGeoPoint(longitude: coordinate.longitude, latitude: coordinate.latitude)
         let locationAccuracy = Float(location.horizontalAccuracy)
 
-        mapView?.mapOverlayManager.setMyLocation(myLocation, locationAccuracy: locationAccuracy)
-        mapView?.setMapCenter(myLocation)
+        if let location = myLocation {
+            mapView?.mapOverlayManager.setMyLocation(location, locationAccuracy: locationAccuracy)
+            mapView?.setMapCenter(location)
+        }
+
+        addCircleAroundMyPosition()
+
     }
     // 현재 위치 로딩 실패시 호출
     func locationManager(_ locationManager: NMapLocationManager!, didFailWithError errorType: NMapLocationManagerErrorType) {
@@ -161,6 +88,7 @@ extension MapViewController: NMapLocationManagerDelegate {
             alert.addAction(UIAlertAction(title:"OK", style:.default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
+
     }
     func onMapViewIsGPSTracking(_ mapView: NMapView!) -> Bool {
         return NMapLocationManager.getSharedInstance().isTrackingEnabled()
@@ -168,37 +96,84 @@ extension MapViewController: NMapLocationManagerDelegate {
 
     func enableLocationUpdate() {
 
-        if let lm = NMapLocationManager.getSharedInstance() {
+        if let manager = NMapLocationManager.getSharedInstance() {
 
-            if lm.locationServiceEnabled() == false {
-                locationManager(lm, didFailWithError: .denied)
+            if manager.locationServiceEnabled() == false {
+                locationManager(manager, didFailWithError: .denied)
                 return
             }
 
-            if lm.isUpdateLocationStarted() == false {
+            if manager.isUpdateLocationStarted() == false {
                 // set delegate
-                lm.setDelegate(self)
+                manager.setDelegate(self)
                 // start updating location
-                lm.startContinuousLocationInfo()
+                manager.startContinuousLocationInfo()
+
             }
         }
     }
     func disableLocationUpdate() {
 
-        if let lm = NMapLocationManager.getSharedInstance() {
-
-            if lm.isUpdateLocationStarted() {
+        if let manager = NMapLocationManager.getSharedInstance() {
+            if manager.isUpdateLocationStarted() {
                 // start updating location
-                lm.stopUpdateLocationInfo()
+                manager.stopUpdateLocationInfo()
                 // set delegate
-                lm.setDelegate(nil)
+                manager.setDelegate(nil)
             }
         }
-
         mapView?.mapOverlayManager.clearMyLocationOverlay()
     }
 
-    func updateState(to newState: State) {
-        currentState = newState
+}
+
+extension MapViewController {
+
+    func addCircleAroundMyPosition() {
+
+        clearOverlays()
+
+        if let mapOverlayManager = mapView?.mapOverlayManager {
+            if let pathDataOverlay = mapOverlayManager.newPathDataOverlay(NMapPathData()) {
+
+                if let circleData = NMapCircleData(capacity: 1) {
+
+                    circleData.initCircleData()
+
+                    if let location = myLocation {
+                        circleData.addCirclePointLongitude(location.longitude, latitude: location.latitude, radius: 1500.0)
+                    }
+                    circleData.end()
+
+                    circleArea = circleData
+
+                    // set circle style
+                    if let circleStyle = NMapCircleStyle() {
+
+                        circleStyle.setLineType(.solid)
+                        circleStyle.setFillColorWithRed(42/255, green: 192/255, blue: 187/255, alpha: 0.1)
+                        circleStyle.strokeColor = UIColor(red: 42/255, green: 192/255, blue: 187/255, alpha: 1.0)
+                        circleStyle.strokeWidth = 1.0
+                        circleData.circleStyle = circleStyle
+                    }
+                    circleArea = circleData
+                    pathDataOverlay.add(circleData)
+                }
+            }
+        }
+    }
+    func clearOverlays() {
+        if let mapOverlayManager = mapView?.mapOverlayManager {
+            mapOverlayManager.clearOverlays()
+        }
+    }
+}
+
+extension MapViewController {
+    func isInBound(point1: NGeoPoint, point2: NGeoPoint, distance: Double) -> Bool {
+        if NMapView.distance(fromLocation: point1, toLocation: point2) < distance {
+            return true
+        }
+        return false
     }
 }
