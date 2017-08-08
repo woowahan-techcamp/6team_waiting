@@ -6,6 +6,7 @@
 //  Copyright © 2017년 woowabrothers. All rights reserved.
 //
 
+
 import UIKit
 
 class MapViewController: UIViewController {
@@ -31,6 +32,7 @@ class MapViewController: UIViewController {
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         view.addSubview(mapView)
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -39,45 +41,52 @@ class MapViewController: UIViewController {
 
 }
 
+// MARK: NMapViewDelegate
+// 지도 상태 변경 및 터치 이벤트 발생 시 호출되는 콜백 프로토콜
+
 extension MapViewController: NMapViewDelegate {
 
-    // MARK: - NMapViewDelegate Methods
     func onMapView(_ mapView: NMapView!, initHandler error: NMapError!) {
-        if error == nil { // success
-            // set map center and level
+        if error == nil {
             mapView.setMapCenter(NGeoPoint(longitude:126.978371, latitude:37.5666091), atLevel:11)
-            // set for retina display
+
             mapView.setMapEnlarged(true, mapHD: true)
-            // set map mode : vector/satelite/hybrid
+
             mapView.mapViewMode = .vector
-        } else { // fail
+        } else {
             print("onMapView:initHandler: \(error.description)")
         }
     }
+
 }
 
-extension MapViewController: NMapPOIdataOverlayDelegate {
-    // MARK: - NMapPOIdataOverlayDelegate
+// MARK: NMapPOIdataOverlayDelegate
+// 지도 위에 표시되는 오버레이 아이템 클래스이며 NMapPOIdataOverlay 클래스에서 표시하는 기본 객체로 사용됩니다.
+// 지도에 표시되는 마커 이미지는 NMapPOIdataOverlayDelegate 프로토콜을 통해서 전달합니다.
 
-    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, imageForOverlayItem poiItem: NMapPOIitem!,
-                      selected: Bool) -> UIImage! {
+extension MapViewController: NMapPOIdataOverlayDelegate {
+
+    // 마커에 해당하는 이미지를 반환
+    // 마커 선택 시 표시되는 이미지는 selected 값이 YES인 경우 반환
+    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, imageForOverlayItem poiItem: NMapPOIitem!, selected: Bool) -> UIImage! {
         return NMapViewResources.imageWithType(poiItem.poiFlagType, selected: selected)
     }
 
-    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, anchorPointWithType
-                      poiFlagType: NMapPOIflagType) -> CGPoint {
+    // 마커의 기준 위치를 설정한다.
+    // 범위는 0.0 1.0 이며 마커의 왼쪽 하단이 원점이다.
+    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, anchorPointWithType poiFlagType: NMapPOIflagType) -> CGPoint {
         return NMapViewResources.anchorPoint(withType: poiFlagType)
     }
 
-    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, calloutOffsetWithType
-                      poiFlagType: NMapPOIflagType) -> CGPoint {
+    // 마커 선택 시 표시되는 말풍선의 상대 위치를 설정한다.
+    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, calloutOffsetWithType poiFlagType: NMapPOIflagType) -> CGPoint {
         return CGPoint(x: 0, y: 0)
     }
 
+    // 마커 선택 시 표시되는 말풍선의 내용을 이미지로 반환
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, imageForCalloutOverlayItem poiItem: NMapPOIitem!,
                       constraintSize: CGSize, selected: Bool, imageForCalloutRightAccessory: UIImage!,
-                      calloutPosition: UnsafeMutablePointer<CGPoint>!,
-                      calloutHit calloutHitRect: UnsafeMutablePointer<CGRect>!) -> UIImage! {
+                      calloutPosition: UnsafeMutablePointer<CGPoint>!, calloutHit calloutHitRect: UnsafeMutablePointer<CGRect>!) -> UIImage! {
         return nil
     }
 }
