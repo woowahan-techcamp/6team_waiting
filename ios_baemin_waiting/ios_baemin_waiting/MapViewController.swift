@@ -55,32 +55,6 @@ class MapViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func addMarker() {
-        let restaurantsList = jsonController.getItem()
-        if let mapOverlayManager = mapView?.mapOverlayManager {
-
-            if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
-
-                poiDataOverlay.initPOIdata(Int32(restaurantsList.count))
-                var markerLocation: NGeoPoint
-
-                for restaurant in restaurantsList {
-
-                    if let long = Double(restaurant.restaurantsLongitude),
-                        let lat = Double(restaurant.restaurantsLatitude) {
-
-                        markerLocation = NGeoPoint(longitude: long, latitude: lat)
-                        poiDataOverlay.addPOIitem(atLocation: markerLocation, title: restaurant.restaurantName,
-                                                  type: userPOIflagTypeDefault, with: nil)
-                    }
-
-                }
-                poiDataOverlay.endPOIdata()
-                poiDataOverlay.showAllPOIdata()
-            }
-        }
-    }
 }
 
 extension MapViewController: NMapLocationManagerDelegate {
@@ -99,6 +73,10 @@ extension MapViewController: NMapLocationManagerDelegate {
         addCircleAroundMyPosition()
 
         addMarker()
+
+        if let location = myLocation {
+            mapView?.setMapCenter(location, atLevel: 9)
+        }
     }
     // 현재 위치 로딩 실패시 호출
     func locationManager(_ locationManager: NMapLocationManager!, didFailWithError errorType: NMapLocationManagerErrorType) {
@@ -203,8 +181,55 @@ extension MapViewController {
     }
 }
 
+// MARK: 마커 추가하기
 extension MapViewController {
-    func isInBound(point1: NGeoPoint, point2: NGeoPoint, distance: Double) -> Bool {
+
+    func addMarker() {
+        let restaurantsList = restaurantInCircle()
+
+        if let mapOverlayManager = mapView?.mapOverlayManager {
+
+            if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
+
+                poiDataOverlay.initPOIdata(Int32(restaurantsList.count))
+
+                for restaurant in restaurantsList {
+
+                    if let long = Double(restaurant.restaurantsLongitude),
+                        let lat = Double(restaurant.restaurantsLatitude) {
+
+                        let markerLocation = NGeoPoint(longitude: long, latitude: lat)
+                        poiDataOverlay.addPOIitem(atLocation: markerLocation, title: restaurant.restaurantName,
+                                                  type: userPOIflagTypeDefault, with: nil)
+                    }
+
+                }
+                poiDataOverlay.endPOIdata()
+                poiDataOverlay.showAllPOIdata()
+            }
+        }
+    }
+    func restaurantInCircle() -> [RestaurantsLocationInfo] {
+        let restaurantsList = jsonController.getItem()
+
+        var resultList: [RestaurantsLocationInfo] = []
+        for restaurant in restaurantsList {
+            if let long = Double(restaurant.restaurantsLongitude),
+                let lat = Double(restaurant.restaurantsLatitude) {
+
+                let markerLocation = NGeoPoint(longitude: long, latitude: lat)
+
+                if let location = myLocation {
+                    if isInCircle(point1: location, point2: markerLocation, distance: 1500) {
+                        resultList.append(restaurant)
+                    }
+                }
+            }
+        }
+        return resultList
+    }
+
+    func isInCircle(point1: NGeoPoint, point2: NGeoPoint, distance: Double) -> Bool {
         if NMapView.distance(fromLocation: point1, toLocation: point2) < distance {
             return true
         }

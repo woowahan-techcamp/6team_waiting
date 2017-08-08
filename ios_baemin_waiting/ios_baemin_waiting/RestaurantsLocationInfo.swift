@@ -13,12 +13,14 @@ struct RestaurantsLocationInfo {
     private var _restaurantsAddress: String
     private var _restaurantsLatitude: String
     private var _restaurantsLongitude: String
+    private var _searchRange: [String: Any]
 
-    init(restaurantsName: String, restaurantsAddress: String, restaurantsLatitude: String, restaurantsLongitude: String) {
+    init(restaurantsName: String, restaurantsAddress: String, restaurantsLatitude: String, restaurantsLongitude: String, searchRange: [String: Any]) {
         self._restaurantsName = restaurantsName
         self._restaurantsAddress = restaurantsAddress
         self._restaurantsLatitude = restaurantsLatitude
         self._restaurantsLongitude = restaurantsLongitude
+        self._searchRange = searchRange
     }
 
     public var restaurantName: String {
@@ -37,6 +39,11 @@ struct RestaurantsLocationInfo {
     public var restaurantsLongitude: String {
         get { return self._restaurantsLongitude }
         set { self._restaurantsLongitude = newValue }
+    }
+
+    public var searchRange: [String: Any] {
+        get { return self._searchRange }
+        set { self._searchRange = newValue }
     }
 
 }

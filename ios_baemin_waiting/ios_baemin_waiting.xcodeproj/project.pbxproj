@@ -73,7 +73,7 @@
 		98BE03E31F388A7A00179D43 /* NMapViewResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
 		98EB2D051F39932E00409EC9 /* NaverMapHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverMapHandler.swift; sourceTree = "<group>"; };
 		98EB2D071F39A8B200409EC9 /* RestaurantsLocationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsLocationInfo.swift; sourceTree = "<group>"; };
-		98EB2D091F39A99900409EC9 /* JsonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JsonController.swift; path = ../JsonController.swift; sourceTree = "<group>"; };
+		98EB2D091F39A99900409EC9 /* JsonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonController.swift; sourceTree = "<group>"; };
 		98EB2D0B1F39A9D700409EC9 /* 송파구.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "송파구.json"; sourceTree = "<group>"; };
 		A7113F72677B202CDD56B17A /* Pods-ios_baemin_waiting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_baemin_waiting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios_baemin_waiting/Pods-ios_baemin_waiting.debug.xcconfig"; sourceTree = "<group>"; };
 		AB377FD4ABB73D02348DCF19 /* Pods-ios_baemin_waiting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_baemin_waiting.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios_baemin_waiting/Pods-ios_baemin_waiting.release.xcconfig"; sourceTree = "<group>"; };
@@ -149,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				98EB2D091F39A99900409EC9 /* JsonController.swift */,
+				98EB2D071F39A8B200409EC9 /* RestaurantsLocationInfo.swift */,
 				98EB2D0B1F39A9D700409EC9 /* 송파구.json */,
 				9879D9AE1F34054900B4131A /* AppDelegate.swift */,
 				9879D9B01F34054900B4131A /* MapViewController.swift */,
@@ -159,7 +160,6 @@
 				9879D9B71F34054900B4131A /* LaunchScreen.storyboard */,
 				9879D9BA1F34054900B4131A /* Info.plist */,
 				98BE03E01F3862CB00179D43 /* ios_baemin_waiting-Bridging-Header.h */,
-				98EB2D071F39A8B200409EC9 /* RestaurantsLocationInfo.swift */,
 			);
 			path = ios_baemin_waiting;
 			sourceTree = "<group>";

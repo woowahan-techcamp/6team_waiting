@@ -35,17 +35,20 @@ class JsonController {
         var restaurnatsLocationInfoList: [RestaurantsLocationInfo] = []
 
         let jsonObject = readJson(fileName: "송파구")
-        var restaurantsLocationInfo: RestaurantsLocationInfo
+        var location: RestaurantsLocationInfo
         for object in jsonObject {
-            let name: String = object["restaurantsName"] as! String
+            guard let name: String = object["restaurantsName"] as? String else { return [] }
+            guard let searchRange = object["searchRange"] as? [String: Any] else { return [] }
+
             if let locationInfo = object["restaurantsLocationInfo"] as? [String : Any] {
-                let address: String = locationInfo["restaurantsAddress"] as! String
-                let latitude: String = locationInfo["restaurantsLatitude"] as! String
-                let longitude: String = locationInfo["restaurantsLongitude"] as! String
+                guard let address: String = locationInfo["restaurantsAddress"] as? String else { return [] }
+                guard let latitude: String = locationInfo["restaurantsLatitude"] as? String else { return [] }
+                guard let longitude: String = locationInfo["restaurantsLongitude"] as? String else { return [] }
 
-                restaurantsLocationInfo = RestaurantsLocationInfo(restaurantsName: name, restaurantsAddress: address, restaurantsLatitude: latitude, restaurantsLongitude: longitude)
+                location = RestaurantsLocationInfo(restaurantsName: name, restaurantsAddress: address,
+                                                   restaurantsLatitude: latitude, restaurantsLongitude: longitude, searchRange: searchRange)
 
-                restaurnatsLocationInfoList.append(restaurantsLocationInfo)
+                restaurnatsLocationInfoList.append(location)
             } else {
                 print("Wrong locationInfo")
             }
