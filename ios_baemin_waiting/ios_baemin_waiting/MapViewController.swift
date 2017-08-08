@@ -11,7 +11,7 @@ import UIKit
 class MapViewController: UIViewController {
 
     let naverMap = NaverMapHandler()
-
+    let jsonController = JsonController()
     var mapView: NMapView?
     var myLocation: NGeoPoint?
     var circleArea: NMapCircleData?
@@ -24,6 +24,7 @@ class MapViewController: UIViewController {
         if let mapView = mapView {
             mapView.delegate = naverMap
             mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
             view.addSubview(mapView)
         }
 
@@ -37,6 +38,12 @@ class MapViewController: UIViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        mapView?.viewDidAppear()
+
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -47,6 +54,32 @@ class MapViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func addMarker() {
+        let restaurantsList = jsonController.getItem()
+        if let mapOverlayManager = mapView?.mapOverlayManager {
+
+            if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
+
+                poiDataOverlay.initPOIdata(Int32(restaurantsList.count))
+                var markerLocation: NGeoPoint
+
+                for restaurant in restaurantsList {
+
+                    if let long = Double(restaurant.restaurantsLongitude),
+                        let lat = Double(restaurant.restaurantsLatitude) {
+
+                        markerLocation = NGeoPoint(longitude: long, latitude: lat)
+                        poiDataOverlay.addPOIitem(atLocation: markerLocation, title: restaurant.restaurantName,
+                                                  type: userPOIflagTypeDefault, with: nil)
+                    }
+
+                }
+                poiDataOverlay.endPOIdata()
+                poiDataOverlay.showAllPOIdata()
+            }
+        }
     }
 }
 
@@ -65,6 +98,7 @@ extension MapViewController: NMapLocationManagerDelegate {
 
         addCircleAroundMyPosition()
 
+        addMarker()
     }
     // 현재 위치 로딩 실패시 호출
     func locationManager(_ locationManager: NMapLocationManager!, didFailWithError errorType: NMapLocationManagerErrorType) {

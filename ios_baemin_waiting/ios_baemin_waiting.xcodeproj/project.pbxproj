@@ -22,6 +22,9 @@
 		98BE03DF1F38623700179D43 /* NaverMapUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BE03DE1F38623700179D43 /* NaverMapUnitTests.swift */; };
 		98BE03E41F388A7A00179D43 /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BE03E31F388A7A00179D43 /* NMapViewResources.swift */; };
 		98EB2D061F39932E00409EC9 /* NaverMapHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EB2D051F39932E00409EC9 /* NaverMapHandler.swift */; };
+		98EB2D081F39A8B200409EC9 /* RestaurantsLocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EB2D071F39A8B200409EC9 /* RestaurantsLocationInfo.swift */; };
+		98EB2D0A1F39A99900409EC9 /* JsonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EB2D091F39A99900409EC9 /* JsonController.swift */; };
+		98EB2D0C1F39A9D700409EC9 /* 송파구.json in Resources */ = {isa = PBXBuildFile; fileRef = 98EB2D0B1F39A9D700409EC9 /* 송파구.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		98BE03E01F3862CB00179D43 /* ios_baemin_waiting-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios_baemin_waiting-Bridging-Header.h"; sourceTree = "<group>"; };
 		98BE03E31F388A7A00179D43 /* NMapViewResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
 		98EB2D051F39932E00409EC9 /* NaverMapHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverMapHandler.swift; sourceTree = "<group>"; };
+		98EB2D071F39A8B200409EC9 /* RestaurantsLocationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsLocationInfo.swift; sourceTree = "<group>"; };
+		98EB2D091F39A99900409EC9 /* JsonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JsonController.swift; path = ../JsonController.swift; sourceTree = "<group>"; };
+		98EB2D0B1F39A9D700409EC9 /* 송파구.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "송파구.json"; sourceTree = "<group>"; };
 		A7113F72677B202CDD56B17A /* Pods-ios_baemin_waiting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_baemin_waiting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios_baemin_waiting/Pods-ios_baemin_waiting.debug.xcconfig"; sourceTree = "<group>"; };
 		AB377FD4ABB73D02348DCF19 /* Pods-ios_baemin_waiting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_baemin_waiting.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios_baemin_waiting/Pods-ios_baemin_waiting.release.xcconfig"; sourceTree = "<group>"; };
 		DBB53B84F052BED4D2DECDC4 /* Pods_ios_baemin_waiting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_baemin_waiting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +148,8 @@
 		9879D9AD1F34054900B4131A /* ios_baemin_waiting */ = {
 			isa = PBXGroup;
 			children = (
+				98EB2D091F39A99900409EC9 /* JsonController.swift */,
+				98EB2D0B1F39A9D700409EC9 /* 송파구.json */,
 				9879D9AE1F34054900B4131A /* AppDelegate.swift */,
 				9879D9B01F34054900B4131A /* MapViewController.swift */,
 				98EB2D051F39932E00409EC9 /* NaverMapHandler.swift */,
@@ -151,6 +159,7 @@
 				9879D9B71F34054900B4131A /* LaunchScreen.storyboard */,
 				9879D9BA1F34054900B4131A /* Info.plist */,
 				98BE03E01F3862CB00179D43 /* ios_baemin_waiting-Bridging-Header.h */,
+				98EB2D071F39A8B200409EC9 /* RestaurantsLocationInfo.swift */,
 			);
 			path = ios_baemin_waiting;
 			sourceTree = "<group>";
@@ -262,6 +271,7 @@
 			files = (
 				9879D9B91F34054900B4131A /* LaunchScreen.storyboard in Resources */,
 				9879D9B61F34054900B4131A /* Assets.xcassets in Resources */,
+				98EB2D0C1F39A9D700409EC9 /* 송파구.json in Resources */,
 				9879D9B41F34054900B4131A /* Main.storyboard in Resources */,
 				98BE03DC1F38617D00179D43 /* Scripts in Resources */,
 			);
@@ -402,10 +412,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98EB2D081F39A8B200409EC9 /* RestaurantsLocationInfo.swift in Sources */,
 				98EB2D061F39932E00409EC9 /* NaverMapHandler.swift in Sources */,
 				9879D9B11F34054900B4131A /* MapViewController.swift in Sources */,
 				98BE03E41F388A7A00179D43 /* NMapViewResources.swift in Sources */,
 				9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */,
+				98EB2D0A1F39A99900409EC9 /* JsonController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
