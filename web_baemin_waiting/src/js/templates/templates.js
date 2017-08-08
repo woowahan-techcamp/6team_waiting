@@ -11,7 +11,7 @@ templates['main'] = template({"1":function(container,depth0,helpers,partials,dat
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "<section id=\"home\">\n  <div>\n    <ul class=\"inline-list\">\n"
+  return "<section id=\"home\">\n  <div class=\"header-navi\">\n    <ul class=\"inline-list\">\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </ul>\n  </div>\n  <div id=\"view\"></div>\n</section>";
 },"useData":true});

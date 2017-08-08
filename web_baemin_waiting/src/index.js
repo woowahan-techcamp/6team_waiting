@@ -1,5 +1,6 @@
 import _ from "./util.js";
 import "./style.css";
+import "./style/main.css";
 
 import service from "./js/services/service.js";
 
@@ -24,6 +25,7 @@ root.innerHTML = html(menu);
 
 const view = document.querySelector("#view");
 view.innerHTML = "Hello!";
+
 // Get user data test
 service.getUserDataByUid("lnTusrM4OIW7GOfhFiawb7GNSWC3")
     .then((v) => console.log(v));

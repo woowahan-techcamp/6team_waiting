@@ -1,0 +1,16 @@
+$primary-color: #FAF;
+
+div.header-navi {
+    width: 100%;
+    height: 50px;
+}
+
+div.header-navi > ul {
+    line-height: 60px;
+    float: right;
+}
+
+div.header-navi > ul > li {
+    margin-right: 25px;
+}
+
