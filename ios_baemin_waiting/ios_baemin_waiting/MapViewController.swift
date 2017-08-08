@@ -6,16 +6,48 @@
 //  Copyright © 2017년 woowabrothers. All rights reserved.
 //
 
-
 import UIKit
 
 class MapViewController: UIViewController {
+    enum State {
+        case disabled
+        case tracking
+    }
+
+    var currentState: State = .disabled
+    var mapView: NMapView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setMap()
 
+        switch currentState {
+        case .disabled:
+            enableLocationUpdate()
+            updateState(to: .tracking)
+        default:
+            disableLocationUpdate()
+            updateState(to: .disabled)
+        }
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        mapView?.viewWillAppear()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        mapView?.viewDidAppear()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        mapView?.viewWillDisappear()
+
+        disableLocationUpdate()
     }
 
     func setMap() {
@@ -24,15 +56,17 @@ class MapViewController: UIViewController {
         let info = NSDictionary(contentsOfFile: filePath)
         guard let APIKey = info?["NaverMapAPIKey"] as? String else { return }
 
-        let mapView = NMapView(frame: self.view.bounds)
+        mapView = NMapView(frame: self.view.bounds)
 
-        mapView.setClientId(APIKey)
-        mapView.delegate = self
+        if let mapView = mapView {
 
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            mapView.setClientId(APIKey)
+            mapView.delegate = self
 
-        view.addSubview(mapView)
+            mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
+            view.addSubview(mapView)
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -88,5 +122,83 @@ extension MapViewController: NMapPOIdataOverlayDelegate {
                       constraintSize: CGSize, selected: Bool, imageForCalloutRightAccessory: UIImage!,
                       calloutPosition: UnsafeMutablePointer<CGPoint>!, calloutHit calloutHitRect: UnsafeMutablePointer<CGRect>!) -> UIImage! {
         return nil
+    }
+}
+
+// MARK: - NMapLocationManagerDelegate
+// 현재 위치 표시
+
+extension MapViewController: NMapLocationManagerDelegate {
+    // 현재 위치 변경시 호출
+    func locationManager(_ locationManager: NMapLocationManager!, didUpdateTo location: CLLocation!) {
+        let coordinate = location.coordinate
+
+        let myLocation = NGeoPoint(longitude: coordinate.longitude, latitude: coordinate.latitude)
+        let locationAccuracy = Float(location.horizontalAccuracy)
+
+        mapView?.mapOverlayManager.setMyLocation(myLocation, locationAccuracy: locationAccuracy)
+        mapView?.setMapCenter(myLocation)
+    }
+    // 현재 위치 로딩 실패시 호출
+    func locationManager(_ locationManager: NMapLocationManager!, didFailWithError errorType: NMapLocationManagerErrorType) {
+        var message: String = ""
+
+        switch errorType {
+        case .unknown: fallthrough
+        case .canceled: fallthrough
+        case .timeout:
+            message = "일시적으로 내위치를 확인 할 수 없습니다."
+        case .denied:
+            message = "위치 정보를 확인 할 수 없습니다.\n사용자의 위치 정보를 확인하도록 허용하시려면 위치서비스를 켜십시오."
+        case .unavailableArea:
+            message = "현재 위치는 지도내에 표시할 수 없습니다."
+        case .heading:
+            message = "나침반 정보를 확인 할 수 없습니다."
+        }
+
+        if !message.isEmpty {
+            let alert = UIAlertController(title:"NMapViewer", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title:"OK", style:.default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    func onMapViewIsGPSTracking(_ mapView: NMapView!) -> Bool {
+        return NMapLocationManager.getSharedInstance().isTrackingEnabled()
+    }
+
+    func enableLocationUpdate() {
+
+        if let lm = NMapLocationManager.getSharedInstance() {
+
+            if lm.locationServiceEnabled() == false {
+                locationManager(lm, didFailWithError: .denied)
+                return
+            }
+
+            if lm.isUpdateLocationStarted() == false {
+                // set delegate
+                lm.setDelegate(self)
+                // start updating location
+                lm.startContinuousLocationInfo()
+            }
+        }
+    }
+    func disableLocationUpdate() {
+
+        if let lm = NMapLocationManager.getSharedInstance() {
+
+            if lm.isUpdateLocationStarted() {
+                // start updating location
+                lm.stopUpdateLocationInfo()
+                // set delegate
+                lm.setDelegate(nil)
+            }
+        }
+
+        mapView?.mapOverlayManager.clearMyLocationOverlay()
+    }
+
+    func updateState(to newState: State) {
+        currentState = newState
     }
 }

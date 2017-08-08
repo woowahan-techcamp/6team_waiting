@@ -21,8 +21,6 @@ class NMapViewResources: NSObject {
             return #imageLiteral(resourceName: "pubtrans_ic_mylocation_on")
         case NMapPOIflagTypeLocationOff:
             return #imageLiteral(resourceName: "pubtrans_ic_mylocation_off")
-        case NMapPOIflagTypeCompass:
-            return #imageLiteral(resourceName: "ic_angle")
         case userPOIflagTypeDefault:
             return #imageLiteral(resourceName: "pubtrans_exact_default")
         case userPOIflagTypeInvisible:
