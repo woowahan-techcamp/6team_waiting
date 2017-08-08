@@ -20,12 +20,10 @@ const menu = [{
             }];
 
 const root = document.querySelector("#root");
-const html = Handlebars.templates["main"];
-root.innerHTML = html(menu);
+const mainHtml = Handlebars.templates["main"];
+root.innerHTML = mainHtml(menu);
 
 const view = document.querySelector("#view");
-view.innerHTML = "Hello!";
+const viewHtml = Handlebars.templates["view"];
+view.innerHTML = viewHtml();
 
-// Get user data test
-service.getUserDataByUid("lnTusrM4OIW7GOfhFiawb7GNSWC3")
-    .then((v) => console.log(v));

@@ -1,10 +1,24 @@
 div.header-navi {
   width: 100%;
-  height: 50px; }
+  height: 50px;
+  position: fixed;
+  color: white; }
 
 div.header-navi > ul {
   line-height: 60px;
   float: right; }
 
 div.header-navi > ul > li {
-  margin-right: 25px; }
+  margin-right: 40px; }
+
+div.view {
+  width: 100%;
+  height: 100vh; }
+
+div.introduce {
+  width: 100%;
+  height: 100vh; }
+
+div.img-slide > img {
+  max-width: 100%;
+  max-height: 100%; }
