@@ -28,22 +28,19 @@ const service = (() => {
     const getUserByUid = function(uid) {
         return new Promise((resolve, reject) => {
             fireDatabase.ref("users/" + uid).once("value")
-                        .then((snapShot) => {
-                            resolve(snapShot.val());
-                        })
-                        .catch((err) => {
-                            reject(err);
-                        })
+                .then((snapShot) => {
+                    resolve(snapShot.val());
+                })
+                .catch((err) => {
+                    reject(err);
+                })
         });
     }
 
     const registerStore = function(owner, title, tel, add, pic, desc, is_opened) {
         const storeData = new StoreModel(owner, title, tel, add, pic, desc, is_opened);
-        console.log(storeData);
-        if (!owner) {
-            const currentUid = getCurrentUid();
-            storeData.owner(currentUid);
-        }
+        const currentUid = getCurrentUid();
+        storeData.owner(currentUid);
         fireDatabase.ref("stores/").push(storeData);
     }
 
