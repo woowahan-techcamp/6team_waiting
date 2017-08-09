@@ -75,6 +75,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
+                    <navigationItem key="navigationItem" id="5PH-Dc-Pnf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wbw-FC-6j3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
