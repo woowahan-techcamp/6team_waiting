@@ -1,32 +1,247 @@
-$primary-color: #FAF;
+$theme-point-color: #450e0e;
+$theme-color: #986C6C;
 
-div.header-navi {
-    width: 100%;
-    height: 50px;
+@mixin absolute-center {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-div.header-navi > ul {
-    margin-top: 25px;
-    float: right;
-    margin-right: 10px; 
-}
-
-div.header-navi > ul > li {
-    margin-right: 40px;
-}
-
+/*************  Main Start  ************/
 div.view {
     width: 100%;
     height: 100vh;
+    background-image: url("http://www.kuredu.com/wp-content/gallery/bars-and-dining-gallery/bars9.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 div.intro {
+    text-align: center;
+    position: relative;
     width: 100%;
     height: 100vh;
 }
 
-div.img-slide > img {
-    max-width: 100%;
-    max-height: 100%;
-    overflow: hidden;
+h1#intro-title {
+    color: $theme-point-color;
+    position: absolute;
+    top: 130px;
+    @include absolute-center;
 }
+
+div.intro-area {
+    position: absolute;
+    width: 760px;
+    top: 250px;
+    @include absolute-center;
+}
+
+div.intro-box {
+    position: relative;
+    width: 200px;
+    float: left;
+    margin-right: 80px;
+}
+
+div.intro-box:last-child {
+    margin-right: 0px;
+}
+
+div.intro-img {
+    width: 130px;
+    height: 130px;
+    background-color: #999;
+    margin: auto;
+}
+
+p.intro-desc {
+    color: #666;
+    width: 170px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: .8em;
+    font-weight: lighter;
+}
+
+div.intro {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+h1#intro-title {
+    color: $theme-point-color;
+    position: absolute;
+    top: 130px;
+    @include absolute-center;
+}
+
+div.intro-area {
+    position: absolute;
+    width: 760px;
+    top: 250px;
+    @include absolute-center;
+}
+
+div.intro-box {
+    position: relative;
+    width: 200px;
+    float: left;
+    margin-right: 80px;
+}
+
+div.intro-box:last-child {
+    margin-right: 0px;
+}
+
+div.intro-img {
+    width: 130px;
+    height: 130px;
+    background-color: #999;
+    margin: auto;
+}
+
+p.intro-desc {
+    color: #666;
+    width: 170px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: .8em;
+    font-weight: lighter;
+}
+
+
+div.show-manage {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    background-color: $theme-color;
+}
+
+div.show-manage:not(.managing) {
+    -webkit-transition: .5s; /* Safari */
+    transition: .5s;
+}
+
+div.manage-title {
+    display: inline-block;
+    margin: auto;
+    padding-top: 65px;
+}
+
+div#manage-status {
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    float: left;
+}
+
+div#manage-arrow {
+    line-height: 150px;
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+    /* background-image: url("./images/right-arrow.png"); */
+    background-size: cover;
+    float: left;
+}
+
+div.managing {
+    height: 100vh;
+    transition: .5s;
+}
+
+/***************  Sign  ****************/
+
+div.sign-area {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+div.sign-box {
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #333;
+    width: 900px;
+    height: 400px;
+    background-color: white;
+    top: 200;
+    display: none;
+    @include absolute-center;
+}
+
+div.sign {
+    width: 320px;
+    height: 400px;
+    margin: 50px;
+}
+
+div.sign-up-box {
+    float: left;
+}
+
+div.sign-in-box {
+    float: right;
+}
+
+div.vertical-line {
+    width: 1px;
+    height: 200px;
+    border-left: thin solid $theme-point-color;
+    margin: auto;
+    margin-top: 100px;
+    float: left;
+}
+
+span.sign-up-title {
+    color: $theme-point-color;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.sign-box dl {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin-top: 50px;
+    margin-left: 30px;
+    font-size: 0.7em;
+}
+
+.sign-box dt {
+    float: left;
+    width: 30%;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    margin-bottom: 10px;
+    color: #888888;
+}
+
+.sign-box dd {
+    float: left;
+    width: 70%;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+div.sign-box button {
+    background-color: $theme-point-color;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.2em;
+    margin-top: 50px;
+    width: 250px;
+    height: 40px;
+}
+
+/*************  Main End  ************/

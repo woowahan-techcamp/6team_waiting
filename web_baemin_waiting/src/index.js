@@ -1,7 +1,9 @@
 import _ from "./util.js";
 
 import "./style.css";
+import "./style/header.css";
 import "./style/main.css";
+import "./style/footer.css";
 
 import service from "./js/services/service.js";
 
