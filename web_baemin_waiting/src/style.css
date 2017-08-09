@@ -1,3 +1,15 @@
+* {
+    margin: 0;
+}
+
+ul.inline-list {
+    list-style: none;
+}
+
+ul.inline-list li {
+    float: left;
+}
+
 p {
     color: #FFAAAA;
 }
