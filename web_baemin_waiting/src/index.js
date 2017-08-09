@@ -1,12 +1,26 @@
 import _ from "./util.js";
 import "./style.css";
+import "./style/main.css";
 
-import service from "./services/service.js";
+import service from "./js/services/service.js";
 
 
-const root = document.querySelector("#root");
-root.innerHTML = `<p>Hello Waiting!!</p>`;
-_.log(root.innerHTML);
+const menu = [{
+                "id": "home",
+                "content": "홈"
+            },{
+                "id": "introduce",
+                "content": "서비스소개"
+            },{
+                "id": "manage",
+                "content": "가게관리"
+            },{
+                "id": "auth",
+                "content": "로그인"
+            }];
 
-// Sign up test 
-service.signUpUser("test@test.com", "123456", null);
+const header = document.querySelector("#header");
+const headerHtml = Handlebars.templates["header"];
+console.log(header);
+header.innerHTML = headerHtml(menu);
+

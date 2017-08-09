@@ -1,0 +1,16 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ios_baemin_waiting' do
+  use_frameworks!
+
+  # Pods for ios_baemin_waiting
+  pod 'SwiftyJSON'
+  pod 'Alamofire'
+  pod 'SwiftLint'
+
+  target 'BaeminWaitingUnitTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end
