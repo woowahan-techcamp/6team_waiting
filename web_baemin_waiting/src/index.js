@@ -19,11 +19,8 @@ const menu = [{
                 "content": "로그인"
             }];
 
-const root = document.querySelector("#root");
-const mainHtml = Handlebars.templates["main"];
-root.innerHTML = mainHtml(menu);
-
-const view = document.querySelector("#view");
-const viewHtml = Handlebars.templates["view"];
-view.innerHTML = viewHtml();
+const header = document.querySelector("#header");
+const headerHtml = Handlebars.templates["header"];
+console.log(header);
+header.innerHTML = headerHtml(menu);
 
