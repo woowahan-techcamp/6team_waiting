@@ -1,6 +1,0 @@
-framework module Pods_ios_baemin_waiting {
-  umbrella header "Pods-ios_baemin_waiting-umbrella.h"
-
-  export *
-  module * { export * }
-}
