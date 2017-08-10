@@ -11,7 +11,7 @@ import UIKit
 class MainCollectionViewController: UIViewController {
 
     let jsonController = JsonController()
-    var restaurantsList: [RestaurantsLocationInfo] = []
+    var storeList: [Store] = []
 
     // IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,8 +22,11 @@ class MainCollectionViewController: UIViewController {
         collectionView.delegate = self
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
 
-        restaurantsList = jsonController.getItem()
+        storeList = jsonController.getItem()
 
+        ServerRepository.getStoreList { store in
+            self.storeList.append(store)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,12 +51,12 @@ extension MainCollectionViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return restaurantsList.count
+        return storeList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? MainCollectionViewCell {
-            cell.putCellContent(restaurantsInfo: restaurantsList[indexPath.row])
+            cell.putCellContent(storeInfo: storeList[indexPath.row])
             return cell
         }
 

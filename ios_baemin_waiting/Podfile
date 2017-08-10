@@ -1,13 +1,14 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
+pod 'SwiftyJSON'
+pod 'Alamofire'
+pod 'AlamofireImage'
+pod 'SwiftLint'
 
 target 'ios_baemin_waiting' do
   use_frameworks!
 
   # Pods for ios_baemin_waiting
-  pod 'SwiftyJSON'
-  pod 'Alamofire'
-  pod 'SwiftLint'
 
   target 'BaeminWaitingUnitTests' do
     inherit! :search_paths
