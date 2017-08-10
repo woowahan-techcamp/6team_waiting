@@ -2,6 +2,10 @@
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 ul.inline-list {
     list-style: none;
 }
@@ -10,6 +14,6 @@ ul.inline-list li {
     float: left;
 }
 
-p {
-    color: #FFAAAA;
+div.circle {
+    border-radius: 100%;
 }
