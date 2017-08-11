@@ -477,6 +477,7 @@
 				980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */,
 				986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */,
 				9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */,
+				986B3D831F3C7AE300432FF7 /* StoreCallButtonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
