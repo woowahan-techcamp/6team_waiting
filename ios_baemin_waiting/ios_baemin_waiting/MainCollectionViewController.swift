@@ -29,9 +29,6 @@ class MainCollectionViewController: UIViewController {
         ServerRepository.getStoreList { storeData in
             self.storeList = storeData
             self.collectionView.reloadData()
-
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataUpdate"),
-                                            object: nil, userInfo: ["storeData": self.storeList])
         }
     }
 

@@ -52,6 +52,9 @@ class ServerRepository {
                     }
                 }
             }
+
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataUpdate"),
+                                            object: nil, userInfo: ["storeData": self.storeList])
             DispatchQueue.main.async {
                 completion(self.storeList)
             }
