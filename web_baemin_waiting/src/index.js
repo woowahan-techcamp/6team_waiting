@@ -3,6 +3,7 @@ import _ from "./util.js";
 import "./style.css";
 import "./style/home.css";
 
+import { HomeNavigator } from "./js/home-navigator.js"
 import service from "./js/services/service.js";
 
 
@@ -19,5 +20,8 @@ const desc = {
 const root = document.querySelector("#root");
 const homeHtml = Handlebars.templates["home"];
 root.innerHTML = homeHtml(desc);
+
+const homeNavigator = new HomeNavigator();
+homeNavigator.on();
 
 
