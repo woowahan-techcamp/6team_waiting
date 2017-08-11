@@ -11,6 +11,7 @@ $secondary-color: #ABE2E0;
 div#root {
     width: 100vw;
     height: 100vh;
+    /* @TODO : haeun.kim 배경 이미지 */
     background-color: #333;
     // background-image: url("background.jpg");
     // background-size: cover;
@@ -94,7 +95,6 @@ div.intro:not(.show-intro) {
     @include page-animation;
 }
 
-
 div.sign-in {
     width: 35vw;
     height: 90vh;
@@ -152,7 +152,6 @@ div.sign-area button {
     font-size: 1.3em;
     border-radius: 30px;
 }
-
 
 button#btn-login {
     margin-top: 30px;
