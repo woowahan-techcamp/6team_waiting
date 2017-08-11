@@ -142,7 +142,20 @@ export class HomeNavigator {
     }
 
     showMyPage() {
-        util.setTemplateInHtml(".board", "my-page");
+        /** 
+         * @TODO : haeun.kim
+         * my page 가 렌더링 된 후, 본인 인증을 거치고 개인 정보를 열람할 수 있습니다. 
+        */
+        util.setTemplateInHtml(".board", "my-page")
+            .then(() => {
+                util.setTemplateInHtml(".my-page-area", "my-page-auth")
+                    .then(() => {
+                        const btnMyAuth = document.querySelector("#btn-my-auth");
+                        btnMyAuth.addEventListener("click", () => {
+                            alert("인증!!");
+                        })
+                    });
+            });
     }
 
     addClassOnElement(ele, css) {
