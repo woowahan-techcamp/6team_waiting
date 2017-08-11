@@ -1,4 +1,4 @@
-import _ from "./util.js";
+import util from "./js/util.js";
 
 import "./style.css";
 import "./style/home.css";
@@ -16,7 +16,7 @@ const homeData = {
                 ]
             };
 
-_.setTemplateInHtml("#root", "home", homeData);
+util.setTemplateInHtml("#root", "home", homeData);
 
 
 

@@ -1,4 +1,4 @@
-const _ = {
+const util = {
     log(content) {
         if (window.console) console.log(content);
         else alert(content);
@@ -18,4 +18,4 @@ const _ = {
     }
 }
 
-export default _;
+export default util;
