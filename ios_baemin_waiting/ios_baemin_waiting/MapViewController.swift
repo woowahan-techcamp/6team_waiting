@@ -71,10 +71,7 @@ extension MapViewController: NMapLocationManagerDelegate {
             mapView?.mapOverlayManager.setMyLocation(location, locationAccuracy: locationAccuracy)
             mapView?.setMapCenter(location)
         }
-
         addCircleAroundMyPosition()
-
-
 
         addMarker()
 
@@ -106,9 +103,9 @@ extension MapViewController: NMapLocationManagerDelegate {
         }
 
     }
-    func onMapViewIsGPSTracking(_ mapView: NMapView!) -> Bool {
-        return NMapLocationManager.getSharedInstance().isTrackingEnabled()
-    }
+//    func onMapViewIsGPSTracking(_ mapView: NMapView!) -> Bool {
+//        return NMapLocationManager.getSharedInstance().isTrackingEnabled()
+//    }
 
     func enableLocationUpdate() {
 
