@@ -1,0 +1,53 @@
+div.register-store {
+  width: 50vw;
+  text-align: center;
+  margin: auto;
+  padding: 50px; }
+
+dl.reg-form {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 50px; }
+
+dl.reg-form input {
+  width: 90%;
+  height: 30px;
+  font-size: 1.2em;
+  border-bottom: 1px solid #2AC1BC; }
+
+dl.reg-form dl {
+  width: 100%;
+  min-width: 300px;
+  overflow: hidden;
+  padding: 0;
+  margin-top: 50px;
+  font-size: 1em; }
+
+dl.reg-form dt {
+  width: 25%;
+  float: left;
+  padding: 0;
+  padding-right: calc(5%);
+  margin: 0;
+  margin-top: 10px;
+  font-size: 1.2em;
+  font-weight: bolder;
+  text-align: left;
+  color: #333; }
+
+dl.reg-form dd {
+  float: left;
+  width: 65%;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  margin-bottom: 10px; }
+
+button#btn-reg-store {
+  margin-top: 50px;
+  width: 200px;
+  height: 35px;
+  color: white;
+  background-color: #2AC1BC;
+  border-radius: 30px;
+  font-size: 1.3em; }

@@ -33,6 +33,6 @@ templates['no-store'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
     return "<div class=\"go-register\">\n    <span>등록된 가게가 없습니다.</span>\n    <span>먼저 가게를 등록해주세요.</span>\n    <button id=\"btn-go-register\">가게 등록 하기</button>\n</div>";
 },"useData":true});
 templates['register'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"register-store\">\n    가게 등록!\n</div>";
+    return "<div class=\"register-store\">\n    <h1>사장님의 가게를 등록해주세요</h1>\n    <dl class=\"reg-form\">\n        <dt>업체명</dt>\n        <dd><input></dd>\n\n        <dt>업체 설명</dt>\n        <dd><input></dd>\n\n        <dt>메뉴</dt>\n        <dd><input></dd>\n\n        <dt>사진 등록</dt>\n        <dd><input type=\"file\"></dd>\n    </dl>\n    <button id=\"btn-reg-store\">가게등록</button>\n\n</div>";
 },"useData":true});
 })();
