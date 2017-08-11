@@ -3,7 +3,9 @@
 
 <div class="home">
     <h1>배민 웨이팅</h1>
-    <p>맛집의 손님들을 위한 대기 서비스</br>이제 배민웨이팅으로 고객들에게 더 좋은 서비스로</p>
+    {{#each main-desc}}
+        <p>{{this}}</p>
+    {{/each}}
     <div class="btn-area">
         <button id="btn-intro">서비스 소개</button>
         <button id="btn-go-login">로그인 하기</button>
@@ -14,6 +16,9 @@
 <div class="intro">
     <!-- @TODO : haeun.kim 이미지 파일 경로 설정 -->
     <span id="btn-intro-close" class="btn-close"><img src="./close.png"></span>
+    {{#each serv-desc}}
+        <p>{{this}}</p>
+    {{/each}}
 </div>
 
 
@@ -52,9 +57,9 @@
 
 <div class="nav">
     <ul>
-        <li id="navi-home">홈</li>
-        <li>마이 페이지</li>
-        <li>가게 관리</li>
+        {{#each navi-list}}
+        <li id={{this.id}}>{{this.to}}</li>
+        {{/each}}
     </ul>
 </div>
 
