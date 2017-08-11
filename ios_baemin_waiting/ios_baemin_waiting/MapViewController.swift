@@ -16,6 +16,8 @@ class MapViewController: UIViewController {
     var myLocation: NGeoPoint?
     var circleArea: NMapCircleData?
 
+    var storeList: [Store] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,6 +73,8 @@ extension MapViewController: NMapLocationManagerDelegate {
         }
 
         addCircleAroundMyPosition()
+
+
 
         addMarker()
 
@@ -185,21 +189,21 @@ extension MapViewController {
 extension MapViewController {
 
     func addMarker() {
-        let restaurantsList = restaurantInCircle()
+        let storeList = restaurantInCircle()
 
         if let mapOverlayManager = mapView?.mapOverlayManager {
 
             if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
 
-                poiDataOverlay.initPOIdata(Int32(restaurantsList.count))
+                poiDataOverlay.initPOIdata(Int32(storeList.count))
 
-                for restaurant in restaurantsList {
+                for store in storeList {
 
-                    if let long = Double(restaurant.restaurantsLongitude),
-                        let lat = Double(restaurant.restaurantsLatitude) {
+                    if let long = Double(store.storeLongitude),
+                        let lat = Double(store.storeLatitude) {
 
                         let markerLocation = NGeoPoint(longitude: long, latitude: lat)
-                        poiDataOverlay.addPOIitem(atLocation: markerLocation, title: restaurant.restaurantName,
+                        poiDataOverlay.addPOIitem(atLocation: markerLocation, title: store.storeName,
                                                   type: userPOIflagTypeDefault, with: nil)
                     }
 
@@ -209,19 +213,19 @@ extension MapViewController {
             }
         }
     }
-    func restaurantInCircle() -> [RestaurantsLocationInfo] {
-        let restaurantsList = jsonController.getItem()
+    func restaurantInCircle() -> [Store] {
+        let storeList = jsonController.getItem()
 
-        var resultList: [RestaurantsLocationInfo] = []
-        for restaurant in restaurantsList {
-            if let long = Double(restaurant.restaurantsLongitude),
-                let lat = Double(restaurant.restaurantsLatitude) {
+        var resultList: [Store] = []
+        for store in storeList {
+            if let long = Double(store.storeLongitude),
+                let lat = Double(store.storeLatitude) {
 
                 let markerLocation = NGeoPoint(longitude: long, latitude: lat)
 
                 if let location = myLocation {
                     if isInCircle(point1: location, point2: markerLocation, distance: 1500) {
-                        resultList.append(restaurant)
+                        resultList.append(store)
                     }
                 }
             }
