@@ -1,0 +1,16 @@
+div.go-register {
+  text-align: center;
+  margin-top: 35vh; }
+
+div.go-register span {
+  display: block;
+  font-size: 1.2em; }
+
+button#btn-go-register {
+  color: white;
+  background-color: #2AC1BC;
+  margin-top: 30px;
+  width: 150px;
+  height: 30px;
+  border-radius: 30px;
+  font-size: 1.2em; }
