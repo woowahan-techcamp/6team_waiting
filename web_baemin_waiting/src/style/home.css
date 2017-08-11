@@ -249,7 +249,7 @@ div.nav {
   top: 7vw;
   left: calc(-100vw);
   width: 8.5vw;
-  height: 25vh;
+  height: auto;
   background-color: #2AC1BC;
   border-radius: 0px 10px 10px 0px;
   z-index: 30;
@@ -275,7 +275,11 @@ div.nav ul {
 div.nav li {
   font-weight: bolder;
   font-size: 1.2em;
-  margin-top: 20px; }
+  margin-top: 20px;
+  height: 3.5vh; }
+
+div.nav li:last-child {
+  margin-bottom: 20px; }
 
 div.board {
   position: absolute;
