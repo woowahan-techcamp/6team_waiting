@@ -8,16 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		1AEDA164B436F8CD19A2F7F2 /* Pods_BaeminWaitingUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0BB622D19A24682C6A15E3 /* Pods_BaeminWaitingUnitTests.framework */; };
+		980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56EF1F3C16D800A81DFE /* ServerRepository.swift */; };
+		980A56F41F3C19CE00A81DFE /* AlamofireUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */; };
+		980A56F61F3C304000A81DFE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F51F3C304000A81DFE /* Store.swift */; };
+		986B3D7A1F3C7A0100432FF7 /* StoreDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 986B3D781F3C7A0100432FF7 /* StoreDetailView.storyboard */; };
+		986B3D7C1F3C7ABE00432FF7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D7B1F3C7ABE00432FF7 /* DetailViewController.swift */; };
+		986B3D831F3C7AE300432FF7 /* StoreCallButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D7D1F3C7AE300432FF7 /* StoreCallButtonCell.swift */; };
+		986B3D841F3C7AE300432FF7 /* StoreDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D7E1F3C7AE300432FF7 /* StoreDescriptionCell.swift */; };
+		986B3D851F3C7AE300432FF7 /* StoreImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D7F1F3C7AE300432FF7 /* StoreImageCell.swift */; };
+		986B3D861F3C7AE300432FF7 /* StoreLineGetButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D801F3C7AE300432FF7 /* StoreLineGetButtonCell.swift */; };
+		986B3D871F3C7AE300432FF7 /* StoreLineShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D811F3C7AE300432FF7 /* StoreLineShowCell.swift */; };
+		986B3D881F3C7AE300432FF7 /* StoreMapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D821F3C7AE300432FF7 /* StoreMapViewCell.swift */; };
 		9870FEAE1F3ACC3C00656EEC /* JsonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEAD1F3ACC3C00656EEC /* JsonController.swift */; };
 		9870FEB31F3ACC8C00656EEC /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */; };
-		9870FEB41F3ACC8C00656EEC /* RestaurantsLocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB11F3ACC8C00656EEC /* RestaurantsLocationInfo.swift */; };
 		9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB51F3ACE4F00656EEC /* MapViewController.swift */; };
 		9870FEB81F3ACF1300656EEC /* NaverMapHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */; };
 		9870FEBA1F3AD0C700656EEC /* 송파구.json in Resources */ = {isa = PBXBuildFile; fileRef = 9870FEB91F3AD0C700656EEC /* 송파구.json */; };
 		9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEBB1F3AE4A400656EEC /* MainContainerViewController.swift */; };
-		9870FEC21F3AF60E00656EEC /* StoreDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9870FEC01F3AF60E00656EEC /* StoreDetailView.storyboard */; };
 		9870FEC61F3AFC1F00656EEC /* MainCollectionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9870FEC51F3AFC1F00656EEC /* MainCollectionView.storyboard */; };
-		9870FECA1F3AFC8600656EEC /* MainColle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9870FEC91F3AFC8600656EEC /* MainColle.storyboard */; };
 		9870FECC1F3AFD6900656EEC /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FECB1F3AFD6900656EEC /* MainCollectionViewController.swift */; };
 		9870FECE1F3AFDB400656EEC /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FECD1F3AFDB400656EEC /* MainCollectionViewCell.swift */; };
 		9870FED01F3AFE0700656EEC /* MainCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FECF1F3AFE0700656EEC /* MainCollectionReusableView.swift */; };
@@ -61,17 +69,25 @@
 /* Begin PBXFileReference section */
 		18F59FA31D335960EA9BB38B /* Pods-BaeminWaitingUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B0BB622D19A24682C6A15E3 /* Pods_BaeminWaitingUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaeminWaitingUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		980A56EF1F3C16D800A81DFE /* ServerRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRepository.swift; sourceTree = "<group>"; };
+		980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireUnitTests.swift; sourceTree = "<group>"; };
+		980A56F51F3C304000A81DFE /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		986B3D791F3C7A0100432FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ../../../../6team_waiting/ios_baemin_waiting/ios_baemin_waiting/Base.lproj/StoreDetailView.storyboard; sourceTree = "<group>"; };
+		986B3D7B1F3C7ABE00432FF7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = ../../../../6team_waiting/ios_baemin_waiting/ios_baemin_waiting/DetailViewController.swift; sourceTree = "<group>"; };
+		986B3D7D1F3C7AE300432FF7 /* StoreCallButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreCallButtonCell.swift; path = ../../../../6team_waiting/ios_baemin_waiting/ios_baemin_waiting/StoreCallButtonCell.swift; sourceTree = "<group>"; };
+		986B3D7E1F3C7AE300432FF7 /* StoreDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreDescriptionCell.swift; path = ../../../../6team_waiting/ios_baemin_waiting/ios_baemin_waiting/StoreDescriptionCell.swift; sourceTree = "<group>"; };
+		986B3D7F1F3C7AE300432FF7 /* StoreImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreImageCell.swift; path = ../../../../6team_waiting/ios_baemin_waiting/ios_baemin_waiting/StoreImageCell.swift; sourceTree = "<group>"; };
+		986B3D801F3C7AE300432FF7 /* StoreLineGetButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreLineGetButtonCell.swift; path = ../../../../6team_waiting/ios_baemin_waiting/ios_baemin_waiting/StoreLineGetButtonCell.swift; sourceTree = "<group>"; };
+		986B3D811F3C7AE300432FF7 /* StoreLineShowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreLineShowCell.swift; path = ../../../../6team_waiting/ios_baemin_waiting/ios_baemin_waiting/StoreLineShowCell.swift; sourceTree = "<group>"; };
+		986B3D821F3C7AE300432FF7 /* StoreMapViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreMapViewCell.swift; path = ../../../../6team_waiting/ios_baemin_waiting/ios_baemin_waiting/StoreMapViewCell.swift; sourceTree = "<group>"; };
 		9870FEAD1F3ACC3C00656EEC /* JsonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonController.swift; sourceTree = "<group>"; };
 		9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
-		9870FEB11F3ACC8C00656EEC /* RestaurantsLocationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsLocationInfo.swift; sourceTree = "<group>"; };
 		9870FEB51F3ACE4F00656EEC /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverMapHandler.swift; sourceTree = "<group>"; };
 		9870FEB91F3AD0C700656EEC /* 송파구.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "송파구.json"; sourceTree = "<group>"; };
 		9870FEBB1F3AE4A400656EEC /* MainContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
-		9870FEC11F3AF60E00656EEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/StoreDetailView.storyboard; sourceTree = "<group>"; };
 		9870FEC51F3AFC1F00656EEC /* MainCollectionView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainCollectionView.storyboard; sourceTree = "<group>"; };
-		9870FEC91F3AFC8600656EEC /* MainColle.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainColle.storyboard; sourceTree = "<group>"; };
 		9870FECB1F3AFD6900656EEC /* MainCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
 		9870FECD1F3AFDB400656EEC /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		9870FECF1F3AFE0700656EEC /* MainCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -166,13 +182,11 @@
 				9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */,
 				9870FEB51F3ACE4F00656EEC /* MapViewController.swift */,
 				9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */,
-				9870FEB11F3ACC8C00656EEC /* RestaurantsLocationInfo.swift */,
+				980A56F51F3C304000A81DFE /* Store.swift */,
 				9870FEAD1F3ACC3C00656EEC /* JsonController.swift */,
 				9879D9AE1F34054900B4131A /* AppDelegate.swift */,
 				9879D9B21F34054900B4131A /* Main.storyboard */,
-				9870FEC91F3AFC8600656EEC /* MainColle.storyboard */,
 				9870FEC51F3AFC1F00656EEC /* MainCollectionView.storyboard */,
-				9870FEC01F3AF60E00656EEC /* StoreDetailView.storyboard */,
 				9879D9B51F34054900B4131A /* Assets.xcassets */,
 				9879D9B71F34054900B4131A /* LaunchScreen.storyboard */,
 				9879D9BA1F34054900B4131A /* Info.plist */,
@@ -181,6 +195,15 @@
 				9870FECB1F3AFD6900656EEC /* MainCollectionViewController.swift */,
 				9870FECD1F3AFDB400656EEC /* MainCollectionViewCell.swift */,
 				9870FECF1F3AFE0700656EEC /* MainCollectionReusableView.swift */,
+				980A56EF1F3C16D800A81DFE /* ServerRepository.swift */,
+				986B3D781F3C7A0100432FF7 /* StoreDetailView.storyboard */,
+				986B3D7B1F3C7ABE00432FF7 /* DetailViewController.swift */,
+				986B3D7D1F3C7AE300432FF7 /* StoreCallButtonCell.swift */,
+				986B3D7E1F3C7AE300432FF7 /* StoreDescriptionCell.swift */,
+				986B3D7F1F3C7AE300432FF7 /* StoreImageCell.swift */,
+				986B3D801F3C7AE300432FF7 /* StoreLineGetButtonCell.swift */,
+				986B3D811F3C7AE300432FF7 /* StoreLineShowCell.swift */,
+				986B3D821F3C7AE300432FF7 /* StoreMapViewCell.swift */,
 			);
 			path = ios_baemin_waiting;
 			sourceTree = "<group>";
@@ -190,6 +213,7 @@
 			children = (
 				9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */,
 				98BE03DE1F38623700179D43 /* NaverMapUnitTests.swift */,
+				980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */,
 				9879D9F31F342CCC00B4131A /* Info.plist */,
 			);
 			path = BaeminWaitingUnitTests;
@@ -295,9 +319,8 @@
 				9870FEBA1F3AD0C700656EEC /* 송파구.json in Resources */,
 				9879D9B41F34054900B4131A /* Main.storyboard in Resources */,
 				98BE03DC1F38617D00179D43 /* Scripts in Resources */,
-				9870FEC21F3AF60E00656EEC /* StoreDetailView.storyboard in Resources */,
 				9870FEC61F3AFC1F00656EEC /* MainCollectionView.storyboard in Resources */,
-				9870FECA1F3AFC8600656EEC /* MainColle.storyboard in Resources */,
+				986B3D7A1F3C7A0100432FF7 /* StoreDetailView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,14 +461,22 @@
 			files = (
 				9870FEB81F3ACF1300656EEC /* NaverMapHandler.swift in Sources */,
 				9870FECE1F3AFDB400656EEC /* MainCollectionViewCell.swift in Sources */,
+				986B3D871F3C7AE300432FF7 /* StoreLineShowCell.swift in Sources */,
 				9870FECC1F3AFD6900656EEC /* MainCollectionViewController.swift in Sources */,
-				9870FEB41F3ACC8C00656EEC /* RestaurantsLocationInfo.swift in Sources */,
+				986B3D7C1F3C7ABE00432FF7 /* DetailViewController.swift in Sources */,
+				986B3D881F3C7AE300432FF7 /* StoreMapViewCell.swift in Sources */,
+				986B3D851F3C7AE300432FF7 /* StoreImageCell.swift in Sources */,
+				980A56F61F3C304000A81DFE /* Store.swift in Sources */,
 				9870FED01F3AFE0700656EEC /* MainCollectionReusableView.swift in Sources */,
 				9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */,
+				986B3D861F3C7AE300432FF7 /* StoreLineGetButtonCell.swift in Sources */,
 				9870FEAE1F3ACC3C00656EEC /* JsonController.swift in Sources */,
+				986B3D841F3C7AE300432FF7 /* StoreDescriptionCell.swift in Sources */,
 				9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */,
 				9870FEB31F3ACC8C00656EEC /* NMapViewResources.swift in Sources */,
+				980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */,
 				9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */,
+				986B3D831F3C7AE300432FF7 /* StoreCallButtonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +486,7 @@
 			files = (
 				9879D9F21F342CCC00B4131A /* BaeminWaitingUnitTests.swift in Sources */,
 				98BE03DF1F38623700179D43 /* NaverMapUnitTests.swift in Sources */,
+				980A56F41F3C19CE00A81DFE /* AlamofireUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,10 +501,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9870FEC01F3AF60E00656EEC /* StoreDetailView.storyboard */ = {
+		986B3D781F3C7A0100432FF7 /* StoreDetailView.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9870FEC11F3AF60E00656EEC /* Base */,
+				986B3D791F3C7A0100432FF7 /* Base */,
 			);
 			name = StoreDetailView.storyboard;
 			sourceTree = "<group>";
@@ -602,7 +634,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)";
 				INFOPLIST_FILE = ios_baemin_waiting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -612,7 +643,10 @@
 					"-framework",
 					"\"SwiftyJSON\"",
 				);
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC -lxml2";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-lxml2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.woowabrothers.ios-baemin-waiting";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios_baemin_waiting/ios_baemin_waiting-Bridging-Header.h";

@@ -73,7 +73,7 @@ class NaverMapUnitTests: XCTestCase {
             guard let bottomRightLat = CLLocationDegrees(bottomRightLatitude) else { return false }
             guard let bottomRightLong = CLLocationDegrees(bottomRightLongitude) else { return false }
 
-            // lat : 위아래, 아래쪽이 크다
+            // lat : 위아래, 아래쪽이 
             // long : 양 옆, 오른쪽이 크다
 
             let long = CLLocationDegrees(point.longitude)
@@ -110,7 +110,7 @@ class NaverMapUnitTests: XCTestCase {
         let jsonController = JsonController()
         let restaurantsList = jsonController.getItem()
 
-        var resultList: [RestaurantsLocationInfo] = []
+        var resultList: [Store] = []
         for restaurant in restaurantsList {
 
             let locationInfo = restaurant.searchRange
