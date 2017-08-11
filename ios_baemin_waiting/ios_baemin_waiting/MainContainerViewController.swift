@@ -16,6 +16,8 @@ class MainContainerViewController: UIViewController {
 
     var toggleBtnSelected = false
 
+    var storeList: [Store] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,13 +28,15 @@ class MainContainerViewController: UIViewController {
         toggleBtnSelected = !toggleBtnSelected
 
         if toggleBtnSelected {
-            sender.setBackgroundImage(#imageLiteral(resourceName: "1px_dot"), for: .normal, barMetrics: .default)
+            sender.title = "목록"
+
             UIView.animate(withDuration: 0.5, animations: {
                 self.mapView.alpha = 1
                 self.listContainerView.alpha = 0
             })
         } else {
-            sender.setBackgroundImage(#imageLiteral(resourceName: "1px_dot"), for: .normal, barMetrics: .default)
+            sender.title = "지도"
+
             UIView.animate(withDuration: 0.5, animations: {
                 self.listContainerView.alpha = 1
                 self.mapView.alpha = 0

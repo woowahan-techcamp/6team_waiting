@@ -40,15 +40,14 @@ class JsonController {
             guard let name: String = object["restaurantsName"] as? String else { return [] }
             guard let searchRange = object["searchRange"] as? [String: Any] else { return [] }
             guard let img: String = object["restaurantsImgUrl"] as? String else { return [] }
+            guard let imgURL = URL(string: img) else { return [] }
 
-
-
-            if let locationInfo = object["restaurantsLocationInfo"] as? [String : Any], let imgUrl = URL(string: img) {
+            if let locationInfo = object["restaurantsLocationInfo"] as? [String : Any] {
                 guard let address: String = locationInfo["restaurantsAddress"] as? String else { return [] }
                 guard let latitude: String = locationInfo["restaurantsLatitude"] as? String else { return [] }
                 guard let longitude: String = locationInfo["restaurantsLongitude"] as? String else { return [] }
 
-                location = Store(storeName: name, storeAddress: address, storeLatitude: latitude, storeLongitude: longitude, storeImgUrl: imgUrl, searchRange: searchRange)
+                location = Store(storeName: name, storeAddress: address, storeLatitude: latitude, storeLongitude: longitude, storeImgUrl: imgURL, searchRange: searchRange)
 
                 storeList.append(location)
             } else {
