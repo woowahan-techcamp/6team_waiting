@@ -17,10 +17,17 @@ const homeData = {
                 ]
             };
 
-util.setTemplateInHtml("#root", "home", homeData);
+util.setTemplateInHtml("#root", "home", homeData)
+    .then(() => {
+        const homeNavigator = new HomeNavigator();
+        homeNavigator.on();
+    })
+    .catch((err) => {
+        util.log(err);
+    });
 
 
-const homeNavigator = new HomeNavigator();
-homeNavigator.on();
+
+
 
 

@@ -12,9 +12,17 @@ const util = {
     },
 
     setTemplateInHtml(position, temp, data) {
-        const pos = document.querySelector(position);
-        const html = Handlebars.templates[temp];
-        pos.innerHTML = html(data);
+        return new Promise((resolve, reject) => {
+            const pos = document.querySelector(position);
+            const html = Handlebars.templates[temp];
+
+            if (pos && html) {
+                pos.innerHTML = html(data);
+                resolve(true);
+            } else {
+                reject(Error("pos or html is not defined"));
+            }
+        });
     }
 }
 
