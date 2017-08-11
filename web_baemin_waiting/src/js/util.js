@@ -1,4 +1,4 @@
-const _ = {
+const util = {
     log(content) {
         if (window.console) console.log(content);
         else alert(content);
@@ -9,7 +9,13 @@ const _ = {
         oReq.addEventListener("load", callback);
         oReq.open("GET", url);
         oReq.send();
+    },
+
+    setTemplateInHtml(position, temp, data) {
+        const pos = document.querySelector(position);
+        const html = Handlebars.templates[temp];
+        pos.innerHTML = html(data);
     }
 }
 
-export default _;
+export default util;
