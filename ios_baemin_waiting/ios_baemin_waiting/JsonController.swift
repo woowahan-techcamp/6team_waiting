@@ -31,28 +31,30 @@ class JsonController {
         return []
     }
 
-    func getItem() -> [RestaurantsLocationInfo] {
-        var restaurnatsLocationInfoList: [RestaurantsLocationInfo] = []
+    func getItem() -> [Store] {
+        var storeList: [Store] = []
 
         let jsonObject = readJson(fileName: "송파구")
-        var location: RestaurantsLocationInfo
+        var location: Store
         for object in jsonObject {
             guard let name: String = object["restaurantsName"] as? String else { return [] }
             guard let searchRange = object["searchRange"] as? [String: Any] else { return [] }
+            guard let img: String = object["restaurantsImgUrl"] as? String else { return [] }
 
-            if let locationInfo = object["restaurantsLocationInfo"] as? [String : Any] {
+
+
+            if let locationInfo = object["restaurantsLocationInfo"] as? [String : Any], let imgUrl = URL(string: img) {
                 guard let address: String = locationInfo["restaurantsAddress"] as? String else { return [] }
                 guard let latitude: String = locationInfo["restaurantsLatitude"] as? String else { return [] }
                 guard let longitude: String = locationInfo["restaurantsLongitude"] as? String else { return [] }
 
-                location = RestaurantsLocationInfo(restaurantsName: name, restaurantsAddress: address,
-                                                   restaurantsLatitude: latitude, restaurantsLongitude: longitude, searchRange: searchRange)
+                location = Store(storeName: name, storeAddress: address, storeLatitude: latitude, storeLongitude: longitude, storeImgUrl: imgUrl, searchRange: searchRange)
 
-                restaurnatsLocationInfoList.append(location)
+                storeList.append(location)
             } else {
                 print("Wrong locationInfo")
             }
         }
-        return restaurnatsLocationInfoList
+        return storeList
     }
 }

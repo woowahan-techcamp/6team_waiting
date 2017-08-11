@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var contentItem: UIView!
@@ -16,9 +17,11 @@ class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var restaurantsDistance: UILabel!
     @IBOutlet weak var restaurantsLine: UILabel!
 
-    func putCellContent(restaurantsInfo: RestaurantsLocationInfo) {
-        restaurantsName.text = restaurantsInfo.restaurantName
-        restaurantsDistance.text = restaurantsInfo.restaurantsAddress
+    func putCellContent(storeInfo: Store) {
+        restaurantsName.text = storeInfo.storeName
+        restaurantsDistance.text = storeInfo.storeAddress
         restaurantsLine.text = "1명"
+
+        restaurantsImage.af_setImage(withURL: storeInfo.storeImgUrl)
     }
 }
