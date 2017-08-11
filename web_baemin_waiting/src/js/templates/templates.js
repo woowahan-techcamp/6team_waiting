@@ -27,7 +27,7 @@ templates['manage'] = template({"compiler":[7,">= 4.0.0"],"main":function(contai
     return "<div class=\"manage\">\n    가게 관리 하기!!\n</div>";
 },"useData":true});
 templates['my-page'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"my-page\">\n    마이 페이지 !! \n</div>";
+    return "<div class=\"my-page\">\n    <h1>마이 페이지</h1>\n    <div class=\"auth-my-page\">\n        <p>본인 인증을 위해 비밀번호를 입력해주세요.</p>\n        <input type=\"password\">\n        <button id=\"btn-my-auth\">확인</button>\n    </div>\n</div>";
 },"useData":true});
 templates['no-store'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"go-register\">\n    <span>등록된 가게가 없습니다.</span>\n    <span>먼저 가게를 등록해주세요.</span>\n    <button id=\"btn-go-register\">가게 등록 하기</button>\n</div>";
