@@ -1,27 +1,11 @@
 $primary-color:#2AC1BC;
 $secondary-color: #ABE2E0;
 
-* {
-    margin:0;
-    padding: 0;
-}
-
-body {
-    overflow: hidden;
-}
-
-button, input {
-    border: none;
-}
-
-ul {
-    list-style: none;
-}
 
 @mixin page-animation {
-    -webkit-transition: .5s ease-in-out;
-    -moz-transition: .5s ease-in-out;
-    transition: .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
 div#root {
@@ -282,7 +266,7 @@ div.view {
 }
 
 div.inactive {
-    position: fixed;
+    position: absolute;
     z-index: 1; 
     left: 0;
     top: 0;
