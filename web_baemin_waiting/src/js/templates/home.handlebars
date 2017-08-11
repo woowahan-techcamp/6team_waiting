@@ -1,9 +1,73 @@
+<div class="view"></div>
+
+
 <div class="home">
     <h1>배민 웨이팅</h1>
-    <p>맛집의 손님들을 위한 대기 서비스</p>
-    <p>이제 배민웨이팅으로 고객들에게 더 좋은 서비스로</p>
+    {{#each main-desc}}
+        <p>{{this}}</p>
+    {{/each}}
     <div class="btn-area">
         <button id="btn-intro">서비스 소개</button>
         <button id="btn-go-login">로그인 하기</button>
+    </div>
+</div>
+
+
+<div class="intro">
+    <!-- @TODO : haeun.kim 이미지 파일 경로 설정 -->
+    <span id="btn-intro-close" class="btn-close"><img src="./close.png"></span>
+    {{#each serv-desc}}
+        <p>{{this}}</p>
+    {{/each}}
+</div>
+
+
+<div class="sign-in">
+    <!-- @TODO : haeun.kim 이미지 파일 경로 설정 -->
+    <span id="btn-login-close" class="btn-close"><img src="./close.png"></span>
+    <div class="sign-area">
+
+        <input type="text">
+        <input type="password">
+        <button id="btn-login">로그인</button>
+        <button id="btn-go-sign-up">회원가입 하기</button>
+    </div>
+</div>
+
+
+<div class="sign-up">
+    <!-- @TODO : haeun.kim 이미지 파일 경로 설정 -->
+    <span id="btn-sign-close" class="btn-close"><img src="./close.png"></span>
+    <span class="sign-up-title">WELCOME</span>
+    <div class="sign-up-form">
+        <dl>
+            <dt>이름</dt>
+            <dd><input type="text"></dd>
+            <dt>아이디</dt>
+            <dd><input type="text"></dd>
+            <dt>비밀번호</dt>
+            <dd><input type="password"></dd>
+            <dt>전화번호</dt>
+            <dd><input type="text"></dd>
+        </dl>
+    </div>
+    <button id="btn-sign-up">회원가입</button>
+</div>
+
+
+<div class="nav">
+    <ul>
+        {{#each navi-list}}
+        <li id={{this.id}}>{{this.to}}</li>
+        {{/each}}
+    </ul>
+</div>
+
+
+<div class="board">
+    <div class="not-register">
+        <span>등록된 가게가 없습니다.</span>
+        <span>먼저 가게를 등록해주세요.</span>
+        <button id="btn-go-register">가게 등록 하기</button>
     </div>
 </div>

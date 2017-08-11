@@ -1,75 +1,107 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    window.addEventListener("scroll", (ev) => {
-        const scrollPosition = window.scrollY;
-        if (scrollPosition > 150) {
-            document.querySelector(".header-navi").classList.toggle("header-bar", true);
-        } else {
-            document.querySelector(".header-navi").classList.toggle("header-bar", false);
-        }
-    });
+    const btnIntro = document.querySelector("#btn-intro");
+    const btnIntroClose = document.querySelector("#btn-intro-close");
+    const btnGoLogin = document.querySelector("#btn-go-login");
+    const btnLogin = document.querySelector("#btn-login");
+    const btnLoginClose = document.querySelector("#btn-login-close");
+    const btnGoSignUp = document.querySelector("#btn-go-sign-up");
+    const btnSignUp = document.querySelector("#btn-sign-up");
+    const btnSignUpClose = document.querySelector("#btn-sign-close");
 
     const naviHome = document.querySelector("#navi-home");
-    const naviIntro = document.querySelector("#navi-introduce");
-    const naviManage = document.querySelector("#navi-manage");
-    const manage = document.querySelector(".manage-title");
+
+
+    btnIntro.addEventListener("click", () => {
+        showIntro();
+        inactivateRoot();
+    });
+
+    btnIntroClose.addEventListener("click", () => {
+        hideIntro();
+        activateRoot();
+    });
+    
+    btnGoLogin.addEventListener("click", () => {
+        showSignIn();
+        inactivateRoot();
+    });
+
+    btnLogin.addEventListener("click", () => {
+        hideSignIn();
+        showNavi();
+        showBoard();
+    });
+
+    btnLoginClose.addEventListener("click", () => {
+        hideSignIn();
+        activateRoot();
+    })
+
+    btnGoSignUp.addEventListener("click", () => {
+        showSignUp();
+    });
+
+    btnSignUp.addEventListener("click", () => {
+        hideSignUp();
+    });
+
+    btnSignUpClose.addEventListener("click", () => {
+        hideSignUp();
+    })
 
     naviHome.addEventListener("click", () => {
-        const target = document.querySelector(".view");
-        smoothScroll(target);
+        activateRoot();
+        hideBoard();
+        hideNavi();
     });
-
-    naviIntro.addEventListener("click", () => {
-        const target = document.querySelector(".intro");
-        smoothScroll(target);
-    });
-
-    naviManage.addEventListener("click", () => {
-        const target = document.querySelector(".show-manage");
-        smoothScroll(target);
-    });
-
-    manage.addEventListener("click", () => {
-        const manageArea = document.querySelector(".show-manage");
-        const manageStatus = document.querySelector("#manage-status");
-        const manageArrow = document.querySelector("#manage-arrow");
-        const sign = document.querySelector(".sign-box");
-
-        manageArea.classList.toggle("managing");
-        if (manageStatus.innerHTML == "서비스 소개 보기") {
-            sign.style.display = "none";
-            manageStatus.innerHTML = "가게 관리하기";
-            // manageArrow.style.backgroundImage = "url('right-arrow.png')";
-        } else {
-            sign.style.display = "block";
-            manageStatus.innerHTML = "서비스 소개 보기";
-            // manageArrow.style.backgroundImage = "url('down-arrow.png')";
-            smoothScroll(document.querySelector(".intro"));
-        }
-    })
 
 })
 
-// Menu bar onclick scroll
-window.smoothScroll = function(target) {
-    let scrollContainer = target;
-    do { //find scroll container
-        scrollContainer = scrollContainer.parentNode;
-        if (!scrollContainer) return;
-        scrollContainer.scrollTop += 1;
-    } while (scrollContainer.scrollTop == 0);
+const hideIntro = function() {
+    document.querySelector(".intro").classList.remove("show-intro");
+}
 
-    let targetY = 0;
-    do { //find the top of target relatively to the container
-        if (target == scrollContainer) break;
-        targetY += target.offsetTop;
-    } while (target = target.offsetParent);
+const hideSignIn = function() {
+    document.querySelector(".sign-in").classList.remove("sign-in-show");
+}
 
-    scroll = function(c, a, b, i) {
-        if (++i > 30) return;
-        c.scrollTop = a + (b - a) / 30 * i;
-        setTimeout(() => { scroll(c, a, b, i); }, 10);
-    }
-    // start scrolling
-    scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+const hideSignUp = function() {
+    document.querySelector(".sign-up").classList.remove("sign-up-show");
+}
+
+const hideBoard = function() {
+    document.querySelector(".board").classList.remove("show-board");
+}
+
+const hideNavi = function() {
+    document.querySelector(".nav").classList.remove("show-nav");
+}
+
+const inactivateRoot = function() {
+    document.querySelector(".view").classList.add("inactive");
+}
+
+const activateRoot = function() {
+    document.querySelector(".view").classList.remove("inactive");
+}
+
+const showIntro = function() {
+    document.querySelector(".intro").classList.add("show-intro");
+}
+
+const showSignIn = function() {
+    document.querySelector(".sign-in").classList.add("sign-in-show");
+}
+
+const showSignUp = function() {
+    document.querySelector(".sign-up").classList.add("sign-up-show");
+}
+
+const showBoard = function() {
+    document.querySelector(".board").classList.add("show-board");
+}
+
+const showNavi = function() {
+    document.querySelector(".nav").classList.add("show-nav");
 }

@@ -1,19 +1,16 @@
 * {
-    margin: 0;
+    margin:0;
+    padding: 0;
 }
 
-a {
-    text-decoration: none;
+body {
+    overflow: hidden;
 }
 
-ul.inline-list {
+button, input {
+    border: none;
+}
+
+ul {
     list-style: none;
-}
-
-ul.inline-list li {
-    float: left;
-}
-
-div.circle {
-    border-radius: 100%;
 }
