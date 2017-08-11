@@ -1,3 +1,6 @@
+import util from "./util.js";
+
+
 export class HomeNavigator {
 
     constructor() {
@@ -9,7 +12,10 @@ export class HomeNavigator {
         this.btnGoSignUp = document.querySelector("#btn-go-sign-up");
         this.btnSignUp = document.querySelector("#btn-sign-up");
         this.btnSignUpClose = document.querySelector("#btn-sign-close");
+
         this.naviHome = document.querySelector("#navi-home");
+        this.naviMyPage = document.querySelector("#navi-mypage");
+        this.naviManage = document.querySelector("#navi-manage");
     }
 
     on() {
@@ -56,6 +62,14 @@ export class HomeNavigator {
             this.hideBoard();
             this.hideNavi();
         });
+
+        this.naviMyPage.addEventListener("click", () => {
+            this.showMyPage();
+        })
+
+        this.naviManage.addEventListener("click", () => {
+            this.showManage();
+        })
     }
 
     hideIntro() {
@@ -100,10 +114,31 @@ export class HomeNavigator {
 
     showBoard() {
         this.addClassOnElement(".board", "show-board");
+
+        /** 
+         * @TODO : haeun.kim
+         * 로그인 성공 여부, 가게 등록 여부에 따라 다른 처리가 진행되어야 합니다. 
+         * 현재는 로그인 성공 후, 가게가 등록되지 않았을 경우를 가정한 동작입니다. 
+        */
+        util.setTemplateInHtml(".board", "no-store")
+            .then(() => {
+                const btnGoRegister = document.querySelector("#btn-go-register");
+                btnGoRegister.addEventListener("click", () => {
+                    util.setTemplateInHtml(".board", "register");
+                })
+            });
     }
 
     showNavi() {
         this.addClassOnElement(".nav", "show-nav");
+    }
+
+    showManage() {
+        util.setTemplateInHtml(".board", "manage");
+    }
+
+    showMyPage() {
+        util.setTemplateInHtml(".board", "my-page");
     }
 
     addClassOnElement(ele, css) {
