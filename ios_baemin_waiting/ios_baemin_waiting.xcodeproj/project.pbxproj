@@ -178,32 +178,12 @@
 		9879D9AD1F34054900B4131A /* ios_baemin_waiting */ = {
 			isa = PBXGroup;
 			children = (
-				9870FEB91F3AD0C700656EEC /* 송파구.json */,
-				9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */,
-				9870FEB51F3ACE4F00656EEC /* MapViewController.swift */,
-				9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */,
-				980A56F51F3C304000A81DFE /* Store.swift */,
-				9870FEAD1F3ACC3C00656EEC /* JsonController.swift */,
-				9879D9AE1F34054900B4131A /* AppDelegate.swift */,
-				9879D9B21F34054900B4131A /* Main.storyboard */,
-				9870FEC51F3AFC1F00656EEC /* MainCollectionView.storyboard */,
-				9879D9B51F34054900B4131A /* Assets.xcassets */,
-				9879D9B71F34054900B4131A /* LaunchScreen.storyboard */,
-				9879D9BA1F34054900B4131A /* Info.plist */,
-				98BE03E01F3862CB00179D43 /* ios_baemin_waiting-Bridging-Header.h */,
-				9870FEBB1F3AE4A400656EEC /* MainContainerViewController.swift */,
-				9870FECB1F3AFD6900656EEC /* MainCollectionViewController.swift */,
-				9870FECD1F3AFDB400656EEC /* MainCollectionViewCell.swift */,
-				9870FECF1F3AFE0700656EEC /* MainCollectionReusableView.swift */,
-				980A56EF1F3C16D800A81DFE /* ServerRepository.swift */,
-				986B3DA21F3D3F4A00432FF7 /* StoreDetailView.storyboard */,
-				986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */,
-				986B3D9E1F3D3E6600432FF7 /* StoreImageCell.swift */,
-				986B3DA01F3D3E8100432FF7 /* StoreDescriptionCell.swift */,
-				986B3DA51F3D3FCA00432FF7 /* StoreCallButtionCell.swift */,
-				986B3DA71F3D3FEB00432FF7 /* StoreMapViewCell.swift */,
-				986B3DA91F3D3FFE00432FF7 /* StoreLineShowCell.swift */,
-				986B3DAB1F3D401300432FF7 /* StoreLineGetButtonCell.swift */,
+				988FBEFB1F3D856A00161756 /* Helper/Util */,
+				988FBEFA1F3D84E800161756 /* Controller */,
+				988FBEF71F3D849500161756 /* View */,
+				988FBEF61F3D846C00161756 /* Model */,
+				988FBEF51F3D843600161756 /* Supporting Files */,
+				988FBEF41F3D842400161756 /* Resources */,
 			);
 			path = ios_baemin_waiting;
 			sourceTree = "<group>";
@@ -217,6 +197,90 @@
 				9879D9F31F342CCC00B4131A /* Info.plist */,
 			);
 			path = BaeminWaitingUnitTests;
+			sourceTree = "<group>";
+		};
+		988FBEF41F3D842400161756 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9870FEB91F3AD0C700656EEC /* 송파구.json */,
+				9879D9B51F34054900B4131A /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		988FBEF51F3D843600161756 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9879D9B71F34054900B4131A /* LaunchScreen.storyboard */,
+				9879D9AE1F34054900B4131A /* AppDelegate.swift */,
+				9879D9BA1F34054900B4131A /* Info.plist */,
+				98BE03E01F3862CB00179D43 /* ios_baemin_waiting-Bridging-Header.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		988FBEF61F3D846C00161756 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				980A56F51F3C304000A81DFE /* Store.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		988FBEF71F3D849500161756 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				988FBEF91F3D84A400161756 /* Detail */,
+				988FBEF81F3D849D00161756 /* Main */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		988FBEF81F3D849D00161756 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9879D9B21F34054900B4131A /* Main.storyboard */,
+				9870FEC51F3AFC1F00656EEC /* MainCollectionView.storyboard */,
+				9870FECD1F3AFDB400656EEC /* MainCollectionViewCell.swift */,
+				9870FECF1F3AFE0700656EEC /* MainCollectionReusableView.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		988FBEF91F3D84A400161756 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				986B3DA21F3D3F4A00432FF7 /* StoreDetailView.storyboard */,
+				986B3D9E1F3D3E6600432FF7 /* StoreImageCell.swift */,
+				986B3DA01F3D3E8100432FF7 /* StoreDescriptionCell.swift */,
+				986B3DA51F3D3FCA00432FF7 /* StoreCallButtionCell.swift */,
+				986B3DA71F3D3FEB00432FF7 /* StoreMapViewCell.swift */,
+				986B3DA91F3D3FFE00432FF7 /* StoreLineShowCell.swift */,
+				986B3DAB1F3D401300432FF7 /* StoreLineGetButtonCell.swift */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
+		988FBEFA1F3D84E800161756 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9870FEBB1F3AE4A400656EEC /* MainContainerViewController.swift */,
+				986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */,
+				9870FECB1F3AFD6900656EEC /* MainCollectionViewController.swift */,
+				9870FEB51F3ACE4F00656EEC /* MapViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		988FBEFB1F3D856A00161756 /* Helper/Util */ = {
+			isa = PBXGroup;
+			children = (
+				9870FEAD1F3ACC3C00656EEC /* JsonController.swift */,
+				980A56EF1F3C16D800A81DFE /* ServerRepository.swift */,
+				9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */,
+				9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */,
+			);
+			name = Helper/Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -477,7 +541,6 @@
 				980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */,
 				986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */,
 				9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */,
-				986B3D831F3C7AE300432FF7 /* StoreCallButtonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
