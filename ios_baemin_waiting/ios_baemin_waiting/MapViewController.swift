@@ -10,7 +10,7 @@ import UIKit
 
 class MapViewController: UIViewController {
 
-    let naverMap = NaverMapHandler()
+    let naverMapHandler = NaverMapHandler()
     let jsonController = JsonController()
     var mapView: NMapView?
     var myLocation: NGeoPoint?
@@ -21,23 +21,34 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mapView = naverMap.initMap(frame: self.view.bounds)
+        NotificationCenter.default.addObserver(self, selector: #selector(dataUpdated),
+                                               name: NSNotification.Name(rawValue: "dataUpdate"), object: nil)
+
+        mapView = naverMapHandler.initMap(frame: self.view.bounds)
 
         if let mapView = mapView {
-            mapView.delegate = naverMap
+            mapView.delegate = naverMapHandler
             mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
             view.addSubview(mapView)
         }
 
-        switch naverMap.currentState {
+        switch naverMapHandler.currentState {
         case .disabled:
             enableLocationUpdate()
-            naverMap.currentState = .tracking
+            naverMapHandler.currentState = .tracking
         default:
             disableLocationUpdate()
-            naverMap.currentState = .disabled
+            naverMapHandler.currentState = .disabled
         }
+    }
+
+    func dataUpdated(_ notification: NSNotification) {
+        guard let storeListData = notification.userInfo?["storeData"] as? [Store] else {
+            print("Error: Data not Passed")
+            return
+        }
+        self.storeList = storeListData
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -103,9 +114,6 @@ extension MapViewController: NMapLocationManagerDelegate {
         }
 
     }
-//    func onMapViewIsGPSTracking(_ mapView: NMapView!) -> Bool {
-//        return NMapLocationManager.getSharedInstance().isTrackingEnabled()
-//    }
 
     func enableLocationUpdate() {
 
@@ -186,7 +194,7 @@ extension MapViewController {
 extension MapViewController {
 
     func addMarker() {
-        let storeList = restaurantInCircle()
+        let storeList = self.storeList
 
         if let mapOverlayManager = mapView?.mapOverlayManager {
 
@@ -200,8 +208,13 @@ extension MapViewController {
                         let lat = Double(store.storeLatitude) {
 
                         let markerLocation = NGeoPoint(longitude: long, latitude: lat)
-                        poiDataOverlay.addPOIitem(atLocation: markerLocation, title: store.storeName,
-                                                  type: userPOIflagTypeDefault, with: nil)
+
+                        if let location = myLocation {
+                            if isInCircle(point1: location, point2: markerLocation, distance: 1500) {
+                                poiDataOverlay.addPOIitem(atLocation: markerLocation, title: store.storeName,
+                                                          type: userPOIflagTypeDefault, with: nil)
+                            }
+                        }
                     }
 
                 }
@@ -210,26 +223,6 @@ extension MapViewController {
             }
         }
     }
-    func restaurantInCircle() -> [Store] {
-        let storeList = jsonController.getItem()
-
-        var resultList: [Store] = []
-        for store in storeList {
-            if let long = Double(store.storeLongitude),
-                let lat = Double(store.storeLatitude) {
-
-                let markerLocation = NGeoPoint(longitude: long, latitude: lat)
-
-                if let location = myLocation {
-                    if isInCircle(point1: location, point2: markerLocation, distance: 1500) {
-                        resultList.append(store)
-                    }
-                }
-            }
-        }
-        return resultList
-    }
-
     func isInCircle(point1: NGeoPoint, point2: NGeoPoint, distance: Double) -> Bool {
         if NMapView.distance(fromLocation: point1, toLocation: point2) < distance {
             return true
