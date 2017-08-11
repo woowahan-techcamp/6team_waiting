@@ -6,7 +6,7 @@ export class HomeNavigator {
     constructor() {
         this.btnIntro = document.querySelector("#btn-intro");
         this.btnIntroClose = document.querySelector("#btn-intro-close");
-        this.btnGoLogin = document.querySelector("#btn-go-login");
+        this.btnGoStore = document.querySelector("#btn-go-store");
         this.btnLogin = document.querySelector("#btn-login");
         this.btnLoginClose = document.querySelector("#btn-login-close");
         this.btnGoSignUp = document.querySelector("#btn-go-sign-up");
@@ -29,8 +29,12 @@ export class HomeNavigator {
             this.activateRoot();
         });
         
-        this.btnGoLogin.addEventListener("click", () => {
-            this.showSignIn();
+        this.btnGoStore.addEventListener("click", () => {
+            // if ( 로그인이 안 되어 있으면)
+                this.showSignIn();
+            // else 
+                // this.showBoard();
+
             this.inactivateRoot();
         });
 
