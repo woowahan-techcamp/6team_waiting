@@ -122,12 +122,12 @@ span.btn-close > img {
     height: 25px;
 }
 
-div.sign-in-show {
+div.show-sign-in {
     transition: .5s;
     bottom: 0;
 }
 
-div.sign-in:not(.sign-in-show) {
+div.sign-in:not(.show-sign-in) {
     @include page-animation;
 }
 
@@ -181,12 +181,12 @@ div.sign-up {
     @include page-animation;
 }
 
-div.sign-up-show {
+div.show-sign-up {
     top: 0;
     @include page-animation;
 }
 
-div.sign-up:not(.sign-up-show) {
+div.sign-up:not(.show-sign-up) {
     @include page-animation;
 }
 

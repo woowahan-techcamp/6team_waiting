@@ -96,11 +96,11 @@ span.btn-close > img {
   width: 25px;
   height: 25px; }
 
-div.sign-in-show {
+div.show-sign-in {
   transition: .5s;
   bottom: 0; }
 
-div.sign-in:not(.sign-in-show) {
+div.sign-in:not(.show-sign-in) {
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out; }
@@ -149,13 +149,13 @@ div.sign-up {
   -moz-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out; }
 
-div.sign-up-show {
+div.show-sign-up {
   top: 0;
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out; }
 
-div.sign-up:not(.sign-up-show) {
+div.sign-up:not(.show-sign-up) {
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out; }

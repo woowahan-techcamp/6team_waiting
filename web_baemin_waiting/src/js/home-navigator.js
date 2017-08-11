@@ -59,50 +59,58 @@ export class HomeNavigator {
     }
 
     hideIntro() {
-        document.querySelector(".intro").classList.remove("show-intro");
+        this.removeClassOnElement(".intro", "show-intro");
     }
 
     hideSignIn() {
-        document.querySelector(".sign-in").classList.remove("sign-in-show");
+        this.removeClassOnElement(".sign-in", "show-sign-in");
     }
 
     hideSignUp() {
-        document.querySelector(".sign-up").classList.remove("sign-up-show");
+        this.removeClassOnElement(".sign-up", "show-sign-up");
     }
 
     hideBoard() {
-        document.querySelector(".board").classList.remove("show-board");
+        this.removeClassOnElement(".board", "show-board");
     }
 
     hideNavi() {
-        document.querySelector(".nav").classList.remove("show-nav");
+        this.removeClassOnElement(".nav", "show-nav");
     }
 
     inactivateRoot() {
-        document.querySelector(".view").classList.add("inactive");
+        this.addClassOnElement(".view", "inactive");
     }
 
     activateRoot() {
-        document.querySelector(".view").classList.remove("inactive");
+        this.removeClassOnElement(".view", "inactive");
     }
 
     showIntro() {
-        document.querySelector(".intro").classList.add("show-intro");
+        this.addClassOnElement(".intro", "show-intro");
     }
 
     showSignIn() {
-        document.querySelector(".sign-in").classList.add("sign-in-show");
+        this.addClassOnElement(".sign-in", "show-sign-in");
     }
 
     showSignUp() {
-        document.querySelector(".sign-up").classList.add("sign-up-show");
+        this.addClassOnElement(".sign-up", "show-sign-up");
     }
 
     showBoard() {
-        document.querySelector(".board").classList.add("show-board");
+        this.addClassOnElement(".board", "show-board");
     }
 
     showNavi() {
-        document.querySelector(".nav").classList.add("show-nav");
+        this.addClassOnElement(".nav", "show-nav");
+    }
+
+    addClassOnElement(ele, css) {
+        document.querySelector(ele).classList.add(css);
+    }
+
+    removeClassOnElement(ele, css) {
+        document.querySelector(ele).classList.remove(css);
     }
 }
