@@ -14,9 +14,7 @@ ul {
 div#root {
   width: 100vw;
   height: 100vh;
-  background-image: url("background.jpg");
-  background-size: cover;
-  background-repeat: no-repeat; }
+  background-color: #333; }
 
 div.home {
   width: 70vw;
@@ -71,20 +69,20 @@ div.intro {
   background-color: #ABE2E0;
   border-radius: 0px 10px 10px 0px;
   z-index: 10;
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.show-intro {
   left: 0;
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.intro:not(.show-intro) {
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.sign-in {
   width: 35vw;
@@ -96,9 +94,9 @@ div.sign-in {
   background-color: #ABE2E0;
   border-radius: 10px 10px 0px 0px;
   z-index: 10;
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 span.btn-close {
   float: right;
@@ -114,9 +112,9 @@ div.sign-in-show {
   bottom: 0; }
 
 div.sign-in:not(.sign-in-show) {
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.sign-area {
   width: 250px;
@@ -158,18 +156,20 @@ div.sign-up {
   background-color: white;
   border-radius: 0px 0px 10px 10px;
   z-index: 20;
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.sign-up-show {
-  transition: .5s;
-  top: 0; }
+  top: 0;
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.sign-up:not(.sign-up-show) {
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 button#btn-sign-up {
   width: 250px;
@@ -231,9 +231,9 @@ div.sign-up-form dd {
   margin-bottom: 10px; }
 
 div.view {
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.inactive {
   position: fixed;
@@ -245,14 +245,14 @@ div.inactive {
   overflow: auto;
   background-color: black;
   background-color: rgba(0, 0, 0, 0.5);
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.view:not(.inactive) {
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.nav {
   position: absolute;
@@ -264,20 +264,20 @@ div.nav {
   background-color: #2AC1BC;
   border-radius: 0px 10px 10px 0px;
   z-index: 30;
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.show-nav {
   left: 0;
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.nav:not(.show-nav) {
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.nav ul {
   margin-top: 5vh;
@@ -300,14 +300,14 @@ div.board {
 
 div.show-board {
   top: 10vh;
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.board:not(.show-board) {
-  -webkit-transition: transform .5s ease-in-out;
-  -moz-transition: transform .5s ease-in-out;
-  transition: transform .5s ease-in-out; }
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  transition: .5s ease-in-out; }
 
 div.not-register {
   text-align: center;

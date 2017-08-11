@@ -19,17 +19,18 @@ ul {
 }
 
 @mixin page-animation {
-    -webkit-transition: transform .5s ease-in-out;
-    -moz-transition: transform .5s ease-in-out;
-    transition: transform .5s ease-in-out;
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
 }
 
 div#root {
     width: 100vw;
     height: 100vh;
-    background-image: url("background.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: #333;
+    // background-image: url("background.jpg");
+    // background-size: cover;
+    // background-repeat: no-repeat;
 }
 
 div.home {
@@ -198,8 +199,8 @@ div.sign-up {
 }
 
 div.sign-up-show {
-    transition: .5s;
     top: 0;
+    @include page-animation;
 }
 
 div.sign-up:not(.sign-up-show) {

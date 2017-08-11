@@ -1,6 +1,7 @@
 import _ from "./util.js";
 
 import "./style.css";
+import "./style/home.css";
 
 import service from "./js/services/service.js";
 
