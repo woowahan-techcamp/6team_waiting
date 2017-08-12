@@ -53,9 +53,9 @@
 
 
 <div class="nav">
-    <ul>
+    <ul class="navigator">
         {{#each navi-list}}
-        <li id={{this.id}}>{{this.to}}</li>
+        <li id={{this.id}} data-dest={{this.dest}}>{{this.to}}</li>
         {{/each}}
     </ul>
 </div>

@@ -13,9 +13,7 @@ export class HomeNavigator {
         this.btnSignUp = document.querySelector("#btn-sign-up");
         this.btnSignUpClose = document.querySelector("#btn-sign-close");
 
-        this.naviHome = document.querySelector("#navi-home");
-        this.naviMyPage = document.querySelector("#navi-mypage");
-        this.naviManage = document.querySelector("#navi-manage");
+        this.navigator = document.querySelector(".navigator");
     }
 
     on() {
@@ -62,19 +60,11 @@ export class HomeNavigator {
             this.hideSignUp();
         });
 
-        this.naviHome.addEventListener("click", () => {
-            this.activateRoot();
-            this.hideBoard();
-            this.hideNavi();
+        this.navigator.addEventListener("click", (e) => {
+            if (e.target && e.target.nodeName === "LI") {
+                this.showNaviPage(e.target.dataset.dest);
+            }
         });
-
-        this.naviMyPage.addEventListener("click", () => {
-            this.showMyPage();
-        })
-
-        this.naviManage.addEventListener("click", () => {
-            this.showManage();
-        })
     }
 
     hideIntro() {
@@ -139,8 +129,14 @@ export class HomeNavigator {
         this.addClassOnElement(".nav", "show-nav");
     }
 
-    showManage() {
-        util.setTemplateInHtml(".board", "manage");
+    showNaviPage(destination) {
+        if (destination === "home") {
+            this.activateRoot();
+            this.hideNavi();
+            this.hideBoard();
+        } else {
+            util.setTemplateInHtml(".board", destination);
+        }   
     }
 
     showMyPage() {
