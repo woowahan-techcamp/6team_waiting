@@ -88,6 +88,12 @@ div.sign-in {
   -moz-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out; }
 
+div.sign-in img.logo {
+  width: 100px;
+  height: 100px;
+  margin-top: 25vh;
+  margin-bottom: 3vh; }
+
 span.btn-close {
   float: right;
   margin-top: 50px;

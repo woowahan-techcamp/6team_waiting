@@ -139,10 +139,6 @@ export class HomeNavigator {
         }   
     }
 
-    showMyPage() {
-        util.setTemplateInHtml(".board", "my-page");
-    }
-
     addClassOnElement(ele, css) {
         document.querySelector(ele).classList.add(css);
     }
