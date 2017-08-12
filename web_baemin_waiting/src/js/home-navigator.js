@@ -30,6 +30,7 @@ export class HomeNavigator {
         });
         
         this.btnGoStore.addEventListener("click", () => {
+            // @TODO : haeun.kim
             // if ( 로그인이 안 되어 있으면)
                 this.showSignIn();
             // else 
@@ -132,6 +133,7 @@ export class HomeNavigator {
                 })
             });
     }
+    
 
     showNavi() {
         this.addClassOnElement(".nav", "show-nav");
