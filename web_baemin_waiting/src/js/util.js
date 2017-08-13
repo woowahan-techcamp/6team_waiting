@@ -22,6 +22,7 @@ const util = {
             } else {
                 reject(Error("pos or html is not defined"));
             }
+            
         });
     }
 }
