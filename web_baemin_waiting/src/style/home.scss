@@ -1,5 +1,4 @@
-$primary-color:#2AC1BC;
-$secondary-color: #ABE2E0;
+@import "base.scss";
 
 
 @mixin page-animation {
@@ -11,11 +10,10 @@ $secondary-color: #ABE2E0;
 div#root {
     width: 100vw;
     height: 100vh;
-    /* @TODO : haeun.kim 배경 이미지 */
     background-color: #333;
-    // background-image: url("background.jpg");
-    // background-size: cover;
-    // background-repeat: no-repeat;
+    background-image: url("/dist/public/images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 div.home {
@@ -109,6 +107,13 @@ div.sign-in {
     z-index: 10;
 
     @include page-animation;
+}
+
+div.sign-in img.logo {
+    width: 100px;
+    height: 100px;
+    margin-top: 25vh;
+    margin-bottom: 3vh;
 }
 
 span.btn-close {
