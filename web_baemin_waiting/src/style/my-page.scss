@@ -1,0 +1,32 @@
+$primary-color:#2AC1BC;
+$secondary-color: #ABE2E0;
+
+div.my-page {
+    padding: 50px;
+    text-align: center;
+}
+
+div.my-page-area {
+    margin-top: 20vh;
+}
+
+div.my-page-area input {
+    width: 200px;
+    height: 30px;
+    font-size: 1.3em;
+    border: 1px solid #999;
+    margin-top: 30px;
+}
+
+button#btn-my-auth {
+    display: block;
+    width: 150px;
+    height: 30px;
+    background-color: $primary-color;
+    border-radius: 30px;
+    color: white;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
