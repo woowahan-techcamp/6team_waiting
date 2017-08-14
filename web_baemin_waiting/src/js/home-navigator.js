@@ -89,7 +89,7 @@ export class HomeNavigator {
                 .then(() => {
                     const btnGoModify = document.getElementById("btn-go-modify");
                     btnGoModify.addEventListener("click", () => {
-                        util.setTemplateInHtml(".board", "register");
+                        util.setTemplateInHtml(".board", "modify");
                     });
                 });
         });
