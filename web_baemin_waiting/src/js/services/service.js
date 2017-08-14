@@ -125,6 +125,12 @@ const service = (() => {
 
         isAuth() {
             return isAuthenticated();
+        },
+
+        // @TODO : haeun.kim
+        // 현재 로그인 된 계정에 등록된 가게가 있는지 없는지 확인
+        hasStore() {
+            return false;
         }
     }
 

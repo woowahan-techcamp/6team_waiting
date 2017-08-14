@@ -14,3 +14,7 @@ button, input {
 ul {
     list-style: none;
 }
+
+input {
+    padding-left: 10px;
+}
