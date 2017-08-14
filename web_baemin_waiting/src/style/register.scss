@@ -1,5 +1,16 @@
 @import "base.scss";
 
+
+
+.btn-base {
+    width: 10%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+
 ::-webkit-input-placeholder {
     font-size: .8em;
 }
@@ -77,6 +88,11 @@ input#regist-title {
     width: 70%;
 }
 
+input#regist-location {
+    width: 90%;
+}
+
+
 input#regist-desc {
     width: 90%;
 }
@@ -92,25 +108,23 @@ input.menu-price {
 }
 
 button.remove-menu {
-    width: 10%;
-    height: 30px;
+    @extend .btn-base;
     background-color: white;
-    border-radius: 5px;
     border: 3px solid $primary-color;
     color: $primary-color;
-    font-size: 1.2em;
-    font-weight: bold;
 }
 
 button.add-menu {
-    width: 10%;
-    height: 30px;
+    @extend .btn-base;
     background-color: $primary-color;
-    border-radius: 5px;
     color: white;
-    font-size: 1.2em;
-    font-weight: bold;
     float: right;
+}
+
+button#btn-search-store {
+    @extend .btn-base;
+    background-color: $primary-color;
+    color: white;
 }
 
 button#btn-reg-store {
