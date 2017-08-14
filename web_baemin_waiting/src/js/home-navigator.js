@@ -20,21 +20,21 @@ export class HomeNavigator {
 
     on() {
         this.btnIntro.addEventListener("click", () => {
-            this.showIntro();
+            this.showElement("intro");
             this.inactivateRoot();
         });
 
         this.btnIntroClose.addEventListener("click", () => {
-            this.hideIntro();
+            this.hideElement("intro")
             this.activateRoot();
         });
         
         this.btnGoStore.addEventListener("click", () => {
             if (!service.isAuth())
-                this.showSignIn();
+                this.showElement("sign-in");
             else {
-                this.showBoard();
-                this.showNavi();
+                this.showElement("board");
+                this.showElement("nav");
             }
 
             this.inactivateRoot();
@@ -46,19 +46,20 @@ export class HomeNavigator {
 
             service.signInUser(userId, userPwd)
                 .then(() => {
-                    this.hideSignIn();
-                    this.showNavi();
-                    this.showBoard();
+                    this.hideElement("sign-in");
+                    this.showElement("nav");
+                    this.showElement("board");
+                    this.showNaviPage("manage");
                 });
         });
 
         this.btnLoginClose.addEventListener("click", () => {
-            this.hideSignIn();
+            this.hideElement("sign-in");
             this.activateRoot();
         });
 
         this.btnGoSignUp.addEventListener("click", () => {
-            this.showSignUp();
+            this.showElement("sign-up");
         });
 
         this.btnSignUp.addEventListener("click", () => {
@@ -68,11 +69,11 @@ export class HomeNavigator {
             const userTel = document.getElementById("sign-tel").value;
             
             service.signUpUser(userId, userPwd, userName, "owner", userTel)
-                .then(this.hideSignUp());
+                .then(this.hideElement("sign-up"));
         });
 
         this.btnSignUpClose.addEventListener("click", () => {
-            this.hideSignUp();
+            this.hideElement("sign-up");
         });
 
         this.navigator.addEventListener("click", (e) => {
@@ -101,24 +102,12 @@ export class HomeNavigator {
         });
     }
 
-    hideIntro() {
-        this.removeClassOnElement(".intro", "show-intro");
+    hideElement(ele) {
+        this.removeClassOnElement(`.${ele}`, `show-${ele}`);
     }
 
-    hideSignIn() {
-        this.removeClassOnElement(".sign-in", "show-sign-in");
-    }
-
-    hideSignUp() {
-        this.removeClassOnElement(".sign-up", "show-sign-up");
-    }
-
-    hideBoard() {
-        this.removeClassOnElement(".board", "show-board");
-    }
-
-    hideNavi() {
-        this.removeClassOnElement(".nav", "show-nav");
+    showElement(ele) {
+        this.addClassOnElement(`.${ele}`, `show-${ele}`);
     }
 
     inactivateRoot() {
@@ -127,23 +116,6 @@ export class HomeNavigator {
 
     activateRoot() {
         this.removeClassOnElement(".view", "inactive");
-    }
-
-    showIntro() {
-        this.addClassOnElement(".intro", "show-intro");
-    }
-
-    showSignIn() {
-        this.addClassOnElement(".sign-in", "show-sign-in");
-    }
-
-    showSignUp() {
-        this.addClassOnElement(".sign-up", "show-sign-up");
-    }
-
-    showBoard() {
-        this.addClassOnElement(".board", "show-board");
-        this.showNaviPage("manage");
     }
     
     showRegister() {
@@ -183,8 +155,8 @@ export class HomeNavigator {
         switch (destination) {
             case "home":
                 this.activateRoot();
-                this.hideNavi();
-                this.hideBoard();
+                this.hideElement("nav");
+                this.hideElement("board");
                 break;
 
             case "my-page":
