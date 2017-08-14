@@ -12,15 +12,21 @@ import SwiftyJSON
 
 class ServerRepository {
 
-    static func getStoreList(completion: @escaping (Store) -> Void) {
+    static let BaseURL = "http://192.168.100.107:8080/"
+    static var storeList: [Store] = []
 
-        guard let url = URL(string: "http://192.168.100.107:8080")
+    static func getStoreList(completion: @escaping ([Store]) -> Void) {
+
+        guard let url = URL(string: BaseURL)
             else {
                 print("URL is nil")
                 return
         }
 
-        Alamofire.request(url).responseJSON { response in
+        var urlRequest = URLRequest(url: url)
+        urlRequest.timeoutInterval = 10
+
+        Alamofire.request(urlRequest).responseJSON { response in
             guard response.result.isSuccess else {
                 print("Response get store error: \(response.result.error!)")
                 return
@@ -37,25 +43,21 @@ class ServerRepository {
                     let address = item["restaurantsLocationInfo"]["restaurantsAddress"].string,
                     let lat = item["restaurantsLocationInfo"]["restaurantsLatitude"].string,
                     let long = item["restaurantsLocationInfo"]["restaurantsLongitude"].string,
-                    let img = item["restaurantsLocationInfo"]["restaurantsImgUrl"].string,
-                    let imgUrl = URL(string: img) {
+                    let img = item["restaurantsImgUrl"].string {
 
-                    let store = Store(storeName: name, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgUrl, searchRange: [:])
+                    if let imgURL = URL(string: img) {
+                        let store = Store(storeName: name, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL, searchRange: [:])
 
-                    DispatchQueue.main.async {
-                        completion(store)
+                        self.storeList.append(store)
                     }
-
                 }
+            }
+
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataUpdate"),
+                                            object: nil, userInfo: ["storeData": self.storeList])
+            DispatchQueue.main.async {
+                completion(self.storeList)
             }
         }
     }
 }
-
-//guard let name: String = object["restaurantsName"] as? String else { return [] }
-//guard let searchRange = object["searchRange"] as? [String: Any] else { return [] }
-//
-//if let locationInfo = object["restaurantsLocationInfo"] as? [String : Any] {
-//    guard let address: String = locationInfo["restaurantsAddress"] as? String else { return [] }
-//
-

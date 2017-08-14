@@ -10,47 +10,58 @@ import UIKit
 
 class MapViewController: UIViewController {
 
-    let naverMap = NaverMapHandler()
+    let naverMapHandler = NaverMapHandler()
     let jsonController = JsonController()
     var mapView: NMapView?
     var myLocation: NGeoPoint?
     var circleArea: NMapCircleData?
+    var currentPoiData: [NMapPOIitem] = []
 
     var storeList: [Store] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mapView = naverMap.initMap(frame: self.view.bounds)
+        NotificationCenter.default.addObserver(self, selector: #selector(dataUpdated),
+                                               name: NSNotification.Name(rawValue: "dataUpdate"), object: nil)
+
+        mapView = naverMapHandler.initMap(frame: self.view.bounds)
 
         if let mapView = mapView {
-            mapView.delegate = naverMap
+            mapView.delegate = naverMapHandler
             mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
             view.addSubview(mapView)
         }
 
-        switch naverMap.currentState {
+        switch naverMapHandler.currentState {
         case .disabled:
             enableLocationUpdate()
-            naverMap.currentState = .tracking
+            naverMapHandler.currentState = .tracking
         default:
             disableLocationUpdate()
-            naverMap.currentState = .disabled
+            naverMapHandler.currentState = .disabled
         }
+    }
+
+    // NotificationCenter 메소드
+    func dataUpdated(_ notification: NSNotification) {
+        guard let storeListData = notification.userInfo?["storeData"] as? [Store] else {
+            print("Error: Data not Passed")
+            return
+        }
+        self.storeList = storeListData
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         mapView?.viewDidAppear()
-
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         mapView?.viewWillDisappear()
-        disableLocationUpdate()
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,22 +76,19 @@ extension MapViewController: NMapLocationManagerDelegate {
         let coordinate = location.coordinate
 
         myLocation = NGeoPoint(longitude: coordinate.longitude, latitude: coordinate.latitude)
-        let locationAccuracy = Float(location.horizontalAccuracy)
 
         if let location = myLocation {
-            mapView?.mapOverlayManager.setMyLocation(location, locationAccuracy: locationAccuracy)
+            mapView?.mapOverlayManager.setMyLocation(location, locationAccuracy: 0)
             mapView?.setMapCenter(location)
         }
 
         addCircleAroundMyPosition()
-
-
-
         addMarker()
 
         if let location = myLocation {
             mapView?.setMapCenter(location, atLevel: 9)
         }
+//        disableLocationUpdate()
     }
     // 현재 위치 로딩 실패시 호출
     func locationManager(_ locationManager: NMapLocationManager!, didFailWithError errorType: NMapLocationManagerErrorType) {
@@ -106,9 +114,6 @@ extension MapViewController: NMapLocationManagerDelegate {
         }
 
     }
-    func onMapViewIsGPSTracking(_ mapView: NMapView!) -> Bool {
-        return NMapLocationManager.getSharedInstance().isTrackingEnabled()
-    }
 
     func enableLocationUpdate() {
 
@@ -123,8 +128,12 @@ extension MapViewController: NMapLocationManagerDelegate {
                 // set delegate
                 manager.setDelegate(self)
                 // start updating location
-                manager.startContinuousLocationInfo()
 
+// 한 번만 업데이트
+                manager.startCurrentLocationInfo()
+
+// 지속적인 추적용
+//                manager.startContinuousLocationInfo()
             }
         }
     }
@@ -189,7 +198,7 @@ extension MapViewController {
 extension MapViewController {
 
     func addMarker() {
-        let storeList = restaurantInCircle()
+        let storeList = self.storeList
 
         if let mapOverlayManager = mapView?.mapOverlayManager {
 
@@ -197,46 +206,43 @@ extension MapViewController {
 
                 poiDataOverlay.initPOIdata(Int32(storeList.count))
 
-                for store in storeList {
+                for (idx, store) in storeList.enumerated() {
 
                     if let long = Double(store.storeLongitude),
                         let lat = Double(store.storeLatitude) {
 
                         let markerLocation = NGeoPoint(longitude: long, latitude: lat)
-                        poiDataOverlay.addPOIitem(atLocation: markerLocation, title: store.storeName,
-                                                  type: userPOIflagTypeDefault, with: nil)
+
+                        if let location = myLocation {
+                            if isInCircle(point1: location, point2: markerLocation, distance: 1500) {
+
+                                poiDataOverlay.addPOIitem(atLocation: markerLocation, title: store.storeName,
+                                                          type: userPOIflagTypeDefault, iconIndex: Int32(idx), with: nil)
+                            }
+                        }
                     }
 
+                }
+                if let data = poiDataOverlay.poiData() as? [NMapPOIitem] {
+                    currentPoiData = data
                 }
                 poiDataOverlay.endPOIdata()
                 poiDataOverlay.showAllPOIdata()
             }
         }
     }
-    func restaurantInCircle() -> [Store] {
-        let storeList = jsonController.getItem()
-
-        var resultList: [Store] = []
-        for store in storeList {
-            if let long = Double(store.storeLongitude),
-                let lat = Double(store.storeLatitude) {
-
-                let markerLocation = NGeoPoint(longitude: long, latitude: lat)
-
-                if let location = myLocation {
-                    if isInCircle(point1: location, point2: markerLocation, distance: 1500) {
-                        resultList.append(store)
-                    }
-                }
-            }
-        }
-        return resultList
-    }
-
     func isInCircle(point1: NGeoPoint, point2: NGeoPoint, distance: Double) -> Bool {
         if NMapView.distance(fromLocation: point1, toLocation: point2) < distance {
             return true
         }
         return false
+    }
+
+    func moveToMarker() {
+        if let mapOverlayManager = mapView?.mapOverlayManager {
+            if let poiDataOverlay = mapOverlayManager.findFocusedPOIdataOverlay() {
+                poiDataOverlay.selectPOIitem(with: nil, moveToCenter: true)
+            }
+        }
     }
 }

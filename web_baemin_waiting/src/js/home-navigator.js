@@ -1,4 +1,6 @@
 import util from "./util.js";
+import service from "./services/service.js";
+import { Menu } from "./menu.js";
 
 
 export class HomeNavigator {
@@ -28,32 +30,45 @@ export class HomeNavigator {
         });
         
         this.btnGoStore.addEventListener("click", () => {
-            // @TODO : haeun.kim
-            // if ( 로그인이 안 되어 있으면)
+            if (!service.isAuth())
                 this.showSignIn();
-            // else 
-                // this.showBoard();
+            else {
+                this.showBoard();
+                this.showNavi();
+            }
 
             this.inactivateRoot();
         });
 
         this.btnLogin.addEventListener("click", () => {
-            this.hideSignIn();
-            this.showNavi();
-            this.showBoard();
+            const userId = document.getElementById("login-id").value;
+            const userPwd = document.getElementById("login-pwd").value;
+
+            service.signInUser(userId, userPwd)
+                .then(() => {
+                    this.hideSignIn();
+                    this.showNavi();
+                    this.showBoard();
+                });
         });
 
         this.btnLoginClose.addEventListener("click", () => {
             this.hideSignIn();
             this.activateRoot();
-        })
+        });
 
         this.btnGoSignUp.addEventListener("click", () => {
             this.showSignUp();
         });
 
         this.btnSignUp.addEventListener("click", () => {
-            this.hideSignUp();
+            const userId = document.getElementById("sign-id").value;
+            const userPwd = document.getElementById("sign-pwd").value;
+            const userName = document.getElementById("sign-name").value;
+            const userTel = document.getElementById("sign-tel").value;
+            
+            service.signUpUser(userId, userPwd, userName, "owner", userTel)
+                .then(this.hideSignUp());
         });
 
         this.btnSignUpClose.addEventListener("click", () => {
@@ -119,12 +134,27 @@ export class HomeNavigator {
             .then(() => {
                 const btnGoRegister = document.querySelector("#btn-go-register");
                 btnGoRegister.addEventListener("click", () => {
-                    util.setTemplateInHtml(".board", "register");
+                    util.setTemplateInHtml(".board", "register")
+                        .then(() => {
+                            const menu = new Menu(".menus");
+                            menu.addMenuInput();
+                            const regTitle = document.getElementById("regis-title").value;
+                            const regDesc = document.getElementById("regis-desc").value;
+                            
+                            const btnAddMenu = document.querySelector(".add-menu");
+                            btnAddMenu.addEventListener("click", () => {
+                                menu.addMenuInput();
+                            });
+
+                            const btnRegister = document.querySelector("#btn-reg-store");
+                            btnRegister.addEventListener("click", () => {
+                                // service.registerRestaurant(regTitle, regDesc);
+                            });
+                        });
                 })
             });
     }
     
-
     showNavi() {
         this.addClassOnElement(".nav", "show-nav");
     }

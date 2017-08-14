@@ -25,6 +25,9 @@ templates['home'] = template({"1":function(container,depth0,helpers,partials,dat
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0["navi-list"] : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </ul>\n</div>\n\n\n<div class=\"board\"></div>\n";
 },"useData":true});
+templates['input-menu'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<input class=\"menu-name\" type=\"text\" placeholder=\"메뉴 이름\">\n<input class=\"menu-price\" type=\"number\" placeholder=\"메뉴 가격\">\n<button class=\"remove-menu\">-</button>\n";
+},"useData":true});
 templates['manage'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"manage\">\n    <h1>가게 이름</h1>\n\n    <div class=\"waiting-list\">\n        <div class=\"waiting-member\">\n            \n            <div class=\"waiting-btn-area\">\n                <div class=\"btn-alarm\"></div>\n                <div class=\"btn-delete\"></div>\n            </div>\n        </div>\n\n    </div>\n\n    <div class=\"input-client\">\n    </div>\n</div>";
 },"useData":true});
@@ -38,6 +41,6 @@ templates['no-store'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
     return "<div class=\"go-register\">\n    <span>등록된 가게가 없습니다.</span>\n    <span>먼저 가게를 등록해주세요.</span>\n    <button id=\"btn-go-register\">가게 등록 하기</button>\n</div>";
 },"useData":true});
 templates['register'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"register-store\">\n    <h1>사장님의 가게를 등록해주세요</h1>\n    <dl class=\"reg-form\">\n        <dt>업체명</dt>\n        <dd><input type=\"text\" id=\"regis-title\"></dd>\n\n        <dt>업체 설명</dt>\n        <dd><input type=\"text\" id=\"regis-desc\"></dd>\n\n        <dt>메뉴</dt>\n        <dd><input></dd>\n\n        <dt>사진 등록</dt>\n        <dd><input type=\"file\"></dd>\n    </dl>\n    <button id=\"btn-reg-store\">가게등록</button>\n\n</div>";
+    return "<div class=\"register-store\">\n    <h1>사장님의 가게를 등록해주세요</h1>\n    <div>\n        <dl class=\"reg-form\">\n            <dt>업체명</dt>\n            <dd><input type=\"text\" id=\"regis-title\"></dd>\n\n            <dt>업체 설명</dt>\n            <dd><input type=\"text\" id=\"regis-desc\"></dd>\n\n            <dt>업체 사진</dt>\n            <dd><input type=\"file\"></dd>\n\n            <dt>메뉴</dt>\n            <dd class=\"menus\">\n                <button class=\"add-menu\">+</button>\n            </dd>\n            \n        </dl>\n    </div>\n\n    <button id=\"btn-reg-store\">가게등록</button>\n\n</div>";
 },"useData":true});
 })();
