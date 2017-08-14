@@ -16,7 +16,6 @@ class NaverMapHandler: NSObject {
     }
 
     private var _currentState: State = .disabled
-    var mapView: NMapView?
     var myLocation: NGeoPoint?
 
     public var currentState: State {

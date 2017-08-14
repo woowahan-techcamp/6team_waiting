@@ -1,0 +1,38 @@
+div.manage {
+  width: 50vw;
+  margin: 30px auto;
+  text-align: center;
+  position: relative; }
+
+div.waiting-list {
+  padding: 5px;
+  height: 50vh;
+  overflow: auto;
+  margin-top: 30px; }
+
+div.waiting-member {
+  width: 40vw;
+  height: 100px;
+  margin: auto;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 5px #CCC; }
+
+div.waiting-btn-area {
+  float: right; }
+
+div.waiting-btn-area div {
+  width: 5vw;
+  height: 100px;
+  float: left; }
+
+div.btn-alarm {
+  background-color: #a9eeab; }
+
+div.btn-delete {
+  background-color: #ff7575; }
+
+div.input-client {
+  position: absolute;
+  height: 150px;
+  background-color: red;
+  bottom: 0; }
