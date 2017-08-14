@@ -3,19 +3,76 @@ import service from "./services/service.js";
 import { Menu } from "./menu.js";
 
 
-export class HomeNavigator {
+export const HomeNaviBuilder = function() {
 
-    constructor() {
-        this.btnIntro = document.querySelector("#btn-intro");
-        this.btnIntroClose = document.querySelector("#btn-intro-close");
-        this.btnGoStore = document.querySelector("#btn-go-store");
-        this.btnLogin = document.querySelector("#btn-login");
-        this.btnLoginClose = document.querySelector("#btn-login-close");
-        this.btnGoSignUp = document.querySelector("#btn-go-sign-up");
-        this.btnSignUp = document.querySelector("#btn-sign-up");
-        this.btnSignUpClose = document.querySelector("#btn-sign-close");
+    let intro;
+    let introClose;
+    let goStore;
+    let login;
+    let loginClose;
+    let goSignUp;
+    let signUp;
+    let signUpClose;
+    let navigator;
 
-        this.navigator = document.querySelector(".navigator");
+    return {
+        btnIntro: function(btn) {
+            intro = btn;
+            return this;
+        },
+        btnIntroClose: function(btn) {
+            introClose = btn;
+            return this;
+        },
+        btnGoStore: function(btn) {
+            goStore = btn;
+            return this;
+        },
+        btnLogin: function(btn) {
+            login = btn;
+            return this;
+        },
+        btnLoginClose: function(btn) {
+            loginClose = btn;
+            return this;
+        },
+        btnGoSignUp: function(btn) {
+            goSignUp = btn;
+            return this;
+        },
+        btnSignUp: function(btn) {
+            signUp = btn;
+            return this;
+        },
+        btnSignUpClose: function(btn) {
+            signUpClose = btn;
+            return this;
+        },
+        navigator: function(nav) {
+            navigator = nav;
+            return this;
+        },
+        build: function()   {
+            if (intro && introClose && goStore && login && loginClose && goSignUp && signUp && signUpClose && navigator)
+                return new HomeNavigator(intro, introClose, goStore, login, loginClose, goSignUp, signUp, signUpClose, navigator);
+            else 
+                console.log("The HomeNavigator has an uninitialized variable..")
+        }
+    }
+}
+
+class HomeNavigator {
+
+    constructor(intro, introClose, goStore, login, loginClose, goSignUp, signUp, signUpClose, nav) {
+        this.btnIntro = document.querySelector(intro);
+        this.btnIntroClose = document.querySelector(introClose);
+        this.btnGoStore = document.querySelector(goStore);
+        this.btnLogin = document.querySelector(login);
+        this.btnLoginClose = document.querySelector(loginClose);
+        this.btnGoSignUp = document.querySelector(goSignUp);
+        this.btnSignUp = document.querySelector(signUp);
+        this.btnSignUpClose = document.querySelector(signUpClose);
+        this.navigator = document.querySelector(nav);
     }
 
     on() {
@@ -34,7 +91,8 @@ export class HomeNavigator {
                 this.showElement("sign-in");
             else {
                 this.showElement("board");
-                this.showElement("nav");
+                this.showElement("nav")
+                this.showNaviPage("manage");
             }
 
             this.inactivateRoot();
@@ -88,26 +146,17 @@ export class HomeNavigator {
         btnConfirm.addEventListener("click", () => {
             util.setTemplateInHtml(".my-page-area", "my-info")
                 .then(() => {
-                    const btnInfoMod = document.getElementById("btn-info-modify");
-                    const btnGoModify = document.getElementById("btn-go-modify");
-
-                    btnInfoMod.addEventListener("click", () => {
-                        // @TODO : haeun.kim
-                        // 사용자 정보 업데이트
-                    });
-                    btnGoModify.addEventListener("click", () => {
-                        util.setTemplateInHtml(".board", "modify");
-                    });
+                    this.myInfoHandler();
                 });
         });
     }
 
     hideElement(ele) {
-        this.removeClassOnElement(`.${ele}`, `show-${ele}`);
+        document.querySelector(`.${ele}`).classList.remove(`show-${ele}`);
     }
 
     showElement(ele) {
-        this.addClassOnElement(`.${ele}`, `show-${ele}`);
+        document.querySelector(`.${ele}`).classList.add(`show-${ele}`);
     }
 
     inactivateRoot() {
@@ -117,38 +166,51 @@ export class HomeNavigator {
     activateRoot() {
         this.removeClassOnElement(".view", "inactive");
     }
+
+    registerHandler() {
+        const menu = new Menu(".menus");
+        menu.addMenuInput();
+
+        // const regTitle = document.getElementById("regist-title").value;
+        // const regDesc = document.getElementById("regist-desc").value;
+    
+        const btnAddMenu = document.querySelector(".add-menu");
+        btnAddMenu.addEventListener("click", () => {
+            menu.addMenuInput();
+        });
+
+        const btnRegister = document.getElementById("btn-reg-store");
+        btnRegister.addEventListener("click", () => {
+            // @TODO : haeun.kim 
+            // 입력된 가게 정보를 DB 에 저장
+            // service.registerRestaurant(regTitle, regDesc);
+        });
+    }
+
+    myInfoHandler() {
+        const btnInfoMod = document.getElementById("btn-info-modify");
+        const btnGoModify = document.getElementById("btn-go-modify");
+
+        btnInfoMod.addEventListener("click", () => {
+            // @TODO : haeun.kim
+            // 사용자 정보 업데이트
+        });
+        btnGoModify.addEventListener("click", () => {
+            util.setTemplateInHtml(".board", "modify");
+        });
+    }
     
     showRegister() {
         util.setTemplateInHtml(".board", "no-store")
             .then(() => {
-                const btnGoRegister = document.querySelector("#btn-go-register");
+                const btnGoRegister = document.getElementById("btn-go-register");
                 btnGoRegister.addEventListener("click", () => {
                     util.setTemplateInHtml(".board", "register")
                         .then(() => {
-                            const menu = new Menu(".menus");
-                            menu.addMenuInput();
-
-                            const regTitle = document.getElementById("regis-title").value;
-                            const regDesc = document.getElementById("regis-desc").value;
-                        
-                            const btnAddMenu = document.querySelector(".add-menu");
-                            btnAddMenu.addEventListener("click", () => {
-                                menu.addMenuInput();
-                            });
-
-                            const btnRegister = document.querySelector("#btn-reg-store");
-                            btnRegister.addEventListener("click", () => {
-                                // @TODO : haeun.kim 
-                                // 입력된 가게 정보를 DB 에 저장
-                                // service.registerRestaurant(regTitle, regDesc);
-                            });
+                            this.registerHandler();
                         });
                 });
             });
-    }
-
-    showNavi() {
-        this.addClassOnElement(".nav", "show-nav");
     }
 
     showNaviPage(destination) {
@@ -185,13 +247,5 @@ export class HomeNavigator {
                 util.setTemplateInHtml(".board", destination);
                 break;
         }
-    }
-
-    addClassOnElement(ele, css) {
-        document.querySelector(ele).classList.add(css);
-    }
-
-    removeClassOnElement(ele, css) {
-        document.querySelector(ele).classList.remove(css);
     }
 }

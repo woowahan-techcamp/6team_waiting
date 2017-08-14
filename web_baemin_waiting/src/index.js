@@ -7,7 +7,7 @@ import "./style/no-store.css";
 import "./style/manage.css";
 import "./style/my-page.css";
 
-import { HomeNavigator } from "./js/home-navigator.js"
+import { HomeNaviBuilder } from "./js/home-navigator.js"
 import service from "./js/services/service.js";
 
 
@@ -24,7 +24,16 @@ const homeData = {
 
 util.setTemplateInHtml("#root", "home", homeData)
     .then(() => {
-        const homeNavigator = new HomeNavigator();
+        const homeNavigator = HomeNaviBuilder().btnIntro("#btn-intro")
+                                                .btnIntroClose("#btn-intro-close")
+                                                .btnGoStore("#btn-go-store")
+                                                .btnLogin("#btn-login")
+                                                .btnLoginClose("#btn-login-close")
+                                                .btnGoSignUp("#btn-go-sign-up")
+                                                .btnSignUp("#btn-sign-up")
+                                                .btnSignUpClose("#btn-sign-close")
+                                                .navigator(".navigator")
+                                                .build();
         homeNavigator.on();
     })
     .catch((err) => {
