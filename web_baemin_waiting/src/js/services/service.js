@@ -51,27 +51,33 @@ const service = (() => {
     }
 
     const signUp = function(email, password, name, role, tel, callback) {
-        fireAuth.createUserWithEmailAndPassword(email, password)
-            .then(() => {
-                signIn(email, password);
-            })
-            .then(() => {
-                saveUserData(email, name, role, tel);
-                callback();
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        return new Promise((resolve, reject) => {
+            fireAuth.createUserWithEmailAndPassword(email, password)
+                .then(() => {
+                    signIn(email, password);
+                })
+                .then(() => {
+                    saveUserData(email, name, role, tel);
+                    resolve(true);
+                })
+                .catch((err) => {
+                    reject(Error(err));
+                });
+        })
+        
     }
 
-    const signIn = function(email, password, callback) {
-        fireAuth.signInWithEmailAndPassword(email, password)
-            .then(() => {
-                callback();
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+    const signIn = function(email, password) {
+        return new Promise((resolve, reject) => {
+            fireAuth.signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    resolve(true);
+                })
+                .catch((err) => {
+                    reject(Error(err));
+                })
+        })
+        
     }
     
     const signOut = function() {
@@ -103,18 +109,22 @@ const service = (() => {
         },
 
         // Create account on firebase with email and password
-        signUpUser(email, password, name, role, tel, callback) {
-            return signUp(email, password, name, role, tel, callback);
+        signUpUser(email, password, name, role, tel) {
+            return signUp(email, password, name, role, tel);
         },
 
         // Sign in with email and password
-        signInUser(email, password, callback) {
-            return signIn(email, password, callback);
+        signInUser(email, password) {
+            return signIn(email, password);
         },
 
         // Log out
         signOutUser() {
             return signOut();
+        },
+
+        isAuth() {
+            return isAuthenticated();
         }
     }
 

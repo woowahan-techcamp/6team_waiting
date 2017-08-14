@@ -15,17 +15,20 @@ class MainCollectionViewController: UIViewController {
 
     // IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
 
-        storeList = jsonController.getItem()
+        activityIndicator.startAnimating()
+        collectionView.isHidden = true
 
-        ServerRepository.getStoreList { store in
-            self.storeList.append(store)
+        ServerRepository.getStoreList { storeData in
+            self.storeList = storeData
+            self.collectionView.reloadData()
         }
     }
 
@@ -67,8 +70,16 @@ extension MainCollectionViewController: UICollectionViewDataSource {
 extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (self.view.bounds.width / 2) - 32, height: 160)
+        return CGSize(width: (self.view.bounds.width / 2) - 16, height: 160)
 
+    }
+}
 
+extension MainCollectionViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == collectionView.indexPathsForVisibleItems.last?.count {
+            activityIndicator.stopAnimating()
+            collectionView.isHidden = false
+        }
     }
 }
