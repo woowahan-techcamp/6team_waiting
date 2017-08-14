@@ -82,6 +82,19 @@ export class HomeNavigator {
         });
     }
 
+    confirmMyPage() {
+        const btnConfirm = document.getElementById("btn-confirm");
+        btnConfirm.addEventListener("click", () => {
+            util.setTemplateInHtml(".my-page-area", "my-info")
+                .then(() => {
+                    const btnGoModify = document.getElementById("btn-go-modify");
+                    btnGoModify.addEventListener("click", () => {
+                        util.setTemplateInHtml(".board", "register");
+                    });
+                });
+        });
+    }
+
     hideIntro() {
         this.removeClassOnElement(".intro", "show-intro");
     }
@@ -124,12 +137,10 @@ export class HomeNavigator {
 
     showBoard() {
         this.addClassOnElement(".board", "show-board");
-
-        /** 
-         * @TODO : haeun.kim
-         * 로그인 성공 여부, 가게 등록 여부에 따라 다른 처리가 진행되어야 합니다. 
-         * 현재는 로그인 성공 후, 가게가 등록되지 않았을 경우를 가정한 동작입니다. 
-        */
+        this.showNaviPage("manage");
+    }
+    
+    showRegister() {
         util.setTemplateInHtml(".board", "no-store")
             .then(() => {
                 const btnGoRegister = document.querySelector("#btn-go-register");
@@ -148,25 +159,53 @@ export class HomeNavigator {
 
                             const btnRegister = document.querySelector("#btn-reg-store");
                             btnRegister.addEventListener("click", () => {
+                                // @TODO : haeun.kim 
+                                // 입력된 가게 정보를 DB 에 저장
                                 // service.registerRestaurant(regTitle, regDesc);
                             });
                         });
-                })
+                });
             });
     }
-    
+
     showNavi() {
         this.addClassOnElement(".nav", "show-nav");
     }
 
     showNaviPage(destination) {
-        if (destination === "home") {
-            this.activateRoot();
-            this.hideNavi();
-            this.hideBoard();
-        } else {
-            util.setTemplateInHtml(".board", destination);
-        }   
+        switch (destination) {
+            case "home":
+                this.activateRoot();
+                this.hideNavi();
+                this.hideBoard();
+                break;
+
+            case "my-page":
+                util.setTemplateInHtml(".board", destination)
+                    .then(() => {
+                        this.confirmMyPage();
+                    });
+                break;
+
+            case "manage":
+                if (service.hasStore()) {
+                    util.setTemplateInHtml(".board", destination)
+                } else {
+                    this.showRegister();
+                }
+                break;
+            
+            case "logout": 
+                service.signOutUser();
+                this.activateRoot();
+                this.hideNavi();
+                this.hideBoard();
+                break;
+
+            default:
+                util.setTemplateInHtml(".board", destination);
+                break;
+        }
     }
 
     addClassOnElement(ele, css) {

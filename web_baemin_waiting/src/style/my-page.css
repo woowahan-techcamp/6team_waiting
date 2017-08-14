@@ -2,17 +2,18 @@ div.my-page {
   padding: 50px;
   text-align: center; }
 
-div.my-page-area {
+div.my-confirm {
   margin-top: 20vh; }
 
-div.my-page-area input {
+div.my-confirm input {
   width: 200px;
   height: 30px;
   font-size: 1.3em;
   border: 1px solid #999;
+  border-radius: 5px;
   margin-top: 30px; }
 
-button#btn-my-auth {
+button#btn-confirm {
   display: block;
   width: 150px;
   height: 30px;
@@ -23,3 +24,27 @@ button#btn-my-auth {
   margin-top: 20px;
   font-size: 1.2em;
   font-weight: bold; }
+
+div.my-info {
+  width: 70vw;
+  padding: 30px; }
+
+div.vertical-line {
+  width: 2px;
+  height: 40vh;
+  margin-top: 10vh;
+  border-left: 1px solid #2AC1BC;
+  float: left; }
+
+div.my-auth {
+  width: calc(35vw - 10px);
+  height: 40vh;
+  float: left; }
+
+div.my-store {
+  width: calc(35vw - 10px);
+  height: 40vh;
+  float: right; }
+
+dl.update-form {
+  width: 30vw; }

@@ -95,10 +95,14 @@ button.add-menu {
   float: right; }
 
 button#btn-reg-store {
-  margin-top: 50px;
+  position: absolute;
+  bottom: 30px;
   width: 200px;
   height: 35px;
   color: white;
   background-color: #2AC1BC;
   border-radius: 30px;
-  font-size: 1.3em; }
+  font-size: 1.3em;
+  left: 0;
+  right: 0;
+  margin: auto; }
