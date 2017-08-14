@@ -87,7 +87,13 @@ export class HomeNavigator {
         btnConfirm.addEventListener("click", () => {
             util.setTemplateInHtml(".my-page-area", "my-info")
                 .then(() => {
+                    const btnInfoMod = document.getElementById("btn-info-modify");
                     const btnGoModify = document.getElementById("btn-go-modify");
+
+                    btnInfoMod.addEventListener("click", () => {
+                        // @TODO : haeun.kim
+                        // 사용자 정보 업데이트
+                    });
                     btnGoModify.addEventListener("click", () => {
                         util.setTemplateInHtml(".board", "modify");
                     });
@@ -149,9 +155,10 @@ export class HomeNavigator {
                         .then(() => {
                             const menu = new Menu(".menus");
                             menu.addMenuInput();
+
                             const regTitle = document.getElementById("regis-title").value;
                             const regDesc = document.getElementById("regis-desc").value;
-                            
+                        
                             const btnAddMenu = document.querySelector(".add-menu");
                             btnAddMenu.addEventListener("click", () => {
                                 menu.addMenuInput();
