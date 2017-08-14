@@ -177,8 +177,8 @@ export class HomeNavigator {
             case "logout": 
                 service.signOutUser();
                 this.activateRoot();
-                this.hideNavi();
-                this.hideBoard();
+                this.hideElement("nav");
+                this.hideElement("board");
                 break;
 
             default:
