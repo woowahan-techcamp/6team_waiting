@@ -1,3 +1,4 @@
+@charset "UTF-8";
 div#root {
   width: 100vw;
   height: 100vh;
@@ -152,12 +153,14 @@ div.sign-up {
   background-color: white;
   border-radius: 0px 0px 10px 10px;
   z-index: 20;
+  visibility: hidden;
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out; }
 
 div.show-sign-up {
   top: 0;
+  visibility: visible;
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out; }
@@ -283,6 +286,7 @@ div.nav li {
   font-weight: bolder;
   font-size: 1.2em;
   margin-top: 20px;
+  padding-bottom: 10px;
   height: 3.5vh; }
 
 div.nav li:last-child {
@@ -291,15 +295,19 @@ div.nav li:last-child {
 div.board {
   position: absolute;
   width: 80vw;
+  min-width: 700px;
   height: 80vh;
+  min-height: 400px;
   top: calc(-100vh);
   left: 10vw;
   background-color: white;
   border-radius: 10px;
-  z-index: 25; }
+  z-index: 25;
+  visibility: hidden; }
 
 div.show-board {
   top: 10vh;
+  visibility: visible;
   -webkit-transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out; }
@@ -323,3 +331,6 @@ button#btn-go-register {
   height: 30px;
   border-radius: 30px;
   font-size: 1.2em; }
+
+/* iPad 가로+세로 */
+/* 스마트폰 가로+세로 */

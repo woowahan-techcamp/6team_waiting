@@ -125,6 +125,10 @@ const service = (() => {
 
         isAuth() {
             return isAuthenticated();
+        },
+
+        hasStore() {
+            return true;
         }
     }
 
