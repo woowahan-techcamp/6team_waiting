@@ -1,3 +1,10 @@
+.btn-base, button.remove-menu, button.add-menu, button#btn-search-store {
+  width: 10%;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-weight: bold; }
+
 ::-webkit-input-placeholder {
   font-size: .8em; }
 
@@ -63,6 +70,9 @@ div.input-menu {
 input#regist-title {
   width: 70%; }
 
+input#regist-location {
+  width: 90%; }
+
 input#regist-desc {
   width: 90%; }
 
@@ -75,24 +85,18 @@ input.menu-price {
   margin-right: 5%; }
 
 button.remove-menu {
-  width: 10%;
-  height: 30px;
   background-color: white;
-  border-radius: 5px;
   border: 3px solid #2AC1BC;
-  color: #2AC1BC;
-  font-size: 1.2em;
-  font-weight: bold; }
+  color: #2AC1BC; }
 
 button.add-menu {
-  width: 10%;
-  height: 30px;
   background-color: #2AC1BC;
-  border-radius: 5px;
   color: white;
-  font-size: 1.2em;
-  font-weight: bold;
   float: right; }
+
+button#btn-search-store {
+  background-color: #2AC1BC;
+  color: white; }
 
 button#btn-reg-store {
   position: absolute;
