@@ -3,65 +3,7 @@ import service from "./services/service.js";
 import { Menu } from "./menu.js";
 
 
-export const HomeNaviBuilder = function() {
-
-    let intro;
-    let introClose;
-    let goStore;
-    let login;
-    let loginClose;
-    let goSignUp;
-    let signUp;
-    let signUpClose;
-    let navigator;
-
-    return {
-        btnIntro: function(btn) {
-            intro = btn;
-            return this;
-        },
-        btnIntroClose: function(btn) {
-            introClose = btn;
-            return this;
-        },
-        btnGoStore: function(btn) {
-            goStore = btn;
-            return this;
-        },
-        btnLogin: function(btn) {
-            login = btn;
-            return this;
-        },
-        btnLoginClose: function(btn) {
-            loginClose = btn;
-            return this;
-        },
-        btnGoSignUp: function(btn) {
-            goSignUp = btn;
-            return this;
-        },
-        btnSignUp: function(btn) {
-            signUp = btn;
-            return this;
-        },
-        btnSignUpClose: function(btn) {
-            signUpClose = btn;
-            return this;
-        },
-        navigator: function(nav) {
-            navigator = nav;
-            return this;
-        },
-        build: function()   {
-            if (intro && introClose && goStore && login && loginClose && goSignUp && signUp && signUpClose && navigator)
-                return new HomeNavigator(intro, introClose, goStore, login, loginClose, goSignUp, signUp, signUpClose, navigator);
-            else 
-                console.log("The HomeNavigator has an uninitialized variable..")
-        }
-    }
-}
-
-class HomeNavigator {
+export class HomeNavigator {
 
     constructor(intro, introClose, goStore, login, loginClose, goSignUp, signUp, signUpClose, nav) {
         this.btnIntro = document.querySelector(intro);
@@ -230,7 +172,7 @@ class HomeNavigator {
 
             case "manage":
                 if (service.hasStore()) {
-                    util.setTemplateInHtml(".board", destination)
+                    util.setTemplateInHtml(".board", destination);
                 } else {
                     this.showRegister();
                 }
