@@ -7,7 +7,7 @@ import "./style/no-store.css";
 import "./style/manage.css";
 import "./style/my-page.css";
 
-import { HomeNaviBuilder } from "./js/home-navigator.js"
+import { HomeNavigator } from "./js/home-navigator.js"
 import service from "./js/services/service.js";
 
 
@@ -18,22 +18,15 @@ const homeData = {
                             {"id": "navi-home", "dest": "home", "to":"홈"},
                             {"id": "navi-mypage", "dest": "my-page", "to":"마이페이지"},
                             {"id": "navi-manage", "dest": "manage", "to":"가게 관리"},
+                            {"id": "navi-store-list", "dest": "store-list", "to":"가게 리스트"},
                             {"id": "navi-logout", "dest": "logout", "to": "로그아웃"}
                 ]
             };
 
 util.setTemplateInHtml("#root", "home", homeData)
     .then(() => {
-        const homeNavigator = HomeNaviBuilder().btnIntro("#btn-intro")
-                                                .btnIntroClose("#btn-intro-close")
-                                                .btnGoStore("#btn-go-store")
-                                                .btnLogin("#btn-login")
-                                                .btnLoginClose("#btn-login-close")
-                                                .btnGoSignUp("#btn-go-sign-up")
-                                                .btnSignUp("#btn-sign-up")
-                                                .btnSignUpClose("#btn-sign-close")
-                                                .navigator(".navigator")
-                                                .build();
+        const homeNavigator = new HomeNavigator("#btn-intro","#btn-intro-close","#btn-go-store","#btn-login","#btn-login-close",
+                                                "#btn-go-sign-up","#btn-sign-up","#btn-sign-close",".navigator");
         homeNavigator.on();
     })
     .catch((err) => {
