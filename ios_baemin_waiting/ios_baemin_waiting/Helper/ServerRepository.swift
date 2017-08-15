@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class ServerRepository {
 
-    static let BaseURL = "http://192.168.100.107:8080/"
+    static let BaseURL = "http://52.78.157.5:8080/stores"
     static var storeList: [Store] = []
 
     static func getStoreList(completion: @escaping ([Store]) -> Void) {
@@ -39,11 +39,11 @@ class ServerRepository {
 
             for (_, item): (String, JSON) in swiftyJson {
 
-                if let name = item["restaurantsName"].string,
-                    let address = item["restaurantsLocationInfo"]["restaurantsAddress"].string,
-                    let lat = item["restaurantsLocationInfo"]["restaurantsLatitude"].string,
-                    let long = item["restaurantsLocationInfo"]["restaurantsLongitude"].string,
-                    let img = item["restaurantsImgUrl"].string {
+                if let name = item["storeName"].string,
+                    let address = item["storeAddress"].string,
+                    let lat = item["storeLatitude"].string,
+                    let long = item["storeLongitude"].string,
+                    let img = item["storeImgUrl"].string {
 
                     if let imgURL = URL(string: img) {
                         let store = Store(storeName: name, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL, searchRange: [:])
