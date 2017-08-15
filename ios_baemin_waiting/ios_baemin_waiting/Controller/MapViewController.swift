@@ -176,8 +176,8 @@ extension MapViewController {
                     if let circleStyle = NMapCircleStyle() {
 
                         circleStyle.setLineType(.solid)
-                        circleStyle.setFillColorWithRed(42/255, green: 192/255, blue: 187/255, alpha: 0.1)
-                        circleStyle.strokeColor = UIColor(red: 42/255, green: 192/255, blue: 187/255, alpha: 1.0)
+                        circleStyle.setFillColorWithRed(255/255, green: 173/255, blue: 39/255, alpha: 0.1)
+                        circleStyle.strokeColor = BaseOrange
                         circleStyle.strokeWidth = 1.0
                         circleData.circleStyle = circleStyle
                     }
