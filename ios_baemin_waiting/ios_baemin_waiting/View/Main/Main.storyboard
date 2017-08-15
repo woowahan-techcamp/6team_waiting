@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -47,16 +48,23 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CcG-0b-8AC">
-                        <barButtonItem key="rightBarButtonItem" title="지도" id="F5w-OT-txk">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="mainToggleBtnTapped:" destination="shz-0b-mnd" id="6yI-rT-rIr"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="map" id="PQr-jB-h3m">
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="mapBtnTapped:" destination="shz-0b-mnd" id="I62-CS-GSZ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="search" id="6jt-bV-C3P">
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="listContainerView" destination="tFK-mB-qdW" id="WT4-eE-Njp"/>
+                        <outlet property="mapBtn" destination="PQr-jB-h3m" id="hQw-Ic-ZEl"/>
                         <outlet property="mapView" destination="hxD-6u-ejB" id="LIe-mh-Y4J"/>
+                        <outlet property="searchBtn" destination="6jt-bV-C3P" id="jRZ-yu-wBQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jtx-rl-mlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -86,10 +94,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UaN-zs-nkx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="av9-SV-sp7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="av9-SV-sp7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.1647058824" green="0.75294117650000003" blue="0.73333333329999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -109,4 +117,8 @@
             <point key="canvasLocation" x="4161" y="-143"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="map" width="22" height="20"/>
+        <image name="search" width="20" height="20"/>
+    </resources>
 </document>

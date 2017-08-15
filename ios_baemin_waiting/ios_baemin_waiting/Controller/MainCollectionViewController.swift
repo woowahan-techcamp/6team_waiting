@@ -14,14 +14,15 @@ class MainCollectionViewController: UIViewController {
     var storeList: [Store] = []
 
     // IBOutlet
+    @IBOutlet weak var snackbarView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
 
         activityIndicator.startAnimating()
         collectionView.isHidden = true
@@ -30,11 +31,22 @@ class MainCollectionViewController: UIViewController {
             self.storeList = storeData
             self.collectionView.reloadData()
         }
+
+        snackbarAnimation()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
+    }
+
+    func snackbarAnimation() {
+
+        UIView.animate(withDuration: 1.0, delay: 1.5, options: .transitionCrossDissolve, animations: {
+            self.snackbarView.alpha = 0
+        }, completion: { finished in
+            self.snackbarView.removeFromSuperview()
+        })
     }
 }
 
@@ -70,9 +82,9 @@ extension MainCollectionViewController: UICollectionViewDataSource {
 extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (self.view.bounds.width / 2) - 16, height: 160)
-
+        return CGSize(width: (self.view.bounds.width / 2) - (15 + 7.5), height: 185)
     }
+
 }
 
 extension MainCollectionViewController: UICollectionViewDelegate {

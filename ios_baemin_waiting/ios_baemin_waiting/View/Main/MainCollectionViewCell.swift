@@ -17,6 +17,12 @@ class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var restaurantsDistance: UILabel!
     @IBOutlet weak var restaurantsLine: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        contentItem.layer.borderColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1.0).cgColor
+        contentItem.layer.borderWidth = 0.4
+    }
     func putCellContent(storeInfo: Store) {
         restaurantsName.text = storeInfo.storeName
         restaurantsDistance.text = storeInfo.storeAddress
