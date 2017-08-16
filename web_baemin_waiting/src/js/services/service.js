@@ -26,7 +26,17 @@ const service = (() => {
     const fireDatabase = app.database();
     const fireStorageRef = app.storage().ref();
 
-    const getUserByUid = function(id) {
+
+    const getCurrentUserId = function() {
+        return fireAuth.currentUser.uid;
+    }
+
+    const getCurrentUserInfo = function() {
+        const id = getCurrentUserId();
+        return getUserInfoByUid(id);
+    }
+
+    const getUserInfoByUid = function(id) {
         return new Promise((resolve, reject) => {
             fireDatabase.ref(`users/${id}`).once("value")
                 .then((snapShot) => {
@@ -120,10 +130,6 @@ const service = (() => {
         fireAuth.signOut();
     }
 
-    const getCurrentUserId = function() {
-        return fireAuth.currentUser.uid;
-    }
-
     const isAuthenticated = function() {
         const user = fireAuth.currentUser;
 
@@ -136,8 +142,8 @@ const service = (() => {
     return {
         // Public member 
         
-        getCurrentId(uid) {
-            return getCurrentUserId();
+        getUserInfo() {
+            return getCurrentUserInfo();
         },
 
         registerRestaurant(title, desc, add, tel, pic, is_opened) {
