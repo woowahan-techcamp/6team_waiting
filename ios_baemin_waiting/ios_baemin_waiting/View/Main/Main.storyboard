@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main Container View Controller-->
+        <!--배민웨이팅-->
         <scene sceneID="cWc-HC-ZEE">
             <objects>
                 <viewController id="shz-0b-mnd" customClass="MainContainerViewController" customModule="ios_baemin_waiting" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,7 +47,7 @@
                             <constraint firstItem="hxD-6u-ejB" firstAttribute="top" secondItem="wWs-TK-3ky" secondAttribute="bottom" id="jp5-NL-LAV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="CcG-0b-8AC">
+                    <navigationItem key="navigationItem" title="배민웨이팅" id="CcG-0b-8AC">
                         <rightBarButtonItems>
                             <barButtonItem image="map" id="PQr-jB-h3m">
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -94,7 +94,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UaN-zs-nkx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="av9-SV-sp7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="av9-SV-sp7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
