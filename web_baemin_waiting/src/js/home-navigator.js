@@ -67,12 +67,9 @@ export class HomeNavigator {
             // 비밀번호가 일치할 때만, 개인 정보 확인 가능
             service.getUserInfo().then((user) => {
                 service.getStoreInfo().then((store) => {
-                    service.getStoreImageUrl(store._picture).then((url) => {
-                        store._picture = url;
-                        util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store})
-                        .then(() => {
-                            this.myInfoHandler();
-                        });
+                    util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store})
+                    .then(() => {
+                        this.myInfoHandler();
                     });
                 })
             });
@@ -126,9 +123,11 @@ export class HomeNavigator {
         const tel = document.getElementById("regist-tel").value;
 
         service.saveImageInStorage().then((path) => {
-            service.registerRestaurant(title, desc, "주소", tel, path, false).then(
-                util.setTemplateInHtml(".board", "manage")
-            );
+            service.getStoreImageUrl(path).then((url) => {
+                service.registerRestaurant(title, desc, "주소", tel, url, false).then(
+                    util.setTemplateInHtml(".board", "manage")
+                );
+            });
         });
     }
 

@@ -30,15 +30,6 @@ const util = {
 
 }
 
-Handlebars.registerHelper("imgUrl", function(url) {
-    // @TODO : haeun.kim 
-    // 저장된 url 을 다운로드 가능한 url 로 변환하는 건 비동기 함수 
-    // Handlebars.registerHelper 는 비동기를 지원하지 않음 
-    service.getStoreImageUrl(url).then((img) => {
-        console.log(img);
-    });
-});
-
 Handlebars.registerHelper('trimString', function(passedString, startstring, endstring) {
    var theString = passedString.substring(startstring, endstring);
    if (passedString.length > endstring) {
