@@ -2,13 +2,13 @@
     <div class="my-auth">
         <dl class="my-auth-form">
             <dt>이름</dt>
-            <dd><input type="text" id="mod-name" value="원래이름"></dd>
+            <dd><input type="text" id="mod-name" value={{_name}}></dd>
 
             <dt>비밀번호</dt>
             <dd><input type="password" id="mod-pwd"></dd>
 
             <dt>연락처</dt>
-            <dd><input type="number" id="mod-tel" value="123123"></dd>
+            <dd><input type="number" id="mod-tel" value={{_user_tel}}></dd>
         </dl>
 
         <button id="btn-info-modify">수정하기</button>
