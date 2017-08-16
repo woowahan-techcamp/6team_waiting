@@ -160,7 +160,7 @@ export class HomeNavigator {
                 break;
 
             case "manage":
-                if (service.hasStore()) {
+                if (service.hasRestaurant()) {
                     util.setTemplateInHtml(".board", destination);
                 } else {
                     this.showRegister();
@@ -189,15 +189,12 @@ export class HomeNavigator {
         const userPwd = document.getElementById("login-pwd").value;
 
         service.signInUser(userId, userPwd)
-        .then(() => {
-            this.hideElement("sign-in");
-            this.showElement("nav");
-            this.showElement("board");
-            this.showNaviPage("manage");
-        })
-        .catch(() => {
-            document.querySelector(".sign-warning").style.visibility = "visible";
-        });
+            .then(() => {
+                this.showInitialBoard();
+            })
+            .catch(() => {
+                document.querySelector(".sign-warning").style.visibility = "visible";
+            });
     }
 
     signUpHandler() {
@@ -206,8 +203,16 @@ export class HomeNavigator {
         const userName = document.getElementById("sign-name").value;
         const userTel = document.getElementById("sign-tel").value;
         
-        service.signUpUser(userId, userPwd, userName, "owner", userTel).then(
-            this.hideElement("sign-up")
-        );
+        service.signUpUser(userId, userPwd, userName, "owner", userTel).then(() => {
+            this.hideElement("sign-up");
+            this.showInitialBoard();
+        });
+    }
+
+    showInitialBoard() {
+        this.hideElement("sign-in");
+        this.showElement("nav");
+        this.showElement("board");
+        this.showNaviPage("manage");
     }
 }
