@@ -24,6 +24,7 @@ const service = (() => {
 
     const fireAuth = app.auth();
     const fireDatabase = app.database();
+    const fireStorage = app.storage();
     const fireStorageRef = app.storage().ref();
 
 
@@ -36,11 +37,52 @@ const service = (() => {
         return getUserInfoByUid(id);
     }
 
+    const getCurrentStoreId = function() {
+        return new Promise((resolve, reject) => {
+            getCurrentUserInfo().then((info) => {
+                resolve(info._storeid);
+            })
+            .catch((err) => {
+                reject(Err(err));
+            });
+        })
+    }
+
+    const getCurrentStoreInfo = function() {
+        return new Promise((resolve, reject) => {
+            getCurrentStoreId().then((id) => {
+                getStoreInfoById(id).then((info) => {
+                    resolve(info);
+                });
+            });
+        });
+    }
+
+    const getStoreInfoById = function(id) {
+        return new Promise((resolve, reject) => {
+            fireDatabase.ref(`stores/${id}`).once("value")
+                .then((snapshot) => {
+                    resolve(snapshot.val());
+                })
+                .catch((err) => {
+                    reject(Error(err));
+                });
+        });
+    }
+
+    const getImageDownloadUrl = function(url) {
+        return new Promise((resolve, reject) => {
+            fireStorageRef.child(url).getDownloadURL().then((url) => {
+                resolve(url);
+            })
+        });
+    }
+
     const getUserInfoByUid = function(id) {
         return new Promise((resolve, reject) => {
             fireDatabase.ref(`users/${id}`).once("value")
-                .then((snapShot) => {
-                    resolve(snapShot.val());
+                .then((snapshot) => {
+                    resolve(snapshot.val());
                 })
                 .catch((err) => {
                     reject(err);
@@ -54,10 +96,10 @@ const service = (() => {
                 const id = getCurrentUserId();
                 fireDatabase.ref(`users/${id}`).once("value")
                     .then((snapshot) => {
-                        resolve(snapshot.val()._hasStore);
+                        resolve(snapshot.val()._storeid);
                     })
                     .catch((err) => {
-                        reject(Error(err))
+                        reject(Error(err));
                     });
             } else {
                 resolve(false);
@@ -69,8 +111,8 @@ const service = (() => {
         return new Promise((resolve, reject) => {
             const id = getCurrentUserId();
             const storeData = new StoreModel(id, title, desc, add, tel, pic, is_opened);
-            fireDatabase.ref("stores/").push(storeData).then(() => {
-                fireDatabase.ref(`users/${id}`).update({"_hasStore": true});
+            fireDatabase.ref("stores/").push(storeData).then((snapshot) => {
+                fireDatabase.ref(`users/${id}`).update({"_storeid": snapshot.key});
                 resolve(true);
             });
         })
@@ -142,8 +184,16 @@ const service = (() => {
     return {
         // Public member 
         
+        getStoreImageUrl(url) {
+            return getImageDownloadUrl(url);
+        },
+
         getUserInfo() {
             return getCurrentUserInfo();
+        },
+
+        getStoreInfo() {
+            return getCurrentStoreInfo();
         },
 
         registerRestaurant(title, desc, add, tel, pic, is_opened) {
