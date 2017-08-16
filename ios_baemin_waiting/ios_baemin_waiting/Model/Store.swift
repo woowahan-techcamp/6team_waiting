@@ -15,7 +15,6 @@ struct Store {
     private var _storeLongitude: String
     private var _storeImgUrl: URL
     private var _distanceToUser: Double
-    private var _searchRange: [String: Any]
 
 //    init() {
 //        self._storeName = ""
@@ -25,13 +24,12 @@ struct Store {
 //        self._storeImgUrl = URL(string: "")!
 //        self._searchRange = [:]
 //    }
-    init(storeName: String, storeAddress: String, storeLatitude: String, storeLongitude: String, storeImgUrl: URL, searchRange: [String: Any]) {
+    init(storeName: String, storeAddress: String, storeLatitude: String, storeLongitude: String, storeImgUrl: URL) {
         self._storeName = storeName
         self._storeAddress = storeAddress
         self._storeLatitude = storeLatitude
         self._storeLongitude = storeLongitude
         self._storeImgUrl = storeImgUrl
-        self._searchRange = searchRange
 
         self._distanceToUser = 0
     }
@@ -54,11 +52,6 @@ struct Store {
         set { self._storeLongitude = newValue }
     }
 
-    public var searchRange: [String: Any] {
-        get { return self._searchRange }
-        set { self._searchRange = newValue }
-    }
-
     public var storeImgUrl: URL {
         get { return self._storeImgUrl }
         set { self._storeImgUrl = newValue }
@@ -66,7 +59,6 @@ struct Store {
     public var storeDistance: Double {
         return self._distanceToUser
     }
-
 
     public mutating func getDistanceFromUser(userLocation: CLLocation) {
         let storeLat = CLLocationDegrees(self.storeLatitude)
@@ -77,6 +69,6 @@ struct Store {
         let distance = userLocation.distance(from: storeLocation)
 
         self._distanceToUser = distance
-        
+
     }
 }

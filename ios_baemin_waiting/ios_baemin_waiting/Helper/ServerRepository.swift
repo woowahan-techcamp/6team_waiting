@@ -53,7 +53,7 @@ class ServerRepository {
                     let img = item["storeImgUrl"].string {
 
                     if let imgURL = URL(string: img) {
-                        let store = Store(storeName: name, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL, searchRange: [:])
+                        let store = Store(storeName: name, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL)
 
                         self.storeList.append(store)
                     }
@@ -69,6 +69,7 @@ class ServerRepository {
     }
 
     static func postCurrentLocation(currentLocation: CLLocation, completion: @escaping ([Store]) -> Void) {
+        self.storeList = []
 
         let lat = currentLocation.coordinate.latitude
         let long = currentLocation.coordinate.longitude
@@ -83,11 +84,9 @@ class ServerRepository {
                 print("URL is nil")
                 return
         }
-
         print(url)
-        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
 
-            print(response.result.debugDescription)
+        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
 
             guard response.result.isSuccess else {
                 print("Response get store error: \(response.result.error!)")
@@ -96,7 +95,6 @@ class ServerRepository {
 
             // 항상 성공
             guard let value = response.result.value else { return }
-
 
             let swiftyJson = JSON(value)
 
@@ -117,7 +115,7 @@ class ServerRepository {
                     let img = item["storeImgUrl"].string {
 
                     if let imgURL = URL(string: img) {
-                        var store = Store(storeName: name, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL, searchRange: [:])
+                        var store = Store(storeName: name, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL)
 
                         store.getDistanceFromUser(userLocation: currentLocation)
 
@@ -133,7 +131,6 @@ class ServerRepository {
             }
 
         }
-
 
     }
 }

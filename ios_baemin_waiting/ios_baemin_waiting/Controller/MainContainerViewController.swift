@@ -17,9 +17,7 @@ class MainContainerViewController: UIViewController {
     @IBOutlet weak var searchBtn: UIBarButtonItem!
     @IBOutlet weak var mapBtn: UIBarButtonItem!
 
-
     var mapBtnSelected = false
-
     var storeList: [Store] = []
 
     override func viewDidLoad() {
