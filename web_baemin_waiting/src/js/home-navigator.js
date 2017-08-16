@@ -102,9 +102,6 @@ export class HomeNavigator {
         const menu = new Menu(".menus");
         menu.addMenuInput();
 
-        // const regTitle = document.getElementById("regist-title").value;
-        // const regDesc = document.getElementById("regist-desc").value;
-    
         const btnAddMenu = document.querySelector(".add-menu");
         btnAddMenu.addEventListener("click", () => {
             menu.addMenuInput();
@@ -112,9 +109,13 @@ export class HomeNavigator {
 
         const btnRegister = document.getElementById("btn-reg-store");
         btnRegister.addEventListener("click", () => {
-            // @TODO : haeun.kim 
-            // 입력된 가게 정보를 DB 에 저장
-            // service.registerRestaurant(regTitle, regDesc);
+            const title = document.getElementById("regist-name").value;
+            const desc = document.getElementById("regist-desc").value;
+            const tel = document.getElementById("regist-tel").value;
+            
+            service.saveImageInStorage().then((path) => {
+                service.registerRestaurant(title, desc, "주소", tel, path, false);
+            });
         });
     }
 
@@ -132,16 +133,14 @@ export class HomeNavigator {
     }
     
     showRegister() {
-        util.setTemplateInHtml(".board", "no-store")
-            .then(() => {
-                const btnGoRegister = document.getElementById("btn-go-register");
-                btnGoRegister.addEventListener("click", () => {
-                    util.setTemplateInHtml(".board", "register")
-                        .then(() => {
-                            this.registerHandler();
-                        });
-                });
+        util.setTemplateInHtml(".board", "no-store").then(() => {
+            const btnGoRegister = document.getElementById("btn-go-register");
+            btnGoRegister.addEventListener("click", () => {
+                util.setTemplateInHtml(".board", "register").then(
+                    this.registerHandler()
+                );
             });
+        });
     }
 
     showNaviPage(destination) {
@@ -153,10 +152,9 @@ export class HomeNavigator {
                 break;
 
             case "my-page":
-                util.setTemplateInHtml(".board", destination)
-                    .then(() => {
-                        this.confirmMyPage();
-                    });
+                util.setTemplateInHtml(".board", destination).then(
+                    this.confirmMyPage()
+                );
                 break;
 
             case "manage":
@@ -189,15 +187,15 @@ export class HomeNavigator {
         const userPwd = document.getElementById("login-pwd").value;
 
         service.signInUser(userId, userPwd)
-            .then(() => {
-                this.hideElement("sign-in");
-                this.showElement("nav");
-                this.showElement("board");
-                this.showNaviPage("manage");
-            })
-            .catch(() => {
-                document.querySelector(".sign-warning").style.visibility = "visible";
-            });
+        .then(() => {
+            this.hideElement("sign-in");
+            this.showElement("nav");
+            this.showElement("board");
+            this.showNaviPage("manage");
+        })
+        .catch(() => {
+            document.querySelector(".sign-warning").style.visibility = "visible";
+        });
     }
 
     signUpHandler() {
@@ -206,7 +204,8 @@ export class HomeNavigator {
         const userName = document.getElementById("sign-name").value;
         const userTel = document.getElementById("sign-tel").value;
         
-        service.signUpUser(userId, userPwd, userName, "owner", userTel)
-            .then(this.hideElement("sign-up"));
+        service.signUpUser(userId, userPwd, userName, "owner", userTel).then(
+            this.hideElement("sign-up")
+        );
     }
 }
