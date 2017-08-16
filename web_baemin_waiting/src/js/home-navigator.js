@@ -108,16 +108,18 @@ export class HomeNavigator {
         });
 
         const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", () => {
-            const title = document.getElementById("regist-name").value;
-            const desc = document.getElementById("regist-desc").value;
-            const tel = document.getElementById("regist-tel").value;
+        btnRegister.addEventListener("click", this.registerStore);
+    }
 
-            service.saveImageInStorage().then((path) => {
-                service.registerRestaurant(title, desc, "주소", tel, path, false).then(
-                    util.setTemplateInHtml(".board", "manage")
-                );
-            });
+    registerStore() {
+        const title = document.getElementById("regist-name").value;
+        const desc = document.getElementById("regist-desc").value;
+        const tel = document.getElementById("regist-tel").value;
+
+        service.saveImageInStorage().then((path) => {
+            service.registerRestaurant(title, desc, "주소", tel, path, false).then(
+                util.setTemplateInHtml(".board", "manage")
+            );
         });
     }
 
@@ -160,11 +162,13 @@ export class HomeNavigator {
                 break;
 
             case "manage":
-                if (service.hasRestaurant()) {
-                    util.setTemplateInHtml(".board", destination);
-                } else {
-                    this.showRegister();
-                }
+                service.hasRestaurant().then((hasStore) => {
+                    if (hasStore) {
+                        util.setTemplateInHtml(".board", destination);
+                    } else {
+                        this.showRegister();
+                    }
+                });
                 break;
 
             case "store-list":
