@@ -39,9 +39,11 @@ const service = (() => {
     }
 
     const registerStore = function(title, desc, add, tel, pic, is_opened) {
-        const id = getCurrentUserId();
-        const storeData = new StoreModel(id, title, desc, add, tel, pic, is_opened);
-        fireDatabase.ref("stores/").push(storeData);
+        return new Promise((resolve, reject) => {
+            const id = getCurrentUserId();
+            const storeData = new StoreModel(id, title, desc, add, tel, pic, is_opened);
+            fireDatabase.ref("stores/").push(storeData).then(resolve(true));
+        })
     }
 
     const saveFileInStorage = function(storeid) {

@@ -112,9 +112,11 @@ export class HomeNavigator {
             const title = document.getElementById("regist-name").value;
             const desc = document.getElementById("regist-desc").value;
             const tel = document.getElementById("regist-tel").value;
-            
+
             service.saveImageInStorage().then((path) => {
-                service.registerRestaurant(title, desc, "주소", tel, path, false);
+                service.registerRestaurant(title, desc, "주소", tel, path, false).then(
+                    util.setTemplateInHtml(".board", "manage")
+                );
             });
         });
     }
