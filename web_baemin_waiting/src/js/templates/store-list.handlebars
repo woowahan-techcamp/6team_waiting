@@ -4,10 +4,10 @@
     <div class="store-card-list">
         {{#each this}}
         <div class="store-card">
-            <img class="card-img" src= "{{imgUrl this._picture}}" alt="">
+            <img class="card-img" src= "{{this._picture}}" alt="">
             <dl>
                 <dt class="card-title">{{this._title}}</dt>
-                <dd class="card-desc">{{trimString this._description 0 35}}</dd>
+                <dd class="card-desc">{{trimString this._description 0 38}}</dd>
             </dl>
         </div>
         {{/each}}
