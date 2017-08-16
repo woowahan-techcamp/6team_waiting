@@ -26,9 +26,9 @@ const service = (() => {
     const fireDatabase = app.database();
     const fireStorageRef = app.storage().ref();
 
-    const getUserByUid = function(uid) {
+    const getUserByUid = function(id) {
         return new Promise((resolve, reject) => {
-            fireDatabase.ref("users/" + uid).once("value")
+            fireDatabase.ref(`users/${id}`).once("value")
                 .then((snapShot) => {
                     resolve(snapShot.val());
                 })
@@ -38,11 +38,31 @@ const service = (() => {
         });
     }
 
+    const hasStore = function() {
+        return new Promise((resolve, reject) => {
+            if (isAuthenticated()) {
+                const id = getCurrentUserId();
+                fireDatabase.ref(`users/${id}`).once("value")
+                    .then((snapshot) => {
+                        resolve(snapshot.val()._hasStore);
+                    })
+                    .catch((err) => {
+                        reject(Error(err))
+                    });
+            } else {
+                resolve(false);
+            }
+        });
+    }
+
     const registerStore = function(title, desc, add, tel, pic, is_opened) {
         return new Promise((resolve, reject) => {
             const id = getCurrentUserId();
             const storeData = new StoreModel(id, title, desc, add, tel, pic, is_opened);
-            fireDatabase.ref("stores/").push(storeData).then(resolve(true));
+            fireDatabase.ref("stores/").push(storeData).then(() => {
+                fireDatabase.ref(`users/${id}`).update({"_hasStore": true});
+                resolve(true);
+            });
         })
     }
 
@@ -64,8 +84,8 @@ const service = (() => {
 
     const saveUserData = function(email, name, role, tel) {
         const userData = new UserModel(email, name, role, tel);
-        const currentUid = getCurrentUid();
-        fireDatabase.ref("users/" + currentUid).set(userData);
+        const id = getCurrentUserId();
+        fireDatabase.ref(`users/${id}`).set(userData);
     }
 
     const signUp = function(email, password, name, role, tel, callback) {
@@ -141,10 +161,8 @@ const service = (() => {
             return isAuthenticated();
         },
 
-        // @TODO : haeun.kim
-        // 현재 로그인 된 계정에 등록된 가게가 있는지 없는지 확인
-        hasStore() {
-            return false;
+        hasRestaurant() {
+            return hasStore();
         },
 
         saveImageInStorage(storeid) {
