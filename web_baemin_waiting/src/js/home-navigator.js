@@ -181,7 +181,9 @@ export class HomeNavigator {
                 break;
 
             case "store-list":
-                util.setTemplateInHtml(".board", destination);
+                service.getStores().then((stores) => {
+                    util.setTemplateInHtml(".board", destination, stores);
+                });
                 break;
 
             case "logout": 

@@ -70,6 +70,15 @@ const service = (() => {
         });
     }
 
+    const getStoreList = function() {
+        return new Promise((resolve, reject) => {
+            fireDatabase.ref("stores/").once("value")
+                .then((snapshot) => {
+                    resolve(snapshot.val());
+                })
+        });
+    }
+
     const getImageDownloadUrl = function(url) {
         return new Promise((resolve, reject) => {
             fireStorageRef.child(url).getDownloadURL().then((url) => {
@@ -184,6 +193,10 @@ const service = (() => {
     return {
         // Public member 
         
+        getStores() {
+            return getStoreList();
+        },
+
         getStoreImageUrl(url) {
             return getImageDownloadUrl(url);
         },
