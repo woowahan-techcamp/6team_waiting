@@ -71,9 +71,9 @@ export class HomeNavigator {
     }
 
     goStoreHangler() {
-        if (!service.isAuth())
+        if (!service.isAuth()) {
             this.showElement("sign-in");
-        else {
+        } else {
             this.showElement("board");
             this.showElement("nav")
             this.showNaviPage("manage");
