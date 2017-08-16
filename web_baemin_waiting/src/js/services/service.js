@@ -66,7 +66,7 @@ const service = (() => {
         })
     }
 
-    const saveFileInStorage = function(storeid) {
+    const saveFileInStorage = function() {
         return new Promise((resolve, reject) => {
             const id = getCurrentUserId();
             const file = document.getElementById("regist-file").files[0];
@@ -165,8 +165,8 @@ const service = (() => {
             return hasStore();
         },
 
-        saveImageInStorage(storeid) {
-            return saveFileInStorage(storeid);
+        saveImageInStorage() {
+            return saveFileInStorage();
         }
     }
 
