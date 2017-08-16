@@ -14,7 +14,11 @@ class MainContainerViewController: UIViewController {
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var listContainerView: UIView!
 
-    var toggleBtnSelected = false
+    @IBOutlet weak var searchBtn: UIBarButtonItem!
+    @IBOutlet weak var mapBtn: UIBarButtonItem!
+
+
+    var mapBtnSelected = false
 
     var storeList: [Store] = []
 
@@ -24,18 +28,18 @@ class MainContainerViewController: UIViewController {
     }
 
     // IBAction
-    @IBAction func mainToggleBtnTapped(_ sender: UIBarButtonItem) {
-        toggleBtnSelected = !toggleBtnSelected
+    @IBAction func mapBtnTapped(_ sender: UIBarButtonItem) {
+        mapBtnSelected = !mapBtnSelected
 
-        if toggleBtnSelected {
-            sender.title = "목록"
+        if mapBtnSelected {
+            mapBtn.image = #imageLiteral(resourceName: "list")
 
             UIView.animate(withDuration: 0.5, animations: {
                 self.mapView.alpha = 1
                 self.listContainerView.alpha = 0
             })
         } else {
-            sender.title = "지도"
+            mapBtn.image = #imageLiteral(resourceName: "map")
 
             UIView.animate(withDuration: 0.5, animations: {
                 self.listContainerView.alpha = 1
@@ -44,4 +48,5 @@ class MainContainerViewController: UIViewController {
         }
 
     }
+
 }

@@ -10,31 +10,41 @@ import UIKit
 
 class MainCollectionViewController: UIViewController {
 
+    let locationManager = CLLocationManager()
     let jsonController = JsonController()
     var storeList: [Store] = []
 
     // IBOutlet
+    @IBOutlet weak var snackbarView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
 
         activityIndicator.startAnimating()
         collectionView.isHidden = true
 
-        ServerRepository.getStoreList { storeData in
-            self.storeList = storeData
-            self.collectionView.reloadData()
-        }
+        locationManager.delegate = self
+
+        locationManager.startUpdatingLocation()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
+    }
+
+    func snackbarAnimation() {
+
+        UIView.animate(withDuration: 1.0, delay: 1.5, options: .transitionCrossDissolve, animations: {
+            self.snackbarView.alpha = 0
+        }, completion: { finished in
+            self.snackbarView.removeFromSuperview()
+        })
     }
 }
 
@@ -70,9 +80,9 @@ extension MainCollectionViewController: UICollectionViewDataSource {
 extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (self.view.bounds.width / 2) - 16, height: 160)
-
+        return CGSize(width: (self.view.bounds.width / 2) - (15 + 7.5), height: 185)
     }
+
 }
 
 extension MainCollectionViewController: UICollectionViewDelegate {
@@ -81,5 +91,32 @@ extension MainCollectionViewController: UICollectionViewDelegate {
             activityIndicator.stopAnimating()
             collectionView.isHidden = false
         }
+    }
+}
+
+extension MainCollectionViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        self.locationManager.stopUpdatingLocation()
+        self.locationManager.delegate = nil
+        print("CLLocation Manager Update Error")
+
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = locations.last else { return }
+
+        ServerRepository.postCurrentLocation(currentLocation: currentLocation) { storeData in
+            self.storeList = storeData
+            self.collectionView.reloadData()
+        }
+
+//        ServerRepository.getStoreList(query: "/stores") { storeData in
+//            self.storeList = storeData
+//            self.collectionView.reloadData()
+//        }
+
+        snackbarAnimation()
+
+        self.locationManager.stopUpdatingLocation()
+        self.locationManager.delegate = nil
     }
 }
