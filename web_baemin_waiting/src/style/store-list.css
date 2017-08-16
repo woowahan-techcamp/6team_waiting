@@ -6,7 +6,7 @@ div.store-list {
   overflow: auto;
   position: relative; }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   div.store-card-list {
     width: 680px;
     height: auto;
@@ -15,7 +15,7 @@ div.store-list {
   div.store-card:nth-child(3n) {
     margin-right: 0; } }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 768px) and (max-width: 1200px) {
   div.store-card-list {
     width: 450px;
     height: auto;

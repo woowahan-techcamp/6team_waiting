@@ -7,7 +7,7 @@ div.store-list {
     position: relative;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
    
     div.store-card-list {
         width: 680px;
@@ -21,7 +21,7 @@ div.store-list {
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) { 
+@media screen and (min-width: 768px) and (max-width: 1200px) { 
 
     div.store-card-list {
         width: 450px;

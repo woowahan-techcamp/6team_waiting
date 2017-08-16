@@ -1,3 +1,4 @@
+@charset "UTF-8";
 div.my-page {
   padding: 50px;
   text-align: center; }
@@ -25,26 +26,133 @@ button#btn-confirm {
   font-size: 1.2em;
   font-weight: bold; }
 
-div.my-info {
-  width: 70vw;
-  padding: 30px; }
-
 div.vertical-line {
-  width: 2px;
+  width: 10px;
   height: 40vh;
   margin-top: 10vh;
   border-left: 1px solid #2AC1BC;
-  float: left; }
+  float: left;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
 
-div.my-auth {
-  width: calc(35vw - 10px);
-  height: 40vh;
-  float: left; }
+dl.my-auth-form {
+  width: 400px;
+  padding: 0;
+  display: block;
+  text-align: center; }
 
-div.my-store {
-  width: calc(35vw - 10px);
-  height: 40vh;
-  float: right; }
+dl.my-auth-form dt {
+  color: #2AC1BC;
+  text-align: left;
+  font-size: .9em;
+  margin-bottom: 5px; }
 
-dl.update-form {
-  width: 30vw; }
+dl.my-auth-form dd {
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 1.1em; }
+
+dl.my-store-form dd input {
+  border-bottom: 1px solid #2AC1BC;
+  font-size: 1.2em;
+  width: 80%; }
+
+dl.my-store-form {
+  width: 380px;
+  padding: 0;
+  margin-left: 20px;
+  display: block;
+  text-align: center; }
+
+dl.my-store-form dt {
+  color: #2AC1BC;
+  text-align: left;
+  font-size: .9em;
+  margin-bottom: 10px; }
+
+dl.my-store-form dd {
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 1.1em; }
+
+dd.my-img-box {
+  width: 90%;
+  height: 200px;
+  background-color: #ccc; }
+
+dd.my-img-box img {
+  max-width: 100%;
+  max-height: 100%; }
+
+dl.my-auth-form dd input {
+  border-bottom: 1px solid #2AC1BC;
+  font-size: 1.2em;
+  width: 80%; }
+
+button#btn-info-modify {
+  width: 60%;
+  height: 30px;
+  margin-top: 30px;
+  border-radius: 30px;
+  font-size: 1.1em;
+  background-color: #2AC1BC;
+  color: white; }
+
+button#btn-go-modify {
+  width: 60%;
+  height: 30px;
+  margin-top: 30px;
+  border-radius: 30px;
+  font-size: 1.1em;
+  background-color: white;
+  border: 1px solid #2AC1BC;
+  color: #2AC1BC; }
+
+@media only screen and (min-width: 1200px) {
+  div.my-info {
+    width: 810px;
+    padding: 30px;
+    margin: auto;
+    height: 55vh;
+    overflow: auto; }
+  .my-page-2, div.my-auth, div.my-store {
+    width: 400px;
+    height: 40vh;
+    float: left;
+    text-align: center;
+    height: 55vh;
+    overflow: auto; }
+  dl.my-auth-form {
+    margin-top: 60px; }
+  dl.my-store-form {
+    margin-top: 30px; }
+  button#btn-info-modify {
+    margin-right: 50px; } }
+
+/* iPad 가로+세로 */
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  div.my-info {
+    width: 450px;
+    margin: auto;
+    overflow: auto;
+    height: 65vh; }
+  div.my-info > div {
+    width: 400px;
+    margin: auto;
+    margin-top: 20px;
+    margin-left: 10%;
+    text-align: center; }
+  div.my-store dl {
+    margin-top: 50px; }
+  div.vertical-line {
+    display: none; }
+  dl.my-auth-form dd input {
+    width: 100%; }
+  button#btn-info-modify {
+    width: 70%; } }
+
+/* 스마트폰 가로+세로 */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  div.vertical-line {
+    display: none; } }

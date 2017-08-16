@@ -101,8 +101,7 @@ const service = (() => {
                 .catch((err) => {
                     reject(Error(err));
                 });
-        })
-        
+        });
     }
 
     const signIn = function(email, password) {
