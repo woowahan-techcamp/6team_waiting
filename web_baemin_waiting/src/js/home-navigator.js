@@ -102,11 +102,11 @@ export class HomeNavigator {
     }
 
     inactivateRoot() {
-        this.addClassOnElement(".view", "inactive");
+        document.querySelector(".view").classList.add("inactive");
     }
 
     activateRoot() {
-        this.removeClassOnElement(".view", "inactive");
+        document.querySelector(".view").classList.remove("inactive");
     }
 
     registerHandler() {
@@ -138,7 +138,7 @@ export class HomeNavigator {
             // 사용자 정보 업데이트
         });
         btnGoModify.addEventListener("click", () => {
-            util.setTemplateInHtml(".board", "modify");
+            util.setTemplateInHtml(".board", "modify-store");
         });
     }
     
@@ -177,7 +177,11 @@ export class HomeNavigator {
                     this.showRegister();
                 }
                 break;
-            
+
+            case "store-list":
+                util.setTemplateInHtml(".board", destination);
+                break;
+
             case "logout": 
                 service.signOutUser();
                 this.activateRoot();
