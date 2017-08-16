@@ -42,11 +42,15 @@ dd.card-desc {
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
     div.store-card-list {
-        width: 300px;
+        width: 220px;
         height: auto;
         margin: auto;
+    }
+
+    div.store-card {
+        margin: 0;
     }
 }
 
