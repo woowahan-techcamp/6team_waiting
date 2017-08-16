@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1AEDA164B436F8CD19A2F7F2 /* Pods_BaeminWaitingUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0BB622D19A24682C6A15E3 /* Pods_BaeminWaitingUnitTests.framework */; };
-		7E1273CC1F434126000C7912 /* UIButton+Underline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1273CB1F434126000C7912 /* UIButton+Underline.swift */; };
 		7E1273CE1F434257000C7912 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1273CD1F434257000C7912 /* Constant.swift */; };
 		980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56EF1F3C16D800A81DFE /* ServerRepository.swift */; };
 		980A56F41F3C19CE00A81DFE /* AlamofireUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */; };
@@ -72,7 +71,6 @@
 /* Begin PBXFileReference section */
 		18F59FA31D335960EA9BB38B /* Pods-BaeminWaitingUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B0BB622D19A24682C6A15E3 /* Pods_BaeminWaitingUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaeminWaitingUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E1273CB1F434126000C7912 /* UIButton+Underline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Underline.swift"; sourceTree = "<group>"; };
 		7E1273CD1F434257000C7912 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		980A56EF1F3C16D800A81DFE /* ServerRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRepository.swift; sourceTree = "<group>"; };
 		980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireUnitTests.swift; sourceTree = "<group>"; };
@@ -286,7 +284,6 @@
 				980A56EF1F3C16D800A81DFE /* ServerRepository.swift */,
 				9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */,
 				9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */,
-				7E1273CB1F434126000C7912 /* UIButton+Underline.swift */,
 				7E1273CD1F434257000C7912 /* Constant.swift */,
 			);
 			name = Helper/Util;
@@ -566,7 +563,6 @@
 				980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */,
 				986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */,
 				9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */,
-				7E1273CC1F434126000C7912 /* UIButton+Underline.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
