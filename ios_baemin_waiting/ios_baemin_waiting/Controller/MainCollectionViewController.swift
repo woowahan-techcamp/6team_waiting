@@ -10,6 +10,7 @@ import UIKit
 
 class MainCollectionViewController: UIViewController {
 
+    let locationManager = CLLocationManager()
     let jsonController = JsonController()
     var storeList: [Store] = []
 
@@ -27,12 +28,9 @@ class MainCollectionViewController: UIViewController {
         activityIndicator.startAnimating()
         collectionView.isHidden = true
 
-        ServerRepository.getStoreList { storeData in
-            self.storeList = storeData
-            self.collectionView.reloadData()
-        }
+        locationManager.delegate = self
 
-        snackbarAnimation()
+        locationManager.startUpdatingLocation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,5 +91,32 @@ extension MainCollectionViewController: UICollectionViewDelegate {
             activityIndicator.stopAnimating()
             collectionView.isHidden = false
         }
+    }
+}
+
+extension MainCollectionViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        self.locationManager.stopUpdatingLocation()
+        self.locationManager.delegate = nil
+        print("CLLocation Manager Update Error")
+
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = locations.last else { return }
+
+        ServerRepository.postCurrentLocation(currentLocation: currentLocation) { storeData in
+            self.storeList = storeData
+            self.collectionView.reloadData()
+        }
+
+//        ServerRepository.getStoreList(query: "/stores") { storeData in
+//            self.storeList = storeData
+//            self.collectionView.reloadData()
+//        }
+
+        snackbarAnimation()
+
+        self.locationManager.stopUpdatingLocation()
+        self.locationManager.delegate = nil
     }
 }

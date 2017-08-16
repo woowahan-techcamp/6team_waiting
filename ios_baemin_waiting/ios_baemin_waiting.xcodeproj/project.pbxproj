@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1AEDA164B436F8CD19A2F7F2 /* Pods_BaeminWaitingUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0BB622D19A24682C6A15E3 /* Pods_BaeminWaitingUnitTests.framework */; };
 		7E1273CE1F434257000C7912 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1273CD1F434257000C7912 /* Constant.swift */; };
+		7ED312BB1F4411640080ACB8 /* StoreUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED312BA1F4411640080ACB8 /* StoreUnitTests.swift */; };
 		980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56EF1F3C16D800A81DFE /* ServerRepository.swift */; };
 		980A56F41F3C19CE00A81DFE /* AlamofireUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */; };
 		980A56F61F3C304000A81DFE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F51F3C304000A81DFE /* Store.swift */; };
@@ -72,6 +73,7 @@
 		18F59FA31D335960EA9BB38B /* Pods-BaeminWaitingUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B0BB622D19A24682C6A15E3 /* Pods_BaeminWaitingUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaeminWaitingUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E1273CD1F434257000C7912 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		7ED312BA1F4411640080ACB8 /* StoreUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreUnitTests.swift; sourceTree = "<group>"; };
 		980A56EF1F3C16D800A81DFE /* ServerRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRepository.swift; sourceTree = "<group>"; };
 		980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireUnitTests.swift; sourceTree = "<group>"; };
 		980A56F51F3C304000A81DFE /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */,
 				98BE03DE1F38623700179D43 /* NaverMapUnitTests.swift */,
 				980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */,
+				7ED312BA1F4411640080ACB8 /* StoreUnitTests.swift */,
 				9879D9F31F342CCC00B4131A /* Info.plist */,
 			);
 			path = BaeminWaitingUnitTests;
@@ -573,6 +576,7 @@
 				9879D9F21F342CCC00B4131A /* BaeminWaitingUnitTests.swift in Sources */,
 				98BE03DF1F38623700179D43 /* NaverMapUnitTests.swift in Sources */,
 				980A56F41F3C19CE00A81DFE /* AlamofireUnitTests.swift in Sources */,
+				7ED312BB1F4411640080ACB8 /* StoreUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
