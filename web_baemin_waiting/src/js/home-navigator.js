@@ -65,11 +65,16 @@ export class HomeNavigator {
         btnConfirm.addEventListener("click", () => {
             // @TODO : haeun.kim 
             // 비밀번호가 일치할 때만, 개인 정보 확인 가능
-            service.getUserInfo().then((info) => {
-                util.setTemplateInHtml(".my-page-area", "my-info", info)
-                    .then(() => {
-                        this.myInfoHandler();
+            service.getUserInfo().then((user) => {
+                service.getStoreInfo().then((store) => {
+                    service.getStoreImageUrl(store._picture).then((url) => {
+                        store._picture = url;
+                        util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store})
+                        .then(() => {
+                            this.myInfoHandler();
+                        });
                     });
+                })
             });
         });
     }
