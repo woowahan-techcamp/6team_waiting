@@ -138,7 +138,11 @@ export class HomeNavigator {
             // 사용자 정보 업데이트
         });
         btnGoModify.addEventListener("click", () => {
+<<<<<<< HEAD
             util.setTemplateInHtml(".board", "modify-store");
+=======
+            util.setTemplateInHtml(".board", "modify");
+>>>>>>> 158af38c7cfa47f976ba7ea193833915429fec20
         });
     }
     

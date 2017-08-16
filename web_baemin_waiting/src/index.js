@@ -19,7 +19,11 @@ const homeData = {
                             {"id": "navi-home", "dest": "home", "to":"홈"},
                             {"id": "navi-mypage", "dest": "my-page", "to":"마이페이지"},
                             {"id": "navi-manage", "dest": "manage", "to":"가게 관리"},
+<<<<<<< HEAD
                             {"id": "navi-store-list", "dest": "store-list", "to":"둘러보기"},
+=======
+                            {"id": "navi-store-list", "dest": "store-list", "to":"가게 리스트"},
+>>>>>>> 158af38c7cfa47f976ba7ea193833915429fec20
                             {"id": "navi-logout", "dest": "logout", "to": "로그아웃"}
                 ]
             };
