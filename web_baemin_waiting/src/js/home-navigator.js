@@ -102,19 +102,24 @@ export class HomeNavigator {
         const menu = new Menu(".menus");
         menu.addMenuInput();
 
-        // const regTitle = document.getElementById("regist-title").value;
-        // const regDesc = document.getElementById("regist-desc").value;
-    
         const btnAddMenu = document.querySelector(".add-menu");
         btnAddMenu.addEventListener("click", () => {
             menu.addMenuInput();
         });
 
         const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", () => {
-            // @TODO : haeun.kim 
-            // 입력된 가게 정보를 DB 에 저장
-            // service.registerRestaurant(regTitle, regDesc);
+        btnRegister.addEventListener("click", this.registerStore);
+    }
+
+    registerStore() {
+        const title = document.getElementById("regist-name").value;
+        const desc = document.getElementById("regist-desc").value;
+        const tel = document.getElementById("regist-tel").value;
+
+        service.saveImageInStorage().then((path) => {
+            service.registerRestaurant(title, desc, "주소", tel, path, false).then(
+                util.setTemplateInHtml(".board", "manage")
+            );
         });
     }
 
@@ -132,16 +137,14 @@ export class HomeNavigator {
     }
     
     showRegister() {
-        util.setTemplateInHtml(".board", "no-store")
-            .then(() => {
-                const btnGoRegister = document.getElementById("btn-go-register");
-                btnGoRegister.addEventListener("click", () => {
-                    util.setTemplateInHtml(".board", "register")
-                        .then(() => {
-                            this.registerHandler();
-                        });
-                });
+        util.setTemplateInHtml(".board", "no-store").then(() => {
+            const btnGoRegister = document.getElementById("btn-go-register");
+            btnGoRegister.addEventListener("click", () => {
+                util.setTemplateInHtml(".board", "register").then(
+                    this.registerHandler()
+                );
             });
+        });
     }
 
     showNaviPage(destination) {
@@ -153,18 +156,19 @@ export class HomeNavigator {
                 break;
 
             case "my-page":
-                util.setTemplateInHtml(".board", destination)
-                    .then(() => {
-                        this.confirmMyPage();
-                    });
+                util.setTemplateInHtml(".board", destination).then(
+                    this.confirmMyPage()
+                );
                 break;
 
             case "manage":
-                if (service.hasStore()) {
-                    util.setTemplateInHtml(".board", destination);
-                } else {
-                    this.showRegister();
-                }
+                service.hasRestaurant().then((hasStore) => {
+                    if (hasStore) {
+                        util.setTemplateInHtml(".board", destination);
+                    } else {
+                        this.showRegister();
+                    }
+                });
                 break;
 
             case "store-list":
@@ -190,10 +194,7 @@ export class HomeNavigator {
 
         service.signInUser(userId, userPwd)
             .then(() => {
-                this.hideElement("sign-in");
-                this.showElement("nav");
-                this.showElement("board");
-                this.showNaviPage("manage");
+                this.showInitialBoard();
             })
             .catch(() => {
                 document.querySelector(".sign-warning").style.visibility = "visible";
@@ -206,7 +207,16 @@ export class HomeNavigator {
         const userName = document.getElementById("sign-name").value;
         const userTel = document.getElementById("sign-tel").value;
         
-        service.signUpUser(userId, userPwd, userName, "owner", userTel)
-            .then(this.hideElement("sign-up"));
+        service.signUpUser(userId, userPwd, userName, "owner", userTel).then(() => {
+            this.hideElement("sign-up");
+            this.showInitialBoard();
+        });
+    }
+
+    showInitialBoard() {
+        this.hideElement("sign-in");
+        this.showElement("nav");
+        this.showElement("board");
+        this.showNaviPage("manage");
     }
 }

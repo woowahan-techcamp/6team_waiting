@@ -24,10 +24,11 @@ const service = (() => {
 
     const fireAuth = app.auth();
     const fireDatabase = app.database();
+    const fireStorageRef = app.storage().ref();
 
-    const getUserByUid = function(uid) {
+    const getUserByUid = function(id) {
         return new Promise((resolve, reject) => {
-            fireDatabase.ref("users/" + uid).once("value")
+            fireDatabase.ref(`users/${id}`).once("value")
                 .then((snapShot) => {
                     resolve(snapShot.val());
                 })
@@ -37,17 +38,54 @@ const service = (() => {
         });
     }
 
-    const registerStore = function(owner, title, tel, add, pic, desc, is_opened) {
-        const storeData = new StoreModel(owner, title, tel, add, pic, desc, is_opened);
-        const currentUid = getCurrentUid();
-        storeData.owner(currentUid);
-        fireDatabase.ref("stores/").push(storeData);
+    const hasStore = function() {
+        return new Promise((resolve, reject) => {
+            if (isAuthenticated()) {
+                const id = getCurrentUserId();
+                fireDatabase.ref(`users/${id}`).once("value")
+                    .then((snapshot) => {
+                        resolve(snapshot.val()._hasStore);
+                    })
+                    .catch((err) => {
+                        reject(Error(err))
+                    });
+            } else {
+                resolve(false);
+            }
+        });
+    }
+
+    const registerStore = function(title, desc, add, tel, pic, is_opened) {
+        return new Promise((resolve, reject) => {
+            const id = getCurrentUserId();
+            const storeData = new StoreModel(id, title, desc, add, tel, pic, is_opened);
+            fireDatabase.ref("stores/").push(storeData).then(() => {
+                fireDatabase.ref(`users/${id}`).update({"_hasStore": true});
+                resolve(true);
+            });
+        })
+    }
+
+    const saveFileInStorage = function(storeid) {
+        return new Promise((resolve, reject) => {
+            const id = getCurrentUserId();
+            const file = document.getElementById("regist-file").files[0];
+            let storeFolder = `${id}/${file.name}`;
+            var iref = fireStorageRef.child(storeFolder);
+            iref.put(file)
+                .then((snapshot) => {
+                    resolve(iref.location.path);
+                })
+                .catch((err) => {
+                    reject(Error(err));
+                });
+        })
     }
 
     const saveUserData = function(email, name, role, tel) {
         const userData = new UserModel(email, name, role, tel);
-        const currentUid = getCurrentUid();
-        fireDatabase.ref("users/" + currentUid).set(userData);
+        const id = getCurrentUserId();
+        fireDatabase.ref(`users/${id}`).set(userData);
     }
 
     const signUp = function(email, password, name, role, tel, callback) {
@@ -76,15 +114,14 @@ const service = (() => {
                 .catch((err) => {
                     reject(Error(err));
                 })
-        })
-        
+        });
     }
     
     const signOut = function() {
         fireAuth.signOut();
     }
 
-    const getCurrentUid = function() {
+    const getCurrentUserId = function() {
         return fireAuth.currentUser.uid;
     }
 
@@ -100,25 +137,22 @@ const service = (() => {
     return {
         // Public member 
         
-        getUserDataByUid(uid) {
-            return getUserByUid(uid);
+        getCurrentId(uid) {
+            return getCurrentUserId();
         },
 
-        registerRestaurant(owner, title, tel, add, pic, desc, is_opened) {
-            return registerStore(owner, title, tel, add, pic, desc, is_opened);
+        registerRestaurant(title, desc, add, tel, pic, is_opened) {
+            return registerStore(title, desc, add, tel, pic, is_opened);
         },
 
-        // Create account on firebase with email and password
         signUpUser(email, password, name, role, tel) {
             return signUp(email, password, name, role, tel);
         },
 
-        // Sign in with email and password
         signInUser(email, password) {
             return signIn(email, password);
         },
 
-        // Log out
         signOutUser() {
             return signOut();
         },
@@ -127,10 +161,12 @@ const service = (() => {
             return isAuthenticated();
         },
 
-        // @TODO : haeun.kim
-        // 현재 로그인 된 계정에 등록된 가게가 있는지 없는지 확인
-        hasStore() {
-            return false;
+        hasRestaurant() {
+            return hasStore();
+        },
+
+        saveImageInStorage(storeid) {
+            return saveFileInStorage(storeid);
         }
     }
 
