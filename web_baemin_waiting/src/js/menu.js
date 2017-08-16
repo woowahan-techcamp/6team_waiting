@@ -38,10 +38,11 @@ export class Menu {
         }
     }
 
+    // @TODO : haeun.kim
+    // 사용자가 입력한 메뉴들을 json 타입으로 만들어주는 함수
     menuToJSON() {
         const menuList = document.querySelectorAll(".input-menu");
         console.log(menuList);
     }
-
 
 }
