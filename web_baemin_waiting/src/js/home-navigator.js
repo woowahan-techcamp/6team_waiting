@@ -194,6 +194,9 @@ export class HomeNavigator {
                 this.showElement("nav");
                 this.showElement("board");
                 this.showNaviPage("manage");
+            })
+            .catch(() => {
+                document.querySelector(".sign-warning").style.visibility = "visible";
             });
     }
 
