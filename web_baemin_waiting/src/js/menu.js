@@ -9,7 +9,7 @@ export class Menu {
 
     addMenuInput() {
         if (this.count > this.LIMIT) {
-            alert("메뉴는 10개까지만 추가 가능합니다.");
+            alert(`메뉴는 ${this.LIMIT}개까지만 추가 가능합니다.`);
         } else {
             const newMenu = document.createElement("div");
             const btnAddMenu = document.querySelector(".add-menu");

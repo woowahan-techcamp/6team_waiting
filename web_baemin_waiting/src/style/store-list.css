@@ -1,0 +1,52 @@
+div.store-list {
+  width: 80%;
+  height: calc(100% - 60px);
+  margin: 40px auto  20px auto;
+  text-align: center;
+  overflow: auto;
+  position: relative; }
+
+@media screen and (min-width: 1024px) {
+  div.store-card-list {
+    width: 680px;
+    height: auto;
+    margin: auto;
+    margin-top: 30px; }
+  div.store-card:nth-child(3n) {
+    margin-right: 0; } }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  div.store-card-list {
+    width: 450px;
+    height: auto;
+    margin: auto;
+    margin-top: 30px; }
+  div.store-card:nth-child(2n) {
+    margin-right: 0; } }
+
+@media screen and (max-width: 480px) {
+  div.store-card-list {
+    width: 300px;
+    height: auto;
+    margin: auto; } }
+
+div.store-card {
+  width: 220px;
+  height: 250px;
+  background-color: #CCC;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  float: left; }
+
+img.card-img {
+  width: 100%;
+  height: 180px;
+  background-color: black; }
+
+div.store-card dl {
+  text-align: left;
+  margin: 10px; }
+
+dt.card-title {
+  font-size: 1.3em;
+  font-weight: bold; }

@@ -6,6 +6,7 @@ import "./style/register.css";
 import "./style/no-store.css";
 import "./style/manage.css";
 import "./style/my-page.css";
+import "./style/store-list.css";
 
 import { HomeNavigator } from "./js/home-navigator.js"
 import service from "./js/services/service.js";
@@ -18,7 +19,7 @@ const homeData = {
                             {"id": "navi-home", "dest": "home", "to":"홈"},
                             {"id": "navi-mypage", "dest": "my-page", "to":"마이페이지"},
                             {"id": "navi-manage", "dest": "manage", "to":"가게 관리"},
-                            {"id": "navi-store-list", "dest": "store-list", "to":"가게 리스트"},
+                            {"id": "navi-store-list", "dest": "store-list", "to":"둘러보기"},
                             {"id": "navi-logout", "dest": "logout", "to": "로그아웃"}
                 ]
             };
