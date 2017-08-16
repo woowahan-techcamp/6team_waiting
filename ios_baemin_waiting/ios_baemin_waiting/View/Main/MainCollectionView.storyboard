@@ -197,9 +197,6 @@
                                                             <state key="normal" title="대기취소">
                                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="underlineBtnText" value="YES"/>
-                                                            </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <action selector="lineCancleButton:" destination="JmY-sN-uI9" eventType="touchUpInside" id="9k8-xq-6Sf"/>
                                                             </connections>

@@ -25,7 +25,8 @@ class MainCollectionViewCell: UICollectionViewCell {
     }
     func putCellContent(storeInfo: Store) {
         restaurantsName.text = storeInfo.storeName
-        restaurantsDistance.text = storeInfo.storeAddress
+
+        restaurantsDistance.text = "\(Int(storeInfo.storeDistance))m"
         restaurantsLine.text = "1명"
 
         restaurantsImage.af_setImage(withURL: storeInfo.storeImgUrl)
