@@ -29,28 +29,11 @@ export class HomeNavigator {
         });
         
         this.btnGoStore.addEventListener("click", () => {
-            if (!service.isAuth())
-                this.showElement("sign-in");
-            else {
-                this.showElement("board");
-                this.showElement("nav")
-                this.showNaviPage("manage");
-            }
-
-            this.inactivateRoot();
+            this.goStoreHangler();
         });
 
         this.btnLogin.addEventListener("click", () => {
-            const userId = document.getElementById("login-id").value;
-            const userPwd = document.getElementById("login-pwd").value;
-
-            service.signInUser(userId, userPwd)
-                .then(() => {
-                    this.hideElement("sign-in");
-                    this.showElement("nav");
-                    this.showElement("board");
-                    this.showNaviPage("manage");
-                });
+            this.signInHandler();
         });
 
         this.btnLoginClose.addEventListener("click", () => {
@@ -63,13 +46,7 @@ export class HomeNavigator {
         });
 
         this.btnSignUp.addEventListener("click", () => {
-            const userId = document.getElementById("sign-id").value;
-            const userPwd = document.getElementById("sign-pwd").value;
-            const userName = document.getElementById("sign-name").value;
-            const userTel = document.getElementById("sign-tel").value;
-            
-            service.signUpUser(userId, userPwd, userName, "owner", userTel)
-                .then(this.hideElement("sign-up"));
+            this.signUpHandler();
         });
 
         this.btnSignUpClose.addEventListener("click", () => {
@@ -91,6 +68,18 @@ export class HomeNavigator {
                     this.myInfoHandler();
                 });
         });
+    }
+
+    goStoreHangler() {
+        if (!service.isAuth()) {
+            this.showElement("sign-in");
+        } else {
+            this.showElement("board");
+            this.showElement("nav")
+            this.showNaviPage("manage");
+        }
+
+        this.inactivateRoot();
     }
 
     hideElement(ele) {
@@ -193,5 +182,31 @@ export class HomeNavigator {
                 util.setTemplateInHtml(".board", destination);
                 break;
         }
+    }
+
+    signInHandler() {
+        const userId = document.getElementById("login-id").value;
+        const userPwd = document.getElementById("login-pwd").value;
+
+        service.signInUser(userId, userPwd)
+            .then(() => {
+                this.hideElement("sign-in");
+                this.showElement("nav");
+                this.showElement("board");
+                this.showNaviPage("manage");
+            })
+            .catch(() => {
+                document.querySelector(".sign-warning").style.visibility = "visible";
+            });
+    }
+
+    signUpHandler() {
+        const userId = document.getElementById("sign-id").value;
+        const userPwd = document.getElementById("sign-pwd").value;
+        const userName = document.getElementById("sign-name").value;
+        const userTel = document.getElementById("sign-tel").value;
+        
+        service.signUpUser(userId, userPwd, userName, "owner", userTel)
+            .then(this.hideElement("sign-up"));
     }
 }

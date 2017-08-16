@@ -150,6 +150,10 @@ div.sign-area input {
     font-size: 1.3em;
 }
 
+input#login-id {
+    margin-top: 20px;
+}
+
 div.sign-area button {
     width: 230px;
     height: 35px;
@@ -158,8 +162,14 @@ div.sign-area button {
     border-radius: 30px;
 }
 
+p.sign-warning {
+    margin-top: 20px;
+    color: red;
+    visibility: hidden;
+}
+
 button#btn-login {
-    margin-top: 30px;
+    margin-top: 10px;
     background-color: $primary-color;
     color: white;
 }
