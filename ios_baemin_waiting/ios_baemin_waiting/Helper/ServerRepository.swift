@@ -16,7 +16,7 @@ class ServerRepository {
 
     static func getStoreList(query: String, completion: @escaping ([Store]) -> Void) {
 
-        guard let url = URL(string: BaseURL + query)
+        guard let url = URL(string: baseURL + query)
             else {
                 print("URL is nil")
                 return
@@ -78,7 +78,7 @@ class ServerRepository {
             "longitude": long
         ]
 
-        guard let url = URL(string: BaseURL + "/storefilter")
+        guard let url = URL(string: baseURL + "/storefilter")
             else {
                 print("URL is nil")
                 return

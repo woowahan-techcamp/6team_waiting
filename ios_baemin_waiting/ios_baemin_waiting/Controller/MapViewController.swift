@@ -177,7 +177,7 @@ extension MapViewController {
 
                         circleStyle.setLineType(.solid)
                         circleStyle.setFillColorWithRed(255/255, green: 173/255, blue: 39/255, alpha: 0.1)
-                        circleStyle.strokeColor = BaseOrange
+                        circleStyle.strokeColor = baseOrange
                         circleStyle.strokeWidth = 1.0
                         circleData.circleStyle = circleStyle
                     }
