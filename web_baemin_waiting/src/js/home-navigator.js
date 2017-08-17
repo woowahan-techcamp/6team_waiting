@@ -31,7 +31,7 @@ export class HomeNavigator {
         });
         
         this.btnGoStore.addEventListener("click", () => {
-            this.goStoreHangler();
+            this.goStoreHandler();
         });
 
         this.btnLogin.addEventListener("click", () => {
@@ -103,7 +103,7 @@ export class HomeNavigator {
             document.getElementById("drop").src = "/dist/public/images/menu.png";
     }
 
-    goStoreHangler() {
+    goStoreHandler() {
         if (!service.isAuth()) {
             this.showElement("sign-in");
         } else {
@@ -141,7 +141,10 @@ export class HomeNavigator {
         });
 
         const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", this.registerStore);
+        btnRegister.addEventListener("click", () => {
+            menu.menusToJSON();
+            this.registerStore();
+        });
     }
 
     registerStore() {
