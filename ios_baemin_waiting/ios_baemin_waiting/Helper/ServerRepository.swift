@@ -37,15 +37,7 @@ class ServerRepository {
             let swiftyJson = JSON(value)
 
             for (_, item): (String, JSON) in swiftyJson {
-//                {
-//                    "storeName": "봉피양 방이점",
-//                    "storeLatitude": "37.509968",
-//                    "storeLongitude": "127.1262",
-//                    "storeAddress": "서울특별시 송파구 방이동 205-8",
-//                    "storeImgUrl": null,
-//                    "storeId": 1,
-//                    "storeIsOpened": 1
-//                },
+
                 if let name = item["storeName"].string,
                     let address = item["storeAddress"].string,
                     let lat = item["storeLatitude"].string,

@@ -114,7 +114,7 @@
                 <viewControllerPlaceholder storyboardName="MainCollectionView" id="oVs-8g-9Cb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="seI-9G-pc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4161" y="-143"/>
+            <point key="canvasLocation" x="3746" y="-22"/>
         </scene>
     </scenes>
     <resources>
