@@ -3,7 +3,7 @@
   border: 1px solid #FFD99E;
   border-radius: 5px; }
 
-.full-color-input {
+.full-color-input, div.my-confirm input {
   background-color: #FFD99E;
   border-radius: 5px; }
 
@@ -24,12 +24,13 @@ div.my-page {
 div.my-confirm {
   margin-top: 20vh; }
 
+div.my-confirm p {
+  font-weight: bold; }
+
 div.my-confirm input {
   width: 200px;
   height: 30px;
   font-size: 1.3em;
-  border: 1px solid #999;
-  border-radius: 5px;
   margin-top: 30px; }
 
 button#btn-confirm {
