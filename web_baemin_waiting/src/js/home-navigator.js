@@ -5,7 +5,7 @@ import { Menu } from "./menu.js";
 
 export class HomeNavigator {
 
-    constructor(intro, introClose, goStore, login, loginClose, goSignUp, signUp, signUpClose, nav) {
+    constructor(intro, introClose, goStore, login, loginClose, goSignUp, signUp, signUpClose, nav, drop, list) {
         this.btnIntro = document.querySelector(intro);
         this.btnIntroClose = document.querySelector(introClose);
         this.btnGoStore = document.querySelector(goStore);
@@ -15,6 +15,8 @@ export class HomeNavigator {
         this.btnSignUp = document.querySelector(signUp);
         this.btnSignUpClose = document.querySelector(signUpClose);
         this.navigator = document.querySelector(nav);
+        this.dropdown = document.querySelector(drop);
+        this.dropdownList = document.querySelector(list);
     }
 
     on() {
@@ -58,6 +60,21 @@ export class HomeNavigator {
                 this.showNaviPage(e.target.dataset.dest);
             }
         });
+
+        this.dropdown.addEventListener("click", (e) => {
+            const drop = document.querySelector(".dropdown");
+            drop.classList.toggle("show-dropdown");
+            this.dropdownImg(drop);
+        });
+
+        this.dropdownList.addEventListener("click", (e) => {
+            if (e.target && e.target.nodeName === "LI") {
+                const drop = document.querySelector(".dropdown");
+                drop.classList.remove("show-dropdown");
+                this.dropdownImg(drop);
+                this.showNaviPage(e.target.dataset.dest);
+            }
+        })
     }
 
     confirmMyPage() {
@@ -67,16 +84,20 @@ export class HomeNavigator {
             // 비밀번호가 일치할 때만, 개인 정보 확인 가능
             service.getUserInfo().then((user) => {
                 service.getStoreInfo().then((store) => {
-                    service.getStoreImageUrl(store._picture).then((url) => {
-                        store._picture = url;
-                        util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store})
-                        .then(() => {
-                            this.myInfoHandler();
-                        });
+                    util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store})
+                    .then(() => {
+                        this.myInfoHandler();
                     });
                 })
             });
         });
+    }
+
+    dropdownImg(drop) {
+        if (drop.classList.contains("show-dropdown"))
+            document.getElementById("drop").src = "/dist/public/images/close-white.png";
+        else 
+            document.getElementById("drop").src = "/dist/public/images/menu.png";
     }
 
     goStoreHangler() {
@@ -126,9 +147,11 @@ export class HomeNavigator {
         const tel = document.getElementById("regist-tel").value;
 
         service.saveImageInStorage().then((path) => {
-            service.registerRestaurant(title, desc, "주소", tel, path, false).then(
-                util.setTemplateInHtml(".board", "manage")
-            );
+            service.getStoreImageUrl(path).then((url) => {
+                service.registerRestaurant(title, desc, "주소", tel, url, false).then(
+                    util.setTemplateInHtml(".board", "manage")
+                );
+            });
         });
     }
 
@@ -181,7 +204,9 @@ export class HomeNavigator {
                 break;
 
             case "store-list":
-                util.setTemplateInHtml(".board", destination);
+                service.getStores().then((stores) => {
+                    util.setTemplateInHtml(".board", destination, stores);
+                });
                 break;
 
             case "logout": 
