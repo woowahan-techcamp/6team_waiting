@@ -3,11 +3,14 @@
 
 div.store-list {
     width: 80%;
-    height: calc(100% - 60px);
     margin: 40px auto  20px auto;
     text-align: center;
-    overflow: auto;
     position: relative;
+}
+
+div.store-card-list {
+    height: 55vh;
+    overflow: auto;
 }
 
 dd.card-desc {
@@ -18,7 +21,6 @@ dd.card-desc {
    
     div.store-card-list {
         width: 680px;
-        height: auto;
         margin: auto;
         margin-top: 30px;
     }
@@ -32,7 +34,6 @@ dd.card-desc {
 
     div.store-card-list {
         width: 450px;
-        height: auto;
         margin: auto;
         margin-top: 30px;
     }
@@ -45,7 +46,6 @@ dd.card-desc {
 @media screen and (max-width: 768px) {
     div.store-card-list {
         width: 220px;
-        height: auto;
         margin: auto;
     }
 
