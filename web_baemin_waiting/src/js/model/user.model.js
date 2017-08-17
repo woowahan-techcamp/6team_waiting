@@ -5,7 +5,6 @@ export class UserModel {
         this._name = name; 
         this._role = role;
         this._user_tel = user_tel;
-        this._hasStore = false;
     }
 
     set email(email) {
@@ -38,14 +37,6 @@ export class UserModel {
 
     get user_tel() {
         return this._user_tel;
-    }
-
-    set hasStore(flag) {
-        this._hasStore = flag;
-    }
-
-    get hasStore() {
-        return this._hasStore;
     }
 
 }

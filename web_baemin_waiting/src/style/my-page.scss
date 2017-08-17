@@ -213,7 +213,7 @@ button#btn-go-modify {
 }
 
 /* 스마트폰 가로+세로 */
-@media only screen and (min-width : 320px) and (max-width : 480px) {
+@media only screen and (min-width : 320px) and (max-width : 768px) {
 
     div.vertical-line {
         display: none;

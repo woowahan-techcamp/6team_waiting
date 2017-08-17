@@ -2,45 +2,15 @@
     <h1>가게 둘러보기</h1>
 
     <div class="store-card-list">
+        {{#each this}}
         <div class="store-card">
-            <img class="card-img" src= "" alt="">
+            <img class="card-img" src= "{{this._picture}}" alt="">
             <dl>
-                <dt class="card-title">title</dt>
-                <dd class="card-desc">description</dd>
+                <dt class="card-title">{{this._title}}</dt>
+                <dd class="card-desc">{{trimString this._description 0 38}}</dd>
             </dl>
         </div>
-
-        <div class="store-card">
-            <img class="card-img" src= "" alt="">
-            <dl>
-                <dt class="card-title">title</dt>
-                <dd class="card-desc">description</dd>
-            </dl>
-        </div>
-
-        <div class="store-card">
-            <img class="card-img" src= "" alt="">
-            <dl>
-                <dt class="card-title">title</dt>
-                <dd class="card-desc">description</dd>
-            </dl>
-        </div>
-
-        <div class="store-card">
-            <img class="card-img" src= "" alt="">
-            <dl>
-                <dt class="card-title">title</dt>
-                <dd class="card-desc">description</dd>
-            </dl>
-        </div>
-
-        <div class="store-card">
-            <img class="card-img" src= "" alt="">
-            <dl>
-                <dt class="card-title">title</dt>
-                <dd class="card-desc">description</dd>
-            </dl>
-        </div>
+        {{/each}}
     </div>
 
 </div>

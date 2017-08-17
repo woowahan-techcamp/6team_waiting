@@ -1,3 +1,5 @@
+import service from "./services/service.js";
+
 const util = {
     log(content) {
         if (window.console) console.log(content);
@@ -24,7 +26,16 @@ const util = {
             }
             
         });
-    }
+    },
+
 }
+
+Handlebars.registerHelper('trimString', function(passedString, startstring, endstring) {
+   var theString = passedString.substring(startstring, endstring);
+   if (passedString.length > endstring) {
+       theString += "...";
+   }
+   return new Handlebars.SafeString(theString);
+});
 
 export default util;
