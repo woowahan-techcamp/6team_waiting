@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="N8g-JL-6T9">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Waiting Ticket View Controller-->
+        <scene sceneID="ltc-7R-ELF">
+            <objects>
+                <viewController id="N8g-JL-6T9" customClass="WaitingTicketViewController" customModule="ios_baemin_waiting" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7c1-XR-f1v"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qrt-ML-EcC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lfa-Hf-pYy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlh-FL-BZJ">
+                                <rect key="frame" x="16" y="16" width="343" height="319.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="jWI-Ou-qKG">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="319.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="cKn-E2-Nuo">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnL-lF-zdI">
+                                                        <rect key="frame" x="0.0" y="10" width="29.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="김아무개" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JfX-On-E1K" customClass="WaitingTextField" customModule="ios_baemin_waiting" customModuleProvider="target">
+                                                        <rect key="frame" x="69.5" y="0.0" width="273.5" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="fsL-be-QcC"/>
+                                                        </constraints>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="underlineStyle" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="JfX-On-E1K" secondAttribute="trailing" id="kub-VV-78a"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Pkd-wa-XYI">
+                                                <rect key="frame" x="0.0" y="65" width="343" height="40"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PK7-UM-tQ8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foc-Gg-Kfs">
+                                                                <rect key="frame" x="0.0" y="10" width="59" height="20.5"/>
+                                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-L5-49w">
+                                                                <rect key="frame" x="69" y="0.0" width="60" height="40"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="010" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0y2-Rk-gJi">
+                                                                        <rect key="frame" x="16.5" y="10" width="27.5" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="EWj-1I-dAm"/>
+                                                                    <constraint firstAttribute="width" constant="60" id="ded-j3-Fp8"/>
+                                                                    <constraint firstItem="0y2-Rk-gJi" firstAttribute="centerX" secondItem="TLd-L5-49w" secondAttribute="centerX" id="nbN-bC-CxZ"/>
+                                                                    <constraint firstItem="0y2-Rk-gJi" firstAttribute="centerY" secondItem="TLd-L5-49w" secondAttribute="centerY" id="qvI-xi-9aW"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="12345678" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MGw-4l-TcJ" customClass="WaitingTextField" customModule="ios_baemin_waiting" customModuleProvider="target">
+                                                                <rect key="frame" x="139" y="0.0" width="204" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="0Uw-G3-bwc"/>
+                                                                </constraints>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="underlineStyle" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="PK7-UM-tQ8" secondAttribute="trailing" id="VBO-Of-DN2"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="94U-RB-MSh">
+                                                <rect key="frame" x="0.0" y="130" width="343" height="29"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjF-Bx-fAz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Cv-BV-gVB">
+                                                                <rect key="frame" x="0.0" y="0.0" width="76" height="29"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="76" id="ITq-rw-sgP"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbT-Ii-k2b">
+                                                                <rect key="frame" x="76" y="0.0" width="173" height="29"/>
+                                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="yM2-sw-OSA">
+                                                                <rect key="frame" x="249" y="0.0" width="94" height="29"/>
+                                                                <connections>
+                                                                    <action selector="stepperValueChanged:" destination="N8g-JL-6T9" eventType="valueChanged" id="8iW-rK-aX5"/>
+                                                                </connections>
+                                                            </stepper>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="tintColor" red="1" green="0.67843137249999996" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="S4f-mU-quW">
+                                                <rect key="frame" x="0.0" y="184" width="343" height="65.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="매장 대기 여부" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMy-GC-2lY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="97.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dKR-ga-nsy">
+                                                        <rect key="frame" x="0.0" y="30.5" width="343" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="Lwe-UH-lR6"/>
+                                                        </constraints>
+                                                        <segments>
+                                                            <segment title="매장에서 대기"/>
+                                                            <segment title="밖에서 대기"/>
+                                                        </segments>
+                                                        <color key="tintColor" red="1" green="0.67843137249999996" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </segmentedControl>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="dKR-ga-nsy" secondAttribute="trailing" id="Efa-cX-3vv"/>
+                                                </constraints>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpZ-Y0-fu8">
+                                                <rect key="frame" x="0.0" y="274.5" width="343" height="45"/>
+                                                <color key="backgroundColor" red="1" green="0.67843137249999996" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="Hgo-sA-P0b"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="20"/>
+                                                <state key="normal" title="줄서기">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="makeWaitingTicketTapped:" destination="N8g-JL-6T9" eventType="touchUpInside" id="sMw-6n-Evl"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="jWI-Ou-qKG" firstAttribute="top" secondItem="xlh-FL-BZJ" secondAttribute="top" id="JBb-Lq-0IM"/>
+                                    <constraint firstAttribute="trailing" secondItem="jWI-Ou-qKG" secondAttribute="trailing" id="TSW-3l-OUz"/>
+                                    <constraint firstItem="jWI-Ou-qKG" firstAttribute="leading" secondItem="xlh-FL-BZJ" secondAttribute="leading" id="Z3l-MU-OPS"/>
+                                    <constraint firstAttribute="bottom" secondItem="jWI-Ou-qKG" secondAttribute="bottom" id="gcs-qC-Vjo"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="xlh-FL-BZJ" secondAttribute="trailing" id="2VR-aW-Gr0"/>
+                            <constraint firstItem="xlh-FL-BZJ" firstAttribute="top" secondItem="7c1-XR-f1v" secondAttribute="bottom" constant="16" id="HPs-kL-PdO"/>
+                            <constraint firstItem="xlh-FL-BZJ" firstAttribute="leading" secondItem="lfa-Hf-pYy" secondAttribute="leadingMargin" id="RE0-xY-ewJ"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="kBI-Y6-NBh" appends="YES" id="eWq-VT-Zv9"/>
+                        </connections>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <fixedSimulatedSizeMetrics key="simulatedDestinationMetrics">
+                        <size key="portraitSize" width="375" height="603"/>
+                        <size key="landscapeSize" width="603" height="375"/>
+                    </fixedSimulatedSizeMetrics>
+                    <connections>
+                        <outlet property="headCountLabel" destination="nbT-Ii-k2b" id="nNL-NM-4wX"/>
+                        <outlet property="nameTextField" destination="JfX-On-E1K" id="pnK-aa-H5t"/>
+                        <outlet property="phoneHeadView" destination="TLd-L5-49w" id="wAo-ml-1iH"/>
+                        <outlet property="phoneNumberTextField" destination="MGw-4l-TcJ" id="AhM-iP-B6m"/>
+                        <outlet property="stepperView" destination="yM2-sw-OSA" id="XJd-XW-WrY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ytA-YF-Ath" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kBI-Y6-NBh">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="N8g-JL-6T9" id="T46-ZI-xHX"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="5530" y="-88"/>
+        </scene>
+    </scenes>
+</document>
