@@ -86,6 +86,9 @@ export class HomeNavigator {
                 service.getStoreInfo().then((store) => {
                     util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store})
                     .then(() => {
+                        if (!store) {
+                            document.querySelector(".my-store").innerHTML = "";
+                        }
                         this.myInfoHandler();
                     });
                 })
