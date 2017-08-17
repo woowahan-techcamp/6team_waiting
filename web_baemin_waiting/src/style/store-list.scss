@@ -46,11 +46,13 @@ dd.card-desc {
 @media screen and (max-width: 768px) {
     div.store-card-list {
         width: 220px;
+        height: 60vh;
         margin: auto;
+        margin-top: 30px;
     }
 
     div.store-card {
-        margin: 0;
+        margin: auto;
     }
 }
 

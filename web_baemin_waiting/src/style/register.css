@@ -34,7 +34,7 @@ dl.reg-form {
 dl.reg-form input {
   height: 30px;
   font-size: 1.2em;
-  border-bottom: 1px solid #2AC1BC; }
+  border-bottom: 1px solid #FFAD27; }
 
 dl.reg-form dl {
   width: 100%;
@@ -86,16 +86,16 @@ input.menu-price {
 
 button.remove-menu {
   background-color: white;
-  border: 3px solid #2AC1BC;
-  color: #2AC1BC; }
+  border: 3px solid #FFAD27;
+  color: #FFAD27; }
 
 button.add-menu {
-  background-color: #2AC1BC;
+  background-color: #FFAD27;
   color: white;
   float: right; }
 
 button#btn-search-store {
-  background-color: #2AC1BC;
+  background-color: #FFAD27;
   color: white; }
 
 button#btn-reg-store {
@@ -104,7 +104,7 @@ button#btn-reg-store {
   width: 200px;
   height: 35px;
   color: white;
-  background-color: #2AC1BC;
+  background-color: #FFAD27;
   border-radius: 30px;
   font-size: 1.3em;
   left: 0;

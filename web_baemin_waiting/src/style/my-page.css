@@ -1,4 +1,22 @@
 @charset "UTF-8";
+.border-input {
+  border: 1px solid #FFD99E;
+  border-radius: 5px; }
+
+.full-color-input {
+  background-color: #FFD99E;
+  border-radius: 5px; }
+
+.border-button {
+  border: 1px solid #FFAD27;
+  border-radius: 30px;
+  color: #FFAD27; }
+
+.full-color-button {
+  background-color: #FFAD27;
+  border-radius: 30px;
+  color: white; }
+
 div.my-page {
   padding: 50px;
   text-align: center; }
@@ -18,7 +36,7 @@ button#btn-confirm {
   display: block;
   width: 150px;
   height: 30px;
-  background-color: #2AC1BC;
+  background-color: #FFAD27;
   border-radius: 30px;
   color: white;
   margin: auto;
@@ -30,7 +48,7 @@ div.vertical-line {
   width: 10px;
   height: 40vh;
   margin-top: 10vh;
-  border-left: 1px solid #2AC1BC;
+  border-left: 1px solid #FFAD27;
   float: left;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -43,7 +61,7 @@ dl.my-auth-form {
   text-align: center; }
 
 dl.my-auth-form dt {
-  color: #2AC1BC;
+  color: #FFAD27;
   text-align: left;
   font-size: .9em;
   margin-bottom: 5px; }
@@ -54,7 +72,7 @@ dl.my-auth-form dd {
   font-size: 1.1em; }
 
 dl.my-store-form dd input {
-  border-bottom: 1px solid #2AC1BC;
+  border-bottom: 1px solid #FFAD27;
   font-size: 1.2em;
   width: 80%; }
 
@@ -66,7 +84,7 @@ dl.my-store-form {
   text-align: center; }
 
 dl.my-store-form dt {
-  color: #2AC1BC;
+  color: #FFAD27;
   text-align: left;
   font-size: .9em;
   margin-bottom: 10px; }
@@ -79,7 +97,7 @@ dl.my-store-form dd {
 dd.my-img-box {
   width: 90%;
   height: 200px;
-  background-color: #ABE2E0; }
+  background-color: #FFD99E; }
 
 dd.my-img-box img {
   width: 100%;
@@ -87,7 +105,7 @@ dd.my-img-box img {
   object-fit: contain; }
 
 dl.my-auth-form dd input {
-  border-bottom: 1px solid #2AC1BC;
+  border-bottom: 1px solid #FFAD27;
   font-size: 1.2em;
   width: 80%; }
 
@@ -97,7 +115,7 @@ button#btn-info-modify {
   margin-top: 30px;
   border-radius: 30px;
   font-size: 1.1em;
-  background-color: #2AC1BC;
+  background-color: #FFAD27;
   color: white; }
 
 button#btn-go-modify {
@@ -107,8 +125,18 @@ button#btn-go-modify {
   border-radius: 30px;
   font-size: 1.1em;
   background-color: white;
-  border: 1px solid #2AC1BC;
-  color: #2AC1BC; }
+  border: 1px solid #FFAD27;
+  color: #FFAD27; }
+
+dd.menus table {
+  width: 90%; }
+
+td.menu-line {
+  width: 60px; }
+
+td.menu-price {
+  width: 100px;
+  text-align: right; }
 
 @media only screen and (min-width: 1200px) {
   div.my-info {
@@ -128,10 +156,11 @@ button#btn-go-modify {
     margin-top: 60px; }
   dl.my-store-form {
     margin-top: 30px; }
+  dd.menus table {
+    width: 100%; }
   button#btn-info-modify {
     margin-right: 50px; } }
 
-/* iPad 가로+세로 */
 @media only screen and (min-width: 768px) and (max-width: 1200px) {
   div.my-info {
     width: 450px;
@@ -150,10 +179,41 @@ button#btn-go-modify {
     display: none; }
   dl.my-auth-form dd input {
     width: 100%; }
+  dd.my-img-box {
+    margin: auto; }
+  dd.menus table {
+    width: 100%; }
   button#btn-info-modify {
     width: 70%; } }
 
 /* 스마트폰 가로+세로 */
 @media only screen and (min-width: 320px) and (max-width: 768px) {
+  div.my-info {
+    height: 60vh;
+    overflow: auto; }
+  button#btn-info-modify {
+    width: 50%;
+    margin-bottom: 40px; }
+  button#btn-go-modify {
+    width: 50%; }
+  div.my-auth, div.my-store {
+    margin: 0; }
+  dl.my-auth-form {
+    width: 100%;
+    margin: auto; }
+  dl.my-auth-form dd input {
+    width: 100%; }
+  dd.my-img-box {
+    width: 100%; }
+  dl.my-store-form {
+    width: 100%;
+    margin: auto; }
   div.vertical-line {
-    display: none; } }
+    display: none; }
+  dd.menus table {
+    width: 100%; }
+  td.menu-line {
+    display: none; }
+  td.menu-price {
+    width: 100px;
+    text-align: right; } }

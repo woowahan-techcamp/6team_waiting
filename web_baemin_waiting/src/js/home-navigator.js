@@ -5,7 +5,7 @@ import { Menu } from "./menu.js";
 
 export class HomeNavigator {
 
-    constructor(intro, introClose, goStore, login, loginClose, goSignUp, signUp, signUpClose, nav) {
+    constructor(intro, introClose, goStore, login, loginClose, goSignUp, signUp, signUpClose, nav, drop, list) {
         this.btnIntro = document.querySelector(intro);
         this.btnIntroClose = document.querySelector(introClose);
         this.btnGoStore = document.querySelector(goStore);
@@ -15,6 +15,8 @@ export class HomeNavigator {
         this.btnSignUp = document.querySelector(signUp);
         this.btnSignUpClose = document.querySelector(signUpClose);
         this.navigator = document.querySelector(nav);
+        this.dropdown = document.querySelector(drop);
+        this.dropdownList = document.querySelector(list);
     }
 
     on() {
@@ -58,6 +60,21 @@ export class HomeNavigator {
                 this.showNaviPage(e.target.dataset.dest);
             }
         });
+
+        this.dropdown.addEventListener("click", (e) => {
+            const drop = document.querySelector(".dropdown");
+            drop.classList.toggle("show-dropdown");
+            this.dropdownImg(drop);
+        });
+
+        this.dropdownList.addEventListener("click", (e) => {
+            if (e.target && e.target.nodeName === "LI") {
+                const drop = document.querySelector(".dropdown");
+                drop.classList.remove("show-dropdown");
+                this.dropdownImg(drop);
+                this.showNaviPage(e.target.dataset.dest);
+            }
+        })
     }
 
     confirmMyPage() {
@@ -74,6 +91,13 @@ export class HomeNavigator {
                 })
             });
         });
+    }
+
+    dropdownImg(drop) {
+        if (drop.classList.contains("show-dropdown"))
+            document.getElementById("drop").src = "/dist/public/images/close-white.png";
+        else 
+            document.getElementById("drop").src = "/dist/public/images/menu.png";
     }
 
     goStoreHangler() {

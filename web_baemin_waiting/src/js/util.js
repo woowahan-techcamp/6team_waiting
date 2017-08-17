@@ -6,10 +6,10 @@ const util = {
         else alert(content);
     },
 
-    requestAjax(url, callback) {
+    requestAjax(protocol, url, callback) {
         var oReq = new XMLHttpRequest();
         oReq.addEventListener("load", callback);
-        oReq.open("GET", url);
+        oReq.open(protocol, url);
         oReq.send();
     },
 

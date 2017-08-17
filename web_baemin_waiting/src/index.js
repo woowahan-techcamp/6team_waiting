@@ -19,7 +19,7 @@ const homeData = {
 util.setTemplateInHtml("#root", "home", homeData)
     .then(() => {
         const homeNavigator = new HomeNavigator("#btn-intro","#btn-intro-close","#btn-go-store","#btn-login","#btn-login-close",
-                                                "#btn-go-sign-up","#btn-sign-up","#btn-sign-close",".navigator");
+                                                "#btn-go-sign-up","#btn-sign-up","#btn-sign-close",".navigator", "#drop", ".dropdown-list");
         homeNavigator.on();
     })
     .catch((err) => {
