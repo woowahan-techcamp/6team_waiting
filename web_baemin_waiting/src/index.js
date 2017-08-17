@@ -4,6 +4,7 @@ import "./style.js";
 
 import { HomeNavigator } from "./js/home-navigator.js"
 
+
 const homeData = {
                 "main-desc" : ["맛집의 손님들을 위한 자유롭고 편리한 대기 솔루션", "이제 배민웨이팅으로 고객들에게 더 우아한 서비스를 제공하세요"],
                 "serv-desc": ["1번", "2번", "3번"],
