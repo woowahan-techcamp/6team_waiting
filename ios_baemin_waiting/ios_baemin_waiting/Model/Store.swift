@@ -15,6 +15,7 @@ struct Store {
     private var _storeLongitude: String
     private var _storeImgUrl: URL
     private var _distanceToUser: Double
+
     private var _storeDescription: String
     private var _storeTel: String
 
@@ -53,6 +54,7 @@ struct Store {
     public var storeDistance: Double {
         return self._distanceToUser
     }
+
     public var storeDescription: String {
         get { return self._storeDescription }
         set { self._storeDescription = newValue }
