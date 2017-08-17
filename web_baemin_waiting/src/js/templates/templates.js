@@ -64,7 +64,7 @@ templates['my-info'] = template({"compiler":[7,">= 4.0.0"],"main":function(conta
     + " alt=\"\">\n            </dd>\n\n            <dt>우리가게 메뉴</dt>\n            <dd class=\"menus\">\n                <table>\n                    <tr>\n                        <td class=\"menu-name\">메뉴이름</td>\n                        <td class=\"menu-line\">· · · · · ·</td>\n                        <td class=\"menu-price\">메뉴가격</td>\n                    </tr>\n                </table>\n            </dd>\n        </dl>\n\n        <button id=\"btn-go-modify\">수정하러가기</button>\n    </div>\n\n</div>";
 },"useData":true});
 templates['my-page'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"my-page\">\n    <h1>마이 페이지</h1>\n    <div class=\"my-page-area\">\n        <div class=\"my-confirm\">\n            <p>본인 인증을 위해 비밀번호를 입력해주세요.</p>\n            <input type=\"password\">\n            <button id=\"btn-confirm\">확인</button>\n        </div>\n    </div>\n</div>";
+    return "<div class=\"my-page\">\n    <h1>마이 페이지</h1>\n    <div class=\"my-page-area\">\n        <div class=\"my-confirm\">\n            <p>본인 인증을 위해 비밀번호를 입력해주세요.</p>\n            <input type=\"password\" autofocus>\n            <button id=\"btn-confirm\">확인</button>\n        </div>\n    </div>\n</div>";
 },"useData":true});
 templates['no-store'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"go-register\">\n    <span>등록된 가게가 없습니다.</span>\n    <span>먼저 가게를 등록해주세요.</span>\n    <button id=\"btn-go-register\">가게 등록 하기</button>\n</div>";
