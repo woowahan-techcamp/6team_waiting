@@ -84,13 +84,16 @@ export class HomeNavigator {
             // 비밀번호가 일치할 때만, 개인 정보 확인 가능
             service.getUserInfo().then((user) => {
                 service.getStoreInfo().then((store) => {
-                    util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store})
-                    .then(() => {
-                        if (!store) {
-                            document.querySelector(".my-store").innerHTML = "";
-                        }
-                        this.myInfoHandler();
-                    });
+                    service.getMenus().then((menus) => {
+                        console.log(menus);
+                        util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store, "menus": menus})
+                            .then(() => {
+                                if (!store) {
+                                    document.querySelector(".my-store").innerHTML = "";
+                                }
+                                this.myInfoHandler();
+                        });
+                    })
                 })
             });
         });
@@ -142,19 +145,20 @@ export class HomeNavigator {
 
         const btnRegister = document.getElementById("btn-reg-store");
         btnRegister.addEventListener("click", () => {
-            menu.menusToJSON();
+            const menus = menu.menusToJSON();
+            service.registerMenu(menus);
             this.registerStore();
         });
     }
 
-    registerStore() {
+    registerStore(menu) {
         const title = document.getElementById("regist-name").value;
         const desc = document.getElementById("regist-desc").value;
         const tel = document.getElementById("regist-tel").value;
 
         service.saveImageInStorage().then((path) => {
             service.getStoreImageUrl(path).then((url) => {
-                service.registerRestaurant(title, desc, "주소", tel, url, false).then(
+                service.registerRestaurant(title, desc, "주소", tel, url, false, menu).then(
                     util.setTemplateInHtml(".board", "manage")
                 );
             });
