@@ -1,6 +1,7 @@
 import util from "./js/util.js";
 
-import "./style.js";
+import "./style.css";
+import "./style/waiting-style.css";
 
 import { HomeNavigator } from "./js/home-navigator.js"
 
