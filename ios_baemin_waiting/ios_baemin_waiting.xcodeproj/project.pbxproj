@@ -22,7 +22,6 @@
 		986B3DA61F3D3FCA00432FF7 /* StoreCallButtionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DA51F3D3FCA00432FF7 /* StoreCallButtionCell.swift */; };
 		986B3DA81F3D3FEB00432FF7 /* StoreMapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DA71F3D3FEB00432FF7 /* StoreMapViewCell.swift */; };
 		986B3DAA1F3D3FFE00432FF7 /* StoreLineShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DA91F3D3FFE00432FF7 /* StoreLineShowCell.swift */; };
-		986B3DAC1F3D401300432FF7 /* StoreLineGetButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DAB1F3D401300432FF7 /* StoreLineGetButtonCell.swift */; };
 		9870FEB31F3ACC8C00656EEC /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */; };
 		9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB51F3ACE4F00656EEC /* MapViewController.swift */; };
 		9870FEB81F3ACF1300656EEC /* NaverMapHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */; };
@@ -88,7 +87,6 @@
 		986B3DA51F3D3FCA00432FF7 /* StoreCallButtionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCallButtionCell.swift; sourceTree = "<group>"; };
 		986B3DA71F3D3FEB00432FF7 /* StoreMapViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMapViewCell.swift; sourceTree = "<group>"; };
 		986B3DA91F3D3FFE00432FF7 /* StoreLineShowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreLineShowCell.swift; sourceTree = "<group>"; };
-		986B3DAB1F3D401300432FF7 /* StoreLineGetButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreLineGetButtonCell.swift; sourceTree = "<group>"; };
 		9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
 		9870FEB51F3ACE4F00656EEC /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverMapHandler.swift; sourceTree = "<group>"; };
@@ -275,7 +273,6 @@
 				986B3DA51F3D3FCA00432FF7 /* StoreCallButtionCell.swift */,
 				986B3DA71F3D3FEB00432FF7 /* StoreMapViewCell.swift */,
 				986B3DA91F3D3FFE00432FF7 /* StoreLineShowCell.swift */,
-				986B3DAB1F3D401300432FF7 /* StoreLineGetButtonCell.swift */,
 			);
 			name = Detail;
 			path = View/Detail;
@@ -572,7 +569,6 @@
 				986B3DA81F3D3FEB00432FF7 /* StoreMapViewCell.swift in Sources */,
 				9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */,
 				9842DB8B1F454EF900B8C409 /* WaitingTicketViewController.swift in Sources */,
-				986B3DAC1F3D401300432FF7 /* StoreLineGetButtonCell.swift in Sources */,
 				9842DB891F454EC400B8C409 /* WaitingTextField.swift in Sources */,
 				986B3DA11F3D3E8100432FF7 /* StoreDescriptionCell.swift in Sources */,
 				9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */,
@@ -720,7 +716,10 @@
 					"-framework",
 					"\"SwiftyJSON\"",
 				);
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC -lxml2";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-lxml2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.woowabrothers.ios-baemin-waiting";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios_baemin_waiting/Supporting Files/ios_baemin_waiting-Bridging-Header.h";

@@ -11,6 +11,7 @@ import UIKit
 class StoreCallButtonCell: UITableViewCell {
     var tel: String = ""
 
+    @IBOutlet weak var callButton: UIButton!
     @IBAction func storeCallButton(_ sender: Any) {
         if let url = URL(string: "tel://\(tel)"), UIApplication.shared.canOpenURL(url) {
             if #available(iOS 10, *) {
@@ -23,7 +24,9 @@ class StoreCallButtonCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        self.callButton.layer.borderWidth = 0.4
+        self.callButton.layer.borderColor = UIColor(red: 87/255, green: 87/255, blue: 87/255, alpha: 1.0).cgColor
     }
 
     func putStoreTel(storeTel: String) {

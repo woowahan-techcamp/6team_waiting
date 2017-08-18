@@ -42,8 +42,8 @@ class Store {
         self._storeImgUrl = storeImgUrl
 
     }
-    convenience init(storeName: String, storeId: Int, storeDescription: String, storeTel: String,
-                     storeImgUrl: URL, storeIsOpened: Bool) {
+    convenience init(storeName: String, storeId: Int, storeDescription: String, storeTel: String, storeLatitude: String,
+                     storeLongitude: String, storeImgUrl: URL, storeIsOpened: Bool) {
         self.init()
         self._storeName = storeName
         self._storeId = storeId
@@ -51,6 +51,9 @@ class Store {
         self._storeTel = storeTel
         self._storeImgUrl = storeImgUrl
         self._storeIsOpened = storeIsOpened
+
+        self._storeLatitude = storeLatitude
+        self._storeLongitude = storeLongitude
     }
 
 /*
