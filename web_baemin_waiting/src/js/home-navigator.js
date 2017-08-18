@@ -1,6 +1,7 @@
 import util from "./util.js";
 import service from "./services/service.js";
 import { Menu } from "./menu.js";
+import { Scroll } from "./scroll.js";
 
 
 export class HomeNavigator {
@@ -17,6 +18,8 @@ export class HomeNavigator {
         this.navigator = document.querySelector(nav);
         this.dropdown = document.querySelector(drop);
         this.dropdownList = document.querySelector(list);
+
+        this.scroll = new Scroll();
     }
 
     on() {
@@ -215,7 +218,11 @@ export class HomeNavigator {
             case "store-list":
                 service.getStores().then((stores) => {
                     util.setTemplateInHtml(".board", destination, stores)
-                        .then(this.storeDetailHandler());
+                        .then(() => {
+                            this.scroll.setScrollPosition(".store-card-list");
+                            this.storeListHandler();
+                            this.scroll.scrollPositionReset();
+                        });
                 });
                 break;
 
@@ -264,11 +271,19 @@ export class HomeNavigator {
         });
     }
 
-    storeDetailHandler() {
+    storeListHandler() {
         document.querySelector(".store-list").addEventListener("click", (e) => {
             if (e.target.nodeName === "DD" || e.target.nodeName === "IMG" || e.target.nodeName === "DT") {
-                util.setTemplateInHtml(".store-card-list", "store-detail");
+                this.scroll.saveScrollPosition(".store-card-list");
+                util.setTemplateInHtml(".store-card-list", "store-detail")
+                    .then(() => {
+                        const btnBack = document.querySelector("#btn-back");
+                        btnBack.addEventListener("click", () => {
+                            this.showNaviPage("store-list");
+                        });
+                    });
             }
         })
     }
+
 }
