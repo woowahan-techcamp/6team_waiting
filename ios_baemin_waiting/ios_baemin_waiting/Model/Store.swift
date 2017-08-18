@@ -19,6 +19,7 @@ class Store {
     private var _storeDescription: String
     private var _storeTel: String
     private var _storeIsOpened: Bool
+    private var _currentInLine: Int
 
     init() {
         self._storeName = ""
@@ -31,8 +32,9 @@ class Store {
         self._storeDescription = ""
         self._storeTel = ""
         self._storeIsOpened = true
+        self._currentInLine = 0
     }
-    convenience init(storeName: String, storeId: Int, storeAddress: String, storeLatitude: String, storeLongitude: String, storeImgUrl: URL) {
+    convenience init(storeName: String, storeId: Int, storeAddress: String, storeLatitude: String, storeLongitude: String, storeImgUrl: URL, currentInLine: Int) {
         self.init()
         self._storeName = storeName
         self._storeId = storeId
@@ -40,10 +42,10 @@ class Store {
         self._storeLatitude = storeLatitude
         self._storeLongitude = storeLongitude
         self._storeImgUrl = storeImgUrl
-
+        self._currentInLine = currentInLine
     }
     convenience init(storeName: String, storeId: Int, storeDescription: String, storeTel: String,
-                     storeImgUrl: URL, storeIsOpened: Bool) {
+                     storeImgUrl: URL, storeIsOpened: Bool, currentInLine: Int) {
         self.init()
         self._storeName = storeName
         self._storeId = storeId
@@ -51,6 +53,7 @@ class Store {
         self._storeTel = storeTel
         self._storeImgUrl = storeImgUrl
         self._storeIsOpened = storeIsOpened
+        self._currentInLine = currentInLine
     }
 
 /*
@@ -101,6 +104,10 @@ class Store {
     public var storeIsOpened: Bool {
         get { return self._storeIsOpened }
         set { self._storeIsOpened = newValue }
+    }
+    public var currentInLine: Int {
+        get { return self._currentInLine }
+        set { self._currentInLine = newValue }
     }
 
     public func getDistanceFromUser(userLocation: CLLocation) {

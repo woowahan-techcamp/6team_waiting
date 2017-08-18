@@ -52,16 +52,16 @@ extension NaverMapHandler: NMapViewDelegate {
         }
     }
 
-    func onMapView(_ mapView: NMapView!, touchesEnded touches: Set<AnyHashable>!, with event: UIEvent!) {
-        if let touch = event.allTouches?.first {
-            // Get the specific point that was touched
-            let scrPoint = touch.location(in: mapView)
-
-            let touchedLocation = mapView.fromPoint(scrPoint)
-
-            mapView.setMapCenter(touchedLocation)
-        }
-    }
+//    func onMapView(_ mapView: NMapView!, touchesEnded touches: Set<AnyHashable>!, with event: UIEvent!) {
+//        if let touch = event.allTouches?.first {
+//            // Get the specific point that was touched
+//            let scrPoint = touch.location(in: mapView)
+//
+//            let touchedLocation = mapView.fromPoint(scrPoint)
+//
+//            mapView.setMapCenter(touchedLocation)
+//        }
+//    }
 }
 
 // MARK: NMapPOIdataOverlayDelegate
