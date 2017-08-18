@@ -217,6 +217,9 @@
                                                     <state key="normal" title="줄서기">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="Wou-dz-ED6" kind="show" id="ELh-iS-7Zn"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -251,6 +254,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2d6-3g-TmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4674.3999999999996" y="-116.49175412293854"/>
+        </scene>
+        <!--Waiting-->
+        <scene sceneID="L9Q-CL-gSz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Waiting" id="Wou-dz-ED6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ih6-3O-ScI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5530" y="-88"/>
         </scene>
     </scenes>
 </document>

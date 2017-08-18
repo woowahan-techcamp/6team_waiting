@@ -13,6 +13,9 @@
 		980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56EF1F3C16D800A81DFE /* ServerRepository.swift */; };
 		980A56F41F3C19CE00A81DFE /* AlamofireUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */; };
 		980A56F61F3C304000A81DFE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F51F3C304000A81DFE /* Store.swift */; };
+		9842DB811F452E8A00B8C409 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9842DB801F452E8A00B8C409 /* Waiting.storyboard */; };
+		9842DB891F454EC400B8C409 /* WaitingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9842DB881F454EC400B8C409 /* WaitingTextField.swift */; };
+		9842DB8B1F454EF900B8C409 /* WaitingTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */; };
 		986B3D9D1F3D3E1A00432FF7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */; };
 		986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D9E1F3D3E6600432FF7 /* StoreImageCell.swift */; };
 		986B3DA11F3D3E8100432FF7 /* StoreDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DA01F3D3E8100432FF7 /* StoreDescriptionCell.swift */; };
@@ -76,6 +79,9 @@
 		980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireUnitTests.swift; sourceTree = "<group>"; };
 		980A56F51F3C304000A81DFE /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9842DB801F452E8A00B8C409 /* Waiting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Waiting.storyboard; path = ios_baemin_waiting/View/Waiting/Waiting.storyboard; sourceTree = SOURCE_ROOT; };
+		9842DB881F454EC400B8C409 /* WaitingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTextField.swift; sourceTree = "<group>"; };
+		9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTicketViewController.swift; sourceTree = "<group>"; };
 		986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		986B3D9E1F3D3E6600432FF7 /* StoreImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreImageCell.swift; sourceTree = "<group>"; };
 		986B3DA01F3D3E8100432FF7 /* StoreDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDescriptionCell.swift; sourceTree = "<group>"; };
@@ -156,6 +162,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9842DB7F1F452E2D00B8C409 /* Waiting */ = {
+			isa = PBXGroup;
+			children = (
+				9842DB801F452E8A00B8C409 /* Waiting.storyboard */,
+			);
+			name = Waiting;
+			sourceTree = "<group>";
+		};
 		9879D9A21F34054900B4131A = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +247,7 @@
 		988FBEF71F3D849500161756 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9842DB7F1F452E2D00B8C409 /* Waiting */,
 				988FBEF91F3D84A400161756 /* Detail */,
 				988FBEF81F3D849D00161756 /* Main */,
 			);
@@ -273,6 +288,7 @@
 				986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */,
 				9870FECB1F3AFD6900656EEC /* MainCollectionViewController.swift */,
 				9870FEB51F3ACE4F00656EEC /* MapViewController.swift */,
+				9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -284,6 +300,7 @@
 				9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */,
 				9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */,
 				7E1273CD1F434257000C7912 /* Constant.swift */,
+				9842DB881F454EC400B8C409 /* WaitingTextField.swift */,
 			);
 			name = Helper/Util;
 			path = Helper;
@@ -388,6 +405,7 @@
 				9879D9B61F34054900B4131A /* Assets.xcassets in Resources */,
 				9870FEBA1F3AD0C700656EEC /* 송파구.json in Resources */,
 				98BE03DC1F38617D00179D43 /* Scripts in Resources */,
+				9842DB811F452E8A00B8C409 /* Waiting.storyboard in Resources */,
 				9871557A1F41738B001D81E4 /* LaunchScreen.storyboard in Resources */,
 				9870FEC61F3AFC1F00656EEC /* MainCollectionView.storyboard in Resources */,
 				987155781F4172EA001D81E4 /* StoreDetailView.storyboard in Resources */,
@@ -553,7 +571,9 @@
 				9870FED01F3AFE0700656EEC /* MainCollectionReusableView.swift in Sources */,
 				986B3DA81F3D3FEB00432FF7 /* StoreMapViewCell.swift in Sources */,
 				9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */,
+				9842DB8B1F454EF900B8C409 /* WaitingTicketViewController.swift in Sources */,
 				986B3DAC1F3D401300432FF7 /* StoreLineGetButtonCell.swift in Sources */,
+				9842DB891F454EC400B8C409 /* WaitingTextField.swift in Sources */,
 				986B3DA11F3D3E8100432FF7 /* StoreDescriptionCell.swift in Sources */,
 				9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */,
 				9870FEB31F3ACC8C00656EEC /* NMapViewResources.swift in Sources */,
@@ -700,10 +720,7 @@
 					"-framework",
 					"\"SwiftyJSON\"",
 				);
-				"OTHER_LDFLAGS[arch=*]" = (
-					"-ObjC",
-					"-lxml2",
-				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC -lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.woowabrothers.ios-baemin-waiting";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios_baemin_waiting/Supporting Files/ios_baemin_waiting-Bridging-Header.h";
