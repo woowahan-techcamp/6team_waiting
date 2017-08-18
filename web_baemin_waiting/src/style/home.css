@@ -1,9 +1,9 @@
 .border-input {
-  border: 1px solid #FFD99E;
+  border: 1px solid #FFDFAF;
   border-radius: 5px; }
 
 .full-color-input, div.sign-up-form input {
-  background-color: #FFD99E;
+  background-color: #FFDFAF;
   border-radius: 5px; }
 
 .border-button {
@@ -98,7 +98,7 @@ div.sign-in {
   position: absolute;
   bottom: calc(-100vh);
   right: 10vw;
-  background-color: #FFD99E;
+  background-color: #FFDFAF;
   border-radius: 10px 10px 0px 0px;
   z-index: 10;
   -webkit-transition: all .5s ease-in-out;

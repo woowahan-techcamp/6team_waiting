@@ -1,10 +1,10 @@
 @charset "UTF-8";
 .border-input {
-  border: 1px solid #FFD99E;
+  border: 1px solid #FFDFAF;
   border-radius: 5px; }
 
 .full-color-input, div.my-confirm input {
-  background-color: #FFD99E;
+  background-color: #FFDFAF;
   border-radius: 5px; }
 
 .border-button {
@@ -98,7 +98,7 @@ dl.my-store-form dd {
 dd.my-img-box {
   width: 90%;
   height: 200px;
-  background-color: #FFD99E; }
+  background-color: #FFDFAF; }
 
 dd.my-img-box img {
   width: 100%;
