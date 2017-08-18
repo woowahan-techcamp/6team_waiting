@@ -155,12 +155,6 @@ class ServerRepository {
 
                     let isOpenBool = isOpened == 1 ? true : false
 
-                    if isOpened == 1 {
-                        isOpenBool = true
-                    } else {
-                        isOpenBool = false
-                    }
-
                     let store = Store(storeName: name, storeId: id, storeDescription: description, storeTel: tel, storeImgUrl: imgURL, storeIsOpened: isOpenBool, currentInLine: currentInLine)
 
                     DispatchQueue.main.async {
