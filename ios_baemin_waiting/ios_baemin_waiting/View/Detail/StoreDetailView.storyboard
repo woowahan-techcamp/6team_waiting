@@ -200,7 +200,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="lineNumber" destination="eZB-yU-ci5" id="fPj-zC-6tU"/>
+                                            <outlet property="lineNumberLabel" destination="eZB-yU-ci5" id="NIG-Ht-eeK"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="storeLineGetButtonCell" rowHeight="95" id="R8z-xp-8El" customClass="StoreLineGetButtonCell" customModule="ios_baemin_waiting" customModuleProvider="target">

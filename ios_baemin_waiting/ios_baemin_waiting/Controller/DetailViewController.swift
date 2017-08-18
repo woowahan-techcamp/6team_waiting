@@ -17,7 +17,6 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.tintColor = .white
 
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -63,6 +62,7 @@ extension DetailViewController : UITableViewDataSource {
             }
         case 4:
             if let lineShowCell = tableView.dequeueReusableCell(withIdentifier: "storeLineShowCell") as? StoreLineShowCell {
+                lineShowCell.putlineNumber(lineNumber: detailStore.currentInLine)
                 cell = lineShowCell
             }
         case 5:
