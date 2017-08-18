@@ -215,7 +215,9 @@ export class HomeNavigator {
 
             case "store-list":
                 service.getStores().then((stores) => {
-                    util.setTemplateInHtml(".board", destination, stores);
+                    util.setTemplateInHtml(".board", destination, stores)
+                        .then(() => {
+                        });
                 });
                 break;
 
