@@ -10,12 +10,17 @@ import UIKit
 
 class StoreDescriptionCell: UITableViewCell {
 
-    @IBOutlet weak var storeNmae: UILabel!
+    @IBOutlet weak var storeNameLabel: UILabel!
     @IBOutlet weak var storeDescriptionLabel: UILabel!
     @IBOutlet weak var storeDescriptionContents: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+
+    func putStoreDescrition(storeName: String, storeDescription: String) {
+        storeNameLabel.text = storeName
+        storeDescriptionContents.text = storeDescription
     }
 }

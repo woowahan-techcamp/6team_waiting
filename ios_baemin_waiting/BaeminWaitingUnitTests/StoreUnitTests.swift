@@ -14,7 +14,6 @@ class StoreUnitTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-
     }
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
@@ -23,7 +22,7 @@ class StoreUnitTests: XCTestCase {
 
     func testStoreToUser() {
 
-        store = Store(storeName: "", storeAddress: "", storeLatitude: "37.50442938232422", storeLongitude: "127.11729052734376", storeImgUrl: URL(string: "")!, searchRange: [:])
+        store = Store(storeName: "", storeAddress: "", storeLatitude: "37.50442938232422", storeLongitude: "127.11729052734376", storeImgUrl: URL(string: "")!)
 //        let distance = store?.getDistanceFromUser(userLocation: CLLocation)
 
         guard let userLat = CLLocationDegrees("37.518778141797853") else { return }

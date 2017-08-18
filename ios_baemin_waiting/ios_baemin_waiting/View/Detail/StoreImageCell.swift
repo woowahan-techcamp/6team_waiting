@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class StoreImageCell: UITableViewCell {
 
@@ -15,5 +16,10 @@ class StoreImageCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        storeImage.layer.borderWidth = 0.4
+    }
+
+    func putStoreImage(storeImgUrl: URL) {
+            storeImage.af_setImage(withURL: storeImgUrl)
     }
 }

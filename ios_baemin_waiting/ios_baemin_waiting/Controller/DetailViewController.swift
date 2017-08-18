@@ -10,6 +10,9 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    var detailStore: Store = Store()
+    var storeId: Int = 0
+
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -18,6 +21,12 @@ class DetailViewController: UIViewController {
 
         self.tableView.dataSource = self
         self.tableView.delegate = self
+
+        ServerRepository.getStoreDetail(detailStoreId: storeId) { detailStoreData in
+            self.detailStore = detailStoreData
+
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -34,10 +43,14 @@ extension DetailViewController : UITableViewDataSource {
         switch indexPath.row {
         case 0:
             if let imageCell = tableView.dequeueReusableCell(withIdentifier: "storeImageCell") as? StoreImageCell {
+                if let img = detailStore.storeImgUrl {
+                    imageCell.putStoreImage(storeImgUrl: img)
+                }
                 cell = imageCell
             }
         case 1:
             if let descriptionCell = tableView.dequeueReusableCell(withIdentifier: "storeDesciptionCell") as? StoreDescriptionCell {
+                descriptionCell.putStoreDescrition(storeName: detailStore.storeName, storeDescription: detailStore.storeDescription)
                 cell = descriptionCell
             }
         case 2:
