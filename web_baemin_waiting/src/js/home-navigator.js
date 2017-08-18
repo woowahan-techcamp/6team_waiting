@@ -85,7 +85,6 @@ export class HomeNavigator {
             service.getUserInfo().then((user) => {
                 service.getStoreInfo().then((store) => {
                     service.getMenus().then((menus) => {
-                        console.log(menus);
                         util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store, "menus": menus})
                             .then(() => {
                                 if (!store) {
@@ -216,8 +215,7 @@ export class HomeNavigator {
             case "store-list":
                 service.getStores().then((stores) => {
                     util.setTemplateInHtml(".board", destination, stores)
-                        .then(() => {
-                        });
+                        .then(this.storeDetailHandler());
                 });
                 break;
 
@@ -232,6 +230,13 @@ export class HomeNavigator {
                 util.setTemplateInHtml(".board", destination);
                 break;
         }
+    }
+
+    showInitialBoard() {
+        this.hideElement("sign-in");
+        this.showElement("nav");
+        this.showElement("board");
+        this.showNaviPage("manage");
     }
 
     signInHandler() {
@@ -259,10 +264,11 @@ export class HomeNavigator {
         });
     }
 
-    showInitialBoard() {
-        this.hideElement("sign-in");
-        this.showElement("nav");
-        this.showElement("board");
-        this.showNaviPage("manage");
+    storeDetailHandler() {
+        document.querySelector(".store-list").addEventListener("click", (e) => {
+            if (e.target.nodeName === "DD" || e.target.nodeName === "IMG" || e.target.nodeName === "DT") {
+                util.setTemplateInHtml(".store-card-list", "store-detail");
+            }
+        })
     }
 }

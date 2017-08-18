@@ -1,0 +1,134 @@
+@import "base.scss";
+
+
+div.store-detail > div {
+    margin-top: 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+div.detail-btn-area {
+    position: absolute;
+    top: 45;
+    height: 30px;
+    background-color: white;
+    z-index: 1;
+}
+
+button#btn-back {
+    width: 100px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    color: $primary-color;
+    font-size: 1em;
+}
+
+div.store-detail-img {
+    background-color: $secondary-color;
+    float: left;
+    position: relative;
+}
+
+div.store-detail-img > img {
+    max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}
+
+div.store-detail-info {
+    padding: 20px 0 0 30px;
+}
+
+div.store-detail-info > h2 {
+    text-align: left;
+}
+
+p.store-detail-desc {
+    text-align: justify;
+    margin-top: 30px;
+}
+
+@media only screen and (min-width : 1200px) {
+    div.store-detail, div.detail-btn-area {
+        width: 700px;
+    }
+
+    div.store-detail-img {
+        width: 350px;
+        height: 250px;
+    }
+
+    div.store-detail-info {
+        width: 350px;
+        float: right;
+    }
+}
+
+@media only screen and (min-width : 768px) and (max-width : 1200px) {
+    div.store-detail, div.detail-btn-area  {
+        width: 460px;
+    }
+
+    div.store-detail-img,
+    div.store-detail-info {
+        position: relative;
+        width: 100%;
+        margin: auto;
+        clear: both;
+    }
+
+    div.store-detail-img {
+        height: 250px;
+    }
+
+    div.store-detail-info {
+        padding: 20px 0 0 0;
+    }
+
+    div.store-detail-info h2 {
+        text-align: center;
+    }
+
+    p.store-detail-desc {
+        margin-top: 15px;
+    }
+}
+
+@media only screen and (max-width : 768px) {
+    div.store-detail, div.detail-btn-area  {
+        width: 230px;
+    }
+
+    div.store-detail-img,
+    div.store-detail-info {
+        width: 100%;
+        margin: auto;
+        clear: both;
+    }
+
+    div.store-detail-img {
+        height: 150px;
+    }
+
+    div.store-detail-info {
+        padding: 15px 0 0 0;
+    }
+
+    div.store-detail-info h2 {
+        text-align: center;
+    }
+
+    p.store-detail-desc {
+        margin-top: 15px;
+    }
+}

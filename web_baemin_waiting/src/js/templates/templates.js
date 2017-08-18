@@ -95,7 +95,7 @@ templates['register'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
     return "<div class=\"register-store\">\n    <h1 class=\"regist-title\">사장님의 가게를 등록해주세요</h1>\n    <h1 class=\"m-regist-title\">가게등록</h1>\n    <div>\n        <dl class=\"reg-form\">\n            \n            <dt>업체명</dt>\n            <dd>\n                <input type=\"text\" id=\"regist-name\">\n                <button id=\"btn-search-store\">검색</button>\n            </dd>\n\n            <dt>업체 위치</dt>\n            <dd><input type=\"text\" id=\"regist-location\"></dd>\n\n            <dt>전화번호</dt>\n            <dd><input type=\"number\" id=\"regist-tel\"></dd>\n\n            <dt>업체 설명</dt>\n            <dd><input type=\"text\" id=\"regist-desc\"></dd>\n\n            <dt>업체 사진</dt>\n            <dd><input type=\"file\" id=\"regist-file\"></dd>\n\n            <dt>메뉴</dt>\n            <dd class=\"menus\">\n                <button class=\"add-menu\">+</button>\n            </dd>\n            \n        </dl>\n    </div>\n\n    <button id=\"btn-reg-store\">가게등록</button>\n\n</div>";
 },"useData":true});
 templates['store-detail'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"store-detail\">\n    가게 상세 페이지!\n</div>";
+    return "<div class=\"detail-btn-area\">\n    <button id=\"btn-back\">뒤로가기</button>\n</div>\n<div class=\"store-detail\">\n    <div class=\"store-detail-img\">\n        <img src=\"/dist/public/images/background.jpg\">\n    </div>\n    <div class=\"store-detail-info\">\n        <h2 class=\"store-detail-title\">가게 이름</h2>\n        <p class=\"store-detail-desc\">\n            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.\n        </p>\n    </div>\n</div>";
 },"useData":true});
 templates['store-list'] = template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
@@ -110,7 +110,7 @@ templates['store-list'] = template({"1":function(container,depth0,helpers,partia
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "<div class=\"store-list\">\n    <h1>가게 둘러보기</h1>\n\n    <div class=\"store-card-list\">\n"
+  return "<div class=\"store-list\">\n    <h1>가게 둘러보기</h1>\n    <div class=\"store-card-list\">\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\n\n</div>";
 },"useData":true});
