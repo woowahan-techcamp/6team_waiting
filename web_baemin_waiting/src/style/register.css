@@ -1,3 +1,21 @@
+.border-input {
+  border: 1px solid #FFD99E;
+  border-radius: 5px; }
+
+.full-color-input {
+  background-color: #FFD99E;
+  border-radius: 5px; }
+
+.border-button {
+  border: 1px solid #FFAD27;
+  border-radius: 30px;
+  color: #FFAD27; }
+
+.full-color-button {
+  background-color: #FFAD27;
+  border-radius: 30px;
+  color: white; }
+
 .btn-base, button.remove-menu, button.add-menu, button#btn-search-store {
   width: 10%;
   height: 30px;
@@ -22,6 +40,9 @@ div.register-store {
   margin: auto;
   padding: 50px; }
 
+h1.m-regist-title {
+  display: none; }
+
 div.register-store > div {
   height: 50vh;
   overflow: auto; }
@@ -34,7 +55,7 @@ dl.reg-form {
 dl.reg-form input {
   height: 30px;
   font-size: 1.2em;
-  border-bottom: 1px solid #2AC1BC; }
+  border-bottom: 1px solid #FFAD27; }
 
 dl.reg-form dl {
   width: 100%;
@@ -86,16 +107,17 @@ input.menu-price {
 
 button.remove-menu {
   background-color: white;
-  border: 3px solid #2AC1BC;
-  color: #2AC1BC; }
+  border: 3px solid #FFAD27;
+  color: #FFAD27; }
 
 button.add-menu {
-  background-color: #2AC1BC;
+  background-color: #FFAD27;
   color: white;
   float: right; }
 
 button#btn-search-store {
-  background-color: #2AC1BC;
+  width: 20%;
+  background-color: #FFAD27;
   color: white; }
 
 button#btn-reg-store {
@@ -104,9 +126,28 @@ button#btn-reg-store {
   width: 200px;
   height: 35px;
   color: white;
-  background-color: #2AC1BC;
+  background-color: #FFAD27;
   border-radius: 30px;
   font-size: 1.3em;
   left: 0;
   right: 0;
   margin: auto; }
+
+@media only screen and (max-width: 768px) {
+  h1.regist-title {
+    display: none; }
+  h1.m-regist-title {
+    display: block; }
+  dl.reg-form dl {
+    width: 100%;
+    margin: 0;
+    margin-top: 30px; }
+  dl.reg-form dt {
+    width: 100%; }
+  dl.reg-form dd {
+    width: 100%; }
+  input#regist-location,
+  input#regist-tel,
+  input#regist-desc,
+  input#regist-file {
+    width: 100%; } }

@@ -1,47 +1,76 @@
+.border-input {
+  border: 1px solid #FFD99E;
+  border-radius: 5px; }
+
+.full-color-input {
+  background-color: #FFD99E;
+  border-radius: 5px; }
+
+.border-button {
+  border: 1px solid #FFAD27;
+  border-radius: 30px;
+  color: #FFAD27; }
+
+.full-color-button {
+  background-color: #FFAD27;
+  border-radius: 30px;
+  color: white; }
+
 div.store-list {
   width: 80%;
-  height: calc(100% - 60px);
   margin: 40px auto  20px auto;
   text-align: center;
-  overflow: auto;
   position: relative; }
 
-@media screen and (min-width: 1024px) {
+div.store-card-list {
+  height: 55vh;
+  overflow: auto; }
+
+dd.card-desc {
+  font-size: .8em; }
+
+@media screen and (min-width: 1200px) {
   div.store-card-list {
     width: 680px;
-    height: auto;
     margin: auto;
     margin-top: 30px; }
   div.store-card:nth-child(3n) {
     margin-right: 0; } }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 768px) and (max-width: 1200px) {
   div.store-card-list {
     width: 450px;
-    height: auto;
     margin: auto;
     margin-top: 30px; }
   div.store-card:nth-child(2n) {
     margin-right: 0; } }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
   div.store-card-list {
-    width: 300px;
-    height: auto;
+    width: 220px;
+    height: 60vh;
+    margin: auto;
+    margin-top: 30px; }
+  div.store-card {
     margin: auto; } }
 
 div.store-card {
   width: 220px;
   height: 250px;
-  background-color: #CCC;
+  box-shadow: 1px 1px 5px #CCC;
   margin-right: 10px;
   margin-bottom: 15px;
-  float: left; }
+  float: left;
+  transition: .4s; }
+
+div.store-card:hover {
+  box-shadow: 3px 3px 5px #999;
+  transition: .4s; }
 
 img.card-img {
   width: 100%;
   height: 180px;
-  background-color: black; }
+  background-color: #FFD99E; }
 
 div.store-card dl {
   text-align: left;

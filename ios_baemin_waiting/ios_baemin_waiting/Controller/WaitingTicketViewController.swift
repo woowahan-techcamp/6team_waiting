@@ -40,7 +40,6 @@ class WaitingTicketViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.tintColor = .black
 
         phoneHeadView.layer.borderColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0).cgColor
         phoneHeadView.layer.borderWidth = 0.4
@@ -52,6 +51,8 @@ class WaitingTicketViewController: UIViewController {
 
         configureNameTextField()
         configurePhoneNumberTextField()
+
+        nameTextField.becomeFirstResponder()
     }
 
     func configureNameTextField() {

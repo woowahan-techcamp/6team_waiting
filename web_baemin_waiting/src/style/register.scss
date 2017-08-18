@@ -1,7 +1,6 @@
 @import "base.scss";
 
 
-
 .btn-base {
     width: 10%;
     height: 30px;
@@ -9,7 +8,6 @@
     font-size: 1.2em;
     font-weight: bold;
 }
-
 
 ::-webkit-input-placeholder {
     font-size: .8em;
@@ -28,6 +26,10 @@ div.register-store {
     text-align: center;
     margin: auto;
     padding: 50px;
+}
+
+h1.m-regist-title {
+    display: none;
 }
 
 div.register-store > div{
@@ -123,6 +125,7 @@ button.add-menu {
 
 button#btn-search-store {
     @extend .btn-base;
+    width: 20%;
     background-color: $primary-color;
     color: white;
 }
@@ -140,4 +143,44 @@ button#btn-reg-store {
     left: 0;
     right: 0;
     margin: auto;
+}
+
+@media only screen and (min-width : 1200px) {
+
+}
+
+@media only screen and (min-width : 768px) and (max-width : 1200px) {
+
+}
+
+@media only screen and (max-width : 768px) {
+
+    h1.regist-title {
+        display: none;
+    }
+
+    h1.m-regist-title {
+        display: block;
+    }
+
+    dl.reg-form dl {
+        width: 100%;   
+        margin: 0;
+        margin-top: 30px;
+    }
+
+    dl.reg-form dt {
+        width: 100%;
+    }
+
+    dl.reg-form dd {
+        width: 100%;
+    }
+
+    input#regist-location,
+    input#regist-tel,
+    input#regist-desc,
+    input#regist-file{
+        width: 100%;
+    }
 }

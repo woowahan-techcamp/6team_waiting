@@ -153,7 +153,7 @@ class ServerRepository {
 
                 if let imgURL = URL(string: img) {
 
-                    var isOpenBool: Bool = true
+                    let isOpenBool = isOpened == 1 ? true : false
 
                     if isOpened == 1 {
                         isOpenBool = true

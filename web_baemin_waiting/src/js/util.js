@@ -1,13 +1,15 @@
+import service from "./services/service.js";
+
 const util = {
     log(content) {
         if (window.console) console.log(content);
         else alert(content);
     },
 
-    requestAjax(url, callback) {
+    requestAjax(protocol, url, callback) {
         var oReq = new XMLHttpRequest();
         oReq.addEventListener("load", callback);
-        oReq.open("GET", url);
+        oReq.open(protocol, url);
         oReq.send();
     },
 
@@ -24,7 +26,16 @@ const util = {
             }
             
         });
-    }
+    },
+
 }
+
+Handlebars.registerHelper('trimString', function(passedString, startstring, endstring) {
+   var theString = passedString.substring(startstring, endstring);
+   if (passedString.length > endstring) {
+       theString += "...";
+   }
+   return new Handlebars.SafeString(theString);
+});
 
 export default util;
