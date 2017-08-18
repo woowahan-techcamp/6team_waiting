@@ -15,9 +15,15 @@
 
 <div class="intro">
     <span id="btn-intro-close" class="btn-close"><img src="/dist/public/images/close.png"></span>
-    {{#each serv-desc}}
-        <p>{{this}}</p>
-    {{/each}}
+    <div class="intro-title">배민웨이팅, 이렇게 사용하세요</div>
+    <div class="intro-desc">
+        {{#each serv-desc}}
+        <div>
+            <div class="circle"><img src={{this.img}} alt="desc-pic"></div>
+            <p>{{this.content}}</p>
+        </div>
+        {{/each}}
+    </div> 
 </div>
 
 
