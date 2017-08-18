@@ -46,7 +46,19 @@ templates['manage'] = template({"compiler":[7,">= 4.0.0"],"main":function(contai
 templates['modify-store'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"register-store\">\n    <h1 class=\"regist-title\">사장님의 가게를 수정해주세요</h1>\n    <div>\n        <dl class=\"reg-form\">\n            \n            <dt>업체명</dt>\n            <dd>\n                <input type=\"text\" id=\"mod-name\" value=\"원래 저장된 이름\">\n                <button id=\"btn-search-store\">검색</button>\n            </dd>\n\n            <dt>업체 위치</dt>\n            <dd><input type=\"text\" id=\"mod-location\" value=\"원래 저장된 설명\"></dd>\n\n            <dt>업체 설명</dt>\n            <dd><input type=\"text\" id=\"mod-desc\"></dd>\n\n            <dt>업체 사진</dt>\n            <dd><input type=\"file\"></dd>\n\n            <dt>메뉴</dt>\n            <dd class=\"menus\">\n                <button class=\"add-menu\">+</button>\n            </dd>\n            \n        </dl>\n    </div>\n\n    <button id=\"btn-reg-store\">가게등록</button>\n\n</div>";
 },"useData":true});
-templates['my-info'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+templates['my-info'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers.blockHelperMissing.call(depth0,container.lambda(depth0, depth0),{"name":"this","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"2":function(container,depth0,helpers,partials,data) {
+    var alias1=container.lambda, alias2=container.escapeExpression;
+
+  return "                        <tr>\n                            <td class=\"menu-name\">"
+    + alias2(alias1((depth0 != null ? depth0.name : depth0), depth0))
+    + "</td>\n                            <td class=\"menu-line\">· · · · · ·</td>\n                            <td class=\"menu-price\">"
+    + alias2(alias1((depth0 != null ? depth0.price : depth0), depth0))
+    + "</td>\n                        </tr>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
   return "<div class=\"my-info\">\n    <div class=\"my-auth\">\n        <dl class=\"my-auth-form\">\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"mod-name\" value="
@@ -61,7 +73,9 @@ templates['my-info'] = template({"compiler":[7,">= 4.0.0"],"main":function(conta
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.store : depth0)) != null ? stack1._store_tel : stack1), depth0))
     + "</dd>\n\n            <dt>우리가게 사진</dt>\n            <dd class=\"my-img-box\">\n                <img src="
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.store : depth0)) != null ? stack1._picture : stack1), depth0))
-    + " alt=\"\">\n            </dd>\n\n            <dt>우리가게 메뉴</dt>\n            <dd class=\"menus\">\n                <table>\n                    <tr>\n                        <td class=\"menu-name\">메뉴이름</td>\n                        <td class=\"menu-line\">· · · · · ·</td>\n                        <td class=\"menu-price\">메뉴가격</td>\n                    </tr>\n                </table>\n            </dd>\n        </dl>\n\n        <button id=\"btn-go-modify\">수정하러가기</button>\n    </div>\n\n</div>";
+    + " alt=\"\">\n            </dd>\n\n            <dt>우리가게 메뉴</dt>\n            <dd class=\"menus\">\n                <table>\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.menus : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "                </table>\n            </dd>\n        </dl>\n\n        <button id=\"btn-go-modify\">수정하러가기</button>\n    </div>\n\n</div>";
 },"useData":true});
 templates['my-page'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"my-page\">\n    <h1>마이 페이지</h1>\n    <div class=\"my-page-area\">\n        <div class=\"my-confirm\">\n            <p>본인 인증을 위해 비밀번호를 입력해주세요.</p>\n            <input type=\"password\" autofocus>\n            <button id=\"btn-confirm\">확인</button>\n        </div>\n    </div>\n</div>";
