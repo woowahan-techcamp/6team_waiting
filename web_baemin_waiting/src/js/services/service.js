@@ -58,6 +58,16 @@ const service = (() => {
         });
     }
 
+    const getData = function(name) {
+        return new Promise((resolve, reject) => {
+            const id = getCurrentUserId();            
+            fireDatabase.ref(`${name}/${id}`).once("value")
+                .then((snapshot) => {
+                    resolve(snapshot.val());
+                })
+        })
+    }
+
     const getStoreInfoById = function(id) {
         return new Promise((resolve, reject) => {
             fireDatabase.ref(`stores/${id}`).once("value")
@@ -120,11 +130,20 @@ const service = (() => {
         return new Promise((resolve, reject) => {
             const id = getCurrentUserId();
             const storeData = new StoreModel(id, title, desc, add, tel, pic, is_opened);
+            
             fireDatabase.ref("stores/").push(storeData).then((snapshot) => {
                 fireDatabase.ref(`users/${id}`).update({"_storeid": snapshot.key});
                 resolve(true);
             });
         })
+    }
+    
+    const saveData = function(name, data) {
+        return new Promise((resolve, reject) => {
+            const id = getCurrentUserId();
+            fireDatabase.ref(`${name}/${id}`).set(data);
+            resolve(true);
+        });
     }
 
     const saveFileInStorage = function() {
@@ -193,6 +212,10 @@ const service = (() => {
     return {
         // Public member 
         
+        getMenus() {
+            return getData("menus");
+        },
+
         getStores() {
             return getStoreList();
         },
@@ -207,6 +230,10 @@ const service = (() => {
 
         getStoreInfo() {
             return getCurrentStoreInfo();
+        },
+
+        registerMenu(menu) {
+            return saveData("menus", menu);
         },
 
         registerRestaurant(title, desc, add, tel, pic, is_opened) {

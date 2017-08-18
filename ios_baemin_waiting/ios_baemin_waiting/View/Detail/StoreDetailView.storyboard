@@ -203,7 +203,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="lineNumber" destination="eZB-yU-ci5" id="fPj-zC-6tU"/>
+                                            <outlet property="lineNumberLabel" destination="eZB-yU-ci5" id="NIG-Ht-eeK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -1,6 +1,9 @@
 import util from "./util.js";
 import service from "./services/service.js";
+
 import { Menu } from "./menu.js";
+import { Scroll } from "./scroll.js";
+import { View } from "./view.js";
 
 
 export class HomeNavigator {
@@ -17,42 +20,39 @@ export class HomeNavigator {
         this.navigator = document.querySelector(nav);
         this.dropdown = document.querySelector(drop);
         this.dropdownList = document.querySelector(list);
+
+        this.scroll = new Scroll();
+        this.view = new View(".view");
     }
 
     on() {
         this.btnIntro.addEventListener("click", () => {
-            this.showElement("intro");
-            this.inactivateRoot();
+            this.view.showElement("intro");
+            this.view.inactivateRoot();
         });
 
         this.btnIntroClose.addEventListener("click", () => {
-            this.hideElement("intro")
-            this.activateRoot();
+            this.view.hideElement("intro")
+            this.view.activateRoot();
         });
         
-        this.btnGoStore.addEventListener("click", () => {
-            this.goStoreHangler();
-        });
+        this.btnGoStore.addEventListener("click", this.goStoreHandler);
 
-        this.btnLogin.addEventListener("click", () => {
-            this.signInHandler();
-        });
+        this.btnLogin.addEventListener("click", this.signInHandler);
 
         this.btnLoginClose.addEventListener("click", () => {
-            this.hideElement("sign-in");
+            this.view.hideElement("sign-in");
             this.activateRoot();
         });
 
         this.btnGoSignUp.addEventListener("click", () => {
-            this.showElement("sign-up");
+            this.view.showElement("sign-up");
         });
 
-        this.btnSignUp.addEventListener("click", () => {
-            this.signUpHandler();
-        });
+        this.btnSignUp.addEventListener("click", this.signUpHandler);
 
         this.btnSignUpClose.addEventListener("click", () => {
-            this.hideElement("sign-up");
+            this.view.hideElement("sign-up");
         });
 
         this.navigator.addEventListener("click", (e) => {
@@ -62,16 +62,15 @@ export class HomeNavigator {
         });
 
         this.dropdown.addEventListener("click", (e) => {
-            const drop = document.querySelector(".dropdown");
-            drop.classList.toggle("show-dropdown");
-            this.dropdownImg(drop);
+            this.view.toggleElement("dropdown", "show-dropdown");
+            this.dropdownImg();
         });
 
         this.dropdownList.addEventListener("click", (e) => {
             if (e.target && e.target.nodeName === "LI") {
                 const drop = document.querySelector(".dropdown");
                 drop.classList.remove("show-dropdown");
-                this.dropdownImg(drop);
+                this.dropdownImg();
                 this.showNaviPage(e.target.dataset.dest);
             }
         })
@@ -84,51 +83,38 @@ export class HomeNavigator {
             // 비밀번호가 일치할 때만, 개인 정보 확인 가능
             service.getUserInfo().then((user) => {
                 service.getStoreInfo().then((store) => {
-                    util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store})
-                    .then(() => {
-                        if (!store) {
-                            document.querySelector(".my-store").innerHTML = "";
-                        }
-                        this.myInfoHandler();
-                    });
+                    service.getMenus().then((menus) => {
+                        util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store, "menus": menus})
+                            .then(() => {
+                                if (!store) {
+                                    document.querySelector(".my-store").innerHTML = "";
+                                }
+                                this.myInfoHandler();
+                        });
+                    })
                 })
             });
         });
     }
 
-    dropdownImg(drop) {
+    dropdownImg() {
+        const drop = document.querySelector(".dropdown");
         if (drop.classList.contains("show-dropdown"))
             document.getElementById("drop").src = "/dist/public/images/close-white.png";
         else 
             document.getElementById("drop").src = "/dist/public/images/menu.png";
     }
 
-    goStoreHangler() {
+    goStoreHandler() {
         if (!service.isAuth()) {
-            this.showElement("sign-in");
+            this.view.showElement("sign-in");
         } else {
-            this.showElement("board");
-            this.showElement("nav")
+            this.view.showElement("board");
+            this.view.showElement("nav")
             this.showNaviPage("manage");
         }
 
-        this.inactivateRoot();
-    }
-
-    hideElement(ele) {
-        document.querySelector(`.${ele}`).classList.remove(`show-${ele}`);
-    }
-
-    showElement(ele) {
-        document.querySelector(`.${ele}`).classList.add(`show-${ele}`);
-    }
-
-    inactivateRoot() {
-        document.querySelector(".view").classList.add("inactive");
-    }
-
-    activateRoot() {
-        document.querySelector(".view").classList.remove("inactive");
+        this.view.inactivateRoot();
     }
 
     registerHandler() {
@@ -136,22 +122,24 @@ export class HomeNavigator {
         menu.addMenuInput();
 
         const btnAddMenu = document.querySelector(".add-menu");
-        btnAddMenu.addEventListener("click", () => {
-            menu.addMenuInput();
-        });
+        btnAddMenu.addEventListener("click", menu.addMenuInput);
 
         const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", this.registerStore);
+        btnRegister.addEventListener("click", () => {
+            const menus = menu.menusToJSON();
+            service.registerMenu(menus);
+            this.registerStore();
+        });
     }
 
-    registerStore() {
+    registerStore(menu) {
         const title = document.getElementById("regist-name").value;
         const desc = document.getElementById("regist-desc").value;
         const tel = document.getElementById("regist-tel").value;
 
         service.saveImageInStorage().then((path) => {
             service.getStoreImageUrl(path).then((url) => {
-                service.registerRestaurant(title, desc, "주소", tel, url, false).then(
+                service.registerRestaurant(title, desc, "주소", tel, url, false, menu).then(
                     util.setTemplateInHtml(".board", "manage")
                 );
             });
@@ -185,9 +173,9 @@ export class HomeNavigator {
     showNaviPage(destination) {
         switch (destination) {
             case "home":
-                this.activateRoot();
-                this.hideElement("nav");
-                this.hideElement("board");
+                this.view.activateRoot();
+                this.view.hideElement("nav");
+                this.view.hideElement("board");
                 break;
 
             case "my-page":
@@ -208,21 +196,33 @@ export class HomeNavigator {
 
             case "store-list":
                 service.getStores().then((stores) => {
-                    util.setTemplateInHtml(".board", destination, stores);
+                    util.setTemplateInHtml(".board", destination, stores)
+                        .then(() => {
+                            this.scroll.setScrollPosition(".store-card-list");
+                            this.storeListHandler();
+                            this.scroll.scrollPositionReset();
+                        });
                 });
                 break;
 
             case "logout": 
                 service.signOutUser();
-                this.activateRoot();
-                this.hideElement("nav");
-                this.hideElement("board");
+                this.view.activateRoot();
+                this.view.hideElement("nav");
+                this.view.hideElement("board");
                 break;
 
             default:
                 util.setTemplateInHtml(".board", destination);
                 break;
         }
+    }
+
+    showInitialBoard() {
+        this.view.hideElement("sign-in");
+        this.view.showElement("nav");
+        this.view.showElement("board");
+        this.showNaviPage("manage");
     }
 
     signInHandler() {
@@ -245,15 +245,24 @@ export class HomeNavigator {
         const userTel = document.getElementById("sign-tel").value;
         
         service.signUpUser(userId, userPwd, userName, "owner", userTel).then(() => {
-            this.hideElement("sign-up");
+            this.view.hideElement("sign-up");
             this.showInitialBoard();
         });
     }
 
-    showInitialBoard() {
-        this.hideElement("sign-in");
-        this.showElement("nav");
-        this.showElement("board");
-        this.showNaviPage("manage");
+    storeListHandler() {
+        document.querySelector(".store-list").addEventListener("click", (e) => {
+            if (e.target.nodeName === "DD" || e.target.nodeName === "IMG" || e.target.nodeName === "DT") {
+                this.scroll.saveScrollPosition(".store-card-list");
+                util.setTemplateInHtml(".store-card-list", "store-detail")
+                    .then(() => {
+                        const btnBack = document.querySelector("#btn-back");
+                        btnBack.addEventListener("click", () => {
+                            this.showNaviPage("store-list");
+                        });
+                    });
+            }
+        })
     }
+
 }

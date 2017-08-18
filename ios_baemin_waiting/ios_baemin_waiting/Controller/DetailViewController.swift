@@ -63,6 +63,7 @@ extension DetailViewController : UITableViewDataSource {
             }
         case 4:
             if let lineShowCell = tableView.dequeueReusableCell(withIdentifier: "storeLineShowCell") as? StoreLineShowCell {
+                lineShowCell.putlineNumber(lineNumber: detailStore.currentInLine)
                 cell = lineShowCell
             }
         default:

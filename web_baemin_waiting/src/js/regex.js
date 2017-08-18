@@ -56,6 +56,13 @@ export class Regex {
         return regName.test(title);
     }
 
+    verifyMenu(name, price) {
+        if (this.isMenu(name) && this.isPrice(price)) 
+            return true;
+        else 
+            return false;
+    }
+
     verifySignIn(id, pwd) {
         if (this.isID(id) && this.isPassword(pwd)) 
             return true;

@@ -1,8 +1,11 @@
+import { Regex } from "./regex.js";
+
+
 export class Menu {
 
     constructor(menus) {
         this.menus = document.querySelector(menus);
-
+        
         this.count = 0;
         this.LIMIT = 10;
     }
@@ -38,11 +41,59 @@ export class Menu {
         }
     }
 
-    // @TODO : haeun.kim
-    // 사용자가 입력한 메뉴들을 json 타입으로 만들어주는 함수
-    menuToJSON() {
+    menusToJSON() {
         const menuList = document.querySelectorAll(".input-menu");
-        console.log(menuList);
+        const menus = this.menuIntoArray(menuList);
+        
+        return { "menus" : menus };
+    }
+
+    menuIntoArray(menuList) {
+        const arr = [];
+        let isSuccess = true;
+
+        for (let i = 0; i < this.count; i++) {
+            const menu = {};
+            const menuName = menuList[i].querySelector(".menu-name").value;
+            const menuPrice = menuList[i].querySelector(".menu-price").value;
+            const menuObj = this.makeMenuToObject(menuName, menuPrice);
+
+            isSuccess = this.objectIntoArray(menuObj, arr);
+            if (!isSuccess) {
+                alert("한 개 이상의 메뉴(1 - 10 글자) 와 정확한 가격(10 - 1,000,000,000 원)을 입력해주세요");
+                break;
+            }
+        }
+
+        if (isSuccess) {
+            return arr;
+        }
+    }
+
+    objectIntoArray(obj, arr) {
+        if (obj) {
+            arr.push(obj);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    makeMenuToObject(name, price) {
+        const verifiedMenu = this.isVerifiedMenu(name, price);
+
+        if (verifiedMenu) {
+            const obj = {};
+            obj.name = name;
+            obj.price = price;
+
+            return obj;
+        }
+    }
+
+    isVerifiedMenu(menu, price) {
+        const regex = new Regex();
+        return regex.verifyMenu(menu, price);
     }
 
 }
