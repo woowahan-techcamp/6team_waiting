@@ -11,7 +11,6 @@ import UIKit
 class MainCollectionViewController: UIViewController {
 
     let locationManager = CLLocationManager()
-    let jsonController = JsonController()
     var storeList: [Store] = []
     let refresh = UIRefreshControl()
 
@@ -42,6 +41,19 @@ class MainCollectionViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mainSegue" {
+            if let indexPath = collectionView.indexPathsForSelectedItems {
+                let storeId = storeList[indexPath[0].item].storeId
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.storeId = storeId
+                detailViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                detailViewController.navigationItem.leftItemsSupplementBackButton = true
+
+            }
+        }
     }
 
     func snackbarAnimation() {

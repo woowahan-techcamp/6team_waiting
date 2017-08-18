@@ -11,7 +11,6 @@ import UIKit
 class MapViewController: UIViewController {
 
     let naverMapHandler = NaverMapHandler()
-    let jsonController = JsonController()
     var mapView: NMapView?
     var myLocation: NGeoPoint?
     var circleArea: NMapCircleData?

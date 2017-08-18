@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Sal-mY-Zos">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Sal-mY-Zos">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -110,7 +110,7 @@
                                             <outlet property="restaurantsImage" destination="L7A-ou-jO4" id="0L7-JD-j6p"/>
                                             <outlet property="restaurantsLine" destination="bec-x9-IR1" id="GMA-aM-cmR"/>
                                             <outlet property="restaurantsName" destination="dbb-G4-cYd" id="Tvy-CT-jh7"/>
-                                            <segue destination="b5O-bj-pBX" kind="show" id="a8g-h1-VBV"/>
+                                            <segue destination="b5O-bj-pBX" kind="show" identifier="mainSegue" id="a8g-h1-VBV"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

@@ -20,7 +20,6 @@
 		986B3DA81F3D3FEB00432FF7 /* StoreMapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DA71F3D3FEB00432FF7 /* StoreMapViewCell.swift */; };
 		986B3DAA1F3D3FFE00432FF7 /* StoreLineShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DA91F3D3FFE00432FF7 /* StoreLineShowCell.swift */; };
 		986B3DAC1F3D401300432FF7 /* StoreLineGetButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DAB1F3D401300432FF7 /* StoreLineGetButtonCell.swift */; };
-		9870FEAE1F3ACC3C00656EEC /* JsonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEAD1F3ACC3C00656EEC /* JsonController.swift */; };
 		9870FEB31F3ACC8C00656EEC /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */; };
 		9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB51F3ACE4F00656EEC /* MapViewController.swift */; };
 		9870FEB81F3ACF1300656EEC /* NaverMapHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */; };
@@ -84,7 +83,6 @@
 		986B3DA71F3D3FEB00432FF7 /* StoreMapViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMapViewCell.swift; sourceTree = "<group>"; };
 		986B3DA91F3D3FFE00432FF7 /* StoreLineShowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreLineShowCell.swift; sourceTree = "<group>"; };
 		986B3DAB1F3D401300432FF7 /* StoreLineGetButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreLineGetButtonCell.swift; sourceTree = "<group>"; };
-		9870FEAD1F3ACC3C00656EEC /* JsonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonController.swift; sourceTree = "<group>"; };
 		9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
 		9870FEB51F3ACE4F00656EEC /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverMapHandler.swift; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 		988FBEFB1F3D856A00161756 /* Helper/Util */ = {
 			isa = PBXGroup;
 			children = (
-				9870FEAD1F3ACC3C00656EEC /* JsonController.swift */,
 				980A56EF1F3C16D800A81DFE /* ServerRepository.swift */,
 				9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */,
 				9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */,
@@ -557,7 +554,6 @@
 				986B3DA81F3D3FEB00432FF7 /* StoreMapViewCell.swift in Sources */,
 				9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */,
 				986B3DAC1F3D401300432FF7 /* StoreLineGetButtonCell.swift in Sources */,
-				9870FEAE1F3ACC3C00656EEC /* JsonController.swift in Sources */,
 				986B3DA11F3D3E8100432FF7 /* StoreDescriptionCell.swift in Sources */,
 				9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */,
 				9870FEB31F3ACC8C00656EEC /* NMapViewResources.swift in Sources */,

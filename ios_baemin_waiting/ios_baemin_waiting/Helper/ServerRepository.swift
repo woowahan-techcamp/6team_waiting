@@ -39,13 +39,14 @@ class ServerRepository {
             for (_, item): (String, JSON) in swiftyJson {
 
                 if let name = item["storeName"].string,
+                    let id = item["storeId"].int,
                     let address = item["storeAddress"].string,
                     let lat = item["storeLatitude"].string,
                     let long = item["storeLongitude"].string,
                     let img = item["storeImgUrl"].string {
 
                     if let imgURL = URL(string: img) {
-                        let store = Store(storeName: name, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL)
+                        let store = Store(storeName: name, storeId: id, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL)
 
                         self.storeList.append(store)
                     }
@@ -76,7 +77,6 @@ class ServerRepository {
                 print("URL is nil")
                 return
         }
-        print(url)
 
         Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
 
@@ -101,13 +101,14 @@ class ServerRepository {
 //                    "storeIsOpened": 1
 //                },
                 if let name = item["storeName"].string,
+                    let id = item["storeId"].int,
                     let address = item["storeAddress"].string,
                     let lat = item["storeLatitude"].string,
                     let long = item["storeLongitude"].string,
                     let img = item["storeImgUrl"].string {
 
                     if let imgURL = URL(string: img) {
-                        var store = Store(storeName: name, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL)
+                        let store = Store(storeName: name, storeId: id, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL)
 
                         store.getDistanceFromUser(userLocation: currentLocation)
 
@@ -124,5 +125,54 @@ class ServerRepository {
 
         }
 
+    }
+
+    static func getStoreDetail(detailStoreId: Int, completion: @escaping(Store) -> Void) {
+        let searchUrl = "/detailStore?storeId="
+
+        guard let url = URL(string: baseURL + searchUrl + String(detailStoreId)) else {
+            print("URL is nil")
+            return
+        }
+
+        var urlRequest = URLRequest(url: url)
+        urlRequest.timeoutInterval = 10
+
+        Alamofire.request(urlRequest).responseJSON { response in
+            guard response.result.isSuccess else {
+                print("Response get store error: \(response.result.error!)")
+                return
+            }
+
+            // 항상 성공
+            guard let value = response.result.value else { return }
+
+            let detailJson = JSON(value)
+
+            if let name = detailJson["storeName"].string,
+                let id = detailJson["storeId"].int,
+                let description = detailJson["storeDescription"].string,
+                let tel = detailJson["storeTel"].string,
+                let img = detailJson["storeImgUrl"].string,
+                let isOpened = detailJson["storeIsOpened"].int {
+
+                if let imgURL = URL(string: img) {
+
+                    var isOpenBool: Bool = true
+
+                    if isOpened == 1 {
+                        isOpenBool = true
+                    } else {
+                        isOpenBool = false
+                    }
+
+                    let store = Store(storeName: name, storeId: id, storeDescription: description, storeTel: tel, storeImgUrl: imgURL, storeIsOpened: isOpenBool)
+
+                    DispatchQueue.main.async {
+                        completion(store)
+                    }
+                }
+            }
+        }
     }
 }
