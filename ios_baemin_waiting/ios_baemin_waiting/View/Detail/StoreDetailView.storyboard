@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="m1I-qT-kXU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="m1I-qT-kXU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -96,7 +96,7 @@
                                         <connections>
                                             <outlet property="storeDescriptionContents" destination="Y1E-9o-tv8" id="Ir5-vL-gbQ"/>
                                             <outlet property="storeDescriptionLabel" destination="I2h-2k-O3b" id="55i-aX-2Na"/>
-                                            <outlet property="storeNmae" destination="XMM-1l-Qe3" id="eI5-gu-NGf"/>
+                                            <outlet property="storeNameLabel" destination="XMM-1l-Qe3" id="yBw-mW-erB"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="storeCallButtonCell" rowHeight="65" id="46D-m8-n2T" customClass="StoreCallButtonCell" customModule="ios_baemin_waiting" customModuleProvider="target">
@@ -110,7 +110,7 @@
                                                     <rect key="frame" x="8" y="17" width="359" height="30"/>
                                                     <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="전화걸기">
-                                                        <color key="titleColor" red="0.51279380779999995" green="0.99380667099999997" blue="0.90253801020000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" red="1" green="0.67843137249999996" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="storeCallButton:" destination="46D-m8-n2T" eventType="touchUpInside" id="8Gc-OG-PIr"/>
@@ -188,7 +188,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZB-yU-ci5">
                                                             <rect key="frame" x="150" y="0.0" width="37" height="30"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                            <color key="textColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="1" green="0.67843137249999996" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -212,11 +212,14 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcy-YH-iln">
                                                     <rect key="frame" x="8" y="29" width="359" height="36"/>
-                                                    <color key="backgroundColor" red="0.45149426499705964" green="0.90151957513163328" blue="0.88554239093403198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="1" green="0.67843137254901964" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <state key="normal" title="줄서기">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="Wou-dz-ED6" kind="show" id="ELh-iS-7Zn"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -251,6 +254,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2d6-3g-TmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4674.3999999999996" y="-116.49175412293854"/>
+        </scene>
+        <!--Waiting-->
+        <scene sceneID="L9Q-CL-gSz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Waiting" id="Wou-dz-ED6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ih6-3O-ScI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5530" y="-88"/>
         </scene>
     </scenes>
 </document>

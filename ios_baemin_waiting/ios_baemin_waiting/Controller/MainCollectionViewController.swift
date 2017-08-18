@@ -11,8 +11,8 @@ import UIKit
 class MainCollectionViewController: UIViewController {
 
     let locationManager = CLLocationManager()
-    let jsonController = JsonController()
     var storeList: [Store] = []
+    let refresh = UIRefreshControl()
 
     // IBOutlet
     @IBOutlet weak var snackbarView: UIView!
@@ -31,6 +31,11 @@ class MainCollectionViewController: UIViewController {
         locationManager.delegate = self
 
         locationManager.startUpdatingLocation()
+
+        refresh.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        collectionView.addSubview(refresh)
+
+        snackbarAnimation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,13 +43,33 @@ class MainCollectionViewController: UIViewController {
 
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mainSegue" {
+            if let indexPath = collectionView.indexPathsForSelectedItems {
+                let storeId = storeList[indexPath[0].item].storeId
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.storeId = storeId
+                detailViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                detailViewController.navigationItem.leftItemsSupplementBackButton = true
+
+            }
+        }
+    }
+
     func snackbarAnimation() {
 
         UIView.animate(withDuration: 1.0, delay: 1.5, options: .transitionCrossDissolve, animations: {
             self.snackbarView.alpha = 0
         }, completion: { finished in
-            self.snackbarView.removeFromSuperview()
+            if finished {
+                self.snackbarView.removeFromSuperview()
+            }
         })
+    }
+
+    func refreshData() {
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
     }
 }
 
@@ -106,17 +131,16 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
 
         ServerRepository.postCurrentLocation(currentLocation: currentLocation) { storeData in
             self.storeList = storeData
+
+            self.storeList = self.storeList.sorted { (store1: Store, store2: Store) -> Bool in
+                return store1.storeDistance < store2.storeDistance
+            }
+
             self.collectionView.reloadData()
         }
 
-//        ServerRepository.getStoreList(query: "/stores") { storeData in
-//            self.storeList = storeData
-//            self.collectionView.reloadData()
-//        }
-
-        snackbarAnimation()
-
-        self.locationManager.stopUpdatingLocation()
-        self.locationManager.delegate = nil
+        refresh.endRefreshing()
+        locationManager.stopUpdatingLocation()
+        locationManager.delegate = nil
     }
 }
