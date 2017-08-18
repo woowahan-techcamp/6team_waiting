@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UaN-zs-nkx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UaN-zs-nkx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,7 +31,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFK-mB-qdW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <connections>
-                                    <segue destination="oVs-8g-9Cb" kind="embed" id="OZY-b6-qzl"/>
+                                    <segue destination="oVs-8g-9Cb" kind="embed" identifier="" id="OZY-b6-qzl"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -114,7 +114,7 @@
                 <viewControllerPlaceholder storyboardName="MainCollectionView" id="oVs-8g-9Cb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="seI-9G-pc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4161" y="-143"/>
+            <point key="canvasLocation" x="3746" y="-22"/>
         </scene>
     </scenes>
     <resources>
