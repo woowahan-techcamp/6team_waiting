@@ -1,7 +1,9 @@
 import util from "./util.js";
 import service from "./services/service.js";
+
 import { Menu } from "./menu.js";
 import { Scroll } from "./scroll.js";
+import { View } from "./view.js";
 
 
 export class HomeNavigator {
@@ -20,42 +22,37 @@ export class HomeNavigator {
         this.dropdownList = document.querySelector(list);
 
         this.scroll = new Scroll();
+        this.view = new View(".view");
     }
 
     on() {
         this.btnIntro.addEventListener("click", () => {
-            this.showElement("intro");
-            this.inactivateRoot();
+            this.view.showElement("intro");
+            this.view.inactivateRoot();
         });
 
         this.btnIntroClose.addEventListener("click", () => {
-            this.hideElement("intro")
-            this.activateRoot();
+            this.view.hideElement("intro")
+            this.view.activateRoot();
         });
         
-        this.btnGoStore.addEventListener("click", () => {
-            this.goStoreHandler();
-        });
+        this.btnGoStore.addEventListener("click", this.goStoreHandler);
 
-        this.btnLogin.addEventListener("click", () => {
-            this.signInHandler();
-        });
+        this.btnLogin.addEventListener("click", this.signInHandler);
 
         this.btnLoginClose.addEventListener("click", () => {
-            this.hideElement("sign-in");
+            this.view.hideElement("sign-in");
             this.activateRoot();
         });
 
         this.btnGoSignUp.addEventListener("click", () => {
-            this.showElement("sign-up");
+            this.view.showElement("sign-up");
         });
 
-        this.btnSignUp.addEventListener("click", () => {
-            this.signUpHandler();
-        });
+        this.btnSignUp.addEventListener("click", this.signUpHandler);
 
         this.btnSignUpClose.addEventListener("click", () => {
-            this.hideElement("sign-up");
+            this.view.hideElement("sign-up");
         });
 
         this.navigator.addEventListener("click", (e) => {
@@ -65,16 +62,15 @@ export class HomeNavigator {
         });
 
         this.dropdown.addEventListener("click", (e) => {
-            const drop = document.querySelector(".dropdown");
-            drop.classList.toggle("show-dropdown");
-            this.dropdownImg(drop);
+            this.view.toggleElement("dropdown", "show-dropdown");
+            this.dropdownImg();
         });
 
         this.dropdownList.addEventListener("click", (e) => {
             if (e.target && e.target.nodeName === "LI") {
                 const drop = document.querySelector(".dropdown");
                 drop.classList.remove("show-dropdown");
-                this.dropdownImg(drop);
+                this.dropdownImg();
                 this.showNaviPage(e.target.dataset.dest);
             }
         })
@@ -101,7 +97,8 @@ export class HomeNavigator {
         });
     }
 
-    dropdownImg(drop) {
+    dropdownImg() {
+        const drop = document.querySelector(".dropdown");
         if (drop.classList.contains("show-dropdown"))
             document.getElementById("drop").src = "/dist/public/images/close-white.png";
         else 
@@ -110,30 +107,14 @@ export class HomeNavigator {
 
     goStoreHandler() {
         if (!service.isAuth()) {
-            this.showElement("sign-in");
+            this.view.showElement("sign-in");
         } else {
-            this.showElement("board");
-            this.showElement("nav")
+            this.view.showElement("board");
+            this.view.showElement("nav")
             this.showNaviPage("manage");
         }
 
-        this.inactivateRoot();
-    }
-
-    hideElement(ele) {
-        document.querySelector(`.${ele}`).classList.remove(`show-${ele}`);
-    }
-
-    showElement(ele) {
-        document.querySelector(`.${ele}`).classList.add(`show-${ele}`);
-    }
-
-    inactivateRoot() {
-        document.querySelector(".view").classList.add("inactive");
-    }
-
-    activateRoot() {
-        document.querySelector(".view").classList.remove("inactive");
+        this.view.inactivateRoot();
     }
 
     registerHandler() {
@@ -141,9 +122,7 @@ export class HomeNavigator {
         menu.addMenuInput();
 
         const btnAddMenu = document.querySelector(".add-menu");
-        btnAddMenu.addEventListener("click", () => {
-            menu.addMenuInput();
-        });
+        btnAddMenu.addEventListener("click", menu.addMenuInput);
 
         const btnRegister = document.getElementById("btn-reg-store");
         btnRegister.addEventListener("click", () => {
@@ -194,9 +173,9 @@ export class HomeNavigator {
     showNaviPage(destination) {
         switch (destination) {
             case "home":
-                this.activateRoot();
-                this.hideElement("nav");
-                this.hideElement("board");
+                this.view.activateRoot();
+                this.view.hideElement("nav");
+                this.view.hideElement("board");
                 break;
 
             case "my-page":
@@ -228,9 +207,9 @@ export class HomeNavigator {
 
             case "logout": 
                 service.signOutUser();
-                this.activateRoot();
-                this.hideElement("nav");
-                this.hideElement("board");
+                this.view.activateRoot();
+                this.view.hideElement("nav");
+                this.view.hideElement("board");
                 break;
 
             default:
@@ -240,9 +219,9 @@ export class HomeNavigator {
     }
 
     showInitialBoard() {
-        this.hideElement("sign-in");
-        this.showElement("nav");
-        this.showElement("board");
+        this.view.hideElement("sign-in");
+        this.view.showElement("nav");
+        this.view.showElement("board");
         this.showNaviPage("manage");
     }
 
@@ -266,7 +245,7 @@ export class HomeNavigator {
         const userTel = document.getElementById("sign-tel").value;
         
         service.signUpUser(userId, userPwd, userName, "owner", userTel).then(() => {
-            this.hideElement("sign-up");
+            this.view.hideElement("sign-up");
             this.showInitialBoard();
         });
     }
