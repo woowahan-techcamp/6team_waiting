@@ -77,7 +77,7 @@ div.intro {
     position: absolute;
     top: 5vh;
     left: calc(-100vw);
-    background-color: $secondary-color;
+    background-color: white;
     border-radius: 0px 10px 10px 0px;
     z-index: 10;
 
@@ -94,9 +94,8 @@ div.intro:not(.show-intro) {
 }
 
 div.sign-in {
-    width: 35vw;
+    width: 450px;
     height: 90vh;
-    min-width: 400px;
 
     position: absolute;
     bottom: calc(-100vh);
@@ -143,7 +142,7 @@ div.sign-area {
 }
 
 div.sign-area input {
-    width: 250px;
+    width: 100%;
     height: 30px;
     margin-top: 10px;
     border-radius: 5px;
@@ -164,7 +163,7 @@ div.sign-area button {
 
 p.sign-warning {
     margin-top: 20px;
-    color: red;
+    color: #FF6666;
     visibility: hidden;
 }
 
@@ -181,7 +180,7 @@ button#btn-go-sign-up {
 }
 
 div.sign-up {
-    width: 35vw;
+    width: 450px;
     min-width: 400px;
     height: 90vh;
 
@@ -208,13 +207,12 @@ div.sign-up:not(.show-sign-up) {
 }
 
 button#btn-sign-up {
+    @extend .full-color-button;
     width: 250px;
-    height: 40px;
+    height: 35px;
     font-weight: bolder;
     font-size: 1.3em;
-    border-radius: 30px;
-    background-color: $primary-color;
-    color: white;
+    margin-top: 30px;
 }
 
 span.sign-up-title {
@@ -222,26 +220,21 @@ span.sign-up-title {
     font-weight: bold;
     font-size: 3em;
     display: block;
-    margin-top: 80px;
+    margin-top: 15vh;
 }
 
 div.sign-up-form {
-    width: calc(20vw);
-    margin-left: 7vw;
-    margin-bottom: 50px;
-}
-
-@media screen and (max-width: 500px) {
-    div.sign-up-form {
-        margin-left: 60px;
-    }
+    width: 300px;
+    margin: auto;
+    overflow: auto;
+    height: 350px;
 }
 
 div.sign-up-form input {
-    width: 90%;
-    height: 30px;
-    font-size: 1.2em;
-    border-bottom: 1px solid $primary-color;
+    @extend .full-color-input;
+    width: 100%;
+    height: 25px;
+    font-size: 1.1em;
 }
 
 div.sign-up-form dl {
@@ -261,7 +254,7 @@ div.sign-up-form dt {
   padding: 0;
   padding-right: calc(5%); 
   margin: 0;
-  margin-top: 10px;
+  margin-top: 5px;
   font-size: 1.2em;
   font-weight: bolder;
   text-align: left;
@@ -322,12 +315,12 @@ div.nav:not(.show-nav) {
     @include page-animation;
 }
 
-div.nav ul {
+ul.navigator {
     margin-top: 5vh;
     margin-left: 1vw;
 }
 
-div.nav li {
+ul.navigator li {
     font-weight: bolder;
     font-size: 1.2em;
     margin-top: 20px;
@@ -335,14 +328,19 @@ div.nav li {
     height: 2.5vh;
 }
 
-div.nav li:last-child {
+ul.navigator li:last-child {
     margin-bottom: 20px;
+}
+
+img#drop {
+    float: right;
+    margin-top: 15px;
+    margin-right: 20px;
 }
 
 div.board {
     position: absolute;
     width: 80vw;
-    min-width: 700px;
     height: 80vh;
     min-height: 400px;
     top: calc(-100vh);
@@ -381,10 +379,100 @@ button#btn-go-register {
     font-size: 1.2em;
 }
 
-/* iPad 가로+세로 */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+
+@media only screen and (min-width : 1200px) {
+    div.intro {
+        width: 900px;
+    }
+
+    div.dropdown {
+        display: none;
+    }
 }
 
-/* 스마트폰 가로+세로 */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+@media only screen and (min-width : 768px) and (max-width : 1200px) {
+    div.intro {
+        width: 700px;
+    }
+
+    div.dropdown {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    @mixin dropdown-animation {
+        -webkit-transition:height 200ms ease-in;
+        -moz-transition:height 200ms ease-in;
+        -o-transition:height 200ms ease-in;
+        transition:height 200ms ease-in;
+    }
+
+    div.nav {
+        position: absolute;
+        width: 100vw;
+        top: 0;
+        height: 60px;
+        border-radius: 0 0 0 0;
+        z-index: 100;
+    }
+
+    div.nav ul.navigator {
+        display: none;
+    }
+    
+    ul.dropdown-list {
+        position:absolute;
+        top: 60px;
+    }
+
+    ul.dropdown-list li {
+        width: 100vw;
+        height: 0px;
+        overflow:hidden;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: center;
+        background-color: white;
+        color: $primary-color;
+        @include dropdown-animation;
+    }
+
+    div.show-dropdown ul li {
+        opacity: 1;
+        visibility: visible;
+        height: 50px;
+        line-height: 50px;
+        @include dropdown-animation;
+    }
+
+    div.show-dropdown ul li:last-child {
+        border-bottom: 1px solid $primary-color;
+    }
+
+    div.sign-in {
+        right: 0px;
+        width: 400px;
+    }
+
+    div.sign-up {
+        right: 0px;
+        width: 250px;
+    }
+
+    div.intro {
+        width: 400px;
+    }
+
+    div.sign-up-form {
+        width: 250px;
+    }
+
+    button#btn-sign-up {
+        width: 200px;
+        font-weight: bolder;
+        font-size: 1em;
+    }
+
 }

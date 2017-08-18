@@ -1,2 +1,24 @@
-$primary-color:#2AC1BC;
-$secondary-color: #ABE2E0;
+$primary-color:#FFAD27;
+$secondary-color:#FFD99E;
+
+.border-input {
+    border: 1px solid $secondary-color;
+    border-radius: 5px;
+}
+
+.full-color-input {
+    background-color: $secondary-color;
+    border-radius: 5px;
+}
+
+.border-button {
+    border: 1px solid $primary-color;
+    border-radius: 30px;
+    color: $primary-color;
+}
+
+.full-color-button {
+    background-color: $primary-color;
+    border-radius: 30px;
+    color: white;
+}
