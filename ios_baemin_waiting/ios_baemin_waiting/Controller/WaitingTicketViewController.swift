@@ -16,8 +16,9 @@ class WaitingTicketViewController: UIViewController {
     @IBOutlet weak var nameTextField: WaitingTextField!
     @IBOutlet weak var phoneNumberTextField: WaitingTextField!
     @IBOutlet weak var wrongNumberLabel: UILabel!
-
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
     lazy var inputToolbar: UIToolbar = {
         var toolbar = UIToolbar()
         toolbar.barStyle = .default
@@ -49,6 +50,7 @@ class WaitingTicketViewController: UIViewController {
         configurePhoneNumberTextField()
 
         nameTextField.becomeFirstResponder()
+        activityIndicator.isHidden = true
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -58,10 +60,12 @@ class WaitingTicketViewController: UIViewController {
     }
     func configureNameTextField() {
         nameTextField.returnKeyType = .continue
+        nameTextField.tintColor = baseOrange
     }
     func configurePhoneNumberTextField() {
         phoneNumberTextField.returnKeyType = .done
         phoneNumberTextField.keyboardType = .numberPad
+        phoneNumberTextField.tintColor = baseOrange
     }
 
     func donePressed() {
@@ -110,9 +114,24 @@ class WaitingTicketViewController: UIViewController {
 
         let ticket = WaitingTicket(name: name, phoneNumber: phoneNumber, headCount: headCount, isStaying: isStaying)
 
-        // do alamofire post
 
-        performSegue(withIdentifier: "createTicket", sender: ticket)
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+
+
+        ServerRepository.postWaitingTicketCreate(params: ticket) {[weak self] isSuccess in
+
+            self?.activityIndicator.stopAnimating()
+            self?.activityIndicator.isHidden = true
+
+            if isSuccess {
+                self?.performSegue(withIdentifier: "createTicket", sender: ticket)
+            } else {
+                self?.popUpAlert(title: "네트워크 에러", message: "일시적인 오류로 티켓을 발행할 수 없습니다.")
+            }
+
+        }
+
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

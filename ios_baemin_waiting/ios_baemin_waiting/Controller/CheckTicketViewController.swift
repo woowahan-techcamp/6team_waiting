@@ -29,4 +29,12 @@ class CheckTicketViewController: UIViewController {
         // 줄 선 식당의 현재 대기인원
 
     }
+    @IBAction func closeBtnTapped(_ sender: UIButton) {
+
+        let navigationController = self.presentingViewController as? UINavigationController
+
+        self.dismiss(animated: true) {
+            let _ = navigationController?.popToRootViewController(animated: true)
+        }
+    }
 }
