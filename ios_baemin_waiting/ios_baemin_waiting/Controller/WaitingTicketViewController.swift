@@ -10,18 +10,14 @@ import UIKit
 
 class WaitingTicketViewController: UIViewController {
 
-    enum InputNilError {
-        case nameFieldEmpty
-        case numberFieldEmpty
-        case noError
-    }
-
     @IBOutlet weak var phoneHeadView: UIView!
     @IBOutlet weak var stepperView: UIStepper!
     @IBOutlet weak var headCountLabel: UILabel!
     @IBOutlet weak var nameTextField: WaitingTextField!
     @IBOutlet weak var phoneNumberTextField: WaitingTextField!
+    @IBOutlet weak var wrongNumberLabel: UILabel!
 
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     lazy var inputToolbar: UIToolbar = {
         var toolbar = UIToolbar()
         toolbar.barStyle = .default
@@ -55,6 +51,11 @@ class WaitingTicketViewController: UIViewController {
         nameTextField.becomeFirstResponder()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        self.view.endEditing(true)
+    }
     func configureNameTextField() {
         nameTextField.returnKeyType = .continue
     }
@@ -64,8 +65,8 @@ class WaitingTicketViewController: UIViewController {
     }
 
     func donePressed() {
-        print("done")
         phoneNumberTextField.resignFirstResponder()
+        wrongNumberLabel.isHidden = true
     }
 
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
@@ -80,23 +81,48 @@ class WaitingTicketViewController: UIViewController {
             headCountLabel.text = "\(Int(sender.value))명"
         }
     }
+    @IBAction func numberTextFieldChanged(_ sender: WaitingTextField) {
+        wrongNumberLabel.isHidden = false
+        guard let text = sender.text else { return }
+
+        let result1 = validateInput(expression: "\\d{3}\\d{4}$", value: text)
+        let result2 = validateInput(expression: "\\d{4}\\d{4}$", value: text)
+
+        if !result1 && !result2 {
+            wrongNumberLabel.text = "잘못된 형식의 번호입니다."
+            wrongNumberLabel.textColor = UIColor(red: 244/255, green: 67/255, blue: 54/255, alpha: 1.0)
+        } else {
+            wrongNumberLabel.text = "올바른 형식의 번호입니다."
+            wrongNumberLabel.textColor = UIColor(red: 27/255, green: 123/255, blue: 236/255, alpha: 1)
+        }
+    }
     @IBAction func makeWaitingTicketTapped(_ sender: UIButton) {
-        var errorType: InputNilError = .noError
         if nameTextField.text == "" {
-            errorType = .nameFieldEmpty
+            popUpAlert(title: "잠깐만요", message: "이름을 입력해주세요.")
         } else if phoneNumberTextField.text == "" {
-            errorType = .numberFieldEmpty
+            popUpAlert(title: "잠깐만요", message: "전화번호를 입력해주세요.")
         }
 
-        switch errorType {
-        case .nameFieldEmpty:
-            popUpAlert(title: "오류", message: "이름을 입력하지 않았습니다.")
-        case .numberFieldEmpty:
-            popUpAlert(title: "오류", message: "전화번호를 입력하지 않았습니다.")
-        default:
-            break
-        }
+        guard let name = nameTextField.text else { return }
+        guard let phoneNumber = phoneNumberTextField.text else { return }
+        let headCount = Int(stepperView.value)
+        let isStaying = segmentedControl.selectedSegmentIndex == 0 ? false : true
 
+        let ticket = WaitingTicket(name: name, phoneNumber: phoneNumber, headCount: headCount, isStaying: isStaying)
+
+        // do alamofire post
+
+        performSegue(withIdentifier: "createTicket", sender: ticket)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "createTicket" {
+            if let destination = segue.destination as? CheckTicketViewController {
+                if let ticket = sender as? WaitingTicket {
+                    destination.waitingTicket = ticket
+                }
+            }
+        }
     }
 }
 
@@ -119,14 +145,13 @@ extension WaitingTicketViewController: UITextFieldDelegate {
         return true
     }
 
+    func validateInput(expression: String, value: String) -> Bool {
+        let test = NSPredicate(format: "SELF MATCHES %@", expression)
+        let result = test.evaluate(with: value)
+
+        return result
+    }
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-
-        func validateInput(expression: String, value: String) -> Bool {
-            let test = NSPredicate(format: "SELF MATCHES %@", expression)
-            let result = test.evaluate(with: value)
-
-            return result
-        }
 
         if textField == phoneNumberTextField {
             guard let text = textField.text else { return true }
