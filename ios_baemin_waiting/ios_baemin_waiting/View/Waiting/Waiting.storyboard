@@ -199,9 +199,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="makeWaitingTicketTapped:" destination="N8g-JL-6T9" eventType="touchUpInside" id="sMw-6n-Evl"/>
-                                                    <segue destination="t2K-Wn-8ih" kind="popoverPresentation" identifier="createTicket" popoverAnchorView="gpZ-Y0-fu8" id="iI2-Am-os9">
-                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                    </segue>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -215,6 +212,9 @@
                                     <constraint firstAttribute="bottom" secondItem="jWI-Ou-qKG" secondAttribute="bottom" id="gcs-qC-Vjo"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="heI-cO-r22">
+                                <rect key="frame" x="177" y="291.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -222,6 +222,8 @@
                             <constraint firstAttribute="trailingMargin" secondItem="xlh-FL-BZJ" secondAttribute="trailing" id="2VR-aW-Gr0"/>
                             <constraint firstItem="xlh-FL-BZJ" firstAttribute="top" secondItem="7c1-XR-f1v" secondAttribute="bottom" constant="16" id="HPs-kL-PdO"/>
                             <constraint firstItem="xlh-FL-BZJ" firstAttribute="leading" secondItem="lfa-Hf-pYy" secondAttribute="leadingMargin" id="RE0-xY-ewJ"/>
+                            <constraint firstItem="heI-cO-r22" firstAttribute="centerX" secondItem="lfa-Hf-pYy" secondAttribute="centerX" id="WCe-4t-6Yp"/>
+                            <constraint firstItem="heI-cO-r22" firstAttribute="centerY" secondItem="lfa-Hf-pYy" secondAttribute="centerY" id="o4s-H2-mTH"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="kBI-Y6-NBh" appends="YES" id="eWq-VT-Zv9"/>
@@ -233,6 +235,7 @@
                         <size key="landscapeSize" width="603" height="375"/>
                     </fixedSimulatedSizeMetrics>
                     <connections>
+                        <outlet property="activityIndicator" destination="heI-cO-r22" id="p8U-8Q-rhp"/>
                         <outlet property="headCountLabel" destination="nbT-Ii-k2b" id="nNL-NM-4wX"/>
                         <outlet property="nameTextField" destination="JfX-On-E1K" id="pnK-aa-H5t"/>
                         <outlet property="phoneHeadView" destination="TLd-L5-49w" id="wAo-ml-1iH"/>
@@ -240,6 +243,7 @@
                         <outlet property="segmentedControl" destination="dKR-ga-nsy" id="PKe-xj-BPD"/>
                         <outlet property="stepperView" destination="yM2-sw-OSA" id="XJd-XW-WrY"/>
                         <outlet property="wrongNumberLabel" destination="cSy-Lx-Zfw" id="h2K-zS-Z5B"/>
+                        <segue destination="t2K-Wn-8ih" kind="presentation" id="7uh-fY-R5W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ytA-YF-Ath" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -254,7 +258,7 @@
         <!--Check Ticket View Controller-->
         <scene sceneID="Ahq-vQ-LNd">
             <objects>
-                <viewController id="t2K-Wn-8ih" customClass="CheckTicketViewController" sceneMemberID="viewController">
+                <viewController id="t2K-Wn-8ih" customClass="CheckTicketViewController" customModule="ios_baemin_waiting" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lfJ-7N-ZXM"/>
                         <viewControllerLayoutGuide type="bottom" id="ecA-11-MbA"/>
@@ -363,9 +367,21 @@
                                     <constraint firstItem="fKU-9Q-Emf" firstAttribute="top" secondItem="fWk-qe-rSm" secondAttribute="top" constant="15" id="wiJ-pY-WOA"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SxC-Bc-jEa">
+                                <rect key="frame" x="15" y="25" width="72" height="33"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                <state key="normal" title="Home으로">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeBtnTapped:" destination="t2K-Wn-8ih" eventType="touchUpInside" id="U8E-qT-YFe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="SxC-Bc-jEa" firstAttribute="top" secondItem="lfJ-7N-ZXM" secondAttribute="bottom" constant="25" id="7w8-Oj-PRf"/>
+                            <constraint firstItem="SxC-Bc-jEa" firstAttribute="leading" secondItem="rQL-Ti-ooU" secondAttribute="leading" constant="15" id="FeX-Qh-sRY"/>
                             <constraint firstItem="fWk-qe-rSm" firstAttribute="centerY" secondItem="rQL-Ti-ooU" secondAttribute="centerY" id="NXv-N2-QeV"/>
                             <constraint firstItem="fWk-qe-rSm" firstAttribute="leading" secondItem="rQL-Ti-ooU" secondAttribute="leading" constant="15" id="lfX-wA-XUs"/>
                             <constraint firstAttribute="trailing" secondItem="fWk-qe-rSm" secondAttribute="trailing" constant="15" id="xV7-5y-Qjo"/>
