@@ -23,6 +23,10 @@ class MainCollectionViewCell: UICollectionViewCell {
         contentItem.layer.borderColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1.0).cgColor
         contentItem.layer.borderWidth = 0.4
     }
+
+    override func prepareForReuse() {
+        restaurantsImage.image = nil
+    }
     func putCellContent(storeInfo: Store) {
         restaurantsName.text = storeInfo.storeName
 
