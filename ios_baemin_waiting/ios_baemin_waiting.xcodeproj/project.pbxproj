@@ -724,10 +724,7 @@
 					"-framework",
 					"\"SwiftyJSON\"",
 				);
-				"OTHER_LDFLAGS[arch=*]" = (
-					"-ObjC",
-					"-lxml2",
-				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC -lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.woowabrothers.ios-baemin-waiting";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios_baemin_waiting/Supporting Files/ios_baemin_waiting-Bridging-Header.h";

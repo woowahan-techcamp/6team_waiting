@@ -19,8 +19,13 @@ class MainCollectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
+    @IBOutlet weak var noResultLabel: UILabel!
+    @IBOutlet weak var noResultRefreshBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(updateError),
+                                               name: NSNotification.Name(rawValue: "updateError"), object: nil)
 
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -45,6 +50,34 @@ class MainCollectionViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+
+    }
+
+    func updateError(_ notification: NSNotification) {
+        guard let errorType = notification.userInfo?["error"] as? NMapLocationManagerErrorType else {
+            return
+        }
+
+        switch errorType {
+        case .unknown: fallthrough
+        case .canceled: fallthrough
+        case .timeout:
+            noResultLabel.text = "일시적으로 내위치를 확인 할 수 없습니다."
+        case .denied:
+            noResultLabel.text = "위치 정보를 확인 할 수 없습니다.\n사용자의 위치 정보를 확인하도록 허용하시려면 위치서비스를 켜십시오."
+        case .unavailableArea:
+            noResultLabel.text = "현재 위치는 지도내에 표시할 수 없습니다."
+        default:
+            break
+        }
+
+        if errorType != .unknown && errorType != .unknown {
+            activityIndicator.stopAnimating()
+            activityIndicator.isHidden = true
+
+            noResultLabel.isHidden = false
+            noResultRefreshBtn.isHidden = false
+        }
 
     }
 
@@ -75,6 +108,9 @@ class MainCollectionViewController: UIViewController {
     func refreshData() {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
+    }
+    @IBAction func noResultRefreshBtnTapped(_ sender: UIButton) {
+        refreshData()
     }
 }
 
@@ -130,6 +166,12 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
         self.locationManager.delegate = nil
         print("CLLocation Manager Update Error")
 
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+
+        noResultLabel.isHidden = false
+        noResultRefreshBtn.isHidden = false
+
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
@@ -145,6 +187,7 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
         }
 
         refresh.endRefreshing()
+
         locationManager.stopUpdatingLocation()
         locationManager.delegate = nil
     }
