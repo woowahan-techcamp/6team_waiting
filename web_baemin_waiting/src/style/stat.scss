@@ -1,0 +1,99 @@
+div.stat{
+    width: 80%;
+    height: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+div.stat > h1 {
+    margin-top: 50px;
+}
+
+div.stat > div {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    position: relative;
+}
+
+.bar {
+  fill: $secondary-color;
+  height: 21px;
+  transition: fill .3s ease;
+  cursor: pointer;
+  
+  text {
+    fill: #AAA;
+    font-size: .7em;
+  }
+}
+
+.chart:hover,
+.chart:focus {
+  .bar {
+    fill: $secondary-color;
+  }
+}
+
+.bar:hover,
+.bar:focus {
+  fill: $primary-color !important;
+  
+  text {
+    fill: black;
+  }
+}
+
+figcaption {
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.time-chart {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 420px;
+    height: 200px;
+    text-align: center;
+}
+
+.age-chart {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    text-align: center;
+}
+
+.age-chart figcaption {
+    width: 400px;
+}
+
+.age-bar {
+  fill: #FAA;
+  height: 21px;
+  transition: fill .3s ease;
+  cursor: pointer;
+  
+  text {
+    fill: #AAA;
+    font-size: .7em;
+  }
+}
+
+.age-chart:hover,
+.age-chart:focus {
+  .age-bar {
+    fill: #FAA;
+  }
+}
+
+.age-bar:hover,
+.age-bar:focus {
+  fill: #FF6D6D !important;
+  
+  text {
+    fill: black;
+  }
+}

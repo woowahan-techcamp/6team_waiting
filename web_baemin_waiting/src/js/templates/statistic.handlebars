@@ -1,0 +1,99 @@
+<div class="stat">
+
+    <h1>가계 통계</h1>
+    <div>
+        <figure class="time-chart">
+            <figcaption>주간 시간별 고객 수</figcaption>
+            <svg class="chart" width="360" height="160" aria-labelledby="title" role="img">
+                <title id="title">시간별 고객 수</title>
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[0]}} * 2)" y="calc(140 - {{time.[0]}} * 2)"></rect>
+                    <text y="150" dy=".35em">9시</text>
+                </g>
+
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[1]}} * 2)" x="30" y="calc(140 - {{time.[1]}} * 2)"></rect>
+                    <text x="30" y="150" dy=".35em">10시</text>
+                </g>
+
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[2]}} * 2)" x="60" y="calc(140 - {{time.[2]}} * 2)"></rect>
+                    <text x="60" y="150" dy=".35em">11시</text>
+                </g>
+
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[3]}} * 2)" x="90" y="calc(140 - {{time.[3]}} * 2)"></rect>
+                    <text x="90" y="150" dy=".35em">12시</text>
+                </g>
+
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[4]}} * 2)" x="120" y="calc(140 - {{time.[4]}} * 2)"></rect>
+                    <text x="120" y="150" dy=".35em">13시</text>
+                </g>
+
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[5]}} * 2)" x="150" y="calc(140 - {{time.[5]}} * 2)"></rect>
+                    <text x="150" y="150" dy=".35em">14시</text>
+                </g>
+
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[6]}} * 2)" x="180" y="calc(140 - {{time.[6]}} * 2)"></rect>
+                    <text x="180" y="150" dy=".35em">15시</text>
+                </g>
+
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[7]}} * 2)" x="210" y="calc(140 - {{time.[7]}} * 2)"></rect>
+                    <text x="210" y="150" dy=".35em">16시</text>
+                </g>
+
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[8]}} * 2)" x="240" y="calc(140 - {{time.[8]}} * 2)"></rect>
+                    <text x="240" y="150" dy=".35em">17시</text>
+                </g>
+
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[9]}} * 2)" x="270" y="calc(140 - {{time.[9]}} * 2)"></rect>
+                    <text x="270" y="150" dy=".35em">18시</text>
+                </g>
+
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[10]}} * 2)" x="300" y="calc(140 - {{time.[10]}} * 2)"></rect>
+                    <text x="300" y="150" dy=".35em">19시</text>
+                </g>
+
+                <g class="bar">
+                    <rect width="20" height="calc({{time.[11]}} * 2)" x="330" y="calc(140 - {{time.[11]}} * 2)"></rect>
+                    <text x="330" y="150" dy=".35em">20시</text>
+                </g>
+            </svg>
+        </figure>
+
+        <figure class="age-chart">
+        <figcaption>주간 연령별 고객 수</figcaption>
+            <svg class="age-chart" width="400" height="150" aria-labelledby="title" role="img">
+            <title id="title">A bart chart showing information</title>
+            <g class="age-bar">
+                <rect width={{age.[0]}} height="20"></rect>
+                <text x={{age.[0]}} y="10" dy=".35em">10대</text>
+            </g>
+            <g class="age-bar">
+                <rect width={{age.[1]}} height="20" y="30"></rect>
+                <text x={{age.[1]}} y="40" dy=".35em">20대</text>
+            </g>
+            <g class="age-bar">
+                <rect width={{age.[2]}} height="20" y="60"></rect>
+                <text x={{age.[2]}} y="70" dy=".35em">30대</text>
+            </g>
+            <g class="age-bar">
+                <rect width={{age.[3]}} height="20" y="90"></rect>
+                <text x={{age.[3]}} y="100" dy=".35em">40대</text>
+            </g>
+            <g class="age-bar">
+                <rect width={{age.[4]}} height="20" y="120"></rect>
+                <text x={{age.[4]}} y="130" dy=".35em">50대</text>
+            </g>
+            </svg>
+        </figure>
+
+    </div>
+</div>
