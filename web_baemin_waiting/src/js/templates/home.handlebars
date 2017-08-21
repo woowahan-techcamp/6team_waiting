@@ -16,10 +16,16 @@
 <div class="intro">
     <span id="btn-intro-close" class="btn-close"><img src="/dist/public/images/close.png"></span>
     <div class="intro-title">배민웨이팅, 이렇게 사용하세요</div>
+
+    <div class="slide-navi">
+        <a class="prev">&#10094;</a>
+        <a class="next">&#10095;</a>
+    </div>
+
     <div class="intro-desc">
         {{#each serv-desc}}
-        <div>
-            <div class="circle"><img src={{this.img}} alt="desc-pic"></div>
+        <div class="slides">
+            <img src={{this.img}}>
             <p>{{this.content}}</p>
         </div>
         {{/each}}

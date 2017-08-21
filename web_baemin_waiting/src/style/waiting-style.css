@@ -102,15 +102,43 @@ div.intro-title {
   color: #FFAD27; }
 
 div.intro p {
-  margin: 10px 0px 30px 0px;
+  position: absolute;
   text-align: center;
+  bottom: -50px;
+  left: 0;
+  right: 0;
   color: #FFAD27; }
 
-div.circle > img {
-  width: 90%;
-  height: 100px;
-  border-radius: 0px 10px 10px 0px;
-  margin: 0px 0px 0px 0px; }
+div.slide-navi a {
+  color: #FFAD27;
+  font-size: 2em;
+  cursor: pointer; }
+
+div.slide-navi .prev {
+  position: absolute;
+  top: 50%;
+  left: 10%; }
+
+div.slide-navi .next {
+  position: absolute;
+  top: 50%;
+  right: 10%; }
+
+div.slides {
+  position: relative;
+  margin: auto; }
+
+div.slides img {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; }
 
 div.sign-in {
   width: 450px;
@@ -376,15 +404,22 @@ button#btn-go-register {
 
 @media only screen and (min-width: 1200px) {
   div.intro {
-    width: 900px; }
+    width: 1150px; }
   div.dropdown {
-    display: none; } }
+    display: none; }
+  div.slides {
+    position: relative;
+    width: 70%;
+    height: 50%; } }
 
 @media only screen and (min-width: 768px) and (max-width: 1200px) {
   div.intro {
-    width: 700px; }
+    width: 90%; }
   div.dropdown {
-    display: none; } }
+    display: none; }
+  div.slides {
+    width: 70%;
+    height: 50%; } }
 
 @media screen and (max-width: 768px) {
   div.nav {
@@ -430,13 +465,21 @@ button#btn-go-register {
     right: 0px;
     width: 250px; }
   div.intro {
-    width: 400px; }
+    width: 100%; }
   div.sign-up-form {
     width: 250px; }
   button#btn-sign-up {
     width: 200px;
     font-weight: bolder;
-    font-size: 1em; } }
+    font-size: 1em; }
+  div.slides {
+    width: 500px;
+    height: 380px;
+    margin: auto; }
+  div.slides > img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; } }
 
 div.manage {
   width: 50vw;
