@@ -5,7 +5,6 @@ export class Menu {
 
     constructor(menus) {
         this.menus = document.querySelector(menus);
-        
         this.count = 0;
         this.LIMIT = 10;
     }
@@ -24,7 +23,7 @@ export class Menu {
             newMenu.querySelector(".remove-menu").addEventListener("click", (e) => {
                 this.removeMenuInput(e);
             });
-
+            
             this.menus.appendChild(newMenu);
             this.count++;
         }
