@@ -1,48 +1,50 @@
 //
-//  StoreMapViewCell.swift
+//  DetailMapViewController.swift
 //  ios_baemin_waiting
 //
-//  Created by woowabrothers on 2017. 8. 11..
+//  Created by woowabrothers on 2017. 8. 21..
 //  Copyright © 2017년 woowabrothers. All rights reserved.
 //
 
 import UIKit
 
-class StoreMapViewCell: UITableViewCell {
+class DetailMapViewController: UIViewController {
 
-    @IBOutlet weak var mapView: UIView!
+    var mapView: NMapView?
 
-    var currentMapView: NMapView?
-    var storeLocation: NGeoPoint?
+    var location: NGeoPoint?
 
-    // map init
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-        currentMapView = initMap(frame: self.mapView.bounds)
+        mapView = initMap(frame: self.view.bounds)
 
-        if let mapView = currentMapView {
-            mapView.delegate = self
-            mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        if let nMap = mapView {
+            nMap.delegate = self
+            nMap.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
-            self.mapView.addSubview(mapView)
+            self.view.addSubview(nMap)
+
+            if let storeLocation = location {
+                nMap.setMapCenter(storeLocation)
+
+                addMarker(location: storeLocation)
+
+            }
         }
+
     }
 
-    // map의 중앙 설정
-    func setMap(store: Store) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-        if let lat = CLLocationDegrees(store.storeLatitude), let long = CLLocationDegrees(store.storeLongitude) {
-
-            let location = NGeoPoint(longitude: long, latitude: lat)
-            storeLocation = location
-
-            currentMapView?.setMapCenter(location)
-
-            addMarker(location: location)
-        }
+        mapView?.viewWillAppear()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
 
+        mapView?.viewWillDisappear()
+    }
     func initMap(frame: CGRect) -> NMapView {
         guard let filePath = Bundle.main.path(forResource: "Info", ofType: "plist") else { return NMapView() }
 
@@ -58,7 +60,7 @@ class StoreMapViewCell: UITableViewCell {
 
     func addMarker(location: NGeoPoint) {
 
-        if let mapOverlayManager = currentMapView?.mapOverlayManager {
+        if let mapOverlayManager = mapView?.mapOverlayManager {
 
             if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
 
@@ -72,12 +74,11 @@ class StoreMapViewCell: UITableViewCell {
             }
         }
     }
-
 }
 
 // MARK: NMapViewDelegate
 // 지도 상태 변경 및 터치 이벤트 발생 시 호출되는 콜백 프로토콜
-extension StoreMapViewCell: NMapViewDelegate {
+extension DetailMapViewController: NMapViewDelegate {
     func onMapView(_ mapView: NMapView!, initHandler error: NMapError!) {
         if error == nil {
             mapView.setMapCenter(NGeoPoint(longitude: 126.978371, latitude: 37.5666091), atLevel: 9)
@@ -92,7 +93,7 @@ extension StoreMapViewCell: NMapViewDelegate {
 // MARK: NMapPOIdataOverlayDelegate
 // 지도 위에 표시되는 오버레이 아이템 클래스이며 NMapPOIdataOverlay 클래스에서 표시하는 기본 객체로 사용됩니다.
 // 지도에 표시되는 마커 이미지는 NMapPOIdataOverlayDelegate 프로토콜을 통해서 전달합니다.
-extension StoreMapViewCell: NMapPOIdataOverlayDelegate {
+extension DetailMapViewController: NMapPOIdataOverlayDelegate {
     // 마커에 해당하는 이미지를 반환
     // 마커 선택 시 표시되는 이미지는 selected 값이 YES인 경우 반환
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, imageForOverlayItem poiItem: NMapPOIitem!, selected: Bool) -> UIImage! {

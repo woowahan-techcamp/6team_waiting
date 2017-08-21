@@ -62,7 +62,15 @@ class MapViewController: UIViewController {
 
         mapView?.viewWillDisappear()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
+        if let location = myLocation {
+            mapView?.setMapCenter(location, atLevel: 9)
+        }
+
+        mapView?.viewWillAppear()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -91,27 +99,11 @@ extension MapViewController: NMapLocationManagerDelegate {
     }
     // 현재 위치 로딩 실패시 호출
     func locationManager(_ locationManager: NMapLocationManager!, didFailWithError errorType: NMapLocationManagerErrorType) {
-        var message: String = ""
 
-        switch errorType {
-        case .unknown: fallthrough
-        case .canceled: fallthrough
-        case .timeout:
-            message = "일시적으로 내위치를 확인 할 수 없습니다."
-        case .denied:
-            message = "위치 정보를 확인 할 수 없습니다.\n사용자의 위치 정보를 확인하도록 허용하시려면 위치서비스를 켜십시오."
-        case .unavailableArea:
-            message = "현재 위치는 지도내에 표시할 수 없습니다."
-        case .heading:
-            message = "나침반 정보를 확인 할 수 없습니다."
+        if errorType != .unknown && errorType != .canceled {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateError"),
+                                            object: nil, userInfo: ["error": errorType])
         }
-
-        if !message.isEmpty {
-            let alert = UIAlertController(title:"NMapViewer", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title:"OK", style:.default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
-
     }
 
     func enableLocationUpdate() {

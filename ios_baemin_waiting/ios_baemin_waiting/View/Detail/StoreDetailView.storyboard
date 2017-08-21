@@ -166,7 +166,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="mapView" destination="w4Z-J7-jck" id="f2M-5C-J7c"/>
+                                            <outlet property="mapView" destination="w4Z-J7-jck" id="pqw-zp-Elp"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="storeLineShowCell" rowHeight="70" id="u36-cW-oMO" customClass="StoreLineShowCell" customModule="ios_baemin_waiting" customModuleProvider="target">
@@ -242,11 +242,12 @@
                     </fixedSimulatedSizeMetrics>
                     <connections>
                         <outlet property="tableView" destination="8iY-wh-dXw" id="mUK-Cu-qFy"/>
+                        <segue destination="4rB-MM-4Jq" kind="show" identifier="showDetailMap" id="vMV-XH-ASM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2d6-3g-TmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4674.3999999999996" y="-116.49175412293854"/>
+            <point key="canvasLocation" x="4665" y="-99"/>
         </scene>
         <!--Waiting-->
         <scene sceneID="L9Q-CL-gSz">
@@ -255,6 +256,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ih6-3O-ScI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5530" y="-88"/>
+        </scene>
+        <!--Detail Map View Controller-->
+        <scene sceneID="9ZL-3s-qO3">
+            <objects>
+                <viewController id="4rB-MM-4Jq" customClass="DetailMapViewController" customModule="ios_baemin_waiting" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bKD-SQ-vEs"/>
+                        <viewControllerLayoutGuide type="bottom" id="SWE-fR-P1X"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f0F-3b-JtU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ld-CV-eLp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5533" y="326"/>
         </scene>
     </scenes>
 </document>

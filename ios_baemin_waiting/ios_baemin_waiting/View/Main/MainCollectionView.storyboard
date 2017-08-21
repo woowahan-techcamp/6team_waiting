@@ -8,6 +8,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AppleSDGothicNeo.ttc">
+            <string>AppleSDGothicNeo-Medium</string>
+            <string>AppleSDGothicNeo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Main Collection View Controller-->
         <scene sceneID="mJz-qX-OBu">
@@ -28,6 +34,27 @@
                                     <constraint firstAttribute="width" constant="50" id="gv3-9F-jqN"/>
                                 </constraints>
                             </activityIndicatorView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Uay-Oh-9QD">
+                                <rect key="frame" x="90" y="281.5" width="195" height="41.5"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 주변에 검색 가능한 식당이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfa-UC-SOl">
+                                        <rect key="frame" x="0.0" y="0.0" width="195" height="14.5"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
+                                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUs-4u-9Fg">
+                                        <rect key="frame" x="76.5" y="14.5" width="42" height="27"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="12"/>
+                                        <state key="normal" title="새로고침">
+                                            <color key="titleColor" red="1" green="0.67843137249999996" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="noResultRefreshBtnTapped:" destination="Sal-mY-Zos" eventType="touchUpInside" id="P8M-Ae-hVi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ukw-84-f0i">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -270,6 +297,8 @@
                             <constraint firstAttribute="trailing" secondItem="PIy-9R-eGb" secondAttribute="trailing" id="8i3-SP-1Qd"/>
                             <constraint firstItem="ukw-84-f0i" firstAttribute="top" secondItem="vLn-Zt-dr8" secondAttribute="bottom" id="8z9-d7-Kt8"/>
                             <constraint firstAttribute="trailing" secondItem="ukw-84-f0i" secondAttribute="trailing" id="HbY-sT-U3j"/>
+                            <constraint firstItem="Uay-Oh-9QD" firstAttribute="centerX" secondItem="Srj-Ph-udR" secondAttribute="centerX" id="Q2Z-MW-HeJ"/>
+                            <constraint firstItem="Uay-Oh-9QD" firstAttribute="centerY" secondItem="Srj-Ph-udR" secondAttribute="centerY" id="ZEQ-YK-l86"/>
                             <constraint firstAttribute="bottom" secondItem="ukw-84-f0i" secondAttribute="bottom" id="ZhN-xB-lUI"/>
                             <constraint firstItem="PIy-9R-eGb" firstAttribute="top" secondItem="vLn-Zt-dr8" secondAttribute="bottom" id="fBa-nE-D8Y"/>
                             <constraint firstItem="5sh-Q6-N7o" firstAttribute="centerY" secondItem="Srj-Ph-udR" secondAttribute="centerY" id="fxd-5M-dPt"/>
@@ -286,6 +315,8 @@
                     <connections>
                         <outlet property="activityIndicator" destination="5sh-Q6-N7o" id="wbf-iO-oYh"/>
                         <outlet property="collectionView" destination="ukw-84-f0i" id="ojL-VZ-vIp"/>
+                        <outlet property="noResultLabel" destination="Hfa-UC-SOl" id="XRc-ZO-X9S"/>
+                        <outlet property="noResultRefreshBtn" destination="sUs-4u-9Fg" id="ZCq-hA-v8h"/>
                         <outlet property="snackbarView" destination="PIy-9R-eGb" id="PRe-MP-XH7"/>
                     </connections>
                 </viewController>

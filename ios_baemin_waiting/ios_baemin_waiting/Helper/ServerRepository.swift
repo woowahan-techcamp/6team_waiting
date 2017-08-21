@@ -149,19 +149,44 @@ class ServerRepository {
                 let tel = detailJson["storeTel"].string,
                 let img = detailJson["storeImgUrl"].string,
                 let currentInLine = detailJson["currentInLine"].int,
-                let isOpened = detailJson["storeIsOpened"].int {
+                let isOpened = detailJson["storeIsOpened"].int,
+                let lat = detailJson["storeLatitude"].string,
+                let long = detailJson["storeLongitude"].string {
 
                 if let imgURL = URL(string: img) {
 
                     let isOpenBool = isOpened == 1 ? true : false
 
-                    let store = Store(storeName: name, storeId: id, storeDescription: description, storeTel: tel, storeImgUrl: imgURL, storeIsOpened: isOpenBool, currentInLine: currentInLine)
+                    let store = Store(storeName: name, storeId: id, storeDescription: description, storeTel: tel, storeLatitude: lat,
+                                      storeLongitude: long, storeImgUrl: imgURL, storeIsOpened: isOpenBool, currentInLine: currentInLine)
 
                     DispatchQueue.main.async {
                         completion(store)
                     }
                 }
             }
+        }
+    }
+    static func postWaitingTicketCreate(params ticket: WaitingTicket, completion: @escaping (Bool) -> Void) {
+
+        let isStaying = ticket.isStaying ? 1 : 0
+        let parameter: Parameters = ["name": ticket.name, "phoneNumber": ticket.phoneNumber,
+                                     "headCount": ticket.headCount, "isStaying": isStaying]
+
+        guard let url = URL(string: baseURL + "/storefilter")
+            else {
+                print("URL is nil")
+                return
+        }
+
+        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            guard response.result.isSuccess else {
+                print("Response post WaitingTicket Error: \(response.result.error!)")
+                completion(false)
+                return
+            }
+
+            completion(true)
         }
     }
 }
