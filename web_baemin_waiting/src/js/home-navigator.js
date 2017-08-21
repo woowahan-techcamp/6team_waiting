@@ -3,6 +3,7 @@ import service from "./services/service.js";
 
 import { Menu } from "./menu.js";
 import { Scroll } from "./scroll.js";
+import { Slide } from "./slide.js";
 import { View } from "./view.js";
 
 
@@ -21,11 +22,17 @@ export class HomeNavigator {
         this.dropdown = document.querySelector(drop);
         this.dropdownList = document.querySelector(list);
 
+        this.prev = document.querySelector(".prev");
+        this.next = document.querySelector(".next");
+
         this.scroll = new Scroll();
+        this.slide = new Slide("slides");
         this.view = new View(".view");
     }
 
     on() {
+        this.slide.plusSlide(1);
+
         this.btnIntro.addEventListener("click", () => {
             this.view.showElement("intro");
             this.view.inactivateRoot();
@@ -73,6 +80,14 @@ export class HomeNavigator {
                 this.dropdownImg();
                 this.showNaviPage(e.target.dataset.dest);
             }
+        });
+
+        this.prev.addEventListener("click", () => {
+            this.slide.plusSlide(-1);
+        })
+
+        this.next.addEventListener("click", () => {
+            this.slide.plusSlide(1);
         })
     }
 
