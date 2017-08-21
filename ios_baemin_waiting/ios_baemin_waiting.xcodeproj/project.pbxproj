@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1AEDA164B436F8CD19A2F7F2 /* Pods_BaeminWaitingUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0BB622D19A24682C6A15E3 /* Pods_BaeminWaitingUnitTests.framework */; };
 		7E1273CE1F434257000C7912 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1273CD1F434257000C7912 /* Constant.swift */; };
+		7E5E9EF51F4820AF007E2ADD /* WaitingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5E9EF41F4820AF007E2ADD /* WaitingTicket.swift */; };
+		7E5E9EF71F4830FA007E2ADD /* CheckTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5E9EF61F4830FA007E2ADD /* CheckTicketViewController.swift */; };
 		7ED312BB1F4411640080ACB8 /* StoreUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED312BA1F4411640080ACB8 /* StoreUnitTests.swift */; };
 		980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56EF1F3C16D800A81DFE /* ServerRepository.swift */; };
 		980A56F41F3C19CE00A81DFE /* AlamofireUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */; };
@@ -73,6 +75,8 @@
 		18F59FA31D335960EA9BB38B /* Pods-BaeminWaitingUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B0BB622D19A24682C6A15E3 /* Pods_BaeminWaitingUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaeminWaitingUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E1273CD1F434257000C7912 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		7E5E9EF41F4820AF007E2ADD /* WaitingTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTicket.swift; sourceTree = "<group>"; };
+		7E5E9EF61F4830FA007E2ADD /* CheckTicketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckTicketViewController.swift; sourceTree = "<group>"; };
 		7ED312BA1F4411640080ACB8 /* StoreUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreUnitTests.swift; sourceTree = "<group>"; };
 		980A56EF1F3C16D800A81DFE /* ServerRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRepository.swift; sourceTree = "<group>"; };
 		980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireUnitTests.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				980A56F51F3C304000A81DFE /* Store.swift */,
+				7E5E9EF41F4820AF007E2ADD /* WaitingTicket.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				9870FECB1F3AFD6900656EEC /* MainCollectionViewController.swift */,
 				9870FEB51F3ACE4F00656EEC /* MapViewController.swift */,
 				9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */,
+				7E5E9EF61F4830FA007E2ADD /* CheckTicketViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -562,6 +568,7 @@
 				986B3DAA1F3D3FFE00432FF7 /* StoreLineShowCell.swift in Sources */,
 				9870FECC1F3AFD6900656EEC /* MainCollectionViewController.swift in Sources */,
 				986B3D9D1F3D3E1A00432FF7 /* DetailViewController.swift in Sources */,
+				7E5E9EF51F4820AF007E2ADD /* WaitingTicket.swift in Sources */,
 				980A56F61F3C304000A81DFE /* Store.swift in Sources */,
 				986B3DA61F3D3FCA00432FF7 /* StoreCallButtionCell.swift in Sources */,
 				7E1273CE1F434257000C7912 /* Constant.swift in Sources */,
@@ -571,6 +578,7 @@
 				9842DB8B1F454EF900B8C409 /* WaitingTicketViewController.swift in Sources */,
 				9842DB891F454EC400B8C409 /* WaitingTextField.swift in Sources */,
 				986B3DA11F3D3E8100432FF7 /* StoreDescriptionCell.swift in Sources */,
+				7E5E9EF71F4830FA007E2ADD /* CheckTicketViewController.swift in Sources */,
 				9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */,
 				9870FEB31F3ACC8C00656EEC /* NMapViewResources.swift in Sources */,
 				980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */,

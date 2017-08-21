@@ -36,20 +36,20 @@ export class HomeNavigator {
             this.view.activateRoot();
         });
         
-        this.btnGoStore.addEventListener("click", this.goStoreHandler);
+        this.btnGoStore.addEventListener("click", this.goStoreHandler.bind(this));
 
-        this.btnLogin.addEventListener("click", this.signInHandler);
+        this.btnLogin.addEventListener("click", this.signInHandler.bind(this));
 
         this.btnLoginClose.addEventListener("click", () => {
             this.view.hideElement("sign-in");
-            this.activateRoot();
+            this.view.activateRoot();
         });
 
         this.btnGoSignUp.addEventListener("click", () => {
             this.view.showElement("sign-up");
         });
 
-        this.btnSignUp.addEventListener("click", this.signUpHandler);
+        this.btnSignUp.addEventListener("click", this.signUpHandler.bind(this));
 
         this.btnSignUpClose.addEventListener("click", () => {
             this.view.hideElement("sign-up");
@@ -109,6 +109,7 @@ export class HomeNavigator {
         if (!service.isAuth()) {
             this.view.showElement("sign-in");
         } else {
+            console.log(document.querySelector(".board"));
             this.view.showElement("board");
             this.view.showElement("nav")
             this.showNaviPage("manage");
@@ -122,7 +123,9 @@ export class HomeNavigator {
         menu.addMenuInput();
 
         const btnAddMenu = document.querySelector(".add-menu");
-        btnAddMenu.addEventListener("click", menu.addMenuInput);
+        btnAddMenu.addEventListener("click", () => {
+            menu.addMenuInput();
+        });
 
         const btnRegister = document.getElementById("btn-reg-store");
         btnRegister.addEventListener("click", () => {
