@@ -7,10 +7,16 @@ const util = {
     },
 
     requestAjax(protocol, url, callback) {
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", callback);
-        oReq.open(protocol, url);
-        oReq.send();
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open(protocol, url);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    resolve(xhr.response);
+                }
+            };
+            xhr.send();
+        });
     },
 
     setTemplateInHtml(position, temp, data) {
