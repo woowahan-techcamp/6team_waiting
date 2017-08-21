@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class CheckTicketViewController: UIViewController {
 
     var waitingTicket: WaitingTicket?
@@ -16,7 +15,6 @@ class CheckTicketViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var storeLabel: UILabel!
     @IBOutlet weak var orderLabel: UILabel!
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +32,7 @@ class CheckTicketViewController: UIViewController {
         let navigationController = self.presentingViewController as? UINavigationController
 
         self.dismiss(animated: true) {
-            let _ = navigationController?.popToRootViewController(animated: true)
+            navigationController?.popToRootViewController(animated: true)
         }
     }
 }

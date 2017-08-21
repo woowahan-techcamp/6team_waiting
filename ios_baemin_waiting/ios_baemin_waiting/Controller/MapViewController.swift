@@ -62,7 +62,15 @@ class MapViewController: UIViewController {
 
         mapView?.viewWillDisappear()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
+        if let location = myLocation {
+            mapView?.setMapCenter(location, atLevel: 9)
+        }
+
+        mapView?.viewWillAppear()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

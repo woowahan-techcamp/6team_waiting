@@ -149,13 +149,16 @@ class ServerRepository {
                 let tel = detailJson["storeTel"].string,
                 let img = detailJson["storeImgUrl"].string,
                 let currentInLine = detailJson["currentInLine"].int,
-                let isOpened = detailJson["storeIsOpened"].int {
+                let isOpened = detailJson["storeIsOpened"].int,
+                let lat = detailJson["storeLatitude"].string,
+                let long = detailJson["storeLongitude"].string {
 
                 if let imgURL = URL(string: img) {
 
                     let isOpenBool = isOpened == 1 ? true : false
 
-                    let store = Store(storeName: name, storeId: id, storeDescription: description, storeTel: tel, storeImgUrl: imgURL, storeIsOpened: isOpenBool, currentInLine: currentInLine)
+                    let store = Store(storeName: name, storeId: id, storeDescription: description, storeTel: tel, storeLatitude: lat,
+                                      storeLongitude: long, storeImgUrl: imgURL, storeIsOpened: isOpenBool, currentInLine: currentInLine)
 
                     DispatchQueue.main.async {
                         completion(store)

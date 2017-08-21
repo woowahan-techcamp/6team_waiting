@@ -114,10 +114,8 @@ class WaitingTicketViewController: UIViewController {
 
         let ticket = WaitingTicket(name: name, phoneNumber: phoneNumber, headCount: headCount, isStaying: isStaying)
 
-
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
-
 
         ServerRepository.postWaitingTicketCreate(params: ticket) {[weak self] isSuccess in
 

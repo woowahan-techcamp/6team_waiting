@@ -44,23 +44,20 @@ class Store {
         self._storeImgUrl = storeImgUrl
         self._currentInLine = currentInLine
     }
-    convenience init(storeName: String, storeId: Int, storeDescription: String, storeTel: String,
-                     storeImgUrl: URL, storeIsOpened: Bool, currentInLine: Int) {
+    convenience init(storeName: String, storeId: Int, storeDescription: String, storeTel: String, storeLatitude: String,
+                     storeLongitude: String, storeImgUrl: URL, storeIsOpened: Bool, currentInLine: Int) {
         self.init()
         self._storeName = storeName
         self._storeId = storeId
         self._storeDescription = storeDescription
         self._storeTel = storeTel
+        self._storeLatitude = storeLatitude
+        self._storeLongitude = storeLongitude
         self._storeImgUrl = storeImgUrl
         self._storeIsOpened = storeIsOpened
         self._currentInLine = currentInLine
     }
 
-/*
-    빈거
-    mainStore
-    detailStore
-*/
     public var storeName: String {
         get { return self._storeName }
         set { self._storeName = newValue }

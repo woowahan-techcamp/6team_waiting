@@ -21,6 +21,7 @@ class MainCollectionViewController: UIViewController {
 
     @IBOutlet weak var noResultLabel: UILabel!
     @IBOutlet weak var noResultRefreshBtn: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,7 +46,10 @@ class MainCollectionViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        locationManager.delegate = self
         locationManager.startUpdatingLocation()
+
+        print("view Will appear")
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,8 +76,7 @@ class MainCollectionViewController: UIViewController {
         }
 
         if errorType != .unknown && errorType != .unknown {
-            activityIndicator.stopAnimating()
-            activityIndicator.isHidden = true
+            stopActivityIndicator()
 
             noResultLabel.isHidden = false
             noResultRefreshBtn.isHidden = false
@@ -83,10 +86,16 @@ class MainCollectionViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "mainSegue" {
+
+            startActivityIndicator()
+
             if let indexPath = collectionView.indexPathsForSelectedItems {
                 let storeId = storeList[indexPath[0].item].storeId
                 if let detailViewController = segue.destination as? DetailViewController {
                     detailViewController.storeId = storeId
+
+                    stopActivityIndicator()
+
                     detailViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                     detailViewController.navigationItem.leftItemsSupplementBackButton = true
                 }
@@ -111,6 +120,14 @@ class MainCollectionViewController: UIViewController {
     }
     @IBAction func noResultRefreshBtnTapped(_ sender: UIButton) {
         refreshData()
+    }
+    func startActivityIndicator() {
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+    }
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
     }
 }
 
@@ -166,8 +183,7 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
         self.locationManager.delegate = nil
         print("CLLocation Manager Update Error")
 
-        activityIndicator.stopAnimating()
-        activityIndicator.isHidden = true
+        stopActivityIndicator()
 
         noResultLabel.isHidden = false
         noResultRefreshBtn.isHidden = false
@@ -176,8 +192,12 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
 
+        print("did Update Locations")
+
         ServerRepository.postCurrentLocation(currentLocation: currentLocation) { storeData in
             self.storeList = storeData
+
+            print("get data success")
 
             self.storeList = self.storeList.sorted { (store1: Store, store2: Store) -> Bool in
                 return store1.storeDistance < store2.storeDistance

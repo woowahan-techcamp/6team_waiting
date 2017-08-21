@@ -15,6 +15,7 @@
 		980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56EF1F3C16D800A81DFE /* ServerRepository.swift */; };
 		980A56F41F3C19CE00A81DFE /* AlamofireUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */; };
 		980A56F61F3C304000A81DFE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F51F3C304000A81DFE /* Store.swift */; };
+		9814FD771F4AB65F002571EB /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9814FD761F4AB65F002571EB /* DetailMapViewController.swift */; };
 		9842DB811F452E8A00B8C409 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9842DB801F452E8A00B8C409 /* Waiting.storyboard */; };
 		9842DB891F454EC400B8C409 /* WaitingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9842DB881F454EC400B8C409 /* WaitingTextField.swift */; };
 		9842DB8B1F454EF900B8C409 /* WaitingTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */; };
@@ -81,6 +82,7 @@
 		980A56EF1F3C16D800A81DFE /* ServerRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRepository.swift; sourceTree = "<group>"; };
 		980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireUnitTests.swift; sourceTree = "<group>"; };
 		980A56F51F3C304000A81DFE /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		9814FD761F4AB65F002571EB /* DetailMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
 		981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9842DB801F452E8A00B8C409 /* Waiting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Waiting.storyboard; path = ios_baemin_waiting/View/Waiting/Waiting.storyboard; sourceTree = SOURCE_ROOT; };
 		9842DB881F454EC400B8C409 /* WaitingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTextField.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				9870FEB51F3ACE4F00656EEC /* MapViewController.swift */,
 				9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */,
 				7E5E9EF61F4830FA007E2ADD /* CheckTicketViewController.swift */,
+				9814FD761F4AB65F002571EB /* DetailMapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -535,7 +538,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CA48A719E7FD091E43A83D34 /* [CP] Check Pods Manifest.lock */ = {
@@ -553,7 +556,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -563,6 +566,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9814FD771F4AB65F002571EB /* DetailMapViewController.swift in Sources */,
 				9870FEB81F3ACF1300656EEC /* NaverMapHandler.swift in Sources */,
 				9870FECE1F3AFDB400656EEC /* MainCollectionViewCell.swift in Sources */,
 				986B3DAA1F3D3FFE00432FF7 /* StoreLineShowCell.swift in Sources */,
@@ -724,7 +728,10 @@
 					"-framework",
 					"\"SwiftyJSON\"",
 				);
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC -lxml2";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-lxml2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.woowabrothers.ios-baemin-waiting";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios_baemin_waiting/Supporting Files/ios_baemin_waiting-Bridging-Header.h";

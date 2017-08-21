@@ -12,6 +12,8 @@ class DetailViewController: UIViewController {
 
     var detailStore: Store = Store()
     var storeId: Int = 0
+    var mapIndexPath: IndexPath?
+    var storeLocation: NGeoPoint?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -24,8 +26,44 @@ class DetailViewController: UIViewController {
         ServerRepository.getStoreDetail(detailStoreId: storeId) { detailStoreData in
             self.detailStore = detailStoreData
 
+            if let indexPath = self.mapIndexPath {
+                if let cell = self.tableView.cellForRow(at: indexPath) as? StoreMapViewCell {
+
+                    let gesture = UITapGestureRecognizer(target: self, action: #selector(self.mapTapped))
+
+                    cell.currentMapView?.addGestureRecognizer(gesture)
+                    cell.setMap(store: self.detailStore)
+
+                }
+            }
             self.tableView.reloadData()
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let indexPath = self.mapIndexPath {
+            if let cell = self.tableView.cellForRow(at: indexPath) as? StoreMapViewCell {
+
+                if let location = storeLocation {
+                    cell.currentMapView?.setMapCenter(location)
+                }
+
+                cell.currentMapView?.viewWillAppear()
+            }
+        }
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if let indexPath = self.mapIndexPath {
+            if let cell = self.tableView.cellForRow(at: indexPath) as? StoreMapViewCell {
+
+                cell.currentMapView?.viewDidDisappear()
+            }
+        }
+
     }
 }
 
@@ -58,7 +96,7 @@ extension DetailViewController : UITableViewDataSource {
             }
         case 3:
             if let mapViewCell = tableView.dequeueReusableCell(withIdentifier: "storeMapViewCell") as? StoreMapViewCell {
-                mapViewCell.putMap(store: detailStore)
+                mapIndexPath = indexPath
                 cell = mapViewCell
             }
         case 4:
@@ -94,5 +132,24 @@ extension DetailViewController: UITableViewDelegate {
             cellHeight = 150
         }
         return cellHeight
+    }
+
+    func mapTapped() {
+        if let lat = CLLocationDegrees(detailStore.storeLatitude),
+            let long = CLLocationDegrees(detailStore.storeLongitude) {
+
+            let location = NGeoPoint(longitude: long, latitude: lat)
+            performSegue(withIdentifier: "showDetailMap", sender: location)
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailMap" {
+            if let destination = segue.destination as? DetailMapViewController {
+                if let location = sender as? NGeoPoint {
+                    destination.location = location
+                }
+            }
+        }
     }
 }
