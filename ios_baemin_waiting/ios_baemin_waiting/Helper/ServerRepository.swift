@@ -43,10 +43,11 @@ class ServerRepository {
                     let address = item["storeAddress"].string,
                     let lat = item["storeLatitude"].string,
                     let long = item["storeLongitude"].string,
+                    let currentInLine = item["currentInLine"].int,
                     let img = item["storeImgUrl"].string {
 
                     if let imgURL = URL(string: img) {
-                        let store = Store(storeName: name, storeId: id, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL)
+                        let store = Store(storeName: name, storeId: id, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL, currentInLine: currentInLine)
 
                         self.storeList.append(store)
                     }
@@ -91,24 +92,17 @@ class ServerRepository {
             let swiftyJson = JSON(value)
 
             for (_, item): (String, JSON) in swiftyJson {
-//                {
-//                    "storeName": "봉피양 방이점",
-//                    "storeLatitude": "37.509968",
-//                    "storeLongitude": "127.1262",
-//                    "storeAddress": "서울특별시 송파구 방이동 205-8",
-//                    "storeImgUrl": null,
-//                    "storeId": 1,
-//                    "storeIsOpened": 1
-//                },
+
                 if let name = item["storeName"].string,
                     let id = item["storeId"].int,
                     let address = item["storeAddress"].string,
                     let lat = item["storeLatitude"].string,
                     let long = item["storeLongitude"].string,
+                    let currentInLine = item["currentInLine"].int,
                     let img = item["storeImgUrl"].string {
 
                     if let imgURL = URL(string: img) {
-                        let store = Store(storeName: name, storeId: id, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL)
+                        let store = Store(storeName: name, storeId: id, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL, currentInLine: currentInLine)
 
                         store.getDistanceFromUser(userLocation: currentLocation)
 
@@ -154,19 +148,14 @@ class ServerRepository {
                 let description = detailJson["storeDescription"].string,
                 let tel = detailJson["storeTel"].string,
                 let img = detailJson["storeImgUrl"].string,
+                let currentInLine = detailJson["currentInLine"].int,
                 let isOpened = detailJson["storeIsOpened"].int {
 
                 if let imgURL = URL(string: img) {
 
-                    var isOpenBool: Bool = true
+                    let isOpenBool = isOpened == 1 ? true : false
 
-                    if isOpened == 1 {
-                        isOpenBool = true
-                    } else {
-                        isOpenBool = false
-                    }
-
-                    let store = Store(storeName: name, storeId: id, storeDescription: description, storeTel: tel, storeImgUrl: imgURL, storeIsOpened: isOpenBool)
+                    let store = Store(storeName: name, storeId: id, storeDescription: description, storeTel: tel, storeImgUrl: imgURL, storeIsOpened: isOpenBool, currentInLine: currentInLine)
 
                     DispatchQueue.main.async {
                         completion(store)

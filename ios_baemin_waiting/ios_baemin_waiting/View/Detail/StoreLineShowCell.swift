@@ -10,10 +10,14 @@ import UIKit
 
 class StoreLineShowCell: UITableViewCell {
 
-    @IBOutlet weak var lineNumber: UILabel!
+    @IBOutlet weak var lineNumberLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+
+    func putlineNumber(lineNumber: Int) {
+        lineNumberLabel.text = "\(lineNumber) 명"
     }
 }

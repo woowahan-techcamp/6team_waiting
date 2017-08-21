@@ -47,11 +47,11 @@ class MainCollectionViewController: UIViewController {
         if segue.identifier == "mainSegue" {
             if let indexPath = collectionView.indexPathsForSelectedItems {
                 let storeId = storeList[indexPath[0].item].storeId
-                let detailViewController = segue.destination as! DetailViewController
-                detailViewController.storeId = storeId
-                detailViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-                detailViewController.navigationItem.leftItemsSupplementBackButton = true
-
+                if let detailViewController = segue.destination as? DetailViewController {
+                    detailViewController.storeId = storeId
+                    detailViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                    detailViewController.navigationItem.leftItemsSupplementBackButton = true
+                }
             }
         }
     }
