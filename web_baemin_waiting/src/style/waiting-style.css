@@ -933,6 +933,83 @@ button#btn-reg-store {
   input#regist-file {
     width: 100%; } }
 
+div.stat {
+  width: 80%;
+  height: 90%;
+  margin: auto;
+  text-align: center; }
+
+div.stat > h1 {
+  margin-top: 50px; }
+
+div.stat > div {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  position: relative; }
+
+.bar {
+  fill: #FFDFAF;
+  height: 21px;
+  transition: fill .3s ease;
+  cursor: pointer; }
+  .bar text {
+    fill: #AAA;
+    font-size: .7em; }
+
+.chart:hover .bar,
+.chart:focus .bar {
+  fill: #FFDFAF; }
+
+.bar:hover,
+.bar:focus {
+  fill: #FFAD27 !important; }
+  .bar:hover text,
+  .bar:focus text {
+    fill: black; }
+
+figcaption {
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px; }
+
+.time-chart {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 420px;
+  height: 200px;
+  text-align: center; }
+
+.age-chart {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  text-align: center; }
+
+.age-chart figcaption {
+  width: 400px; }
+
+.age-bar {
+  fill: #FAA;
+  height: 21px;
+  transition: fill .3s ease;
+  cursor: pointer; }
+  .age-bar text {
+    fill: #AAA;
+    font-size: .7em; }
+
+.age-chart:hover .age-bar,
+.age-chart:focus .age-bar {
+  fill: #FAA; }
+
+.age-bar:hover,
+.age-bar:focus {
+  fill: #FF6D6D !important; }
+  .age-bar:hover text,
+  .age-bar:focus text {
+    fill: black; }
+
 .border-input {
   border: 1px solid #FFDFAF;
   border-radius: 5px; }
