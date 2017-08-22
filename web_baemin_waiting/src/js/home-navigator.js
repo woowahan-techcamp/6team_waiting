@@ -2,8 +2,8 @@ import util from "./util.js";
 import service from "./services/service.js";
 
 import { Menu } from "./menu.js";
-import { Scroll } from "./scroll.js";
 import { Slide } from "./slide.js";
+import { StoreList } from "./storelist.js";
 import { View } from "./view.js";
 
 import { stat } from "./stat.data.js";
@@ -29,7 +29,6 @@ export class HomeNavigator {
         this.prev = document.querySelector(".prev");
         this.next = document.querySelector(".next");
 
-        this.scroll = new Scroll();
         this.slide = new Slide("slides");
         this.view = new View(".view");
     }
@@ -246,14 +245,7 @@ export class HomeNavigator {
                 break;
 
             case "store-list":
-                service.getStores().then((stores) => {
-                    util.setTemplateInHtml(".board", destination, stores)
-                        .then(() => {
-                            this.scroll.setScrollPosition(".store-card-list");
-                            this.storeListHandler();
-                            this.scroll.scrollPositionReset();
-                        });
-                });
+                const storelist = new StoreList();
                 break;
 
             case "logout": 
@@ -330,20 +322,6 @@ export class HomeNavigator {
         oReq.send(JSON.stringify(memberModel));
     }
 
-    storeListHandler() {
-        document.querySelector(".store-list").addEventListener("click", (e) => {
-            if (e.target.nodeName === "DD" || e.target.nodeName === "IMG" || e.target.nodeName === "DT") {
-                this.scroll.saveScrollPosition(".store-card-list");
-                util.setTemplateInHtml(".store-card-list", "store-detail")
-                    .then(() => {
-                        const btnBack = document.querySelector("#btn-back");
-                        btnBack.addEventListener("click", () => {
-                            this.showNaviPage("store-list");
-                        });
-                    });
-            }
-        })
-    }
 
     //jw 네이버지도api
     searchAddrByMap(place){
