@@ -9,6 +9,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AppleSDGothicNeo.ttc">
+            <string>AppleSDGothicNeo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Detail View Controller-->
         <scene sceneID="jvJ-aS-z7h">
@@ -220,7 +225,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Wou-dz-ED6" kind="show" id="lg2-jk-cMj"/>
+                                    <segue destination="Wou-dz-ED6" kind="show" identifier="Waiting" id="lg2-jk-cMj"/>
                                 </connections>
                             </button>
                         </subviews>
