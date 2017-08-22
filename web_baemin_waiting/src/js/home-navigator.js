@@ -207,9 +207,7 @@ export class HomeNavigator {
             case "manage":
                 service.hasRestaurant().then((hasStore) => {
                     if (hasStore) {
-                        util.setTemplateInHtml(".board", destination).then(() => {
-                            const manage = new Manage();
-                        });
+                        const manage = new Manage();
                     } else {
                         this.showRegister();
                     }

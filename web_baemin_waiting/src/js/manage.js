@@ -1,11 +1,19 @@
+import util from "./util.js";
+import service from "./services/service.js";
+
 export class Manage {
 
     constructor(){
-        this.btnWaiting = document.querySelectorAll(".waiting-btn-area");
-        this.init();
+        // @TODO : haeun.kim
+        // 해당 가게의 waitingList 를 가져와서 뿌려준다.
+        util.setTemplateInHtml(".board", "manage").then(() => {
+            this.init();
+        });
     }
 
     init() {
+        this.btnWaiting = document.querySelectorAll(".waiting-btn-area");
+
         this.btnWaiting.forEach((btn) => {
             btn.addEventListener("click", (e) => {
                 if (e.target && e.target.nodeName === "DIV") {
@@ -46,6 +54,7 @@ export class Manage {
         } else if (opt === "10분 전") {
             console.log("입장 10분 전 입니다. 매장 근처에서 대기 해주시기 바랍니다.");
         }
+        e.target.parentNode.classList.remove("show-opt");
         document.querySelector(".alarm-opt").classList.remove("show-opt");
     }
 }
