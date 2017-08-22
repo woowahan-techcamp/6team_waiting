@@ -6,6 +6,8 @@ import { Scroll } from "./scroll.js";
 import { Slide } from "./slide.js";
 import { View } from "./view.js";
 
+import { stat } from "./stat.data.js";
+
 
 export class HomeNavigator {
 
@@ -210,6 +212,10 @@ export class HomeNavigator {
                         this.showRegister();
                     }
                 });
+                break;
+
+            case "statistic":
+                util.setTemplateInHtml(".board", destination, stat);
                 break;
 
             case "store-list":
