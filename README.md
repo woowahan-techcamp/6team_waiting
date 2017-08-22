@@ -59,7 +59,8 @@
 
 [백로그](https://docs.google.com/spreadsheets/d/1sA4d282j67KcqoBuMlROVYIhCIuDnVJyANbYvu1r9-4/edit?usp=sharing)
 
-### REST API 설계
+
+#### REST API 설계
 [RestAPI 설계](https://github.com/haeungun/WoowaTechRestApi)
 
 
