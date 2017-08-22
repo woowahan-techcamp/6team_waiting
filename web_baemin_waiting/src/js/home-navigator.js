@@ -168,8 +168,8 @@ export class HomeNavigator {
         const tel = document.getElementById("regist-tel").value;
         const addr = document.getElementById("regist-location").value;
         //jw
-        const addrX = window.localStorage.getItem("myaddrX");
-        const addrY = window.localStorage.getItem("myaddrY");
+        const addrX = window.sessionStorage.getItem("myaddrX");
+        const addrY = window.sessionStorage.getItem("myaddrY");
         const id = window.sessionStorage.getItem("loginId");
 
         const storeRegModel = new StoreRegModel(title, desc, tel, addr, addrX, addrY, id);
@@ -177,7 +177,9 @@ export class HomeNavigator {
         var oReq = new XMLHttpRequest();
         oReq.addEventListener("load", () => {
             var htData = oReq.responseText;
-            console.log(htData);                   
+            console.log(htData);
+            window.sessionStorage.removeItem("myaddrX");
+            window.sessionStorage.removeItem("myaddrY");                   
         });
         oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/addStore");
         oReq.send(JSON.stringify(storeRegModel));
@@ -358,8 +360,8 @@ export class HomeNavigator {
             var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
             
             //우선 로컬스토리지에 저장
-            window.localStorage.setItem("myaddrX", myaddr.x);
-            window.localStorage.setItem("myaddrY", myaddr.y);
+            window.sessionStorage.setItem("myaddrX", myaddr.x);
+            window.sessionStorage.setItem("myaddrY", myaddr.y);
             
             //console.log(myaddr);
             
