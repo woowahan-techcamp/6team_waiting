@@ -17,11 +17,21 @@ struct WaitingTicket {
     }
     private(set) var headCount: Int
     private(set) var isStaying: Bool
+    private(set) var storeId: Int
 
-    init(name: String, phoneNumber: String, headCount: Int, isStaying: Bool) {
+    private var _ticketNumber: Int
+
+    init(name: String, phoneNumber: String, headCount: Int, isStaying: Bool, storeId: Int) {
         self.name = name
         self.phoneNumber = "010" + phoneNumber
         self.headCount = headCount
         self.isStaying = isStaying
+        self.storeId = storeId
+        self._ticketNumber = 0
+    }
+
+    public var ticketNumber: Int {
+        get { return self._ticketNumber }
+        set { self._ticketNumber = newValue }
     }
 }

@@ -167,26 +167,43 @@ class ServerRepository {
             }
         }
     }
-    static func postWaitingTicketCreate(params ticket: WaitingTicket, completion: @escaping (Bool) -> Void) {
+
+    static func postWaitingTicketCreate(params ticket: WaitingTicket, completion: @escaping (Bool, Int) -> Void) {
 
         let isStaying = ticket.isStaying ? 1 : 0
+        print(ticket.name)
         let parameter: Parameters = ["name": ticket.name, "phoneNumber": ticket.phoneNumber,
-                                     "headCount": ticket.headCount, "isStaying": isStaying]
+                                     "headCount": ticket.headCount, "isStaying": isStaying,
+                                     "storeId": ticket.storeId]
 
-        guard let url = URL(string: baseURL + "/storefilter")
+        guard let url = URL(string: baseURL + "/addWaitingTicket")
             else {
                 print("URL is nil")
                 return
         }
 
         Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+
             guard response.result.isSuccess else {
                 print("Response post WaitingTicket Error: \(response.result.error!)")
-                completion(false)
                 return
             }
 
-            completion(true)
+            guard let value = response.result.value else { return }
+
+            let checkingJson = JSON(value)
+
+            print(checkingJson)
+            if let ticketNumber = checkingJson["ticketNumber"].int,
+                let isSuccess = checkingJson["isSuccess"].int {
+
+                    let isSuccessBool = isSuccess == 1 ? true : false
+
+                    print(isSuccessBool)
+                    DispatchQueue.main.async {
+                        completion(isSuccessBool, ticketNumber)
+                    }
+                }
         }
     }
 }

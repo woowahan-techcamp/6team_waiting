@@ -150,6 +150,11 @@ extension DetailViewController: UITableViewDelegate {
                     destination.location = location
                 }
             }
+        } else if segue.identifier == "Waiting" {
+            if let waitingTicketViewController = segue.destination as? WaitingTicketViewController {
+                waitingTicketViewController.storeId = self.storeId
+            }
         }
+
     }
 }

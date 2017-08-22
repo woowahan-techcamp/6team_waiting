@@ -20,6 +20,7 @@ class CheckTicketViewController: UIViewController {
         super.viewDidLoad()
 
         self.nameLabel.text = waitingTicket?.name
+        self.storeLabel.text = "\(waitingTicket?.storeId)"
 
         // 보여주기 위해 필요한 정보
         // waitingTicket의 이름

@@ -19,6 +19,8 @@ class WaitingTicketViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
+    var storeId: Int = 0
+
     lazy var inputToolbar: UIToolbar = {
         var toolbar = UIToolbar()
         toolbar.barStyle = .default
@@ -112,18 +114,19 @@ class WaitingTicketViewController: UIViewController {
         let headCount = Int(stepperView.value)
         let isStaying = segmentedControl.selectedSegmentIndex == 0 ? false : true
 
-        let ticket = WaitingTicket(name: name, phoneNumber: phoneNumber, headCount: headCount, isStaying: isStaying)
+        var ticket = WaitingTicket(name: name, phoneNumber: phoneNumber, headCount: headCount, isStaying: isStaying, storeId: storeId)
 
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
 
-        ServerRepository.postWaitingTicketCreate(params: ticket) {[weak self] isSuccess in
+        ServerRepository.postWaitingTicketCreate(params: ticket) {[weak self] isSuccess, ticketNum in
 
             self?.activityIndicator.stopAnimating()
             self?.activityIndicator.isHidden = true
 
             if isSuccess {
-                self?.performSegue(withIdentifier: "createTicket", sender: ticket)
+                ticket.ticketNumber = ticketNum
+                self?.performSegue(withIdentifier: "showTicketResult", sender: ticket)
             } else {
                 self?.popUpAlert(title: "네트워크 에러", message: "일시적인 오류로 티켓을 발행할 수 없습니다.")
             }
@@ -133,7 +136,7 @@ class WaitingTicketViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "createTicket" {
+        if segue.identifier == "showTicketResult" {
             if let destination = segue.destination as? CheckTicketViewController {
                 if let ticket = sender as? WaitingTicket {
                     destination.waitingTicket = ticket
