@@ -83,6 +83,7 @@
 		980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireUnitTests.swift; sourceTree = "<group>"; };
 		980A56F51F3C304000A81DFE /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		9814FD761F4AB65F002571EB /* DetailMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
+		9814FD781F4AC9C6002571EB /* ios_baemin_waiting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ios_baemin_waiting.entitlements; sourceTree = "<group>"; };
 		981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9842DB801F452E8A00B8C409 /* Waiting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Waiting.storyboard; path = ios_baemin_waiting/View/Waiting/Waiting.storyboard; sourceTree = SOURCE_ROOT; };
 		9842DB881F454EC400B8C409 /* WaitingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTextField.swift; sourceTree = "<group>"; };
@@ -198,6 +199,7 @@
 		9879D9AD1F34054900B4131A /* ios_baemin_waiting */ = {
 			isa = PBXGroup;
 			children = (
+				9814FD781F4AC9C6002571EB /* ios_baemin_waiting.entitlements */,
 				988FBEFB1F3D856A00161756 /* Helper/Util */,
 				988FBEFA1F3D84E800161756 /* Controller */,
 				988FBEF71F3D849500161756 /* View */,
@@ -374,6 +376,11 @@
 						DevelopmentTeam = B3PWYBKFUK;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					9879D9EE1F342CCC00B4131A = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -714,6 +721,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ios_baemin_waiting/ios_baemin_waiting.entitlements;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -746,6 +754,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ios_baemin_waiting/ios_baemin_waiting.entitlements;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
