@@ -170,26 +170,21 @@ export class HomeNavigator {
         const addrX = window.sessionStorage.getItem("myaddrX");
         const addrY = window.sessionStorage.getItem("myaddrY");
         const id = window.sessionStorage.getItem("loginId");
+        
+        service.saveImageInStorage(id).then((path) => {
+            service.getStoreImageUrl(path).then((url) => {
+                const storeRegModel = new StoreRegModel(title, desc, tel, addr, addrX, addrY, id, img);
 
-        const storeRegModel = new StoreRegModel(title, desc, tel, addr, addrX, addrY, id);
-
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", () => {
-            var htData = oReq.responseText;
-            console.log(htData);
-            window.sessionStorage.removeItem("myaddrX");
-            window.sessionStorage.removeItem("myaddrY");                   
+                var oReq = new XMLHttpRequest();
+                oReq.addEventListener("load", () => {
+                    var htData = oReq.responseText;
+                    window.sessionStorage.removeItem("myaddrX");
+                    window.sessionStorage.removeItem("myaddrY");                   
+                });
+                oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/addStore");
+                oReq.send(JSON.stringify(storeRegModel));
+            });
         });
-        oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/addStore");
-        oReq.send(JSON.stringify(storeRegModel));
-
-        // service.saveImageInStorage().then((path) => {
-        //     service.getStoreImageUrl(path).then((url) => {
-        //         service.registerRestaurant(title, desc, "주소", tel, url, false, menu).then(
-        //             util.setTemplateInHtml(".board", "manage")
-        //         );
-        //     });
-        // });
     }
 
     myInfoHandler() {

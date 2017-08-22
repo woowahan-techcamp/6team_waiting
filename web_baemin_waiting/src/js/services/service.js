@@ -146,9 +146,8 @@ const service = (() => {
         });
     }
 
-    const saveFileInStorage = function() {
+    const saveFileInStorage = function(id) {
         return new Promise((resolve, reject) => {
-            const id = getCurrentUserId();
             const file = document.getElementById("regist-file").files[0];
             let storeFolder = `${id}/${file.name}`;
             var iref = fireStorageRef.child(storeFolder);
