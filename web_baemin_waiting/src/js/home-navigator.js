@@ -5,6 +5,7 @@ import { Menu } from "./menu.js";
 import { Scroll } from "./scroll.js";
 import { Slide } from "./slide.js";
 import { View } from "./view.js";
+import { Manage } from "./manage.js";
 
 import { stat } from "./stat.data.js";
 
@@ -126,7 +127,6 @@ export class HomeNavigator {
         if (!service.isAuth()) {
             this.view.showElement("sign-in");
         } else {
-            console.log(document.querySelector(".board"));
             this.view.showElement("board");
             this.view.showElement("nav")
             this.showNaviPage("manage");
@@ -207,7 +207,9 @@ export class HomeNavigator {
             case "manage":
                 service.hasRestaurant().then((hasStore) => {
                     if (hasStore) {
-                        util.setTemplateInHtml(".board", destination);
+                        util.setTemplateInHtml(".board", destination).then(() => {
+                            const manage = new Manage();
+                        });
                     } else {
                         this.showRegister();
                     }
