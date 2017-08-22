@@ -62,10 +62,13 @@ export class Manage {
         if (opt === "5분 전") {
             // @TODO : haeun.kim 
             // send message to DB
+            const msg = {"msg": this.messages[0]};
+            // util.requestAjax("POST", "http://52.78.157.5:8080/push", msg);
             console.log(num, this.messages[0]);
         } else if (opt === "10분 전") {
             console.log(num, this.messages[1]);
         }
+
         e.target.parentNode.classList.remove("show-opt");
         document.querySelector(".alarm-opt").classList.remove("show-opt");
     }
