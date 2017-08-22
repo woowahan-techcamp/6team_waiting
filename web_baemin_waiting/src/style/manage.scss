@@ -10,7 +10,7 @@ div.manage {
 
 div.waiting-list {
     padding: 5px;
-    height: 50vh;
+    height: 40vh;
     overflow: auto;
     margin-top: 30px;
 }
@@ -78,11 +78,27 @@ div.btn-delete {
     background-color: $manage-red;
 }
 
-div.input-client {
+div.manage-input-area {
     position: absolute;
-    height: 150px;
-    background-color: red;
-    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: $secondary-color;
+    bottom: 20px;
+    z-index: 20;
+}
+
+dl.client-form {
+    margin-left: 30px;
+}
+
+button#btn-add-client {
+    @extend .full-color-button;
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    right: 20px;
+    bottom: 20px;
+    font-size: 1.2em;
 }
 
 ul.alarm-opt {

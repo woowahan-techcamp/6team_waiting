@@ -48,8 +48,24 @@ templates['home'] = template({"1":function(container,depth0,helpers,partials,dat
 templates['input-menu'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<input class=\"menu-name\" type=\"text\" placeholder=\"메뉴 이름\">\n<input class=\"menu-price\" type=\"number\" placeholder=\"메뉴 가격\">\n<button class=\"remove-menu\">-</button>\n";
 },"useData":true});
-templates['manage'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"manage\">\n    <h1>가게 이름</h1>\n\n    <div class=\"waiting-list\">\n        <div class=\"waiting-member\">\n            <div class=\"waiting-info\">\n                <p class=\"waiting-name\">김하은 <span class=\"waiting-num\">3명</span> </p>\n                <p class=\"waiting-tel\">010-1234-1234</p>\n            </div>\n            <div class=\"waiting-btn-area\">\n                <div class=\"btn-alarm\">\n                    <ul class=\"alarm-opt\">\n                        <li>5분 전</li>\n                        <li>10분 전</li>\n                    </ul>\n                </div>\n                <div class=\"btn-delete\"></div>\n            </div>\n        </div>\n\n\n        <div class=\"waiting-member\">\n            <div class=\"waiting-info\">\n                <p class=\"waiting-name\">김하은 <span class=\"waiting-num\">3명</span> </p>\n                <p class=\"waiting-tel\">010-1234-1234</p>\n            </div>\n            <div class=\"waiting-btn-area\">\n                <div class=\"btn-alarm\">\n                    <ul class=\"alarm-opt\">\n                        <li>5분 전</li>\n                        <li>10분 전</li>\n                    </ul>\n                </div>\n                <div class=\"btn-delete\"></div>\n            </div>\n        </div>\n        \n    </div>\n\n    <div class=\"input-client\">\n    </div>\n</div>";
+templates['manage'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var alias1=container.lambda, alias2=container.escapeExpression;
+
+  return "        <div class=\"waiting-member\" data-num="
+    + alias2(alias1((depth0 != null ? depth0.ticketNumber : depth0), depth0))
+    + ">\n            <div class=\"waiting-info\">\n                <p class=\"waiting-name\">"
+    + alias2(alias1((depth0 != null ? depth0.name : depth0), depth0))
+    + " <span class=\"waiting-num\">"
+    + alias2(alias1((depth0 != null ? depth0.headCount : depth0), depth0))
+    + "명</span> </p>\n                <p class=\"waiting-tel\">"
+    + alias2(alias1((depth0 != null ? depth0.contactNumber : depth0), depth0))
+    + "</p>\n            </div>\n            <div class=\"waiting-btn-area\">\n                <div class=\"btn-alarm\">\n                    <ul class=\"alarm-opt\">\n                        <li>5분 전</li>\n                        <li>10분 전</li>\n                    </ul>\n                </div>\n                <div class=\"btn-delete\"></div>\n            </div>\n        </div>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<div class=\"manage\">\n    <h1>가게 이름</h1>\n\n    <div class=\"waiting-list\">\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "    </div>\n</div>\n\n<div class=\"manage-input-area\">\n    <dl class=\"client-form\">\n        <dt>이름</dt>\n        <dd><input type=\"text\"></dd>\n        <dt>인원</dt>\n        <dd><input type=\"number\"></dd>\n        <dt>전화번호</dt>\n        <dd><input type=\"number\"</dd>\n    </dl>\n    <button id=\"btn-add-client\">추가</button>\n</div>";
 },"useData":true});
 templates['modify-store'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"register-store\">\n    <h1 class=\"regist-title\">사장님의 가게를 수정해주세요</h1>\n    <div>\n        <dl class=\"reg-form\">\n            \n            <dt>업체명</dt>\n            <dd>\n                <input type=\"text\" id=\"mod-name\" value=\"원래 저장된 이름\">\n                <button id=\"btn-search-store\">검색</button>\n            </dd>\n\n            <dt>업체 위치</dt>\n            <dd><input type=\"text\" id=\"mod-location\" value=\"원래 저장된 설명\"></dd>\n\n            <dt>업체 설명</dt>\n            <dd><input type=\"text\" id=\"mod-desc\"></dd>\n\n            <dt>업체 사진</dt>\n            <dd><input type=\"file\"></dd>\n\n            <dt>메뉴</dt>\n            <dd class=\"menus\">\n                <button class=\"add-menu\">+</button>\n            </dd>\n            \n        </dl>\n    </div>\n\n    <button id=\"btn-reg-store\">가게등록</button>\n\n</div>";
