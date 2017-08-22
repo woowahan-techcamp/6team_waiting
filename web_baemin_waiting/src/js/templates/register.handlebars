@@ -12,9 +12,8 @@
 
             <dt>업체 위치</dt>
             <dd>
-                <input type="text" id="regist-location">
+                <input type="text" id="regist-location" placeholder="도로명 주소를 검색해주세요">
                 <button id="btn-search-location">지도검색</button>
-                {{!-- jw --}}
             </dd>
 
             <dt>전화번호</dt>
@@ -36,5 +35,13 @@
 
     <button id="btn-reg-store">가게등록</button>
     {{!-- jw --}}
-    <div id="map" style="width:200px;height:200px;"></div>
+</div>
+
+
+<div class="map-modal">
+    <div class="map-modal-content">
+        <span id="btn-map-close" class="btn-close"><img src="/dist/public/images/close.png"></span>
+        <div id="map"></div>
+        <button id="btn-map-confirm">확인</button>
+    </div>
 </div>
