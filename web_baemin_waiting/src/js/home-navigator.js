@@ -8,7 +8,9 @@ import { View } from "./view.js";
 import { Manage } from "./manage.js";
 
 import { stat } from "./stat.data.js";
-
+//jw
+import { MemberModel } from "./model/member.model.js";
+import { StoreRegModel } from "./model/storereg.model.js";
 
 export class HomeNavigator {
 
@@ -123,8 +125,9 @@ export class HomeNavigator {
             document.getElementById("drop").src = "/dist/public/images/menu.png";
     }
 
+    //jw 가게관리하기 버튼
     goStoreHandler() {
-        if (!service.isAuth()) {
+        if (!window.sessionStorage.getItem("loginId")) {//jw
             this.view.showElement("sign-in");
         } else {
             this.view.showElement("board");
@@ -134,7 +137,7 @@ export class HomeNavigator {
 
         this.view.inactivateRoot();
     }
-
+    //가게 등록
     registerHandler() {
         const menu = new Menu(".menus");
         menu.addMenuInput();
@@ -142,6 +145,13 @@ export class HomeNavigator {
         const btnAddMenu = document.querySelector(".add-menu");
         btnAddMenu.addEventListener("click", () => {
             menu.addMenuInput();
+        });
+        //jw 지도검색
+        const btnSearchLocation = document.querySelector("#btn-search-location");
+        btnSearchLocation.addEventListener("click", () => {
+            //좌표 받아오기
+            const place = document.querySelector("#regist-location").value;
+            this.searchAddrByMap(place);
         });
 
         const btnRegister = document.getElementById("btn-reg-store");
@@ -151,19 +161,34 @@ export class HomeNavigator {
             this.registerStore();
         });
     }
-
+    //가게 등록버튼 refac 메뉴, 사진 추가 필요
     registerStore(menu) {
         const title = document.getElementById("regist-name").value;
         const desc = document.getElementById("regist-desc").value;
         const tel = document.getElementById("regist-tel").value;
+        const addr = document.getElementById("regist-location").value;
+        //jw
+        const addrX = window.localStorage.getItem("myaddrX");
+        const addrY = window.localStorage.getItem("myaddrY");
+        const id = window.sessionStorage.getItem("loginId");
 
-        service.saveImageInStorage().then((path) => {
-            service.getStoreImageUrl(path).then((url) => {
-                service.registerRestaurant(title, desc, "주소", tel, url, false, menu).then(
-                    util.setTemplateInHtml(".board", "manage")
-                );
-            });
+        const storeRegModel = new StoreRegModel(title, desc, tel, addr, addrX, addrY, id);
+
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", () => {
+            var htData = oReq.responseText;
+            console.log(htData);                   
         });
+        oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/addStore");
+        oReq.send(JSON.stringify(storeRegModel));
+
+        // service.saveImageInStorage().then((path) => {
+        //     service.getStoreImageUrl(path).then((url) => {
+        //         service.registerRestaurant(title, desc, "주소", tel, url, false, menu).then(
+        //             util.setTemplateInHtml(".board", "manage")
+        //         );
+        //     });
+        // });
     }
 
     myInfoHandler() {
@@ -230,7 +255,9 @@ export class HomeNavigator {
                 break;
 
             case "logout": 
-                service.signOutUser();
+                //jw 로그아웃
+                window.sessionStorage.removeItem("token");
+                window.sessionStorage.removeItem("loginId");
                 this.view.activateRoot();
                 this.view.hideElement("nav");
                 this.view.hideElement("board");
@@ -249,29 +276,56 @@ export class HomeNavigator {
         this.showNaviPage("manage");
     }
 
+    //로그인
     signInHandler() {
         const userId = document.getElementById("login-id").value;
         const userPwd = document.getElementById("login-pwd").value;
 
-        service.signInUser(userId, userPwd)
-            .then(() => {
-                this.showInitialBoard();
-            })
-            .catch(() => {
-                document.querySelector(".sign-warning").style.visibility = "visible";
-            });
+        //jw
+        const memberModel = new MemberModel(userId, userPwd);
+        
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load",() => {
+             var htData = oReq.responseText;
+             console.log(htData);
+             this.afterSignIn(htData, userId);            
+        });
+        oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/signin");
+        oReq.send(JSON.stringify(memberModel));
     }
 
+    //jw
+    afterSignIn(htData, userId) {
+        if(htData == "fail"){
+            document.querySelector(".sign-warning").style.visibility = "visible";
+        }
+        else{
+            window.sessionStorage.setItem('token', htData);
+            window.sessionStorage.setItem('loginId', userId);
+            this.showInitialBoard();
+        }        
+    }
+
+    //회원가입
     signUpHandler() {
         const userId = document.getElementById("sign-id").value;
         const userPwd = document.getElementById("sign-pwd").value;
         const userName = document.getElementById("sign-name").value;
         const userTel = document.getElementById("sign-tel").value;
         
-        service.signUpUser(userId, userPwd, userName, "owner", userTel).then(() => {
-            this.view.hideElement("sign-up");
-            this.showInitialBoard();
+        //jw
+        const memberModel = new MemberModel(userId, userPwd, 0, userTel);
+        
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", () => {
+            var htData = oReq.responseText;
+            console.log(htData);
+            if(htData == "true"){
+                this.view.hideElement("sign-up");
+            }           
         });
+        oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/signup");
+        oReq.send(JSON.stringify(memberModel));
     }
 
     storeListHandler() {
@@ -288,5 +342,48 @@ export class HomeNavigator {
             }
         })
     }
+
+    //jw 네이버지도api
+    searchAddrByMap(place){
+        var map = new naver.maps.Map('map');
+        var myaddress = place;// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
+        naver.maps.Service.geocode({address: myaddress}, function(status, response) {
+            if (status !== naver.maps.Service.Status.OK) {
+                return alert(myaddress + '의 검색 결과가 없거나 기타 네트워크 에러');
+            }
+            var result = response.result;
+            // 검색 결과 갯수: result.total
+            // 첫번째 결과 결과 주소: result.items[0].address
+            // 첫번째 검색 결과 좌표: result.items[0].point.y, result.items[0].point.x
+            var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
+            
+            //우선 로컬스토리지에 저장
+            window.localStorage.setItem("myaddrX", myaddr.x);
+            window.localStorage.setItem("myaddrY", myaddr.y);
+            
+            //console.log(myaddr);
+            
+            map.setCenter(myaddr); // 검색된 좌표로 지도 이동
+            // 마커 표시
+            var marker = new naver.maps.Marker({
+                position: myaddr,
+                map: map
+            });
+            // 마커 클릭 이벤트 처리
+            naver.maps.Event.addListener(marker, "click", function(e) {
+                if (infowindow.getMap()) {
+                    infowindow.close();
+                } else {
+                    infowindow.open(map, marker);
+                }
+                });
+            // 마크 클릭시 인포윈도우 오픈
+            var infowindow = new naver.maps.InfoWindow({
+                content: '<h4> [네이버 개발자센터]</h4><a href="https://developers.naver.com" target="_blank"><img src="https://developers.naver.com/inc/devcenter/images/nd_img.png"></a>'
+            });       
+        });
+    }
+
+
 
 }

@@ -890,7 +890,7 @@ button#btn-go-register {
   border-radius: 30px;
   color: white; }
 
-.btn-base, button.remove-menu, button.add-menu, button#btn-search-store {
+.btn-base, button.remove-menu, button.add-menu, button#btn-search-store, button#btn-search-location {
   width: 10%;
   height: 30px;
   border-radius: 5px;
@@ -966,7 +966,7 @@ input#regist-name {
   width: 70%; }
 
 input#regist-location {
-  width: 90%; }
+  width: 70%; }
 
 input#regist-desc {
   width: 90%; }
@@ -991,6 +991,11 @@ button.add-menu {
 
 button#btn-search-store {
   width: 20%;
+  background-color: #FFAD27;
+  color: white; }
+
+button#btn-search-location {
+  width: 25%;
   background-color: #FFAD27;
   color: white; }
 
