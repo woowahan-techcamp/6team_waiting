@@ -2,10 +2,11 @@
     <h1>가게 이름</h1>
 
     <div class="waiting-list">
-        <div class="waiting-member">
+        {{#each this}}
+        <div class="waiting-member" data-num={{this.ticketNumber}}>
             <div class="waiting-info">
-                <p class="waiting-name">김하은 <span class="waiting-num">3명</span> </p>
-                <p class="waiting-tel">010-1234-1234</p>
+                <p class="waiting-name">{{this.name}} <span class="waiting-num">{{this.headCount}}명</span> </p>
+                <p class="waiting-tel">{{this.contactNumber}}</p>
             </div>
             <div class="waiting-btn-area">
                 <div class="btn-alarm">
@@ -17,26 +18,18 @@
                 <div class="btn-delete"></div>
             </div>
         </div>
-
-
-        <div class="waiting-member">
-            <div class="waiting-info">
-                <p class="waiting-name">김하은 <span class="waiting-num">3명</span> </p>
-                <p class="waiting-tel">010-1234-1234</p>
-            </div>
-            <div class="waiting-btn-area">
-                <div class="btn-alarm">
-                    <ul class="alarm-opt">
-                        <li>5분 전</li>
-                        <li>10분 전</li>
-                    </ul>
-                </div>
-                <div class="btn-delete"></div>
-            </div>
-        </div>
-        
+        {{/each}}
     </div>
+</div>
 
-    <div class="input-client">
-    </div>
+<div class="manage-input-area">
+    <dl class="client-form">
+        <dt>이름</dt>
+        <dd><input type="text"></dd>
+        <dt>인원</dt>
+        <dd><input type="number"></dd>
+        <dt>전화번호</dt>
+        <dd><input type="number"</dd>
+    </dl>
+    <button id="btn-add-client">추가</button>
 </div>
