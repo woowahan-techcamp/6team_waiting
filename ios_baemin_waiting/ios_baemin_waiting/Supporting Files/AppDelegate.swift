@@ -27,11 +27,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        print("enter foreground")
+
+        let rootStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let mainCollectionStoryBoard = UIStoryboard(name: "MainCollectionView", bundle: nil)
+
+        let rootVC  = rootStoryBoard.instantiateViewController(withIdentifier: "RootNavigation")
+        let mainCollectionVC = mainCollectionStoryBoard.instantiateViewController(withIdentifier: "MainCollectionView") as? MainCollectionViewController
+
+        mainCollectionVC?.refreshData()
+        self.window?.rootViewController = rootVC
+
+        self.window?.makeKeyAndVisible()
+    }
+
     func registerPushNotifications() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
 
             if !granted {
-
                 if var vc = self.window?.rootViewController {
                     while let next = vc.presentedViewController {
                         vc = next
@@ -101,8 +115,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
 
     }
-
-
 
 }
 

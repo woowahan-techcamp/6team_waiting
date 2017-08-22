@@ -31,11 +31,9 @@ class MainCollectionViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        activityIndicator.startAnimating()
         collectionView.isHidden = true
 
         locationManager.delegate = self
-
         locationManager.startUpdatingLocation()
 
         refresh.addTarget(self, action: #selector(refreshData), for: .valueChanged)
@@ -46,6 +44,7 @@ class MainCollectionViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        startActivityIndicator()
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }
@@ -117,6 +116,7 @@ class MainCollectionViewController: UIViewController {
         locationManager.startUpdatingLocation()
     }
     @IBAction func noResultRefreshBtnTapped(_ sender: UIButton) {
+        exceptionLabel(show: true)
         refreshData()
     }
     func startActivityIndicator() {
@@ -126,6 +126,11 @@ class MainCollectionViewController: UIViewController {
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
+    }
+
+    func exceptionLabel(show: Bool) {
+        noResultLabel.isHidden = show
+        noResultRefreshBtn.isHidden = show
     }
 }
 
@@ -183,12 +188,15 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
 
         stopActivityIndicator()
 
-        noResultLabel.isHidden = false
-        noResultRefreshBtn.isHidden = false
+        exceptionLabel(show: false)
 
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        startActivityIndicator()
+
         guard let currentLocation = locations.last else { return }
+
+        print("Location Update Called")
 
         ServerRepository.postCurrentLocation(currentLocation: currentLocation) { storeData in
             self.storeList = storeData
@@ -207,8 +215,11 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
                 self.noResultRefreshBtn.isHidden = false
             }
         }
+        stopActivityIndicator()
 
-        refresh.endRefreshing()
+        if refresh.isRefreshing {
+            refresh.endRefreshing()
+        }
 
         locationManager.stopUpdatingLocation()
         locationManager.delegate = nil
