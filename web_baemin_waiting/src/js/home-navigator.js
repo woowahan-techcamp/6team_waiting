@@ -9,6 +9,8 @@ import { Manage } from "./manage.js";
 
 import { stat } from "./stat.data.js";
 
+import { stat } from "./stat.data.js";
+
 
 export class HomeNavigator {
 
