@@ -13,7 +13,7 @@
         <!--배민웨이팅-->
         <scene sceneID="cWc-HC-ZEE">
             <objects>
-                <viewController id="shz-0b-mnd" customClass="MainContainerViewController" customModule="ios_baemin_waiting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainContainer" id="shz-0b-mnd" customClass="MainContainerViewController" customModule="ios_baemin_waiting" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wWs-TK-3ky"/>
                         <viewControllerLayoutGuide type="bottom" id="Hha-HS-zB6"/>
@@ -92,9 +92,9 @@
         <!--Navigation Controller-->
         <scene sceneID="PRS-NR-XNJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UaN-zs-nkx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RootNavigation" automaticallyAdjustsScrollViewInsets="NO" id="UaN-zs-nkx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="av9-SV-sp7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="av9-SV-sp7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

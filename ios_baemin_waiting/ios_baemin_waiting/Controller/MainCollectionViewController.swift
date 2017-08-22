@@ -48,8 +48,6 @@ class MainCollectionViewController: UIViewController {
         super.viewWillAppear(animated)
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
-
-        print("view Will appear")
     }
 
     override func didReceiveMemoryWarning() {
@@ -192,18 +190,22 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
 
-        print("did Update Locations")
-
         ServerRepository.postCurrentLocation(currentLocation: currentLocation) { storeData in
             self.storeList = storeData
 
-            print("get data success")
+            if self.storeList.count > 0 {
+                self.storeList = self.storeList.sorted { (store1: Store, store2: Store) -> Bool in
+                    return store1.storeDistance < store2.storeDistance
+                }
 
-            self.storeList = self.storeList.sorted { (store1: Store, store2: Store) -> Bool in
-                return store1.storeDistance < store2.storeDistance
+                self.collectionView.reloadData()
+            } else {
+                self.stopActivityIndicator()
+                self.collectionView.isHidden = true
+                self.noResultLabel.text = "주변에 줄을 설 수 있는 식당이 없습니다."
+                self.noResultLabel.isHidden = false
+                self.noResultRefreshBtn.isHidden = false
             }
-
-            self.collectionView.reloadData()
         }
 
         refresh.endRefreshing()
