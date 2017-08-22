@@ -1,6 +1,7 @@
 import util from "./util.js";
 import service from "./services/service.js";
 
+
 export class Manage {
 
     constructor(){
@@ -9,7 +10,7 @@ export class Manage {
 
         // @TODO : haeun.kim
         // 현재 유저의 storeId 를 가져온다.
-        const storeId = {"storeId" : "3"}
+        const storeId = {"storeId" : "4"}
         util.requestAjax("POST","http://192.168.100.18:8080/baeminWaiting004/waitingList", storeId).then((res) => {
             util.setTemplateInHtml(".board", "manage", JSON.parse(res)).then(() => {
                 this.init();

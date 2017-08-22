@@ -495,7 +495,7 @@ div.waiting-list {
 
 div.waiting-member {
   width: 40vw;
-  height: 100px;
+  height: 80px;
   margin: auto;
   margin-bottom: 10px;
   box-shadow: 1px 1px 5px #CCC;
@@ -507,7 +507,7 @@ div.waiting-member {
 div.waiting-info {
   float: left;
   text-align: left;
-  margin-top: 25px;
+  margin-top: 15px;
   margin-left: 20px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -531,7 +531,7 @@ div.waiting-btn-area {
 
 div.waiting-btn-area div {
   width: 80px;
-  height: 100px;
+  height: 80px;
   float: left;
   cursor: pointer;
   background-repeat: no-repeat;
@@ -567,7 +567,7 @@ button#btn-add-client {
 
 ul.alarm-opt {
   position: absolute;
-  top: 100px;
+  top: 79px;
   width: 80px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -593,7 +593,7 @@ ul.show-opt > li {
 @media screen and (max-width: 768px) {
   div.waiting-member {
     width: 180px;
-    height: 130px; }
+    height: 120px; }
   div.waiting-btn-area div {
     margin-top: 7px;
     width: 90px;
@@ -609,8 +609,9 @@ ul.show-opt > li {
     margin-top: 5px;
     font-size: 1em; }
   ul.alarm-opt {
+    width: 90px;
     position: absolute;
-    top: 50px; } }
+    top: 49px; } }
 
 .border-input {
   border: 1px solid #FFDFAF;
