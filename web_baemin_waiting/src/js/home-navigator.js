@@ -1,6 +1,7 @@
 import util from "./util.js";
 import service from "./services/service.js";
 
+import { Auth } from "./auth.js";
 import { Menu } from "./menu.js";
 import { Slide } from "./slide.js";
 import { StoreList } from "./storelist.js";
@@ -9,9 +10,10 @@ import { Manage } from "./manage.js";
 import { Map } from "./map.js";
 
 import { stat } from "./stat.data.js";
-//jw
+
 import { MemberModel } from "./model/member.model.js";
 import { StoreRegModel } from "./model/storereg.model.js";
+
 
 export class HomeNavigator {
 
@@ -28,9 +30,12 @@ export class HomeNavigator {
         this.dropdown = document.querySelector(drop);
         this.dropdownList = document.querySelector(list);
 
+        this.btnDuplication = document.querySelector("#btn-duplication");
+
         this.prev = document.querySelector(".prev");
         this.next = document.querySelector(".next");
 
+        this.auth = new Auth();
         this.slide = new Slide("slides");
         this.view = new View(".view");
     }
@@ -67,6 +72,8 @@ export class HomeNavigator {
             this.view.hideElement("sign-up");
         });
 
+        this.btnDuplication.addEventListener("click", this.checkDuplcation.bind(this));
+
         this.navigator.addEventListener("click", (e) => {
             if (e.target && e.target.nodeName === "LI") {
                 this.showNaviPage(e.target.dataset.dest);
@@ -95,26 +102,30 @@ export class HomeNavigator {
             this.slide.plusSlide(1);
         })
     }
+    
+    checkDuplcation() {
+        const id = document.querySelector("#sign-id").value;
+        service.checkDuplication(id).then((res) => {
+            if (res === 0) {
+                document.querySelector("#check-dup").innerHTML = "사용가능한 아이디 입니다.";
+                document.querySelector("#check-dup").style.color = "green";
+                
+                this.auth.authId = id;
+                this.auth.isNotDuplication = true;
+            } else {
+                alert("이미 사용 중인 아이디 입니다.");
+            }
+        })
+    }
 
     confirmMyPage() {
         const btnConfirm = document.getElementById("btn-confirm");
         btnConfirm.addEventListener("click", () => {
-            // @TODO : haeun.kim 
-            // 비밀번호가 일치할 때만, 개인 정보 확인 가능
-            service.getUserInfo().then((user) => {
-                service.getStoreInfo().then((store) => {
-                    service.getMenus().then((menus) => {
-                        util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store, "menus": menus})
-                            .then(() => {
-                                if (!store) {
-                                    document.querySelector(".my-store").innerHTML = "";
-                                }
-                                this.myInfoHandler();
-                        });
-                    })
-                })
+            const pwd = document.querySelector("#pwd-confirm").value;
+            this.auth.confirmPassword(pwd).then(() => {
+                util.setTemplateInHtml(".board", "my-info");
             });
-        });
+        })
     }
 
     dropdownImg() {
@@ -125,20 +136,21 @@ export class HomeNavigator {
             document.getElementById("drop").src = "/dist/public/images/menu.png";
     }
 
-    //jw 가게관리하기 버튼
     goStoreHandler() {
-        if (!window.sessionStorage.getItem("loginId")) {//jw
-            this.view.showElement("sign-in");
-        } else {
+        const token = window.sessionStorage.getItem("token");
+
+        if (token) {
             this.view.showElement("board");
             this.view.showElement("nav")
             this.showNaviPage("manage");
+        } else {
+            this.view.showElement("sign-in");
         }
 
         this.view.inactivateRoot();
     }
-    //가게 등록
-    registerHandler() {
+    
+    registerPage() {
         const menu = new Menu(".menus");
         menu.addMenuInput();
 
@@ -151,34 +163,7 @@ export class HomeNavigator {
         map.on();
         
         const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", () => {
-            const menus = menu.menusToJSON();
-            service.registerMenu(menus);
-            this.registerStore(map.addrX, map.addrY);
-        });
-    }
-    //가게 등록버튼 refac 메뉴, 사진 추가 필요
-    registerStore(x, y, menu) {
-        const title = document.getElementById("regist-name").value;
-        const desc = document.getElementById("regist-desc").value;
-        const tel = document.getElementById("regist-tel").value;
-        const addr = document.getElementById("regist-location").value;
-
-        const id = window.sessionStorage.getItem("loginId");
-        
-        service.saveImageInStorage(id).then((path) => {
-            service.getStoreImageUrl(path).then((url) => {
-                const storeRegModel = new StoreRegModel(title, desc, tel, addr, x, y, id, img);
-                var oReq = new XMLHttpRequest();
-                oReq.addEventListener("load", () => {
-                    var htData = oReq.responseText;
-                    window.sessionStorage.removeItem("myaddrX");
-                    window.sessionStorage.removeItem("myaddrY");                   
-                });
-                oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/addStore");
-                oReq.send(JSON.stringify(storeRegModel));
-            });
-        });
+        btnRegister.addEventListener("click", this.registerHandler);
     }
 
     myInfoHandler() {
@@ -198,9 +183,7 @@ export class HomeNavigator {
         util.setTemplateInHtml(".board", "no-store").then(() => {
             const btnGoRegister = document.getElementById("btn-go-register");
             btnGoRegister.addEventListener("click", () => {
-                util.setTemplateInHtml(".board", "register").then(
-                    this.registerHandler()
-                );
+                util.setTemplateInHtml(".board", "register").then(() => this.registerPage());
             });
         });
     }
@@ -208,25 +191,17 @@ export class HomeNavigator {
     showNaviPage(destination) {
         switch (destination) {
             case "home":
-                this.view.activateRoot();
-                this.view.hideElement("nav");
-                this.view.hideElement("board");
+                this.goHome();
                 break;
 
             case "my-page":
-                util.setTemplateInHtml(".board", destination).then(
+                util.setTemplateInHtml(".board", destination).then(() =>
                     this.confirmMyPage()
                 );
                 break;
 
             case "manage":
-                service.hasRestaurant().then((hasStore) => {
-                    // if (hasStore) {
-                    //     const manage = new Manage();
-                    // } else {
-                        this.showRegister();
-                    //}
-                });
+                this.manageHandler();
                 break;
 
             case "statistic":
@@ -238,12 +213,7 @@ export class HomeNavigator {
                 break;
 
             case "logout": 
-                //jw 로그아웃
-                window.sessionStorage.removeItem("token");
-                window.sessionStorage.removeItem("loginId");
-                this.view.activateRoot();
-                this.view.hideElement("nav");
-                this.view.hideElement("board");
+                this.signOutHandler();
                 break;
 
             default:
@@ -259,56 +229,82 @@ export class HomeNavigator {
         this.showNaviPage("manage");
     }
 
+    goHome() {
+        this.view.activateRoot();
+        this.view.hideElement("nav");
+        this.view.hideElement("board");
+    }
+
     //로그인
     signInHandler() {
-        const userId = document.getElementById("login-id").value;
-        const userPwd = document.getElementById("login-pwd").value;
+        const id = document.getElementById("login-id").value;
+        const pwd = document.getElementById("login-pwd").value;
+        const that = this;
 
-        //jw
-        const memberModel = new MemberModel(userId, userPwd);
-        
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load",() => {
-             var htData = oReq.responseText;
-             console.log(htData);
-             this.afterSignIn(htData, userId);            
-        });
-        oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/signin");
-        oReq.send(JSON.stringify(memberModel));
+        this.auth.signIn(id, pwd)
+            .then((res) => {
+                window.sessionStorage.setItem("token", JSON.stringify(res));
+                that.showInitialBoard();
+            })
+            .catch(() => {
+                alert("아이디와 비밀번호를 확인해주세요")
+            });
     }
 
-    //jw
-    afterSignIn(htData, userId) {
-        if(htData == "fail"){
-            document.querySelector(".sign-warning").style.visibility = "visible";
-        }
-        else{
-            window.sessionStorage.setItem('token', htData);
-            window.sessionStorage.setItem('loginId', userId);
-            this.showInitialBoard();
-        }        
-    }
-
-    //회원가입
     signUpHandler() {
-        const userId = document.getElementById("sign-id").value;
-        const userPwd = document.getElementById("sign-pwd").value;
-        const userName = document.getElementById("sign-name").value;
-        const userTel = document.getElementById("sign-tel").value;
+        const id = document.getElementById("sign-id").value;
+        const pwd = document.getElementById("sign-pwd").value;
+        const name = document.getElementById("sign-name").value;
+        const tel = document.getElementById("sign-tel").value;
         
-        //jw
-        const memberModel = new MemberModel(userId, userPwd, 0, userTel);
-        
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", () => {
-            var htData = oReq.responseText;
-            console.log(htData);
-            if(htData == "true"){
-                this.view.hideElement("sign-up");
-            }           
-        });
-        oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/signup");
-        oReq.send(JSON.stringify(memberModel));
+        if (this.auth.isNotDuplication && (this.auth.authId === id)) {
+            this.auth.signUp(id, pwd, name, tel)
+                .then(() => {
+                    this.view.hideElement("sign-up");
+                    document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
+                    document.querySelector("#check-dup").style.color = "#FF6666";
+                })
+                .catch(() => {
+                    console.log("회원가입 실패");
+                });
+        } else {
+            alert("아이디 중복 확인을 해주세요");
+        }
+    }
+
+    signOutHandler() {
+        // @TODO : haeun.kim
+        // 가게 turn off
+        const token = JSON.parse(sessionStorage.getItem("token"));
+        sessionStorage.removeItem("token");
+        service.signOutUser(token);
+        this.goHome();
+    }
+
+    registerHandler() {
+        const token = JSON.parse(sessionStorage.getItem("token"));
+        const storeid = token.storeId;
+        const memberid = token.memberId;
+        const menus = menu.getMenus();
+        const title = document.getElementById("regist-name").value;
+        const desc = document.getElementById("regist-desc").value;
+        const tel = document.getElementById("regist-tel").value;
+        const addr = document.getElementById("regist-location").value;
+
+        this.auth.registerStore(memberid, title, desc, tel, addr, map.addrX, map.addrY, menu);
+    }
+    
+    manageHandler() {
+        const token = JSON.parse(sessionStorage.getItem("token"));
+
+        if (!token) {
+            this.view.showElement("sign-in");
+            this.view.inactivateRoot();
+        } else if (token.storeId === 0) {
+            this.showRegister();
+        } else if (token.storeId > 0){
+             const manage = new Manage(token);
+        }
     }
 
 }

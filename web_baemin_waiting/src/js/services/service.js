@@ -1,10 +1,11 @@
 import * as firebase from "firebase/app";
-import 'firebase/auth'; 
-import 'firebase/database';
 import 'firebase/storage';
 
-import { StoreModel } from "../model/store.model.js";
-import { UserModel } from "../model/user.model.js";
+import util from "../util.js";
+
+import { MemberModel } from "../model/member.model.js";
+import { StoreRegModel } from "../model/storereg.model.js";
+import { TicketModel } from "../model/ticket.model.js";
 
 
 const service = (() => {
@@ -21,71 +22,41 @@ const service = (() => {
     };
 
     const app = firebase.initializeApp(config);
-
-    const fireAuth = app.auth();
-    const fireDatabase = app.database();
+    
     const fireStorage = app.storage();
     const fireStorageRef = app.storage().ref();
 
+    const baseUrl = "http://192.168.100.18:8080/baeminWaiting004";
 
-    const getCurrentUserId = function() {
-        return fireAuth.currentUser.uid;
-    }
 
-    const getCurrentUserInfo = function() {
-        const id = getCurrentUserId();
-        return getUserInfoByUid(id);
-    }
-
-    const getCurrentStoreId = function() {
+    const checkIdDuplication = function(id) {
         return new Promise((resolve, reject) => {
-            getCurrentUserInfo().then((info) => {
-                resolve(info._storeid);
-            })
-            .catch((err) => {
-                reject(Err(err));
-            });
+            util.requestAjax("POST", `${baseUrl}/checkPK`, {"userId": id})
+                .then((res) => resolve(res));
         })
     }
 
-    const getCurrentStoreInfo = function() {
+    const deleteWaitingTicket = function(num) {
+        const ticket = new TicketModel(num);
         return new Promise((resolve, reject) => {
-            getCurrentStoreId().then((id) => {
-                getStoreInfoById(id).then((info) => {
-                    resolve(info);
-                });
-            });
-        });
-    }
-
-    const getData = function(name) {
-        return new Promise((resolve, reject) => {
-            const id = getCurrentUserId();            
-            fireDatabase.ref(`${name}/${id}`).once("value")
-                .then((snapshot) => {
-                    resolve(snapshot.val());
-                })
+            util.requestAjax("POST", `${baseUrl}/deleteTicket`, ticket)
+                .then((res) => resolve(res));
         })
     }
 
     const getStoreInfoById = function(id) {
         return new Promise((resolve, reject) => {
-            fireDatabase.ref(`stores/${id}`).once("value")
-                .then((snapshot) => {
-                    resolve(snapshot.val());
-                })
-                .catch((err) => {
-                    reject(Error(err));
-                });
+            util.requestAjax("POST", `${baseUrl}/storeInfo`, id)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
         });
     }
 
     const getStoreList = function() {
         return new Promise((resolve, reject) => {
-            fireDatabase.ref("stores/").once("value")
-                .then((snapshot) => {
-                    resolve(snapshot.val());
-                })
+            util.requestAjax("GET", `${baseUrl}/stores`)
+                .then((res) => resolve(res))
+                .catch((err) => reject(err));
         });
     }
 
@@ -97,53 +68,20 @@ const service = (() => {
         });
     }
 
-    const getUserInfoByUid = function(id) {
+    const getWaitingList = function(id) {
         return new Promise((resolve, reject) => {
-            fireDatabase.ref(`users/${id}`).once("value")
-                .then((snapshot) => {
-                    resolve(snapshot.val());
-                })
-                .catch((err) => {
-                    reject(err);
-                })
-        });
-    }
-
-    const hasStore = function() {
-        return new Promise((resolve, reject) => {
-            if (isAuthenticated()) {
-                const id = getCurrentUserId();
-                fireDatabase.ref(`users/${id}`).once("value")
-                    .then((snapshot) => {
-                        resolve(snapshot.val()._storeid);
-                    })
-                    .catch((err) => {
-                        reject(Error(err));
-                    });
-            } else {
-                resolve(false);
-            }
-        });
-    }
-
-    const registerStore = function(title, desc, add, tel, pic, is_opened) {
-        return new Promise((resolve, reject) => {
-            const id = getCurrentUserId();
-            const storeData = new StoreModel(id, title, desc, add, tel, pic, is_opened);
-            
-            fireDatabase.ref("stores/").push(storeData).then((snapshot) => {
-                fireDatabase.ref(`users/${id}`).update({"_storeid": snapshot.key});
-                resolve(true);
-            });
+            util.requestAjax("POST", `${baseUrl}/waitingList`, {"storeId":id})
+                .then((res) => resolve(res));
         })
     }
-    
-    const saveData = function(name, data) {
+
+    const registerStore = function(id, title, desc, tel, addr, x, y, menu, img) {
+        const store = new StoreRegModel(title, desc, tel, addr, x, y, id, menu, img);
+        
         return new Promise((resolve, reject) => {
-            const id = getCurrentUserId();
-            fireDatabase.ref(`${name}/${id}`).set(data);
-            resolve(true);
-        });
+            util.requestAjax("POST", `${baseUrl}/store`, store)
+                .then((res) => resolve(res.storeId));
+        })
     }
 
     const saveFileInStorage = function(id) {
@@ -152,67 +90,42 @@ const service = (() => {
             let storeFolder = `${id}/${file.name}`;
             var iref = fireStorageRef.child(storeFolder);
             iref.put(file)
-                .then((snapshot) => {
-                    resolve(iref.location.path);
-                })
-                .catch((err) => {
-                    reject(Error(err));
-                });
-        })
-    }
-
-    const saveUserData = function(email, name, role, tel) {
-        const userData = new UserModel(email, name, role, tel);
-        const id = getCurrentUserId();
-        fireDatabase.ref(`users/${id}`).set(userData);
-    }
-
-    const signUp = function(email, password, name, role, tel, callback) {
-        return new Promise((resolve, reject) => {
-            fireAuth.createUserWithEmailAndPassword(email, password)
-                .then(() => {
-                    signIn(email, password);
-                })
-                .then(() => {
-                    saveUserData(email, name, role, tel);
-                    resolve(true);
-                })
-                .catch((err) => {
-                    reject(Error(err));
-                });
+                .then((snapshot) => resolve(iref.location.path))
+                .catch((err) => console.log(err));
         });
     }
 
-    const signIn = function(email, password) {
+    const signUp = function(id, pwd, tel, name) {
+        const member = new MemberModel(id, pwd, 0, tel, name);
+
         return new Promise((resolve, reject) => {
-            fireAuth.signInWithEmailAndPassword(email, password)
-                .then(() => {
-                    resolve(true);
-                })
-                .catch((err) => {
-                    reject(Error(err));
-                })
+            util.requestAjax("POST",`${baseUrl}/signup`, member)
+                .then((res) => resolve(res));
         });
     }
-    
-    const signOut = function() {
-        fireAuth.signOut();
+
+    const signIn = function(id, pwd) {
+        const member = new MemberModel(id, pwd);
+
+        return new Promise((resolve, reject) => {
+            util.requestAjax("POST", `${baseUrl}/signin`, member)
+                .then((res) => resolve(res));
+        });
     }
 
-    const isAuthenticated = function() {
-        const user = fireAuth.currentUser;
-
-        if (user) 
-            return true;
-        else 
-            return false;
+    const signOut = function(token) {
+        console.log(token);
     }
 
     return {
         // Public member 
-        
-        getMenus() {
-            return getData("menus");
+
+        checkDuplication(id) {
+            return checkIdDuplication(id);
+        },
+
+        deleteTicket(num) {
+            return deleteWaitingTicket(num);
         },
 
         getStores() {
@@ -223,44 +136,32 @@ const service = (() => {
             return getImageDownloadUrl(url);
         },
 
-        getUserInfo() {
-            return getCurrentUserInfo();
+        getStoreInfoByid(id) {
+            return getStoreInfo(id);
         },
 
-        getStoreInfo() {
-            return getCurrentStoreInfo();
+        registerRestaurant(id, title, desc, tel, addr, x, y, menu, pic) {
+            return registerStore(id, title, desc, tel, addr, x, y, menu, pic);
         },
 
-        registerMenu(menu) {
-            return saveData("menus", menu);
+        signUpUser(id, password, role, tel, name) {
+            return signUp(id, password, role, tel, name);
         },
 
-        registerRestaurant(title, desc, add, tel, pic, is_opened) {
-            return registerStore(title, desc, add, tel, pic, is_opened);
+        signInUser(id, password) {
+            return signIn(id, password);
         },
 
-        signUpUser(email, password, name, role, tel) {
-            return signUp(email, password, name, role, tel);
+        signOutUser(token) {
+            return signOut(token);
         },
 
-        signInUser(email, password) {
-            return signIn(email, password);
+        saveImageInStorage(id) {
+            return saveFileInStorage(id);
         },
 
-        signOutUser() {
-            return signOut();
-        },
-
-        isAuth() {
-            return isAuthenticated();
-        },
-
-        hasRestaurant() {
-            return hasStore();
-        },
-
-        saveImageInStorage() {
-            return saveFileInStorage();
+        waitingList(id) {
+            return getWaitingList(id);
         }
     }
 

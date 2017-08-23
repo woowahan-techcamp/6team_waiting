@@ -12,7 +12,7 @@ const util = {
             xhr.open(protocol, url);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    resolve(xhr.response);
+                    resolve(JSON.parse(xhr.response));
                 }
             };
             xhr.send(JSON.stringify(data));

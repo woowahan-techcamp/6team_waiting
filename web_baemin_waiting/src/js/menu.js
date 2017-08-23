@@ -40,11 +40,11 @@ export class Menu {
         }
     }
 
-    menusToJSON() {
+    getMenus() {
         const menuList = document.querySelectorAll(".input-menu");
         const menus = this.menuIntoArray(menuList);
         
-        return { "menus" : menus };
+        return menus;
     }
 
     menuIntoArray(menuList) {

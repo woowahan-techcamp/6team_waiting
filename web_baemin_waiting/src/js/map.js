@@ -36,7 +36,7 @@ export class Map {
                 var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
                 
                 map.setCenter(myaddr); 
-
+                
                 this.addrX = myaddr.x;
                 this.addrY = myaddr.y;
                 // 마커 표시
@@ -45,7 +45,7 @@ export class Map {
                     map: map
                 });   
             }
-        });
+        }.bind(this));
 
     }
 
