@@ -43,7 +43,6 @@ export class Menu {
     getMenus() {
         const menuList = document.querySelectorAll(".input-menu");
         const menus = this.menuIntoArray(menuList);
-        
         return menus;
     }
 

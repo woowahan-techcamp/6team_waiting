@@ -4,8 +4,8 @@ export class StoreRegModel {
         this.storeTel = tel;
         this.storeAddress = addr;
         this.storeDesc = desc;
-        this.storeLatitude = addrX;
-        this.storeLongitude = addrY;
+        this.storeLongitude = addrX;
+        this.storeLatitude = addrY;
         this.memberId = id;
         this.menus = menu;
         this.storeImgUrl = img;

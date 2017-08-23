@@ -2,6 +2,7 @@ import util from "./util.js";
 import service from "./services/service.js";
 
 import { Auth } from "./auth.js";
+import { Regex } from "./regex.js";
 import { Menu } from "./menu.js";
 import { Slide } from "./slide.js";
 import { StoreList } from "./storelist.js";
@@ -35,6 +36,7 @@ export class HomeNavigator {
         this.prev = document.querySelector(".prev");
         this.next = document.querySelector(".next");
 
+        this.regex = new Regex();
         this.auth = new Auth();
         this.slide = new Slide("slides");
         this.view = new View(".view");
@@ -163,7 +165,7 @@ export class HomeNavigator {
         map.on();
         
         const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", () => this.registerHandler(menu));
+        btnRegister.addEventListener("click", () => this.registerHandler(map, menu));
     }
 
     myInfoHandler() {
@@ -240,14 +242,20 @@ export class HomeNavigator {
         const pwd = document.getElementById("login-pwd").value;
         const that = this;
 
-        this.auth.signIn(id, pwd)
-            .then((res) => {
-                window.sessionStorage.setItem("token", JSON.stringify(res));
-                that.showInitialBoard();
-            })
-            .catch(() => {
-                alert("아이디와 비밀번호를 확인해주세요")
-            });
+        if (!this.regex.isID(id)) {
+            console.log("아이디가 잘못됨");
+            return;
+        }
+
+        if (!this.regex.isPassword(pwd)) {
+            console.log("비밀번호가 잘못됨");
+            return;
+        }
+
+        service.signInUser(id, pwd).then((token) => {
+            window.sessionStorage.setItem("token", JSON.stringify(token));
+            // 뷰처리
+        });
     }
 
     signUpHandler() {
@@ -255,9 +263,30 @@ export class HomeNavigator {
         const pwd = document.getElementById("sign-pwd").value;
         const name = document.getElementById("sign-name").value;
         const tel = document.getElementById("sign-tel").value;
+
+
+        if (!this.regex.isID(id)) {
+            console.log("아이디 형식이 잘못됨");
+            return;
+        }
+
+        if (!this.regex.isPassword(pwd)) {
+            console.log("비밀번호 형식이 잘못됨");
+            return;
+        }
+
+        if (!this.regex.isName(name)) {
+            console.log("이름 형식이 잘못됨");
+            return;
+        }
+
+        if (!this.regex.isTel(tel)) {
+            console.log("전화번호 형식이 잘못됨");
+            return;
+        }
         
         if (this.auth.isNotDuplication && (this.auth.authId === id)) {
-            this.auth.signUp(id, pwd, name, tel)
+            service.signUpUser(id, pwd, name, tel)
                 .then(() => {
                     this.view.hideElement("sign-up");
                     document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
@@ -274,13 +303,13 @@ export class HomeNavigator {
     signOutHandler() {
         // @TODO : haeun.kim
         // 가게 turn off
-        const token = JSON.parse(sessionStorage.getItem("token"));
+        const token = sessionStorage.getItem("token");
         sessionStorage.removeItem("token");
         service.signOutUser(token);
         this.goHome();
     }
 
-    registerHandler(menu) {
+    registerHandler(map, menu) {
         const token = JSON.parse(sessionStorage.getItem("token"));
         const storeid = token.storeId;
         const memberid = token.memberId;
@@ -290,7 +319,7 @@ export class HomeNavigator {
         const tel = document.getElementById("regist-tel").value;
         const addr = document.getElementById("regist-location").value;
 
-        this.auth.registerStore(memberid, title, desc, tel, addr, map.addrX, map.addrY, menu);
+        this.auth.registerStore(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus);
     }
     
     manageHandler() {

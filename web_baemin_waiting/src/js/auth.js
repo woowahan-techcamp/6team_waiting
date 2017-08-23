@@ -17,64 +17,17 @@ export class Auth {
         this.signIn(id, pwd);
     }
     
-    signIn(id, pwd) {
-        return new Promise((resolve, reject) => {
-            if (!this.regex.isID(id)) {
-                reject("아이디가 잘못됨");
-            }
-
-            if (!this.regex.isPassword(pwd)) {
-                reject("비밀번호가 잘못됨");
-            }
-
-            service.signInUser(id,pwd)
-                .then((res) => {
-                    if (res.token === "fail")
-                        reject(res);
-                    else 
-                        resolve(res);
-                })
-        })
-    }
-
-    signUp(id, pwd, name, tel) {
-        return new Promise((resolve, reject) => {
-            if (!this.regex.isID(id)) {
-                reject("아이디 형식이 잘못됨");
-            }
-
-            if (!this.regex.isPassword(pwd)) {
-                reject("비밀번호 형식이 잘못됨");
-            }
-
-            if (!this.regex.isName(name)) {
-                reject("이름 형식이 잘못됨");
-            }
-
-            if (!this.regex.isTel(tel)) {
-                reject("전화번호 형식이 잘못됨");
-            }
-            
-            service.signUpUser(id, pwd, name, tel)
-                .then((res) => {
-                    if (res) {
-                        resolve(res);
-                    } else {
-                        reject(res);
-                    }
-                });
-        })
-    }
 
     registerStore(id, title, desc, tel, add, x, y, menu) {
         // 버튼 연타 처리(flag)
-        service.saveImageInStorage(id).then((path) => {
+        service.saveImageInStorage(id).then((path) => { 
             service.getStoreImageUrl(path).then((url) => {
-                service.registerRestaurant(id, title, desc, tel, add, x, y, menu, url)
-                    .then((storeid) => {
-                        window.sessionStorage.setItem("storeId", storeid);
-                    });
-            });
+                service.registerRestaurant(id, title, desc, tel, add, x, y, menu, url).then((storeid) => {
+                    const token = JSON.parse(window.sessionStorage.getItem("token"));
+                    token.storeId = storeid;
+                    window.sessionStorage.setItem("token", JSON.stringify(token));
+                })
+            })
         });
     }
 
