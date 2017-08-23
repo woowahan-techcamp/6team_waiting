@@ -86,7 +86,7 @@ extension MapViewController: UICollectionViewDelegate {
 
 extension MapViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.bounds.width - 64, height: 120)
+        return CGSize(width: self.view.bounds.width - 64 - 10, height: 120)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -95,27 +95,47 @@ extension MapViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
-
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let cellWidth: CGFloat = self.view.bounds.width - 64
-        let cellPadding: CGFloat = 32
-
-        var page = (scrollView.contentOffset.x - cellWidth / 2) / (cellWidth + cellPadding) + 1
-
-        print(page)
-
-        if velocity.x > 0 {
-            page += 1
-        } else if velocity.x < 0 {
-            page -= 1
-        }
-
-        page = page > 0 ? page : 0
-
-        let indexPath = IndexPath(item: Int(page), section: 0)
-        mapCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-//        let newOffset: CGFloat = page * (cellWidth + cellPadding)
-//        targetContentOffset.pointee.x = newOffset
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 37, bottom: 0, right: 37)
     }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        var currentCellOffset = mapCollectionView.contentOffset
+
+        currentCellOffset.x += mapCollectionView.frame.size.width / 2;
+
+        if let indexPath = mapCollectionView.indexPathForItem(at: currentCellOffset) {
+            mapCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+    }
+
+//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+//        let cellWidth: CGFloat = self.view.bounds.width - 64
+//        let cellPadding: CGFloat = 32
+//
+//        var page = (scrollView.contentOffset.x - cellWidth / 2) / (cellWidth + cellPadding) + 1
+//
+//        if velocity.x > 0 {
+//            page += 1
+//        } else if velocity.x < 0 {
+//            page -= 1
+//        }
+//
+//        page = page > 0 ? page : 0
+//
+//        let remainder = page.truncatingRemainder(dividingBy: 1)
+//
+//        if page != 0 {
+//            page = remainder > 0.2 ? page + 1 : page - 1
+//        }
+//        print(remainder)
+//        print(page)
+//        print(Int(page))
+//
+//        let indexPath = IndexPath(item: Int(page), section: 0)
+//        mapCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+////        let newOffset: CGFloat = page * (cellWidth + cellPadding)
+////        targetContentOffset.pointee.x = newOffset
+//    }
 
 }
