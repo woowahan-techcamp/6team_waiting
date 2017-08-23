@@ -11,7 +11,11 @@
             </dd>
 
             <dt>업체 위치</dt>
-            <dd><input type="text" id="regist-location"></dd>
+            <dd>
+                <input type="text" id="regist-location">
+                <button id="btn-search-location">지도검색</button>
+                {{!-- jw --}}
+            </dd>
 
             <dt>전화번호</dt>
             <dd><input type="number" id="regist-tel"></dd>
@@ -31,5 +35,6 @@
     </div>
 
     <button id="btn-reg-store">가게등록</button>
-
+    {{!-- jw --}}
+    <div id="map" style="width:200px;height:200px;"></div>
 </div>

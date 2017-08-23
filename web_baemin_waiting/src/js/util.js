@@ -6,7 +6,7 @@ const util = {
         else alert(content);
     },
 
-    requestAjax(protocol, url, callback) {
+    requestAjax(protocol, url, data) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open(protocol, url);
@@ -15,7 +15,7 @@ const util = {
                     resolve(xhr.response);
                 }
             };
-            xhr.send();
+            xhr.send(JSON.stringify(data));
         });
     },
 
