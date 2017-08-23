@@ -12,10 +12,19 @@ class CheckTicketViewController: UIViewController {
 
     var waitingTicket: WaitingTicket?
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var storeLabel: UILabel!
-    @IBOutlet weak var orderLabel: UILabel!
+    @IBOutlet weak var ticketNumberLabel: UILabel!
+    @IBOutlet weak var ticketNumberContentLabel: UILabel!
 
+
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameSubLabel: UILabel!
+    @IBOutlet weak var storeLabel: UILabel!
+    @IBOutlet weak var storeSubLabel: UILabel!
+    @IBOutlet weak var orderLabel: UILabel!
+    @IBOutlet weak var orderSubLabel: UILabel!
+
+    @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +36,24 @@ class CheckTicketViewController: UIViewController {
         // 줄 선 식당
         // 줄 선 식당의 현재 대기인원
 
+    }
+
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+
+        topViewHeightConstraint.constant = self.view.bounds.height * 0.55
+
+        topViewHeightConstraint.isActive = true
+        if UIDevice.current.isiPhoneSE {
+            ticketNumberLabel.setTitleLabelFont(fontSize: 30)
+            ticketNumberContentLabel.setTitleLabelFont(fontSize: 60)
+            nameLabel.setContentLabelFont(fontSize: 30)
+            nameSubLabel.setSubLabelFont(fontSize: 30)
+            storeLabel.setContentLabelFont(fontSize: 30)
+            storeSubLabel.setSubLabelFont(fontSize: 30)
+            orderLabel.setContentLabelFont(fontSize: 30)
+            orderSubLabel.setSubLabelFont(fontSize: 30)
+        }
     }
     @IBAction func closeBtnTapped(_ sender: UIButton) {
 

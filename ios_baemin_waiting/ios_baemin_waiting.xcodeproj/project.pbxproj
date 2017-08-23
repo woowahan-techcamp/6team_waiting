@@ -40,6 +40,8 @@
 		9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9879D9AE1F34054900B4131A /* AppDelegate.swift */; };
 		9879D9B61F34054900B4131A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9879D9B51F34054900B4131A /* Assets.xcassets */; };
 		9879D9F21F342CCC00B4131A /* BaeminWaitingUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */; };
+		98A9EDAA1F4D03E6008A3198 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A9EDA91F4D03E6008A3198 /* UIDevice.swift */; };
+		98A9EDAC1F4D083A008A3198 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A9EDAB1F4D083A008A3198 /* UIFont+Extension.swift */; };
 		98BE03D61F38614200179D43 /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE03D51F38614200179D43 /* ApiGatewayMac.framework */; };
 		98BE03D71F38614200179D43 /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE03D51F38614200179D43 /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98BE03DA1F38615400179D43 /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE03D91F38615400179D43 /* NMapViewerSDK.framework */; };
@@ -113,6 +115,8 @@
 		9879D9EF1F342CCC00B4131A /* BaeminWaitingUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaeminWaitingUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaeminWaitingUnitTests.swift; sourceTree = "<group>"; };
 		9879D9F31F342CCC00B4131A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98A9EDA91F4D03E6008A3198 /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		98A9EDAB1F4D083A008A3198 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		98BE03D51F38614200179D43 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ApiGatewayMac.framework; sourceTree = "<group>"; };
 		98BE03D91F38615400179D43 /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMapViewerSDK.framework; sourceTree = "<group>"; };
 		98BE03DB1F38617D00179D43 /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
@@ -309,6 +313,8 @@
 				9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */,
 				7E1273CD1F434257000C7912 /* Constant.swift */,
 				9842DB881F454EC400B8C409 /* WaitingTextField.swift */,
+				98A9EDA91F4D03E6008A3198 /* UIDevice.swift */,
+				98A9EDAB1F4D083A008A3198 /* UIFont+Extension.swift */,
 			);
 			name = Helper/Util;
 			path = Helper;
@@ -579,8 +585,10 @@
 				986B3DAA1F3D3FFE00432FF7 /* StoreLineShowCell.swift in Sources */,
 				9870FECC1F3AFD6900656EEC /* MainCollectionViewController.swift in Sources */,
 				986B3D9D1F3D3E1A00432FF7 /* DetailViewController.swift in Sources */,
+				98A9EDAC1F4D083A008A3198 /* UIFont+Extension.swift in Sources */,
 				7E5E9EF51F4820AF007E2ADD /* WaitingTicket.swift in Sources */,
 				980A56F61F3C304000A81DFE /* Store.swift in Sources */,
+				98A9EDAA1F4D03E6008A3198 /* UIDevice.swift in Sources */,
 				986B3DA61F3D3FCA00432FF7 /* StoreCallButtionCell.swift in Sources */,
 				7E1273CE1F434257000C7912 /* Constant.swift in Sources */,
 				9870FED01F3AFE0700656EEC /* MainCollectionReusableView.swift in Sources */,
