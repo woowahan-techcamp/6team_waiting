@@ -1,3 +1,5 @@
+@import "base.scss";
+
 $manage-green: #92e595;
 $manage-red: #ff7575;
 
@@ -125,7 +127,7 @@ ul.show-opt > li {
     transition: .2s;
     background-color: white;
     &:hover {
-        background-color: $manage-green;
+        background-color: $secondary-color;
         color: white;
     }
 }

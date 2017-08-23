@@ -34,9 +34,3 @@ util.setTemplateInHtml("#root", "home", homeData)
     .catch((err) => {
         util.log(err);
     });
-
-
-
-
-
-
