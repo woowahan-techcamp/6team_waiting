@@ -33,8 +33,8 @@ export class Regex {
     }
 
     isPassword(pwd) {
-        // 특수문자를 포함하는 문자, 숫자의 조합 {6,16} 자리의 문자열 확인
-        const regPwd = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*+=-])(?=.*[0-9]).{6,16}/;
+        // 문자, 숫자의 조합 {6,16} 자리의 문자열 확인
+        const regPwd = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,16}/;
         return regPwd.test(pwd);
     }
 

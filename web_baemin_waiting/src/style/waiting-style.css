@@ -7,12 +7,13 @@
   background-color: #FFDFAF;
   border-radius: 5px; }
 
-.border-button {
+.border-button, button#btn-duplication {
   border: 1px solid #FFAD27;
   border-radius: 30px;
-  color: #FFAD27; }
+  color: #FFAD27;
+  background-color: white; }
 
-.full-color-button, button#btn-sign-up, button#btn-add-client {
+.full-color-button, button#btn-sign-up, button#btn-add-client, button#btn-map-confirm {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }
@@ -249,6 +250,21 @@ button#btn-sign-up {
   font-size: 1.3em;
   margin-top: 30px; }
 
+span#check-dup {
+  color: #FF6666;
+  font-size: .7em;
+  margin-top: 5px; }
+
+button#btn-duplication {
+  width: 25%;
+  height: 20px;
+  margin-left: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; }
+
 span.sign-up-title {
   color: #FFAD27;
   font-weight: bold;
@@ -481,6 +497,25 @@ button#btn-go-register {
     max-height: 100%;
     object-fit: contain; } }
 
+.border-input {
+  border: 1px solid #FFDFAF;
+  border-radius: 5px; }
+
+.full-color-input, div.sign-up-form input, div.my-confirm input {
+  background-color: #FFDFAF;
+  border-radius: 5px; }
+
+.border-button, button#btn-duplication {
+  border: 1px solid #FFAD27;
+  border-radius: 30px;
+  color: #FFAD27;
+  background-color: white; }
+
+.full-color-button, button#btn-sign-up, button#btn-add-client, button#btn-map-confirm {
+  background-color: #FFAD27;
+  border-radius: 30px;
+  color: white; }
+
 div.manage {
   width: 50vw;
   margin: 30px auto;
@@ -587,7 +622,7 @@ ul.show-opt > li {
   transition: .2s;
   background-color: white; }
   ul.show-opt > li:hover {
-    background-color: #92e595;
+    background-color: #FFDFAF;
     color: white; }
 
 @media screen and (max-width: 768px) {
@@ -621,12 +656,13 @@ ul.show-opt > li {
   background-color: #FFDFAF;
   border-radius: 5px; }
 
-.border-button {
+.border-button, button#btn-duplication {
   border: 1px solid #FFAD27;
   border-radius: 30px;
-  color: #FFAD27; }
+  color: #FFAD27;
+  background-color: white; }
 
-.full-color-button, button#btn-sign-up, button#btn-add-client {
+.full-color-button, button#btn-sign-up, button#btn-add-client, button#btn-map-confirm {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }
@@ -844,12 +880,13 @@ td.menu-price {
   background-color: #FFDFAF;
   border-radius: 5px; }
 
-.border-button {
+.border-button, button#btn-duplication {
   border: 1px solid #FFAD27;
   border-radius: 30px;
-  color: #FFAD27; }
+  color: #FFAD27;
+  background-color: white; }
 
-.full-color-button, button#btn-sign-up, button#btn-add-client {
+.full-color-button, button#btn-sign-up, button#btn-add-client, button#btn-map-confirm {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }
@@ -880,12 +917,13 @@ button#btn-go-register {
   background-color: #FFDFAF;
   border-radius: 5px; }
 
-.border-button {
+.border-button, button#btn-duplication {
   border: 1px solid #FFAD27;
   border-radius: 30px;
-  color: #FFAD27; }
+  color: #FFAD27;
+  background-color: white; }
 
-.full-color-button, button#btn-sign-up, button#btn-add-client {
+.full-color-button, button#btn-sign-up, button#btn-add-client, button#btn-map-confirm {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }
@@ -1012,6 +1050,53 @@ button#btn-reg-store {
   right: 0;
   margin: auto; }
 
+div.map-modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 100;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+
+div.map-modal-content {
+  background-color: #fefefe;
+  width: 300px;
+  height: 300px;
+  margin: 15% auto;
+  padding: 10px;
+  border: 1px solid #888;
+  z-index: 100;
+  text-align: center; }
+
+div#map {
+  background-color: #FFDFAF;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  margin-top: 50px; }
+
+span#btn-map-close {
+  margin-top: 10px;
+  margin-right: 5px; }
+
+button#btn-map-confirm {
+  width: 150px;
+  height: 20px;
+  margin-top: 20px;
+  font-size: 1em; }
+
 @media only screen and (max-width: 768px) {
   h1.regist-title {
     display: none; }
@@ -1116,12 +1201,13 @@ figcaption {
   background-color: #FFDFAF;
   border-radius: 5px; }
 
-.border-button {
+.border-button, button#btn-duplication {
   border: 1px solid #FFAD27;
   border-radius: 30px;
-  color: #FFAD27; }
+  color: #FFAD27;
+  background-color: white; }
 
-.full-color-button, button#btn-sign-up, button#btn-add-client {
+.full-color-button, button#btn-sign-up, button#btn-add-client, button#btn-map-confirm {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }
@@ -1228,12 +1314,13 @@ p.store-detail-desc {
   background-color: #FFDFAF;
   border-radius: 5px; }
 
-.border-button {
+.border-button, button#btn-duplication {
   border: 1px solid #FFAD27;
   border-radius: 30px;
-  color: #FFAD27; }
+  color: #FFAD27;
+  background-color: white; }
 
-.full-color-button, button#btn-sign-up, button#btn-add-client {
+.full-color-button, button#btn-sign-up, button#btn-add-client, button#btn-map-confirm {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }

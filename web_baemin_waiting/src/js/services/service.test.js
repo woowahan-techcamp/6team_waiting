@@ -1,7 +1,4 @@
-import * as firebase from "firebase/app";
-import 'firebase/storage';
 
-import util from "../util.js";
 
 import { MemberModel } from "../model/member.model.js";
 import { StoreRegModel } from "../model/storereg.model.js";
@@ -11,22 +8,7 @@ import { TicketModel } from "../model/ticket.model.js";
 const service = (() => {
     // Private member
 
-    // Initialize Firebase
-    const config = {
-        apiKey: "AIzaSyCOh94raCe9z-r0QcOBCCU2CJmIKFcGdyk",
-        authDomain: "baeminwaiting.firebaseapp.com",
-        databaseURL: "https://baeminwaiting.firebaseio.com",
-        projectId: "baeminwaiting",
-        storageBucket: "baeminwaiting.appspot.com",
-        messagingSenderId: "352546507957"
-    };
-
-    const app = firebase.initializeApp(config);
-    
-    const fireStorage = app.storage();
-    const fireStorageRef = app.storage().ref();
-
-    const baseUrl = "http://192.168.100.18:8080/baeminWaiting004";
+    const baseUrl = "http://demo3901264.mockable.io/";
 
 
     const checkIdDuplication = function(id) {
