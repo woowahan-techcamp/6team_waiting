@@ -20,6 +20,8 @@ struct WaitingTicket {
     private(set) var storeId: Int
 
     private var _ticketNumber: Int
+    private var _storeName: String
+    private var _currentInLine: Int
 
     init(name: String, phoneNumber: String, headCount: Int, isStaying: Bool, storeId: Int) {
         self.name = name
@@ -28,10 +30,22 @@ struct WaitingTicket {
         self.isStaying = isStaying
         self.storeId = storeId
         self._ticketNumber = 0
+        self._storeName = ""
+        self._currentInLine = 0
     }
 
     public var ticketNumber: Int {
         get { return self._ticketNumber }
         set { self._ticketNumber = newValue }
+    }
+
+    public var storeName: String {
+        get { return self._storeName }
+        set { self._storeName = newValue }
+    }
+
+    public var currentInLine: Int {
+        get { return self._currentInLine }
+        set { self._currentInLine = newValue }
     }
 }

@@ -15,7 +15,6 @@ class CheckTicketViewController: UIViewController {
     @IBOutlet weak var ticketNumberLabel: UILabel!
     @IBOutlet weak var ticketNumberContentLabel: UILabel!
 
-
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameSubLabel: UILabel!
     @IBOutlet weak var storeLabel: UILabel!
@@ -24,12 +23,18 @@ class CheckTicketViewController: UIViewController {
     @IBOutlet weak var orderSubLabel: UILabel!
 
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.nameLabel.text = waitingTicket?.name
-        self.storeLabel.text = "\(waitingTicket?.storeId)"
+        if let ticketNum = waitingTicket?.ticketNumber,
+            let ticketLine = waitingTicket?.currentInLine{
+
+            self.ticketNumberContentLabel.text = "\(ticketNum)"
+            self.nameLabel.text = waitingTicket?.name
+            self.storeLabel.text = waitingTicket?.storeName
+            self.orderLabel.text = "\(ticketLine) 번째"
+        }
 
         // 보여주기 위해 필요한 정보
         // waitingTicket의 이름

@@ -119,13 +119,13 @@ class WaitingTicketViewController: UIViewController {
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
 
-        ServerRepository.postWaitingTicketCreate(params: ticket) {[weak self] isSuccess, ticketNum in
+        ServerRepository.postWaitingTicketCreate(params: ticket) {[weak self] isSuccess, checkTicket in
 
             self?.activityIndicator.stopAnimating()
             self?.activityIndicator.isHidden = true
 
             if isSuccess {
-                ticket.ticketNumber = ticketNum
+                ticket = checkTicket
                 self?.performSegue(withIdentifier: "showTicketResult", sender: ticket)
             } else {
                 self?.popUpAlert(title: "네트워크 에러", message: "일시적인 오류로 티켓을 발행할 수 없습니다.")

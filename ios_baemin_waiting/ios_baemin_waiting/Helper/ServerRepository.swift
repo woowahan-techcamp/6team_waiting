@@ -168,10 +168,10 @@ class ServerRepository {
         }
     }
 
-    static func postWaitingTicketCreate(params ticket: WaitingTicket, completion: @escaping (Bool, Int) -> Void) {
+    static func postWaitingTicketCreate(params ticket: WaitingTicket, completion: @escaping (Bool, WaitingTicket) -> Void) {
 
+        var checkTicket = ticket
         let isStaying = ticket.isStaying ? 1 : 0
-        print(ticket.name)
         let parameter: Parameters = ["name": ticket.name, "phoneNumber": ticket.phoneNumber,
                                      "headCount": ticket.headCount, "isStaying": isStaying,
                                      "storeId": ticket.storeId]
@@ -195,13 +195,18 @@ class ServerRepository {
 
             print(checkingJson)
             if let ticketNumber = checkingJson["ticketNumber"].int,
+                let storeName = checkingJson["storeName"].string,
+                let currentInLine = checkingJson["currentInLine"].int,
                 let isSuccess = checkingJson["isSuccess"].int {
 
                     let isSuccessBool = isSuccess == 1 ? true : false
+                    checkTicket.storeName = storeName
+                    checkTicket.currentInLine = currentInLine
+                    checkTicket.ticketNumber = ticketNumber
 
                     print(isSuccessBool)
                     DispatchQueue.main.async {
-                        completion(isSuccessBool, ticketNumber)
+                        completion(isSuccessBool, checkTicket)
                     }
                 }
         }
