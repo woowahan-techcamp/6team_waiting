@@ -28,19 +28,13 @@ class CheckTicketViewController: UIViewController {
         super.viewDidLoad()
 
         if let ticketNum = waitingTicket?.ticketNumber,
-            let ticketLine = waitingTicket?.currentInLine{
+            let ticketLine = waitingTicket?.currentInLine {
 
             self.ticketNumberContentLabel.text = "\(ticketNum)"
             self.nameLabel.text = waitingTicket?.name
             self.storeLabel.text = waitingTicket?.storeName
             self.orderLabel.text = "\(ticketLine) 번째"
         }
-
-        // 보여주기 위해 필요한 정보
-        // waitingTicket의 이름
-        // 줄 선 식당
-        // 줄 선 식당의 현재 대기인원
-
     }
 
     override func updateViewConstraints() {

@@ -212,4 +212,52 @@ class ServerRepository {
                 }
         }
     }
+
+    static func postDeviceToken(ticketNumber: Int, token: String) {
+
+        let parameter: Parameters = [
+            "ticketNumber": ticketNumber,
+            "token": token
+        ]
+
+        guard let url = URL(string: baseURL + "/storefilter")
+            else {
+                print("URL is nil")
+                return
+        }
+
+        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+
+            guard response.result.isSuccess else {
+                print("Response get store error: \(response.result.error!)")
+                return
+            }
+
+        }
+    }
+
+    static func saveDeviceTokenToServer(ticketNumber: Int, token: String, completion: @escaping (Bool) -> Void) {
+
+        let parameter: Parameters = [
+            "ticketNumber": ticketNumber,
+            "token": token
+        ]
+
+        guard let url = URL(string: baseURL + "/addToken")
+            else {
+                print("URL is nil")
+                return
+        }
+
+        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            guard response.result.isSuccess else {
+                print("Post register TOKEN Error: \(response.result.error!)")
+                completion(false)
+                return
+            }
+            guard let _ = response.result.value else { return }
+
+            completion(true)
+        }
+    }
 }

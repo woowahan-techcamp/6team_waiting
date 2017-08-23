@@ -224,7 +224,6 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
                 self.noResultRefreshBtn.isHidden = false
             }
         }
-        stopActivityIndicator()
 
         if refresh.isRefreshing {
             refresh.endRefreshing()
