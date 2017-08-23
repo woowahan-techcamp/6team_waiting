@@ -13,7 +13,6 @@ let mediumSDNeo = "AppleSDGothicNeo-Medium"
 let ultraSDNeo = "AppleSDGothicNeo-UltraLight"
 let boldSDNeo = "AppleSDGothicNeo-Bold"
 
-
 extension UILabel {
     func setSubLabelFont(fontSize: CGFloat) {
         self.font = UIFont(name: ultraSDNeo, size: fontSize)
@@ -27,5 +26,3 @@ extension UILabel {
         self.font = UIFont(name: boldSDNeo, size: fontSize)
     }
 }
-
-// label.setLabelFont(label: , fontSize:)

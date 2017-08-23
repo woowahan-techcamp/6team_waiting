@@ -35,6 +35,9 @@ extension MapViewController: NMapViewDelegate {
             print("onMapView:initHandler: \(error.description)")
         }
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        mapCollectionView.isHidden = true
+    }
 }
 
 // MARK: NMapPOIdataOverlayDelegate
@@ -74,6 +77,8 @@ extension MapViewController: NMapPOIdataOverlayDelegate {
 
         // 마커가 중앙에 오도록하기
         mapView?.setMapCenter(poiItem.location, atLevel: 9)
+
+        mapCollectionView.isHidden = false
 
         return nil
     }
