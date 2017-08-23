@@ -198,19 +198,28 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
 
         print("Location Update Called")
 
-        ServerRepository.postCurrentLocation(currentLocation: currentLocation) { storeData in
-            self.storeList = storeData
+        ServerRepository.postCurrentLocation(currentLocation: currentLocation) { isSuccess, storeData in
 
-            if self.storeList.count > 0 {
-                self.storeList = self.storeList.sorted { (store1: Store, store2: Store) -> Bool in
-                    return store1.storeDistance < store2.storeDistance
+            if isSuccess {
+                self.storeList = storeData
+
+                if self.storeList.count > 0 {
+                    self.storeList = self.storeList.sorted { (store1: Store, store2: Store) -> Bool in
+                        return store1.storeDistance < store2.storeDistance
+                    }
+
+                    self.collectionView.reloadData()
+                } else {
+                    // 검색 결과가 없는 경우
+                    self.stopActivityIndicator()
+                    self.collectionView.isHidden = true
+                    self.noResultLabel.text = "주변에 줄을 설 수 있는 식당이 없습니다."
+                    self.noResultLabel.isHidden = false
+                    self.noResultRefreshBtn.isHidden = false
                 }
-
-                self.collectionView.reloadData()
             } else {
-                self.stopActivityIndicator()
-                self.collectionView.isHidden = true
-                self.noResultLabel.text = "주변에 줄을 설 수 있는 식당이 없습니다."
+                // 서버에서 정보를 받아 올 수 없는 경우
+                self.noResultLabel.text = "서버에서 정보를 받아올 수 없습니다."
                 self.noResultLabel.isHidden = false
                 self.noResultRefreshBtn.isHidden = false
             }

@@ -62,7 +62,7 @@ class ServerRepository {
         }
     }
 
-    static func postCurrentLocation(currentLocation: CLLocation, completion: @escaping ([Store]) -> Void) {
+    static func postCurrentLocation(currentLocation: CLLocation, completion: @escaping (Bool, [Store]) -> Void) {
         self.storeList = []
 
         let lat = currentLocation.coordinate.latitude
@@ -83,6 +83,7 @@ class ServerRepository {
 
             guard response.result.isSuccess else {
                 print("Response get store error: \(response.result.error!)")
+                completion(false, [])
                 return
             }
 
@@ -114,7 +115,7 @@ class ServerRepository {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataUpdate"),
                                             object: nil, userInfo: ["storeData": self.storeList])
             DispatchQueue.main.async {
-                completion(self.storeList)
+                completion(true, self.storeList)
             }
 
         }
