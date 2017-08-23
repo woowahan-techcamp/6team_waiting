@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainCollectionVC?.refreshData()
         self.window?.rootViewController = rootVC
 
+        self.window?.rootViewController?.childViewControllers[0]
         self.window?.makeKeyAndVisible()
     }
 
