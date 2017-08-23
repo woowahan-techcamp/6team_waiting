@@ -89,9 +89,9 @@ div.input-menu {
 input#regist-name {
     width: 70%;
 }
-
+// jw
 input#regist-location {
-    width: 90%;
+    width: 70%;
 }
 
 
@@ -126,6 +126,13 @@ button.add-menu {
 button#btn-search-store {
     @extend .btn-base;
     width: 20%;
+    background-color: $primary-color;
+    color: white;
+}
+// jw
+button#btn-search-location {
+    @extend .btn-base;
+    width: 25%;
     background-color: $primary-color;
     color: white;
 }
