@@ -35,7 +35,10 @@ extension MapViewController: NMapViewDelegate {
             print("onMapView:initHandler: \(error.description)")
         }
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    func onMapView(_ mapView: NMapView!, handleSingleTapGesture recogniser: UIGestureRecognizer!) {
+        mapCollectionView.isHidden = true
+    }
+    func onMapView(_ mapView: NMapView!, didChangeMapCenter location: NGeoPoint) {
         mapCollectionView.isHidden = true
     }
 }
