@@ -16,6 +16,10 @@
 		980A56F41F3C19CE00A81DFE /* AlamofireUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */; };
 		980A56F61F3C304000A81DFE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F51F3C304000A81DFE /* Store.swift */; };
 		9814FD771F4AB65F002571EB /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9814FD761F4AB65F002571EB /* DetailMapViewController.swift */; };
+		981F72331F4C0863001A6318 /* MapViewController+NMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72321F4C0863001A6318 /* MapViewController+NMapDelegate.swift */; };
+		981F72351F4C129B001A6318 /* MapViewController+CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72341F4C129B001A6318 /* MapViewController+CollectionViewDataSource.swift */; };
+		981F72381F4C1338001A6318 /* MainMapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72361F4C1338001A6318 /* MainMapCollectionViewCell.swift */; };
+		981F72391F4C1338001A6318 /* MainMapCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981F72371F4C1338001A6318 /* MainMapCollectionViewCell.xib */; };
 		9842DB811F452E8A00B8C409 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9842DB801F452E8A00B8C409 /* Waiting.storyboard */; };
 		9842DB891F454EC400B8C409 /* WaitingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9842DB881F454EC400B8C409 /* WaitingTextField.swift */; };
 		9842DB8B1F454EF900B8C409 /* WaitingTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */; };
@@ -27,7 +31,6 @@
 		986B3DAA1F3D3FFE00432FF7 /* StoreLineShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DA91F3D3FFE00432FF7 /* StoreLineShowCell.swift */; };
 		9870FEB31F3ACC8C00656EEC /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */; };
 		9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB51F3ACE4F00656EEC /* MapViewController.swift */; };
-		9870FEB81F3ACF1300656EEC /* NaverMapHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */; };
 		9870FEBA1F3AD0C700656EEC /* 송파구.json in Resources */ = {isa = PBXBuildFile; fileRef = 9870FEB91F3AD0C700656EEC /* 송파구.json */; };
 		9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEBB1F3AE4A400656EEC /* MainContainerViewController.swift */; };
 		9870FEC61F3AFC1F00656EEC /* MainCollectionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9870FEC51F3AFC1F00656EEC /* MainCollectionView.storyboard */; };
@@ -85,6 +88,10 @@
 		9814FD761F4AB65F002571EB /* DetailMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
 		9814FD781F4AC9C6002571EB /* ios_baemin_waiting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ios_baemin_waiting.entitlements; sourceTree = "<group>"; };
 		981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		981F72321F4C0863001A6318 /* MapViewController+NMapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+NMapDelegate.swift"; sourceTree = "<group>"; };
+		981F72341F4C129B001A6318 /* MapViewController+CollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+CollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		981F72361F4C1338001A6318 /* MainMapCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMapCollectionViewCell.swift; sourceTree = "<group>"; };
+		981F72371F4C1338001A6318 /* MainMapCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMapCollectionViewCell.xib; sourceTree = "<group>"; };
 		9842DB801F452E8A00B8C409 /* Waiting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Waiting.storyboard; path = ios_baemin_waiting/View/Waiting/Waiting.storyboard; sourceTree = SOURCE_ROOT; };
 		9842DB881F454EC400B8C409 /* WaitingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTextField.swift; sourceTree = "<group>"; };
 		9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTicketViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +103,6 @@
 		986B3DA91F3D3FFE00432FF7 /* StoreLineShowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreLineShowCell.swift; sourceTree = "<group>"; };
 		9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
 		9870FEB51F3ACE4F00656EEC /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverMapHandler.swift; sourceTree = "<group>"; };
 		9870FEB91F3AD0C700656EEC /* 송파구.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "송파구.json"; sourceTree = "<group>"; };
 		9870FEBB1F3AE4A400656EEC /* MainContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
 		9870FEC51F3AFC1F00656EEC /* MainCollectionView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainCollectionView.storyboard; sourceTree = "<group>"; };
@@ -268,6 +274,8 @@
 				9870FEC51F3AFC1F00656EEC /* MainCollectionView.storyboard */,
 				9870FECD1F3AFDB400656EEC /* MainCollectionViewCell.swift */,
 				9870FECF1F3AFE0700656EEC /* MainCollectionReusableView.swift */,
+				981F72361F4C1338001A6318 /* MainMapCollectionViewCell.swift */,
+				981F72371F4C1338001A6318 /* MainMapCollectionViewCell.xib */,
 			);
 			name = Main;
 			path = View/Main;
@@ -297,6 +305,8 @@
 				9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */,
 				7E5E9EF61F4830FA007E2ADD /* CheckTicketViewController.swift */,
 				9814FD761F4AB65F002571EB /* DetailMapViewController.swift */,
+				981F72321F4C0863001A6318 /* MapViewController+NMapDelegate.swift */,
+				981F72341F4C129B001A6318 /* MapViewController+CollectionViewDataSource.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -305,7 +315,6 @@
 			isa = PBXGroup;
 			children = (
 				980A56EF1F3C16D800A81DFE /* ServerRepository.swift */,
-				9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */,
 				9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */,
 				7E1273CD1F434257000C7912 /* Constant.swift */,
 				9842DB881F454EC400B8C409 /* WaitingTextField.swift */,
@@ -417,6 +426,7 @@
 				987155761F4172D5001D81E4 /* Main.storyboard in Resources */,
 				9879D9B61F34054900B4131A /* Assets.xcassets in Resources */,
 				9870FEBA1F3AD0C700656EEC /* 송파구.json in Resources */,
+				981F72391F4C1338001A6318 /* MainMapCollectionViewCell.xib in Resources */,
 				98BE03DC1F38617D00179D43 /* Scripts in Resources */,
 				9842DB811F452E8A00B8C409 /* Waiting.storyboard in Resources */,
 				9871557A1F41738B001D81E4 /* LaunchScreen.storyboard in Resources */,
@@ -574,7 +584,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9814FD771F4AB65F002571EB /* DetailMapViewController.swift in Sources */,
-				9870FEB81F3ACF1300656EEC /* NaverMapHandler.swift in Sources */,
 				9870FECE1F3AFDB400656EEC /* MainCollectionViewCell.swift in Sources */,
 				986B3DAA1F3D3FFE00432FF7 /* StoreLineShowCell.swift in Sources */,
 				9870FECC1F3AFD6900656EEC /* MainCollectionViewController.swift in Sources */,
@@ -586,6 +595,7 @@
 				9870FED01F3AFE0700656EEC /* MainCollectionReusableView.swift in Sources */,
 				986B3DA81F3D3FEB00432FF7 /* StoreMapViewCell.swift in Sources */,
 				9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */,
+				981F72331F4C0863001A6318 /* MapViewController+NMapDelegate.swift in Sources */,
 				9842DB8B1F454EF900B8C409 /* WaitingTicketViewController.swift in Sources */,
 				9842DB891F454EC400B8C409 /* WaitingTextField.swift in Sources */,
 				986B3DA11F3D3E8100432FF7 /* StoreDescriptionCell.swift in Sources */,
@@ -593,8 +603,10 @@
 				9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */,
 				9870FEB31F3ACC8C00656EEC /* NMapViewResources.swift in Sources */,
 				980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */,
+				981F72381F4C1338001A6318 /* MainMapCollectionViewCell.swift in Sources */,
 				986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */,
 				9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */,
+				981F72351F4C129B001A6318 /* MapViewController+CollectionViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

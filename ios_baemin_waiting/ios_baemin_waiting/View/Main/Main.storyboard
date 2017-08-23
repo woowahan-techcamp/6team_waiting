@@ -82,12 +82,58 @@
                     <view key="view" contentMode="scaleToFill" id="EvZ-7V-unu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RAw-be-YHh">
+                                <rect key="frame" x="0.0" y="475" width="375" height="120"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="2Da-2n-141"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bpo-1x-hbm">
+                                    <size key="itemSize" width="299" height="120"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainMapCollectionViewCell" id="bEF-rF-h26" customClass="MainMapCollectionViewCell" customModule="ios_baemin_waiting" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="299" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="299" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="9Tt-Mm-vjU" id="xuR-aR-Wu4"/>
+                                    <outlet property="delegate" destination="9Tt-Mm-vjU" id="Yos-wB-nTF"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="RAw-be-YHh" firstAttribute="leading" secondItem="EvZ-7V-unu" secondAttribute="leading" id="UsE-3o-8Gn"/>
+                            <constraint firstAttribute="trailing" secondItem="RAw-be-YHh" secondAttribute="trailing" id="pmZ-ht-uKd"/>
+                            <constraint firstItem="fyj-Ya-lZQ" firstAttribute="top" secondItem="RAw-be-YHh" secondAttribute="bottom" constant="8" id="wNq-hX-7AU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5PH-Dc-Pnf"/>
+                    <connections>
+                        <outlet property="mapCollectionView" destination="RAw-be-YHh" id="Ncd-bV-gMP"/>
+                        <segue destination="s4P-in-Uxo" kind="show" identifier="mapToDetail" id="SgY-6T-JdD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wbw-FC-6j3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4161" y="-776"/>
+            <point key="canvasLocation" x="4279" y="-736"/>
+        </scene>
+        <!--StoreDetailView-->
+        <scene sceneID="e2B-5v-THD">
+            <objects>
+                <viewControllerPlaceholder storyboardName="StoreDetailView" id="s4P-in-Uxo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QAr-N5-sR9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4930" y="-799"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PRS-NR-XNJ">
