@@ -163,7 +163,7 @@ export class HomeNavigator {
         map.on();
         
         const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", this.registerHandler);
+        btnRegister.addEventListener("click", () => this.registerHandler(menu));
     }
 
     myInfoHandler() {
@@ -235,7 +235,6 @@ export class HomeNavigator {
         this.view.hideElement("board");
     }
 
-    //로그인
     signInHandler() {
         const id = document.getElementById("login-id").value;
         const pwd = document.getElementById("login-pwd").value;
@@ -281,7 +280,7 @@ export class HomeNavigator {
         this.goHome();
     }
 
-    registerHandler() {
+    registerHandler(menu) {
         const token = JSON.parse(sessionStorage.getItem("token"));
         const storeid = token.storeId;
         const memberid = token.memberId;

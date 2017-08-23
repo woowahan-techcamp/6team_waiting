@@ -7,7 +7,7 @@ export class StoreRegModel {
         this.storeLatitude = addrX;
         this.storeLongitude = addrY;
         this.memberId = id;
-        this.storeMenu = menu;
-        this.imgUrl = img;
+        this.menus = menu;
+        this.storeImgUrl = img;
     }
 }
