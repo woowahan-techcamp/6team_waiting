@@ -54,18 +54,15 @@ class WaitingTicketViewController: UIViewController {
 
         activityIndicator.isHidden = true
 
-        if UIApplication.shared.isRegisteredForRemoteNotifications {
-            print("registered")
+        if !UIApplication.shared.isRegisteredForRemoteNotifications {
+            print("Register 필요")
 
             registerPushNotifications {
                 self.nameTextField.becomeFirstResponder()
             }
         } else {
-            print("not registered")
-
-            popUpAlert(title: "푸쉬알람 설정", message: "푸쉬알람 설정이 거절되어 있습니다.\n해당 설정은 '설정'탭에서 변경할 수 있습니다.")
+            self.nameTextField.becomeFirstResponder()
         }
-
     }
     func registerPushNotifications(completion: @escaping () -> Void) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
