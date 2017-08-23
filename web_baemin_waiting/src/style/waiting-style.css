@@ -12,7 +12,7 @@
   border-radius: 30px;
   color: #FFAD27; }
 
-.full-color-button, button#btn-sign-up {
+.full-color-button, button#btn-sign-up, button#btn-add-client {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }
@@ -489,36 +489,129 @@ div.manage {
 
 div.waiting-list {
   padding: 5px;
-  height: 50vh;
+  height: 40vh;
   overflow: auto;
   margin-top: 30px; }
 
 div.waiting-member {
   width: 40vw;
-  height: 100px;
+  height: 80px;
   margin: auto;
   margin-bottom: 10px;
-  box-shadow: 1px 1px 5px #CCC; }
+  box-shadow: 1px 1px 5px #CCC;
+  transition: .3s; }
+  div.waiting-member:hover {
+    box-shadow: 1px 1px 8px #999;
+    transition: .3s; }
+
+div.waiting-info {
+  float: left;
+  text-align: left;
+  margin-top: 15px;
+  margin-left: 20px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; }
+
+p.waiting-name {
+  font-weight: bold;
+  font-size: 1.5em; }
+
+span.waiting-num {
+  color: #FFAD27;
+  font-size: .8em;
+  margin-left: 15px; }
+
+p.waiting-tel {
+  margin-top: 5px;
+  font-size: 1.2em; }
 
 div.waiting-btn-area {
   float: right; }
 
 div.waiting-btn-area div {
-  width: 5vw;
-  height: 100px;
-  float: left; }
+  width: 80px;
+  height: 80px;
+  float: left;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center center; }
 
 div.btn-alarm {
-  background-color: #a9eeab; }
+  position: relative;
+  background-image: url("/dist/public/images/bell.png");
+  background-color: #92e595; }
 
 div.btn-delete {
+  background-image: url("/dist/public/images/close-white.png");
   background-color: #ff7575; }
 
-div.input-client {
+div.manage-input-area {
   position: absolute;
-  height: 150px;
-  background-color: red;
-  bottom: 0; }
+  width: 100%;
+  height: 100px;
+  background-color: #FFDFAF;
+  bottom: 20px;
+  z-index: 20; }
+
+dl.client-form {
+  margin-left: 30px; }
+
+button#btn-add-client {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  right: 20px;
+  bottom: 20px;
+  font-size: 1.2em; }
+
+ul.alarm-opt {
+  position: absolute;
+  top: 79px;
+  width: 80px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 1px solid #92e595;
+  border-top: none;
+  z-index: 10; }
+
+ul.alarm-opt > li {
+  overflow: hidden;
+  height: 0;
+  transition: .2s; }
+
+ul.show-opt > li {
+  height: 30px;
+  line-height: 30px;
+  transition: .2s;
+  background-color: white; }
+  ul.show-opt > li:hover {
+    background-color: #92e595;
+    color: white; }
+
+@media screen and (max-width: 768px) {
+  div.waiting-member {
+    width: 180px;
+    height: 120px; }
+  div.waiting-btn-area div {
+    margin-top: 7px;
+    width: 90px;
+    height: 50px; }
+  p.waiting-name {
+    font-weight: bold;
+    font-size: 1.3em; }
+  span.waiting-num {
+    color: #FFAD27;
+    font-size: .8em;
+    margin-left: 15px; }
+  p.waiting-tel {
+    margin-top: 5px;
+    font-size: 1em; }
+  ul.alarm-opt {
+    width: 90px;
+    position: absolute;
+    top: 49px; } }
 
 .border-input {
   border: 1px solid #FFDFAF;
@@ -533,7 +626,7 @@ div.input-client {
   border-radius: 30px;
   color: #FFAD27; }
 
-.full-color-button, button#btn-sign-up {
+.full-color-button, button#btn-sign-up, button#btn-add-client {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }
@@ -756,7 +849,7 @@ td.menu-price {
   border-radius: 30px;
   color: #FFAD27; }
 
-.full-color-button, button#btn-sign-up {
+.full-color-button, button#btn-sign-up, button#btn-add-client {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }
@@ -792,12 +885,12 @@ button#btn-go-register {
   border-radius: 30px;
   color: #FFAD27; }
 
-.full-color-button, button#btn-sign-up {
+.full-color-button, button#btn-sign-up, button#btn-add-client {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }
 
-.btn-base, button.remove-menu, button.add-menu, button#btn-search-store {
+.btn-base, button.remove-menu, button.add-menu, button#btn-search-store, button#btn-search-location {
   width: 10%;
   height: 30px;
   border-radius: 5px;
@@ -873,7 +966,7 @@ input#regist-name {
   width: 70%; }
 
 input#regist-location {
-  width: 90%; }
+  width: 70%; }
 
 input#regist-desc {
   width: 90%; }
@@ -898,6 +991,11 @@ button.add-menu {
 
 button#btn-search-store {
   width: 20%;
+  background-color: #FFAD27;
+  color: white; }
+
+button#btn-search-location {
+  width: 25%;
   background-color: #FFAD27;
   color: white; }
 
@@ -1023,7 +1121,7 @@ figcaption {
   border-radius: 30px;
   color: #FFAD27; }
 
-.full-color-button, button#btn-sign-up {
+.full-color-button, button#btn-sign-up, button#btn-add-client {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }
@@ -1135,7 +1233,7 @@ p.store-detail-desc {
   border-radius: 30px;
   color: #FFAD27; }
 
-.full-color-button, button#btn-sign-up {
+.full-color-button, button#btn-sign-up, button#btn-add-client {
   background-color: #FFAD27;
   border-radius: 30px;
   color: white; }

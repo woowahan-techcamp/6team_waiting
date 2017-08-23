@@ -1,3 +1,6 @@
+$manage-green: #92e595;
+$manage-red: #ff7575;
+
 div.manage {
     width: 50vw;
     margin: 30px auto;
@@ -7,17 +10,48 @@ div.manage {
 
 div.waiting-list {
     padding: 5px;
-    height: 50vh;
+    height: 40vh;
     overflow: auto;
     margin-top: 30px;
 }
 
 div.waiting-member {
     width: 40vw;
-    height: 100px;
+    height: 80px;
     margin: auto;
     margin-bottom: 10px;
     box-shadow: 1px 1px 5px #CCC;
+    transition: .3s;
+    &:hover {
+        box-shadow: 1px 1px 8px #999;
+        transition: .3s;
+    }
+}
+
+div.waiting-info {
+    float: left;
+    text-align: left;
+    margin-top: 15px;
+    margin-left: 20px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+p.waiting-name {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+span.waiting-num {
+    color: $primary-color;
+    font-size: .8em;
+    margin-left: 15px;
+}
+
+p.waiting-tel {
+    margin-top: 5px;
+    font-size: 1.2em;
 }
 
 div.waiting-btn-area {
@@ -25,22 +59,105 @@ div.waiting-btn-area {
 }
 
 div.waiting-btn-area div {
-    width: 5vw;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     float: left;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 div.btn-alarm {
-    background-color: #a9eeab;
+    position: relative;
+    background-image: url("/dist/public/images/bell.png");
+    background-color: $manage-green;
 }
 
 div.btn-delete {
-    background-color: #ff7575;
+    background-image: url("/dist/public/images/close-white.png");
+    background-color: $manage-red;
 }
 
-div.input-client {
+div.manage-input-area {
     position: absolute;
-    height: 150px;
-    background-color: red;
-    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: $secondary-color;
+    bottom: 20px;
+    z-index: 20;
+}
+
+dl.client-form {
+    margin-left: 30px;
+}
+
+button#btn-add-client {
+    @extend .full-color-button;
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    right: 20px;
+    bottom: 20px;
+    font-size: 1.2em;
+}
+
+ul.alarm-opt {
+    position: absolute;
+    top: 79px;
+    width: 80px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 1px solid $manage-green;
+    border-top: none;
+    z-index: 10;
+}
+
+ul.alarm-opt > li {
+    overflow: hidden;
+    height: 0;
+    transition: .2s;
+}
+
+ul.show-opt > li {
+    height: 30px;
+    line-height: 30px;
+    transition: .2s;
+    background-color: white;
+    &:hover {
+        background-color: $manage-green;
+        color: white;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    div.waiting-member {
+        width: 180px;
+        height: 120px;
+    }
+    div.waiting-btn-area div {
+        margin-top: 7px;
+        width: 90px;
+        height: 50px;
+    }
+    p.waiting-name {
+        font-weight: bold;
+        font-size: 1.3em;
+    }
+
+    span.waiting-num {
+        color: $primary-color;
+        font-size: .8em;
+        margin-left: 15px;
+    }
+
+    p.waiting-tel {
+        margin-top: 5px;
+        font-size: 1em;
+    }
+    ul.alarm-opt {
+        width: 90px;
+        position: absolute;
+        top: 49px;
+    }
 }

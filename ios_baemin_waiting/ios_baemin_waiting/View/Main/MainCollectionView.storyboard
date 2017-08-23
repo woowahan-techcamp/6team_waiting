@@ -34,17 +34,17 @@
                                     <constraint firstAttribute="width" constant="50" id="gv3-9F-jqN"/>
                                 </constraints>
                             </activityIndicatorView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Uay-Oh-9QD">
-                                <rect key="frame" x="90" y="281" width="195" height="41.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Uay-Oh-9QD">
+                                <rect key="frame" x="187.5" y="281" width="0.0" height="0.0"/>
                                 <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 주변에 검색 가능한 식당이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfa-UC-SOl">
-                                        <rect key="frame" x="0.0" y="0.0" width="195" height="14.5"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="현재 주변에 검색 가능한 식당이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfa-UC-SOl">
+                                        <rect key="frame" x="-264" y="-302" width="195" height="0.0"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUs-4u-9Fg">
-                                        <rect key="frame" x="76.5" y="14.5" width="42" height="27"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUs-4u-9Fg">
+                                        <rect key="frame" x="-187.5" y="-302" width="42" height="0.0"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="12"/>
                                         <state key="normal" title="새로고침">
                                             <color key="titleColor" red="1" green="0.67843137249999996" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -294,14 +294,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Uay-Oh-9QD" firstAttribute="centerX" secondItem="Srj-Ph-udR" secondAttribute="centerX" id="4ux-4d-EzZ"/>
                             <constraint firstAttribute="trailing" secondItem="PIy-9R-eGb" secondAttribute="trailing" id="8i3-SP-1Qd"/>
                             <constraint firstItem="ukw-84-f0i" firstAttribute="top" secondItem="vLn-Zt-dr8" secondAttribute="bottom" id="8z9-d7-Kt8"/>
+                            <constraint firstItem="Uay-Oh-9QD" firstAttribute="centerY" secondItem="Srj-Ph-udR" secondAttribute="centerY" id="GhU-Fb-LPb"/>
                             <constraint firstAttribute="trailing" secondItem="ukw-84-f0i" secondAttribute="trailing" id="HbY-sT-U3j"/>
-                            <constraint firstItem="Uay-Oh-9QD" firstAttribute="centerX" secondItem="Srj-Ph-udR" secondAttribute="centerX" id="Q2Z-MW-HeJ"/>
-                            <constraint firstItem="Uay-Oh-9QD" firstAttribute="centerY" secondItem="Srj-Ph-udR" secondAttribute="centerY" id="ZEQ-YK-l86"/>
                             <constraint firstAttribute="bottom" secondItem="ukw-84-f0i" secondAttribute="bottom" id="ZhN-xB-lUI"/>
                             <constraint firstItem="PIy-9R-eGb" firstAttribute="top" secondItem="vLn-Zt-dr8" secondAttribute="bottom" id="fBa-nE-D8Y"/>
-                            <constraint firstItem="Uay-Oh-9QD" firstAttribute="centerY" secondItem="Srj-Ph-udR" secondAttribute="centerY" id="fbD-5i-b0w"/>
                             <constraint firstItem="5sh-Q6-N7o" firstAttribute="centerY" secondItem="Srj-Ph-udR" secondAttribute="centerY" id="fxd-5M-dPt"/>
                             <constraint firstItem="ukw-84-f0i" firstAttribute="leading" secondItem="Srj-Ph-udR" secondAttribute="leading" id="nZ1-jV-aXC"/>
                             <constraint firstItem="5sh-Q6-N7o" firstAttribute="centerX" secondItem="Srj-Ph-udR" secondAttribute="centerX" id="qRj-cu-8FK"/>
