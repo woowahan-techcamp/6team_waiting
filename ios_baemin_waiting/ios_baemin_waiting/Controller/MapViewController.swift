@@ -15,13 +15,12 @@ class MapViewController: UIViewController {
         case tracking
     }
 
+    @IBOutlet weak var mapCollectionView: UICollectionView!
+
     var mapView: NMapView?
     var myLocation: NGeoPoint?
     var circleArea: NMapCircleData?
-
     var markers: [NMapPOIitem] = []
-
-    @IBOutlet weak var mapCollectionView: UICollectionView!
     var storeList: [Store] = []
 
     private var currentState: State = .disabled
@@ -54,7 +53,6 @@ class MapViewController: UIViewController {
 
         mapCollectionView.register(UINib(nibName: "MainMapCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MainMapCollectionViewCell")
 
-        mapCollectionView.isPagingEnabled = true
     }
 
     // NotificationCenter 메소드
