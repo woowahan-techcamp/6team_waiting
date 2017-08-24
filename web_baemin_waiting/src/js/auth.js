@@ -9,7 +9,7 @@ export class Auth {
 
     constructor(){
         this.authId = null;
-        this.isNotDuplication = false;
+        this.isNotDuplication = true; // @TODO : haeun.kim
         this.regex = new Regex();
         this.view = new View(".view");
         
@@ -31,6 +31,8 @@ export class Auth {
 
         service.signInUser(id, pwd)
             .then((token) => {
+                // @TODO : haeun.kim
+                // token 이 fail 일 경우에는 로그인이 되면 안됨
                 window.sessionStorage.setItem("token", JSON.stringify(token));
                 this.view.showInitialBoard();
             })
@@ -65,7 +67,7 @@ export class Auth {
             return;
         }
         
-        if (this.auth.isNotDuplication && (this.auth.authId === id)) {
+        if (this.isNotDuplication && (this.authId === id)) {
             service.signUpUser(id, pwd, name, tel)
                 .then(() => {
                     this.view.hideElement("sign-up");
@@ -113,6 +115,9 @@ export class Auth {
         // @TODO : haeun.kim
         // 사용자가 버튼을 여러번 누를 경우,
         // 서버에 요청이 여러번 날아가게 됨 
+
+        // @TODO : haeun.kim
+        // regex check
         service.saveImageInStorage(id)
             .then((path) => {
                 return service.getStoreImageUrl(path);
