@@ -21,6 +21,8 @@ class MapViewController: UIViewController {
     var myLocation: NGeoPoint?
     var circleArea: NMapCircleData?
     var markers: [NMapPOIitem] = []
+
+    var overlayItems: NMapPOIdataOverlay?
     var storeList: [Store] = []
 
     private var currentState: State = .disabled
@@ -53,6 +55,8 @@ class MapViewController: UIViewController {
 
         mapCollectionView.register(UINib(nibName: "MainMapCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MainMapCollectionViewCell")
 
+        setCollectionViewLayout()
+
     }
 
     // NotificationCenter 메소드
@@ -77,6 +81,19 @@ class MapViewController: UIViewController {
         self.storeList = storeListData
 
         completion()
+    }
+
+    func setCollectionViewLayout() {
+        let layout = MapCollectionViewFlowLayout()
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 0
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 37, bottom: 0, right: 37)
+        layout.itemSize = CGSize(width: self.view.bounds.width - 64 - 10, height: 120)
+        mapCollectionView.collectionViewLayout = layout
+
+        mapCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
+
     }
 
     override func viewDidAppear(_ animated: Bool) {

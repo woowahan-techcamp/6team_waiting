@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class WaitingTicketViewController: UIViewController {
 
@@ -51,8 +52,35 @@ class WaitingTicketViewController: UIViewController {
         configureNameTextField()
         configurePhoneNumberTextField()
 
-        nameTextField.becomeFirstResponder()
         activityIndicator.isHidden = true
+
+        if !UIApplication.shared.isRegisteredForRemoteNotifications {
+            print("Register 필요")
+
+            registerPushNotifications {
+                self.nameTextField.becomeFirstResponder()
+            }
+        } else {
+            self.nameTextField.becomeFirstResponder()
+        }
+    }
+    func registerPushNotifications(completion: @escaping () -> Void) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
+            if !granted {
+                self.popUpAlert(title: "푸쉬알람 설정", message: "푸쉬알람 설정이 거절되었습니다.\n해당 설정은 '설정'탭에서 변경할 수 있습니다.")
+            }
+            print("Notification Permission Granted: \(granted)")
+
+            self.getNotificationSettings()
+        }
+    }
+
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { (setting) in
+            print("Notification Setting: \(setting)")
+            guard setting.authorizationStatus == .authorized else { return }
+            UIApplication.shared.registerForRemoteNotifications()
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -105,8 +133,10 @@ class WaitingTicketViewController: UIViewController {
     @IBAction func makeWaitingTicketTapped(_ sender: UIButton) {
         if nameTextField.text == "" {
             popUpAlert(title: "잠깐만요", message: "이름을 입력해주세요.")
+            return
         } else if phoneNumberTextField.text == "" {
             popUpAlert(title: "잠깐만요", message: "전화번호를 입력해주세요.")
+            return
         }
 
         guard let name = nameTextField.text else { return }
@@ -126,6 +156,15 @@ class WaitingTicketViewController: UIViewController {
 
             if isSuccess {
                 ticket = checkTicket
+
+                if let token = UserDefaults.standard.object(forKey: "token") as? String {
+
+                    ServerRepository.saveDeviceTokenToServer(ticketNumber: ticket.ticketNumber, token: token) { saveSuccess in
+                        if saveSuccess {
+                            print("Success Saving Token")
+                        }
+                    }
+                }
                 self?.performSegue(withIdentifier: "showTicketResult", sender: ticket)
             } else {
                 self?.popUpAlert(title: "네트워크 에러", message: "일시적인 오류로 티켓을 발행할 수 없습니다.")

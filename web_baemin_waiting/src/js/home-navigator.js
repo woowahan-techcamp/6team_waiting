@@ -1,16 +1,20 @@
 import util from "./util.js";
 import service from "./services/service.js";
 
+import { Auth } from "./auth.js";
+import { Regex } from "./regex.js";
 import { Menu } from "./menu.js";
 import { Slide } from "./slide.js";
 import { StoreList } from "./storelist.js";
 import { View } from "./view.js";
 import { Manage } from "./manage.js";
+import { Map } from "./map.js";
 
 import { stat } from "./stat.data.js";
-//jw
+
 import { MemberModel } from "./model/member.model.js";
 import { StoreRegModel } from "./model/storereg.model.js";
+
 
 export class HomeNavigator {
 
@@ -27,9 +31,13 @@ export class HomeNavigator {
         this.dropdown = document.querySelector(drop);
         this.dropdownList = document.querySelector(list);
 
+        this.btnDuplication = document.querySelector("#btn-duplication");
+
         this.prev = document.querySelector(".prev");
         this.next = document.querySelector(".next");
 
+        this.regex = new Regex();
+        this.auth = new Auth();
         this.slide = new Slide("slides");
         this.view = new View(".view");
     }
@@ -66,6 +74,8 @@ export class HomeNavigator {
             this.view.hideElement("sign-up");
         });
 
+        this.btnDuplication.addEventListener("click", this.checkDuplcation.bind(this));
+
         this.navigator.addEventListener("click", (e) => {
             if (e.target && e.target.nodeName === "LI") {
                 this.showNaviPage(e.target.dataset.dest);
@@ -94,26 +104,30 @@ export class HomeNavigator {
             this.slide.plusSlide(1);
         })
     }
+    
+    checkDuplcation() {
+        const id = document.querySelector("#sign-id").value;
+        service.checkDuplication(id).then((res) => {
+            if (res === 0) {
+                document.querySelector("#check-dup").innerHTML = "사용가능한 아이디 입니다.";
+                document.querySelector("#check-dup").style.color = "green";
+                
+                this.auth.authId = id;
+                this.auth.isNotDuplication = true;
+            } else {
+                alert("이미 사용 중인 아이디 입니다.");
+            }
+        })
+    }
 
     confirmMyPage() {
         const btnConfirm = document.getElementById("btn-confirm");
         btnConfirm.addEventListener("click", () => {
-            // @TODO : haeun.kim 
-            // 비밀번호가 일치할 때만, 개인 정보 확인 가능
-            service.getUserInfo().then((user) => {
-                service.getStoreInfo().then((store) => {
-                    service.getMenus().then((menus) => {
-                        util.setTemplateInHtml(".my-page-area", "my-info", {"user": user, "store": store, "menus": menus})
-                            .then(() => {
-                                if (!store) {
-                                    document.querySelector(".my-store").innerHTML = "";
-                                }
-                                this.myInfoHandler();
-                        });
-                    })
-                })
+            const pwd = document.querySelector("#pwd-confirm").value;
+            this.auth.confirmPassword(pwd).then(() => {
+                util.setTemplateInHtml(".board", "my-info");
             });
-        });
+        })
     }
 
     dropdownImg() {
@@ -124,20 +138,21 @@ export class HomeNavigator {
             document.getElementById("drop").src = "/dist/public/images/menu.png";
     }
 
-    //jw 가게관리하기 버튼
     goStoreHandler() {
-        if (!window.sessionStorage.getItem("loginId")) {//jw
-            this.view.showElement("sign-in");
-        } else {
+        const token = window.sessionStorage.getItem("token");
+
+        if (token) {
             this.view.showElement("board");
             this.view.showElement("nav")
             this.showNaviPage("manage");
+        } else {
+            this.view.showElement("sign-in");
         }
 
         this.view.inactivateRoot();
     }
-    //가게 등록
-    registerHandler() {
+    
+    registerPage() {
         const menu = new Menu(".menus");
         menu.addMenuInput();
 
@@ -145,51 +160,12 @@ export class HomeNavigator {
         btnAddMenu.addEventListener("click", () => {
             menu.addMenuInput();
         });
-        //jw 지도검색
-        const btnSearchLocation = document.querySelector("#btn-search-location");
-        btnSearchLocation.addEventListener("click", () => {
-            //좌표 받아오기
-            const place = document.querySelector("#regist-location").value;
-            this.searchAddrByMap(place);
-        });
 
+        const map = new Map();
+        map.on();
+        
         const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", () => {
-            const menus = menu.menusToJSON();
-            service.registerMenu(menus);
-            this.registerStore();
-        });
-    }
-    //가게 등록버튼 refac 메뉴, 사진 추가 필요
-    registerStore(menu) {
-        const title = document.getElementById("regist-name").value;
-        const desc = document.getElementById("regist-desc").value;
-        const tel = document.getElementById("regist-tel").value;
-        const addr = document.getElementById("regist-location").value;
-        //jw
-        const addrX = window.sessionStorage.getItem("myaddrX");
-        const addrY = window.sessionStorage.getItem("myaddrY");
-        const id = window.sessionStorage.getItem("loginId");
-
-        const storeRegModel = new StoreRegModel(title, desc, tel, addr, addrX, addrY, id);
-
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", () => {
-            var htData = oReq.responseText;
-            console.log(htData);
-            window.sessionStorage.removeItem("myaddrX");
-            window.sessionStorage.removeItem("myaddrY");                   
-        });
-        oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/addStore");
-        oReq.send(JSON.stringify(storeRegModel));
-
-        // service.saveImageInStorage().then((path) => {
-        //     service.getStoreImageUrl(path).then((url) => {
-        //         service.registerRestaurant(title, desc, "주소", tel, url, false, menu).then(
-        //             util.setTemplateInHtml(".board", "manage")
-        //         );
-        //     });
-        // });
+        btnRegister.addEventListener("click", () => this.registerHandler(map, menu));
     }
 
     myInfoHandler() {
@@ -209,9 +185,7 @@ export class HomeNavigator {
         util.setTemplateInHtml(".board", "no-store").then(() => {
             const btnGoRegister = document.getElementById("btn-go-register");
             btnGoRegister.addEventListener("click", () => {
-                util.setTemplateInHtml(".board", "register").then(
-                    this.registerHandler()
-                );
+                util.setTemplateInHtml(".board", "register").then(() => this.registerPage());
             });
         });
     }
@@ -219,25 +193,17 @@ export class HomeNavigator {
     showNaviPage(destination) {
         switch (destination) {
             case "home":
-                this.view.activateRoot();
-                this.view.hideElement("nav");
-                this.view.hideElement("board");
+                this.goHome();
                 break;
 
             case "my-page":
-                util.setTemplateInHtml(".board", destination).then(
+                util.setTemplateInHtml(".board", destination).then(() =>
                     this.confirmMyPage()
                 );
                 break;
 
             case "manage":
-                service.hasRestaurant().then((hasStore) => {
-                    if (hasStore) {
-                        const manage = new Manage();
-                    } else {
-                        this.showRegister();
-                    }
-                });
+                this.manageHandler();
                 break;
 
             case "statistic":
@@ -249,12 +215,7 @@ export class HomeNavigator {
                 break;
 
             case "logout": 
-                //jw 로그아웃
-                window.sessionStorage.removeItem("token");
-                window.sessionStorage.removeItem("loginId");
-                this.view.activateRoot();
-                this.view.hideElement("nav");
-                this.view.hideElement("board");
+                this.signOutHandler();
                 break;
 
             default:
@@ -270,100 +231,108 @@ export class HomeNavigator {
         this.showNaviPage("manage");
     }
 
-    //로그인
+    goHome() {
+        this.view.activateRoot();
+        this.view.hideElement("nav");
+        this.view.hideElement("board");
+    }
+
     signInHandler() {
-        const userId = document.getElementById("login-id").value;
-        const userPwd = document.getElementById("login-pwd").value;
+        const id = document.getElementById("login-id").value;
+        const pwd = document.getElementById("login-pwd").value;
+        const that = this;
 
-        //jw
-        const memberModel = new MemberModel(userId, userPwd);
-        
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load",() => {
-             var htData = oReq.responseText;
-             console.log(htData);
-             this.afterSignIn(htData, userId);            
-        });
-        oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/signin");
-        oReq.send(JSON.stringify(memberModel));
-    }
-
-    //jw
-    afterSignIn(htData, userId) {
-        if(htData == "fail"){
-            document.querySelector(".sign-warning").style.visibility = "visible";
+        if (!this.regex.isID(id)) {
+            console.log("아이디가 잘못됨");
+            return;
         }
-        else{
-            window.sessionStorage.setItem('token', htData);
-            window.sessionStorage.setItem('loginId', userId);
-            this.showInitialBoard();
-        }        
+
+        if (!this.regex.isPassword(pwd)) {
+            console.log("비밀번호가 잘못됨");
+            return;
+        }
+
+        service.signInUser(id, pwd).then((token) => {
+            window.sessionStorage.setItem("token", JSON.stringify(token));
+            // 뷰처리
+        });
     }
 
-    //회원가입
     signUpHandler() {
-        const userId = document.getElementById("sign-id").value;
-        const userPwd = document.getElementById("sign-pwd").value;
-        const userName = document.getElementById("sign-name").value;
-        const userTel = document.getElementById("sign-tel").value;
-        
-        //jw
-        const memberModel = new MemberModel(userId, userPwd, 0, userTel);
-        
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", () => {
-            var htData = oReq.responseText;
-            console.log(htData);
-            if(htData == "true"){
-                this.view.hideElement("sign-up");
-            }           
-        });
-        oReq.open("POST", "http://192.168.100.18:8080/baeminWaiting004"+"/signup");
-        oReq.send(JSON.stringify(memberModel));
-    }
+        const id = document.getElementById("sign-id").value;
+        const pwd = document.getElementById("sign-pwd").value;
+        const name = document.getElementById("sign-name").value;
+        const tel = document.getElementById("sign-tel").value;
 
 
-    //jw 네이버지도api
-    searchAddrByMap(place){
-        var map = new naver.maps.Map('map');
-        var myaddress = place;// 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
-        naver.maps.Service.geocode({address: myaddress}, function(status, response) {
-            if (status !== naver.maps.Service.Status.OK) {
-                return alert(myaddress + '의 검색 결과가 없거나 기타 네트워크 에러');
-            }
-            var result = response.result;
-            // 검색 결과 갯수: result.total
-            // 첫번째 결과 결과 주소: result.items[0].address
-            // 첫번째 검색 결과 좌표: result.items[0].point.y, result.items[0].point.x
-            var myaddr = new naver.maps.Point(result.items[0].point.x, result.items[0].point.y);
-            
-            //우선 로컬스토리지에 저장
-            window.sessionStorage.setItem("myaddrX", myaddr.x);
-            window.sessionStorage.setItem("myaddrY", myaddr.y);
-            
-            //console.log(myaddr);
-            
-            map.setCenter(myaddr); // 검색된 좌표로 지도 이동
-            // 마커 표시
-            var marker = new naver.maps.Marker({
-                position: myaddr,
-                map: map
-            });
-            // 마커 클릭 이벤트 처리
-            naver.maps.Event.addListener(marker, "click", function(e) {
-                if (infowindow.getMap()) {
-                    infowindow.close();
-                } else {
-                    infowindow.open(map, marker);
-                }
+        if (!this.regex.isID(id)) {
+            console.log("아이디 형식이 잘못됨");
+            return;
+        }
+
+        if (!this.regex.isPassword(pwd)) {
+            console.log("비밀번호 형식이 잘못됨");
+            return;
+        }
+
+        if (!this.regex.isName(name)) {
+            console.log("이름 형식이 잘못됨");
+            return;
+        }
+
+        if (!this.regex.isTel(tel)) {
+            console.log("전화번호 형식이 잘못됨");
+            return;
+        }
+        
+        if (this.auth.isNotDuplication && (this.auth.authId === id)) {
+            service.signUpUser(id, pwd, name, tel)
+                .then(() => {
+                    this.view.hideElement("sign-up");
+                    document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
+                    document.querySelector("#check-dup").style.color = "#FF6666";
+                })
+                .catch(() => {
+                    console.log("회원가입 실패");
                 });
-            // 마크 클릭시 인포윈도우 오픈
-            var infowindow = new naver.maps.InfoWindow({
-                content: '<h4> [네이버 개발자센터]</h4><a href="https://developers.naver.com" target="_blank"><img src="https://developers.naver.com/inc/devcenter/images/nd_img.png"></a>'
-            });       
-        });
+        } else {
+            alert("아이디 중복 확인을 해주세요");
+        }
     }
 
+    signOutHandler() {
+        // @TODO : haeun.kim
+        // 가게 turn off
+        const token = sessionStorage.getItem("token");
+        sessionStorage.removeItem("token");
+        service.signOutUser(token);
+        this.goHome();
+    }
 
+    registerHandler(map, menu) {
+        const token = JSON.parse(sessionStorage.getItem("token"));
+        const storeid = token.storeId;
+        const memberid = token.memberId;
+        const menus = menu.getMenus();
+        const title = document.getElementById("regist-name").value;
+        const desc = document.getElementById("regist-desc").value;
+        const tel = document.getElementById("regist-tel").value;
+        const addr = document.getElementById("regist-location").value;
+
+        this.auth.registerStore(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus);
+    }
+    
+    manageHandler() {
+        const token = JSON.parse(sessionStorage.getItem("token"));
+
+        if (!token) {
+            this.view.showElement("sign-in");
+            this.view.inactivateRoot();
+        } else if (token.storeId === 0) {
+            this.showRegister();
+        } else if (token.storeId > 0){
+             const manage = new Manage(token);
+        }
+    }
 
 }

@@ -4,18 +4,20 @@ import service from "./services/service.js";
 
 export class Manage {
 
-    constructor(){
-
+    constructor(token){
         this.messages = ["입장 5분 전 입니다", "입장 10분 전 입니다"];
+        this.storeId = token.storeId;
+        this.getWaitingList();
+    }
 
-        // @TODO : haeun.kim
-        // 현재 유저의 storeId 를 가져온다.
-        const storeId = {"storeId" : "4"}
-        util.requestAjax("POST","http://192.168.100.18:8080/baeminWaiting004/waitingList", storeId).then((res) => {
-            util.setTemplateInHtml(".board", "manage", JSON.parse(res)).then(() => {
-                this.init();
-            });
-        });
+    getWaitingList() {
+        const id = this.storeId;
+        service.waitingList(id).then((list) => this.setWaitingListInHtml(list));
+    }
+
+    setWaitingListInHtml(list) {
+        util.setTemplateInHtml(".board", "manage", list)
+            .then(() => this.init());
     }
 
     init() {
@@ -50,10 +52,8 @@ export class Manage {
 
     deleteHandler(e, num) {
         const answer = confirm("고객을 삭제하시겠습니까?");
-        // @TODO : haeun.kim
-        // delete waiting ticket
         if (answer) {
-            console.log(num);
+            service.deleteTicket(num).then(() => this.getWaitingList());
         }
     }
 

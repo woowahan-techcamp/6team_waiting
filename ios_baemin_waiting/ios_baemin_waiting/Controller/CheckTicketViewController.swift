@@ -37,12 +37,6 @@ class CheckTicketViewController: UIViewController {
             let ticket = NSKeyedArchiver.archivedData(withRootObject: waitingTicket!)
             UserDefaults.standard.set(ticket, forKey: "ticket")
         }
-
-        // 보여주기 위해 필요한 정보
-        // waitingTicket의 이름
-        // 줄 선 식당
-        // 줄 선 식당의 현재 대기인원
-
     }
 
     override func updateViewConstraints() {

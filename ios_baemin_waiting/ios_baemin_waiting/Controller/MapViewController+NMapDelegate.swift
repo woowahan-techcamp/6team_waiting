@@ -35,12 +35,12 @@ extension MapViewController: NMapViewDelegate {
             print("onMapView:initHandler: \(error.description)")
         }
     }
-    func onMapView(_ mapView: NMapView!, handleSingleTapGesture recogniser: UIGestureRecognizer!) {
-        mapCollectionView.isHidden = true
-    }
-    func onMapView(_ mapView: NMapView!, didChangeMapCenter location: NGeoPoint) {
-        mapCollectionView.isHidden = true
-    }
+//    func onMapView(_ mapView: NMapView!, handleSingleTapGesture recogniser: UIGestureRecognizer!) {
+//        mapCollectionView.isHidden = true
+//    }
+//    func onMapView(_ mapView: NMapView!, didChangeMapCenter location: NGeoPoint) {
+//        mapCollectionView.isHidden = true
+//    }
 }
 
 // MARK: NMapPOIdataOverlayDelegate
@@ -226,6 +226,7 @@ extension MapViewController {
                     }
 
                 }
+                overlayItems = poiDataOverlay
 
                 poiDataOverlay.endPOIdata()
                 poiDataOverlay.showAllPOIdata()

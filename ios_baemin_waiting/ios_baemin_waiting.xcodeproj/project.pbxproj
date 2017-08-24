@@ -17,12 +17,13 @@
 		980A56F61F3C304000A81DFE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F51F3C304000A81DFE /* Store.swift */; };
 		9814FD771F4AB65F002571EB /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9814FD761F4AB65F002571EB /* DetailMapViewController.swift */; };
 		981F72331F4C0863001A6318 /* MapViewController+NMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72321F4C0863001A6318 /* MapViewController+NMapDelegate.swift */; };
-		981F72351F4C129B001A6318 /* MapViewController+CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72341F4C129B001A6318 /* MapViewController+CollectionViewDataSource.swift */; };
+		981F72351F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72341F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift */; };
 		981F72381F4C1338001A6318 /* MainMapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72361F4C1338001A6318 /* MainMapCollectionViewCell.swift */; };
 		981F72391F4C1338001A6318 /* MainMapCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981F72371F4C1338001A6318 /* MainMapCollectionViewCell.xib */; };
 		9842DB811F452E8A00B8C409 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9842DB801F452E8A00B8C409 /* Waiting.storyboard */; };
 		9842DB891F454EC400B8C409 /* WaitingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9842DB881F454EC400B8C409 /* WaitingTextField.swift */; };
 		9842DB8B1F454EF900B8C409 /* WaitingTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */; };
+		985804971F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985804961F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift */; };
 		986B3D9D1F3D3E1A00432FF7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */; };
 		986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D9E1F3D3E6600432FF7 /* StoreImageCell.swift */; };
 		986B3DA11F3D3E8100432FF7 /* StoreDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DA01F3D3E8100432FF7 /* StoreDescriptionCell.swift */; };
@@ -91,12 +92,13 @@
 		9814FD781F4AC9C6002571EB /* ios_baemin_waiting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ios_baemin_waiting.entitlements; sourceTree = "<group>"; };
 		981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		981F72321F4C0863001A6318 /* MapViewController+NMapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+NMapDelegate.swift"; sourceTree = "<group>"; };
-		981F72341F4C129B001A6318 /* MapViewController+CollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+CollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		981F72341F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		981F72361F4C1338001A6318 /* MainMapCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMapCollectionViewCell.swift; sourceTree = "<group>"; };
 		981F72371F4C1338001A6318 /* MainMapCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMapCollectionViewCell.xib; sourceTree = "<group>"; };
 		9842DB801F452E8A00B8C409 /* Waiting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Waiting.storyboard; path = ios_baemin_waiting/View/Waiting/Waiting.storyboard; sourceTree = SOURCE_ROOT; };
 		9842DB881F454EC400B8C409 /* WaitingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTextField.swift; sourceTree = "<group>"; };
 		9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTicketViewController.swift; sourceTree = "<group>"; };
+		985804961F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		986B3D9E1F3D3E6600432FF7 /* StoreImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreImageCell.swift; sourceTree = "<group>"; };
 		986B3DA01F3D3E8100432FF7 /* StoreDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDescriptionCell.swift; sourceTree = "<group>"; };
@@ -310,7 +312,7 @@
 				7E5E9EF61F4830FA007E2ADD /* CheckTicketViewController.swift */,
 				9814FD761F4AB65F002571EB /* DetailMapViewController.swift */,
 				981F72321F4C0863001A6318 /* MapViewController+NMapDelegate.swift */,
-				981F72341F4C129B001A6318 /* MapViewController+CollectionViewDataSource.swift */,
+				981F72341F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -324,6 +326,7 @@
 				9842DB881F454EC400B8C409 /* WaitingTextField.swift */,
 				98A9EDA91F4D03E6008A3198 /* UIDevice.swift */,
 				98A9EDAB1F4D083A008A3198 /* UIFont+Extension.swift */,
+				985804961F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift */,
 			);
 			name = Helper/Util;
 			path = Helper;
@@ -595,6 +598,7 @@
 				9870FECC1F3AFD6900656EEC /* MainCollectionViewController.swift in Sources */,
 				986B3D9D1F3D3E1A00432FF7 /* DetailViewController.swift in Sources */,
 				98A9EDAC1F4D083A008A3198 /* UIFont+Extension.swift in Sources */,
+				985804971F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift in Sources */,
 				7E5E9EF51F4820AF007E2ADD /* WaitingTicket.swift in Sources */,
 				980A56F61F3C304000A81DFE /* Store.swift in Sources */,
 				98A9EDAA1F4D03E6008A3198 /* UIDevice.swift in Sources */,
@@ -614,7 +618,7 @@
 				981F72381F4C1338001A6318 /* MainMapCollectionViewCell.swift in Sources */,
 				986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */,
 				9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */,
-				981F72351F4C129B001A6318 /* MapViewController+CollectionViewDataSource.swift in Sources */,
+				981F72351F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
