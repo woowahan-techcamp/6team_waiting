@@ -40,6 +40,8 @@ export class HomeNavigator {
         this.auth = new Auth();
         this.slide = new Slide("slides");
         this.view = new View(".view");
+
+        this.whichBtnIng = "";
     }
 
     on() {
@@ -222,6 +224,8 @@ export class HomeNavigator {
     }
 
     registerHandler(map, menu) {
+
+
         const token = this.auth.currentToken();
 
         const storeid = token.storeId;
@@ -248,5 +252,6 @@ export class HomeNavigator {
         }
     }
 
+    
 
 }

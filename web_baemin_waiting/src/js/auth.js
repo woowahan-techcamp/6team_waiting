@@ -12,6 +12,7 @@ export class Auth {
         this.isNotDuplication = false;
         this.regex = new Regex();
         this.view = new View(".view");
+        
     }
 
     signIn() {
@@ -80,17 +81,32 @@ export class Auth {
     }
 
     signOut() {
-        // @TODO : haeun.kim
-        // 가게 turn off
-        const token = this.auth.currentToken();
-        sessionStorage.removeItem("token");
-        service.signOutUser(token);
-        this.view.goHome();
+        const token = this.currentToken();
+        service.signOutUser(token)
+            .then((res) => {
+                //console.log(res);
+                if(res.resultStatus == "off"){
+                    sessionStorage.removeItem("token");
+                    this.view.goHome();
+                }  
+            });        
     }
 
     confirmPassword() {
-        // @TODO : haeun.kim 비밀번호가 일치할 때만 내 정보 확인 가능
+        const token = this.currentToken();
         const pwd = document.querySelector("#pwd-confirm").value;  
+        service.signInUser(token.memberId, pwd)
+            .then((token) => {
+                if(token.token == "fail"){
+                    alert("잘못된 비밀번호입니다");
+                }else{
+                    service.getStoreInfo(token)
+                        .then((storeInfo) => {
+                            console.log(storeInfo);
+                            util.setTemplateInHtml(".board", "my-info", storeInfo);
+                        });             
+                }
+            });
     }
     
     registerStore(id, title, desc, tel, add, x, y, menu) {
