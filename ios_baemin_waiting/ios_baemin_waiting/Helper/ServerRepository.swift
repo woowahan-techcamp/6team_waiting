@@ -145,7 +145,6 @@ class ServerRepository {
 
             let checkingJson = JSON(value)
 
-            print(checkingJson)
             if let ticketNumber = checkingJson["ticketNumber"].int,
                 let storeName = checkingJson["storeName"].string,
                 let currentInLine = checkingJson["currentInLine"].int,
@@ -209,6 +208,32 @@ class ServerRepository {
             guard let _ = response.result.value else { return }
 
             completion(true)
+        }
+    }
+
+    static func postTicketValidCheck(ticketNumber: Int, completion: @escaping (Int) -> Void) {
+        let parameter: Parameters = [
+            "ticketNum": ticketNumber
+        ]
+
+        guard let url = URL(string: baseURL + "/validCheckTicket")
+            else {
+                print("URL is nil")
+                return
+        }
+
+        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            guard response.result.isSuccess else {
+                print("Response get validTicket error: \(response.result.error!)")
+                return
+            }
+
+            guard let value = response.result.value else { return }
+            let statusTicketJson = JSON(value)
+
+            if let statusTicket = statusTicketJson.int {
+                completion(statusTicket)
+            }
         }
     }
 }

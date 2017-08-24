@@ -21,6 +21,8 @@ export class StoreList {
     }
 
     storelistPage() {
+        // @TODO : haeun.kim 
+        // 한 번에 가져오는 stores 의 갯수를 조절
         service.getStores().then((stores) => {
             util.setTemplateInHtml(".board", "store-list", stores)
                 .then(() => {
