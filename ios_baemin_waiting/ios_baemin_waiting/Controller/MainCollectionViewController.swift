@@ -42,7 +42,7 @@ class MainCollectionViewController: UIViewController {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
 
-        refresh.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refresh.addTarget(self, action: #selector(refreshDataUsingControl), for: .valueChanged)
         collectionView.addSubview(refresh)
 
         snackbarAnimation()
@@ -117,8 +117,13 @@ class MainCollectionViewController: UIViewController {
         })
     }
 
+    func refreshDataUsingControl() {
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+    }
     func refreshData() {
-        print(locationManager.delegate)
+        startActivityIndicator()
+        collectionView.isHidden = true
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }

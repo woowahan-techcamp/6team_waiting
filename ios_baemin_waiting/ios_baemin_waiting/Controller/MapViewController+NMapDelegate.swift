@@ -35,12 +35,6 @@ extension MapViewController: NMapViewDelegate {
             print("onMapView:initHandler: \(error.description)")
         }
     }
-//    func onMapView(_ mapView: NMapView!, handleSingleTapGesture recogniser: UIGestureRecognizer!) {
-//        mapCollectionView.isHidden = true
-//    }
-//    func onMapView(_ mapView: NMapView!, didChangeMapCenter location: NGeoPoint) {
-//        mapCollectionView.isHidden = true
-//    }
 }
 
 // MARK: NMapPOIdataOverlayDelegate
@@ -77,11 +71,10 @@ extension MapViewController: NMapPOIdataOverlayDelegate {
         // CollectionView 선택하기
         let indexPath = IndexPath(item: Int(poiItem.iconIndex), section: 0)
         mapCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+        mapCollectionView.isHidden = false
 
         // 마커가 중앙에 오도록하기
-        mapView?.setMapCenter(poiItem.location, atLevel: 9)
-
-        mapCollectionView.isHidden = false
+        mapView?.setMapCenter(poiItem.location)
 
         return nil
     }
