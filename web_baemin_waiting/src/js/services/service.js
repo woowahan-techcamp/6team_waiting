@@ -1,11 +1,10 @@
 import * as firebase from "firebase/app";
 import 'firebase/storage';
 
-import util from "../util.js";
-
 import { MemberModel } from "../model/member.model.js";
 import { StoreRegModel } from "../model/storereg.model.js";
 import { TicketModel } from "../model/ticket.model.js";
+import { PushModel } from "../model/push.model.js";
 
 
 const service = (() => {
@@ -27,139 +26,104 @@ const service = (() => {
     const fireStorageRef = app.storage().ref();
 
     const baseUrl = "http://192.168.100.18:8080/baeminWaiting004";
+    const pushUrl = "http://52.78.157.5:8080";
 
 
-    const checkIdDuplication = function(id) {
-        return new Promise((res, rej) => {
-            util.requestAjax("POST", `${baseUrl}/checkPK`, {"userId": id})
-                .then((result) => res(result));
-        })
-    }
-
-    const deleteWaitingTicket = function(num) {
-        const ticket = new TicketModel(num);
-        return new Promise((res, rej) => {
-            util.requestAjax("POST", `${baseUrl}/deleteTicket`, ticket)
-                .then((result) => res(res));
-        })
-    }
-
-    const getStoreInfoById = function(id) {
-        return new Promise((res, rej) => {
-            util.requestAjax("POST", `${baseUrl}/storeInfo`, id)
-                .then((result) => res(result))
-                .catch((err) => console.log(err));
-        })
-    }
-
-    const getStoreList = function() {
-        return new Promise((res, rej) => {
-            util.requestAjax("GET", `${baseUrl}/stores`)
-                .then((result) => res(result))
-                .catch((err) => console.log(err));
-        })
-    }
-
-    const getImageDownloadUrl = function(url) {
-        return new Promise((res, rej) => {
-            fireStorageRef.child(url).getDownloadURL().then((url) => res(url));
-        })
-    }
-
-    const getWaitingList = function(id) {
-        return new Promise((res,rej) => {
-            util.requestAjax("POST", `${baseUrl}/waitingList`, {"storeId":id})
-                .then((result) => res(result));
-        })
-    }
-
-    const registerStore = function(id, title, desc, tel, addr, x, y, menu, img) {
-        const store = new StoreRegModel(title, desc, tel, addr, x, y, id, menu, img);
-        
-        return new Promise((res, rej) => {
-            util.requestAjax("POST", `${baseUrl}/store`, store)
-                .then((result) => res(result.storeId));
+    const requestAjax = function(protocol, url, data) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open(protocol, url);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        resolve(JSON.parse(xhr.response));
+                    } else {
+                        reject(xhr.responseText);
+                    }
+                }
+            };
+            xhr.send(JSON.stringify(data));
         });
-    }
-
-    const saveFileInStorage = function(id) {
-        return new Promise((res, rej) => {
-            const file = document.getElementById("regist-file").files[0];
-            let storeFolder = `${id}/${file.name}`;
-            var iref = fireStorageRef.child(storeFolder);
-            iref.put(file)
-                .then((snapshot) =>  res(iref.location.path))
-                .catch((err) => console.log(err));
-        })
-    }
-
-    const signUp = function(id, pwd, tel, name) {
-        const member = new MemberModel(id, pwd, 0, tel, name);
-
-        return new Promise((res, rej) => {
-            util.requestAjax("POST",`${baseUrl}/signup`, member)
-                .then((status) => res(status));
-        })
-    }
-
-    const signIn = function(id, pwd) {
-        const member = new MemberModel(id, pwd);
-
-        return new Promise((res, rej) => {
-            util.requestAjax("POST", `${baseUrl}/signin`, member)
-                .then((token) =>  res(token) );
-        })
-    }
-
-    const signOut = function(token) {
-        console.log(token);
     }
 
     return {
         // Public member 
 
         checkDuplication(id) {
-            return checkIdDuplication(id);
+            return requestAjax("POST", `${baseUrl}/checkPK`, {"userId": id})
+                .then((result) => { return (result); })
+                .catch((err) => { return (err) });
         },
 
         deleteTicket(num) {
-            return deleteWaitingTicket(num);
+            const ticket = new TicketModel(num);
+            return requestAjax("POST", `${baseUrl}/deleteTicket`, ticket)
+                .then((result) => { return (res); })
+                .catch((err) => { return (err) });
         },
 
         getStores() {
-            return getStoreList();
+            return requestAjax("GET", `${baseUrl}/stores`)
+                .then((result) => { return (result); })
+                .catch((err) => { return (err) });
         },
 
         getStoreImageUrl(url) {
-            return getImageDownloadUrl(url);
+            return fireStorageRef.child(url).getDownloadURL()
+                .then((url) => { return (url); })
+                .catch((err) => { return (err) });
         },
 
-        getStoreInfoByid(id) {
-            return getStoreInfo(id);
+        getStoreByid(id) {
+            return requestAjax("POST", `${baseUrl}/storeInfo`, id)
+                .then((result) => { return (result); })
         },
 
-        registerRestaurant(id, title, desc, tel, addr, x, y, menu, pic) {
-            return registerStore(id, title, desc, tel, addr, x, y, menu, pic);
+        registerRestaurant(id, title, desc, tel, addr, x, y, menu, img) {
+            const store = new StoreRegModel(title, desc, tel, addr, x, y, id, menu, img);
+            return requestAjax("POST", `${baseUrl}/store`, store)
+                .then((result) => { return (result.storeId); })
+                .catch((err) => { return (err) });
         },
 
-        signUpUser(id, password, role, tel, name) {
-            return signUp(id, password, role, tel, name);
+        signUpUser(id, pwd, name, tel) {
+            const member = new MemberModel(id, pwd, name, tel);
+            return requestAjax("POST",`${baseUrl}/signup`, member)
+                .then((status) => { return (status); })
+                .catch((err) => { return (err) });
         },
 
-        signInUser(id, password) {
-            return signIn(id, password);
+        signInUser(id, pwd) {
+            const member = new MemberModel(id, pwd);
+            return requestAjax("POST", `${baseUrl}/signin`, member)
+                .then((token) =>  { return (token); } )
+                .catch((err) => { return (err) });
         },
 
         signOutUser(token) {
-            return signOut(token);
+            return console.log(token);
         },
 
         saveImageInStorage(id) {
-            return saveFileInStorage(id);
+            const file = document.getElementById("regist-file").files[0];
+            const storeFolder = `${id}/${file.name}`;
+            const iref = fireStorageRef.child(storeFolder);
+            return iref.put(file)
+                .then((snapshot) =>  { return (iref.location.path); })
+                .catch((err) => console.log(err));
         },
 
         waitingList(id) {
-            return getWaitingList(id);
+            return requestAjax("POST", `${baseUrl}/waitingList`, {"storeId":id})
+                .then((result) => { return (result) })
+                .catch((err) => { return (err) });
+        },
+
+        push(ticket, msg) {
+            const push = new PushModel(ticket, msg);
+            return requestAjax("POST", `${baseUrl}/webpush`, push)
+                .then((status) => { return (status); })
+                .catch((err) => { return (err) });
         }
     }
 
