@@ -98,6 +98,7 @@ extension DetailViewController : UITableViewDataSource {
 
         case 3:
             if let callStoreCell = tableView.dequeueReusableCell(withIdentifier: "storeCallButtonCell") as? StoreCallButtonCell {
+                callStoreCell.putStoreTel(storeTel: detailStore.storeTel)
                 cell = callStoreCell
             }
         case 4:
