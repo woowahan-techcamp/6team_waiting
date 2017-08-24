@@ -21,6 +21,8 @@ class MapViewController: UIViewController {
     var myLocation: NGeoPoint?
     var circleArea: NMapCircleData?
     var markers: [NMapPOIitem] = []
+
+    var overlayItems: NMapPOIdataOverlay?
     var storeList: [Store] = []
 
     private var currentState: State = .disabled

@@ -1,5 +1,5 @@
 //
-//  MapViewController+CollectionViewDataSource.swift
+//  MapViewController+CollectionViewDelegate.swift
 //  ios_baemin_waiting
 //
 //  Created by woowabrothers on 2017. 8. 22..
@@ -38,4 +38,17 @@ extension MapViewController: UICollectionViewDelegate {
             }
         }
     }
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        print(targetContentOffset.pointee.x)
+
+        let index = targetContentOffset.pointee.x / (self.view.bounds.width - 64 - 10)
+
+        print(index)
+
+        if let overlay = overlayItems {
+            overlay.selectPOIitem(at: Int32(index), moveToCenter: true)
+        }
+    }
+
 }
