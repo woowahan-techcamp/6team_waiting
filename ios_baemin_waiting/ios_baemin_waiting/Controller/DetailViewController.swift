@@ -70,7 +70,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController : UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -123,7 +123,7 @@ extension DetailViewController: UITableViewDelegate {
         case 0:
             cellHeight = 200
         case 1:
-            cellHeight = 130
+            cellHeight = 136
         case 2:
             cellHeight = 75
         case 3:

@@ -122,7 +122,7 @@ class ServerRepository {
 
     static func postWaitingTicketCreate(params ticket: WaitingTicket, completion: @escaping (Bool, WaitingTicket) -> Void) {
 
-        var checkTicket = ticket
+        let checkTicket = ticket
         let isStaying = ticket.isStaying ? 1 : 0
         let parameter: Parameters = ["name": ticket.name, "phoneNumber": ticket.phoneNumber,
                                      "headCount": ticket.headCount, "isStaying": isStaying,
@@ -205,8 +205,6 @@ class ServerRepository {
                 completion(false)
                 return
             }
-            guard let _ = response.result.value else { return }
-
             completion(true)
         }
     }

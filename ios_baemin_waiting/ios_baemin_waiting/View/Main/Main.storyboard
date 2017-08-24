@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--MyTicket-->
+        <scene sceneID="6Yk-co-vG5">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MyTicket" storyboardName="MyTicket" id="TQt-o4-7e8" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dlh-8u-2a8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4143" y="-339"/>
+        </scene>
         <!--배민웨이팅-->
         <scene sceneID="cWc-HC-ZEE">
             <objects>
@@ -48,6 +56,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="배민웨이팅" id="CcG-0b-8AC">
+                        <barButtonItem key="leftBarButtonItem" image="ticket" id="Ach-mU-evZ">
+                            <connections>
+                                <action selector="ticketShowBtnTapped:" destination="shz-0b-mnd" id="Wvc-jQ-BnG"/>
+                                <segue destination="TQt-o4-7e8" kind="presentation" id="34C-Fe-ruY"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="map" id="PQr-jB-h3m">
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -65,6 +79,7 @@
                         <outlet property="mapBtn" destination="PQr-jB-h3m" id="hQw-Ic-ZEl"/>
                         <outlet property="mapView" destination="hxD-6u-ejB" id="LIe-mh-Y4J"/>
                         <outlet property="searchBtn" destination="6jt-bV-C3P" id="jRZ-yu-wBQ"/>
+                        <outlet property="ticketBtn" destination="Ach-mU-evZ" id="WOL-z2-Jko"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jtx-rl-mlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,5 +178,6 @@
     <resources>
         <image name="map" width="22" height="20"/>
         <image name="search" width="20" height="20"/>
+        <image name="ticket" width="20" height="20"/>
     </resources>
 </document>
