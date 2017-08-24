@@ -268,6 +268,25 @@ button#btn-sign-up {
     font-weight: bolder;
     font-size: 1.3em;
     margin-top: 30px;
+    
+}
+
+span#check-dup {
+    color: #FF6666;
+    font-size: .7em;
+    margin-top: 5px;
+}
+
+button#btn-duplication {
+    @extend .border-button;
+    width: 25%;
+    height: 20px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 span.sign-up-title {
