@@ -37,12 +37,12 @@ export class Manage {
     getWaitingList() {
         const id = this.storeId;
         service.waitingList(id).then((list) => this.setWaitingListInHtml(list));
-        setInterval(() => {
-            // @TODO : haeun.kim
-            // 가게 관리 페이지를 보고 있을 때만, 지속적으로 받아와야함
-            console.log("Get!!");
-            service.waitingList(id).then((list) => this.setWaitingListInHtml(list));
-        }, 5000);
+        // setInterval(() => {
+        //     // @TODO : haeun.kim
+        //     // 가게 관리 페이지를 보고 있을 때만, 지속적으로 받아와야함
+        //     console.log("Get!!");
+        //     service.waitingList(id).then((list) => this.setWaitingListInHtml(list));
+        // }, 5000);
     }
 
     setWaitingListInHtml(list) {
