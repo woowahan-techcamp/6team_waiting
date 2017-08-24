@@ -176,7 +176,7 @@ class WaitingTicketViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showTicketResult" {
-            if let destination = segue.destination as? CheckTicketViewController {
+            if let destination = segue.destination as? MyTicketViewController {
                 if let ticket = sender as? WaitingTicket {
                     destination.waitingTicket = ticket
                 }

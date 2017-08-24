@@ -16,6 +16,7 @@ class MainContainerViewController: UIViewController {
 
     @IBOutlet weak var searchBtn: UIBarButtonItem!
     @IBOutlet weak var mapBtn: UIBarButtonItem!
+    @IBOutlet weak var ticketBtn: UIBarButtonItem!
 
     var mapBtnSelected = false
     var storeList: [Store] = []
@@ -45,6 +46,8 @@ class MainContainerViewController: UIViewController {
             })
         }
 
+    }
+    @IBAction func ticketShowBtnTapped(_ sender: UIBarButtonItem) {
     }
 
 }
