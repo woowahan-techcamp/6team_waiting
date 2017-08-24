@@ -5,7 +5,8 @@ import { MemberModel } from "../model/member.model.js";
 import { StoreRegModel } from "../model/storereg.model.js";
 import { TicketModel } from "../model/ticket.model.js";
 import { PushModel } from "../model/push.model.js";
-
+import { StatusModel } from "../model/status.model.js";
+import { TokenModel } from "../model/token.model.js";
 
 const service = (() => {
     // Private member
@@ -95,13 +96,16 @@ const service = (() => {
 
         signInUser(id, pwd) {
             const member = new MemberModel(id, pwd);
+        
             return requestAjax("POST", `${baseUrl}/signin`, member)
                 .then((token) =>  { return (token); } )
                 .catch((err) => { return (err) });
         },
 
         signOutUser(token) {
-            return console.log(token);
+            const status = new StatusModel(token, "off")
+            return requestAjax("POST", `${baseUrl}/status`, status)
+                .then((res) => { return(res); }); 
         },
 
         saveImageInStorage(id) {
@@ -124,6 +128,12 @@ const service = (() => {
             return requestAjax("POST", `${baseUrl}/webpush`, push)
                 .then((status) => { return (status); })
                 .catch((err) => { return (err) });
+        },
+
+        getStoreInfo(currentToken){
+            const token = new TokenModel(currentToken);
+            return requestAjax("POST", `${baseUrl}/storeInfo`, token)
+                .then((storeInfo) => { return (storeInfo);});
         }
     }
 

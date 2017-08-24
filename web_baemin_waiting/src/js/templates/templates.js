@@ -70,17 +70,17 @@ templates['my-info'] = template({"1":function(container,depth0,helpers,partials,
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
   return "<div class=\"my-info\">\n    <div class=\"my-auth\">\n        <dl class=\"my-auth-form\">\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"mod-name\" value="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1._name : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.memberName : depth0), depth0))
     + "></dd>\n\n            <dt>비밀번호</dt>\n            <dd><input type=\"password\" id=\"mod-pwd\"></dd>\n\n            <dt>연락처</dt>\n            <dd><input type=\"number\" id=\"mod-tel\" value="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1._user_tel : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.memberTel : depth0), depth0))
     + "></dd>\n        </dl>\n\n        <button id=\"btn-info-modify\">수정하기</button>\n    </div>\n\n    <div class=\"vertical-line\"></div>\n\n    <div class=\"my-store\">\n        <dl class=\"my-store-form\">\n            <dt>우리가게 이름</dt>\n            <dd>"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.store : depth0)) != null ? stack1._title : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.title : depth0), depth0))
     + "</dd>\n\n            <dt>우리가게 설명</dt>\n            <dd>"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.store : depth0)) != null ? stack1._description : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.desc : depth0), depth0))
     + "</dd>\n\n            <dt>우리가게 전화번호</dt>\n            <dd>"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.store : depth0)) != null ? stack1._store_tel : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.tel : depth0), depth0))
     + "</dd>\n\n            <dt>우리가게 사진</dt>\n            <dd class=\"my-img-box\">\n                <img src="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.store : depth0)) != null ? stack1._picture : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.imgUrl : depth0), depth0))
     + " alt=\"\">\n            </dd>\n\n            <dt>우리가게 메뉴</dt>\n            <dd class=\"menus\">\n                <table>\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.menus : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "                </table>\n            </dd>\n        </dl>\n\n        <button id=\"btn-go-modify\">수정하러가기</button>\n    </div>\n\n</div>";
