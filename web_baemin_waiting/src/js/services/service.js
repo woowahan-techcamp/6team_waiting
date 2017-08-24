@@ -8,7 +8,10 @@ import { TicketModel } from "../model/ticket.model.js";
 import { PushModel } from "../model/push.model.js";
 import { StatusModel } from "../model/status.model.js";
 import { TokenModel } from "../model/token.model.js";
+<<<<<<< HEAD
 import { PageModel } from "../model/page.model.js";
+=======
+>>>>>>> 7d3f651287360bd849bdabde23eb11ebc97fcd77
 
 const service = (() => {
     // Private member
@@ -109,8 +112,13 @@ const service = (() => {
                 .catch((err) => { return (err) });
         },
 
+<<<<<<< HEAD
         changeStatus(token, stat) {
             const status = new StatusModel(token, stat);
+=======
+        signOutUser(token) {
+            const status = new StatusModel(token, "off")
+>>>>>>> 7d3f651287360bd849bdabde23eb11ebc97fcd77
             return requestAjax("POST", `${baseUrl}/status`, status)
                 .then((res) => { return(res); }); 
         },
@@ -146,6 +154,7 @@ const service = (() => {
             const token = new TokenModel(currentToken);
             return requestAjax("POST", `${baseUrl}/storeInfo`, token)
                 .then((storeInfo) => { return (storeInfo);});
+
         },
 
         getOtherStoreDetail(storeId){
@@ -164,6 +173,7 @@ const service = (() => {
         getCountStores(){
             return requestAjax("POST", `${baseUrl}/countStores`)
                 .then((result) => { return (result); });
+
         }
     }
 
