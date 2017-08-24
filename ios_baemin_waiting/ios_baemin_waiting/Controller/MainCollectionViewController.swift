@@ -29,11 +29,6 @@ class MainCollectionViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateError),
                                                name: NSNotification.Name(rawValue: "updateError"), object: nil)
 
-//        if let ticket = UserDefaults.standard.object(forKey: "waitingTicket") as? WaitingTicket {
-//            ticketView.isHidden = false
-//            ticketView.
-//        }
-
         collectionView.dataSource = self
         collectionView.delegate = self
 
@@ -216,6 +211,21 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
         guard let currentLocation = locations.last else { return }
 
         print("Location Update Called")
+
+        //화면로딩시 userDefault의 티켓값이 유효인지 확인
+        if UserDefaults.standard.object(forKey: "ticket") != nil {
+            let archiveTicket = UserDefaults.standard.object(forKey: "ticket")
+            let ticket = NSKeyedUnarchiver.unarchiveObject(with: archiveTicket as! Data) as! WaitingTicket
+            var valid = true
+
+            ServerRepository.postTicketValidCheck(ticketNumber: ticket.ticketNumber) { statusTicket in
+                valid = statusTicket >= 10 ? false : true
+
+                if !valid {
+                    UserDefaults.standard.removeObject(forKey: "ticket")
+                }
+            }
+        }
 
         ServerRepository.postCurrentLocation(currentLocation: currentLocation) { isSuccess, storeData in
 
