@@ -96,9 +96,13 @@ div.btn-alarm {
     background-color: $manage-green;
 }
 
-div.btn-delete {
+div.btn-delete-in {
     background-image: url("/dist/public/images/close-white.png");
     background-color: $manage-red;
+}
+
+div.btn-delete-can {
+    background-color: $secondary-color;
 }
 
 div.manage-input-area {
@@ -222,7 +226,7 @@ input:checked + .slider:before {
     }
     div.waiting-btn-area div {
         margin-top: 7px;
-        width: 90px;
+        width: 60px;
         height: 50px;
     }
     p.waiting-name {

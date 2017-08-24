@@ -37,12 +37,12 @@ export class Manage {
     getWaitingList() {
         const id = this.storeId;
         service.waitingList(id).then((list) => this.setWaitingListInHtml(list));
-        // setInterval(() => {
-        //     // @TODO : haeun.kim
-        //     // 가게 관리 페이지를 보고 있을 때만, 지속적으로 받아와야함
-        //     console.log("Get!!");
-        //     service.waitingList(id).then((list) => this.setWaitingListInHtml(list));
-        // }, 5000);
+        setInterval(() => {
+            // @TODO : haeun.kim
+            // 가게 관리 페이지를 보고 있을 때만, 지속적으로 받아와야함
+            console.log("Get!!");
+            service.waitingList(id).then((list) => this.setWaitingListInHtml(list));
+        }, 5000);
     }
 
     setWaitingListInHtml(list) {
@@ -67,11 +67,12 @@ export class Manage {
         })
     }
 
-
-    btnWaitingHandler(e, target, num) {
+    btnWaitingHandler(e, num) {
         if (e.target.className === "btn-alarm") {
             this.alarmHandler(e.target);
-        } else if (e.target.className === "btn-delete"){
+        } else if (e.target.className === "btn-delete-in"){
+            this.cancelHandler(e.target, num);
+        } else {
             this.deleteHandler(e.target, num);
         }
     }
@@ -81,10 +82,17 @@ export class Manage {
         alarmOptions.classList.toggle("show-opt");
     }
 
-    deleteHandler(e, num) {
+    cancelHandler(e, num) {
         const answer = confirm("고객을 삭제하시겠습니까?");
         if (answer) {
-            service.deleteTicket(num).then(() => this.getWaitingList());
+            service.deleteTicket(num, "cancel").then(() => this.getWaitingList());
+        }
+    }
+
+    deleteHandler(e, num) {
+        const answer = confirm("고객이 가게에 입장했습니까?");
+        if (answer) {
+            service.deleteTicket(num, "in").then(() => this.getWaitingList());
         }
     }
 

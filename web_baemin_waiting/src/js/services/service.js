@@ -56,8 +56,8 @@ const service = (() => {
                 .catch((err) => { return (err) });
         },
 
-        deleteTicket(num) {
-            const ticket = new TicketModel(num);
+        deleteTicket(num, status) {
+            const ticket = new TicketModel(num, status);
             return requestAjax("POST", `${baseUrl}/deleteTicket`, ticket)
                 .then((result) => { return (res); })
                 .catch((err) => { return (err) });
