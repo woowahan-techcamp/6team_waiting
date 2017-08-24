@@ -34,6 +34,6 @@ export class View {
         this.hideElement("sign-in");
         this.showElement("nav");
         this.showElement("board");
-        this.showNaviPage("manage");
+        this.showNaviPage("manage"); // @TODO : view class 내에는 showNaviPage function 이 존재하지 않음
     }
 }

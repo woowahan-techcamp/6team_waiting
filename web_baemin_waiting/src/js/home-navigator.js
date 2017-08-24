@@ -38,12 +38,14 @@ export class HomeNavigator {
 
         this.regex = new Regex();
         this.auth = new Auth();
-        this.slide = new Slide("slides");
+        this.slide = new Slide("slide-box");
         this.view = new View(".view");
+
+        this.whichBtnIng = "";
     }
 
     on() {
-        this.slide.plusSlide(1);
+        this.slide.showSlide(1);
 
         this.btnIntro.addEventListener("click", () => {
             this.view.showElement("intro");
@@ -222,6 +224,8 @@ export class HomeNavigator {
     }
 
     registerHandler(map, menu) {
+
+
         const token = this.auth.currentToken();
 
         const storeid = token.storeId;
@@ -248,5 +252,6 @@ export class HomeNavigator {
         }
     }
 
+    
 
 }

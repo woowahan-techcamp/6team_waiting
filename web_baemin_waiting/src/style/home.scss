@@ -95,20 +95,10 @@ div.intro:not(.show-intro) {
 //
 div.intro-title {
     margin-top: 80px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     font-size: 30px;
     font-weight: bold;
     text-align: center;
-    color: $primary-color;
-}
-
-div.intro p {
-    position: absolute;
-    text-align: center;
-    bottom: -50px;
-    left: 0;
-    right: 0;
-    color: $primary-color;
 }
 
 div.slide-navi a {
@@ -129,24 +119,65 @@ div.slide-navi .next {
     right: 10%;
 }
 
+div.slide-dots {
+    width: 70px;
+    position: relative;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+div.slide-dots span {
+    width: 10px;
+    height: 10px;
+    border: 1px solid $secondary-color;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 10px;
+    display: inline-block;
+    margin-right: 5px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+div.slide-dots span.curr {
+    background-color: $secondary-color;
+}
+
+div.slide-dots span:last-child {
+    margin-right: 0;
+}
+
 div.slides {
     position: relative;
     margin: auto;
+    overflow: auto;
 }
 
-div.slides img {
-    max-height: 100%;  
-    max-width: 100%; 
-    width: auto;
-    height: auto;
-    position: absolute;  
-    top: 0;  
-    bottom: 0;  
-    left: 0;  
-    right: 0;  
-    margin: auto;
+div.slide-box {
+    width: 100%;
+    height: 70%;
+    overflow: auto;
 }
 
+div.slides-img {
+    width: 100%;
+    height: 300px;
+}
+
+div.slides-img > img {
+    max-width:100%;
+    max-height:100%;
+    display: block;
+    margin: auto auto;
+}
+
+div.slide-box > p {
+    position: relative;
+    margin: 0;
+    text-align: center;
+    color: $primary-color;
+}
 
 div.sign-in {
     width: 450px;
@@ -465,8 +496,8 @@ button#btn-go-register {
 
     div.slides {
         position: relative;
-        width: 70%;
-        height: 50%;
+        width: 400px;
+        overflow: auto;
     }
 
 
@@ -482,8 +513,7 @@ button#btn-go-register {
     }
 
     div.slides {
-        width: 70%;
-        height: 50%;
+        width: 400px;
     }
 }
 
@@ -563,14 +593,12 @@ button#btn-go-register {
     }
 
     div.slides {
-        width: 500px;
-        height: 380px;
+        width: 350px;
         margin: auto;
     }
 
-    div.slides > img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
+    div.slide-navi {
+        display: none;
     }
+
 }

@@ -9,9 +9,10 @@ export class Auth {
 
     constructor(){
         this.authId = null;
-        this.isNotDuplication = false;
+        this.isNotDuplication = true; // @TODO : haeun.kim
         this.regex = new Regex();
         this.view = new View(".view");
+        
     }
 
     signIn() {
@@ -30,6 +31,8 @@ export class Auth {
 
         service.signInUser(id, pwd)
             .then((token) => {
+                // @TODO : haeun.kim
+                // token 이 fail 일 경우에는 로그인이 되면 안됨
                 window.sessionStorage.setItem("token", JSON.stringify(token));
                 this.view.showInitialBoard();
             })
@@ -64,7 +67,7 @@ export class Auth {
             return;
         }
         
-        if (this.auth.isNotDuplication && (this.auth.authId === id)) {
+        if (this.isNotDuplication && (this.authId === id)) {
             service.signUpUser(id, pwd, name, tel)
                 .then(() => {
                     this.view.hideElement("sign-up");
@@ -80,23 +83,41 @@ export class Auth {
     }
 
     signOut() {
-        // @TODO : haeun.kim
-        // 가게 turn off
-        const token = this.auth.currentToken();
-        sessionStorage.removeItem("token");
-        service.signOutUser(token);
-        this.view.goHome();
+        const token = this.currentToken();
+        service.signOutUser(token)
+            .then((res) => {
+                //console.log(res);
+                if(res.resultStatus == "off"){
+                    sessionStorage.removeItem("token");
+                    this.view.goHome();
+                }  
+            });        
     }
 
     confirmPassword() {
-        // @TODO : haeun.kim 비밀번호가 일치할 때만 내 정보 확인 가능
+        const token = this.currentToken();
         const pwd = document.querySelector("#pwd-confirm").value;  
+        service.signInUser(token.memberId, pwd)
+            .then((token) => {
+                if(token.token == "fail"){
+                    alert("잘못된 비밀번호입니다");
+                }else{
+                    service.getStoreInfo(token)
+                        .then((storeInfo) => {
+                            console.log(storeInfo);
+                            util.setTemplateInHtml(".board", "my-info", storeInfo);
+                        });             
+                }
+            });
     }
     
     registerStore(id, title, desc, tel, add, x, y, menu) {
         // @TODO : haeun.kim
         // 사용자가 버튼을 여러번 누를 경우,
         // 서버에 요청이 여러번 날아가게 됨 
+
+        // @TODO : haeun.kim
+        // regex check
         service.saveImageInStorage(id)
             .then((path) => {
                 return service.getStoreImageUrl(path);
