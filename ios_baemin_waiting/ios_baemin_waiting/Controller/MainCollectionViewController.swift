@@ -229,13 +229,9 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
         print("Location Update Called")
 
         //화면로딩시 userDefault의 티켓값이 유효인지 확인
-        if UserDefaults.standard.object(forKey: "ticket") != nil {
-            let archiveTicket = UserDefaults.standard.object(forKey: "ticket")
-            let ticket = NSKeyedUnarchiver.unarchiveObject(with: archiveTicket as! Data) as! WaitingTicket
-            var valid = true
-
+        if let ticket = UserDefaults.standard.getTicket(keyName: "ticket") {
             ServerRepository.postTicketValidCheck(ticketNumber: ticket.ticketNumber) { statusTicket in
-                valid = statusTicket >= 10 ? false : true
+                let valid = statusTicket >= 10 ? false : true
 
                 if !valid {
                     UserDefaults.standard.removeObject(forKey: "ticket")
@@ -287,4 +283,20 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
     }
 
     
+}
+
+extension UserDefaults {
+    func getTicket(keyName: String) -> WaitingTicket? {
+        if self.object(forKey: keyName) != nil {
+            guard let archiveTicket = UserDefaults.standard.object(forKey: keyName) as? Data else {
+                return nil
+            }
+            guard let ticket = NSKeyedUnarchiver.unarchiveObject(with: archiveTicket) as? WaitingTicket else {
+                return nil
+            }
+
+            return ticket
+        }
+        return nil
+    }
 }

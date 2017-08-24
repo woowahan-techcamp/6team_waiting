@@ -16,6 +16,7 @@ class MainContainerViewController: UIViewController {
 
     @IBOutlet weak var searchBtn: UIBarButtonItem!
     @IBOutlet weak var mapBtn: UIBarButtonItem!
+    @IBOutlet weak var ticketBtn: UIBarButtonItem!
 
     var mapBtnSelected = false
     var storeList: [Store] = []
@@ -23,6 +24,10 @@ class MainContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if UserDefaults.standard.getTicket(keyName: "ticket") == nil {
+            ticketBtn.isEnabled = false
+            ticketBtn.tintColor = .clear
+        }
     }
 
     // IBAction
@@ -43,6 +48,23 @@ class MainContainerViewController: UIViewController {
                 self.listContainerView.alpha = 1
                 self.mapView.alpha = 0
             })
+        }
+
+    }
+    @IBAction func ticketShowBtnTapped(_ sender: UIBarButtonItem) {
+
+        guard let mainCollectionVC = self.childViewControllers[1] as? MainCollectionViewController else { return }
+
+        mainCollectionVC.startActivityIndicator()
+
+        if let ticket = UserDefaults.standard.getTicket(keyName: "ticket") {
+            ServerRepository.postTicketValidCheck(ticketNumber: ticket.ticketNumber) { statusTicket in
+                let valid = statusTicket >= 10 ? false : true
+
+                if !valid {
+                    UserDefaults.standard.removeObject(forKey: "ticket")
+                }
+            }
         }
 
     }

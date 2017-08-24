@@ -205,8 +205,6 @@ class ServerRepository {
                 completion(false)
                 return
             }
-            guard let _ = response.result.value else { return }
-
             completion(true)
         }
     }

@@ -163,9 +163,11 @@ class WaitingTicketViewController: UIViewController {
                         if saveSuccess {
                             print("Success Saving Token")
                         }
+                        self?.performSegue(withIdentifier: "showTicketResult", sender: ticket)
                     }
+                } else {
+                    self?.popUpAlert(title: "알람 설정 필요", message: "티켓을 발행하기 위해서는 알람 설정이 필요합니다.\n알람 설정은 '설정'탭에서 확인할 수 있습니다.")
                 }
-                self?.performSegue(withIdentifier: "showTicketResult", sender: ticket)
             } else {
                 self?.popUpAlert(title: "네트워크 에러", message: "일시적인 오류로 티켓을 발행할 수 없습니다.")
             }
@@ -176,7 +178,7 @@ class WaitingTicketViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showTicketResult" {
-            if let destination = segue.destination as? CheckTicketViewController {
+            if let destination = segue.destination as? MyTicketViewController {
                 if let ticket = sender as? WaitingTicket {
                     destination.waitingTicket = ticket
                 }

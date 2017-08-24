@@ -7,11 +7,11 @@ templates['home'] = template({"1":function(container,depth0,helpers,partials,dat
 },"3":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "        <div class=\"slides\">\n            <img src="
+  return "        <div class=\"slide-box\">\n            <div class=\"slides-img\"><img src="
     + alias2(alias1((depth0 != null ? depth0.img : depth0), depth0))
-    + ">\n            <p>"
+    + "></div>\n            <p>"
     + alias2(alias1((depth0 != null ? depth0.content : depth0), depth0))
-    + "</p>\n        </div>\n";
+    + "</p>  \n        </div>\n";
 },"5":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
@@ -37,9 +37,9 @@ templates['home'] = template({"1":function(container,depth0,helpers,partials,dat
 
   return "<div class=\"view\"></div>\n\n\n<div class=\"home\">\n    <h1>배민 웨이팅</h1>\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0["main-desc"] : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    <div class=\"btn-area\">\n        <button id=\"btn-intro\">서비스 소개</button>\n        <button id=\"btn-go-store\">가게 관리 하기</button>\n    </div>\n</div>\n\n\n<div class=\"intro\">\n    <span id=\"btn-intro-close\" class=\"btn-close\"><img src=\"/dist/public/images/close.png\"></span>\n    <div class=\"intro-title\">배민웨이팅, 이렇게 사용하세요</div>\n\n    <div class=\"slide-navi\">\n        <a class=\"prev\">&#10094;</a>\n        <a class=\"next\">&#10095;</a>\n    </div>\n\n    <div class=\"intro-desc\">\n"
+    + "    <div class=\"btn-area\">\n        <button id=\"btn-intro\">서비스 소개</button>\n        <button id=\"btn-go-store\">가게 관리 하기</button>\n    </div>\n</div>\n\n\n<div class=\"intro\">\n    <span id=\"btn-intro-close\" class=\"btn-close\"><img src=\"/dist/public/images/close.png\"></span>\n    <div class=\"intro-title\">배민웨이팅, 이렇게 사용하세요</div>\n\n    <div class=\"slide-navi\">\n        <a class=\"prev\">&#10094;</a>\n        <a class=\"next\">&#10095;</a>\n    </div>\n\n    <div class=\"slide-dots\">\n        <span data-n=\"1\" class=\"curr\"></span>\n        <span data-n=\"2\"></span>\n        <span data-n=\"3\"></span>\n        <span data-n=\"4\"></span>\n    </div>\n\n    <div class=\"slides\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0["serv-desc"] : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    </div> \n</div>\n\n\n<div class=\"sign-in\">\n    <span id=\"btn-login-close\" class=\"btn-close\"><img src=\"/dist/public/images/close.png\"></span>\n    <div class=\"sign-area\">\n        <img class=\"logo\" src=\"/dist/public/images/facebook-logo.png\" alt=\"logo\">\n        <input type=\"text\" id=\"login-id\" placeholder=\"ID\">\n        <input type=\"password\" id=\"login-pwd\" placeholder=\"●●●●●●\">\n        <p class=\"sign-warning\">아이디와 비밀번호를 확인해주세요<p>\n        <button id=\"btn-login\">로그인</button>\n        <button id=\"btn-go-sign-up\">회원가입 하기</button>\n    </div>\n</div>\n\n\n<div class=\"sign-up\">\n    <span id=\"btn-sign-close\" class=\"btn-close\"><img src=\"/dist/public/images/close.png\"></span>\n    <span class=\"sign-up-title\">WELCOME</span>\n    <div class=\"sign-up-form\">\n        <dl>\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"sign-name\" placeholder=\"ex) 크롱 (2-20 글자)\"></dd>\n            <dt>아이디</dt>\n            <dd>\n                <input type=\"text\" id=\"sign-id\" placeholder=\"ex) crong12 (4-10 글자)\">\n                <span id=\"check-dup\">아이디 중복확인을 해주세요</span><button id=\"btn-duplication\">중복확인</button>    \n            </dd>\n            <dt>비밀번호</dt>\n            <dd><input type=\"password\" id=\"sign-pwd\" placeholder=\"문자와 숫자를 포함한 6-16 글자\"></dd>\n            <dt>전화번호</dt>\n            <dd><input type=\"text\" id=\"sign-tel\" placeholder=\"ex) 01012345678\"></dd>\n        </dl>\n        <button id=\"btn-sign-up\">회원가입</button>\n    </div>\n</div>\n\n\n<div class=\"nav\">\n    <ul class=\"navigator\">\n"
+    + "    </div>\n</div>\n\n\n<div class=\"sign-in\">\n    <span id=\"btn-login-close\" class=\"btn-close\"><img src=\"/dist/public/images/close.png\"></span>\n    <div class=\"sign-area\">\n        <img class=\"logo\" src=\"/dist/public/images/facebook-logo.png\" alt=\"logo\">\n        <input type=\"text\" id=\"login-id\" placeholder=\"ID\">\n        <input type=\"password\" id=\"login-pwd\" placeholder=\"●●●●●●\">\n        <p class=\"sign-warning\">아이디와 비밀번호를 확인해주세요<p>\n        <button id=\"btn-login\">로그인</button>\n        <button id=\"btn-go-sign-up\">회원가입 하기</button>\n    </div>\n</div>\n\n\n<div class=\"sign-up\">\n    <span id=\"btn-sign-close\" class=\"btn-close\"><img src=\"/dist/public/images/close.png\"></span>\n    <span class=\"sign-up-title\">WELCOME</span>\n    <div class=\"sign-up-form\">\n        <dl>\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"sign-name\" placeholder=\"ex) 크롱 (2-20 글자)\"></dd>\n            <dt>아이디</dt>\n            <dd>\n                <input type=\"text\" id=\"sign-id\" placeholder=\"ex) crong12 (4-10 글자)\">\n                <span id=\"check-dup\">아이디 중복확인을 해주세요</span><button id=\"btn-duplication\">중복확인</button>    \n            </dd>\n            <dt>비밀번호</dt>\n            <dd><input type=\"password\" id=\"sign-pwd\" placeholder=\"문자와 숫자를 포함한 6-16 글자\"></dd>\n            <dt>전화번호</dt>\n            <dd><input type=\"text\" id=\"sign-tel\" placeholder=\"ex) 01012345678\"></dd>\n        </dl>\n        <button id=\"btn-sign-up\">회원가입</button>\n    </div>\n</div>\n\n\n<div class=\"nav\">\n    <ul class=\"navigator\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0["navi-list"] : depth0),{"name":"each","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </ul>\n    <div class=\"dropdown\">\n        <a href=\"javascript:;\"><img src=\"/dist/public/images/menu.png\" id=\"drop\"></a>\n        <ul class=\"dropdown-list\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0["navi-list"] : depth0),{"name":"each","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
@@ -70,17 +70,17 @@ templates['my-info'] = template({"1":function(container,depth0,helpers,partials,
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
   return "<div class=\"my-info\">\n    <div class=\"my-auth\">\n        <dl class=\"my-auth-form\">\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"mod-name\" value="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1._name : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.memberName : depth0), depth0))
     + "></dd>\n\n            <dt>비밀번호</dt>\n            <dd><input type=\"password\" id=\"mod-pwd\"></dd>\n\n            <dt>연락처</dt>\n            <dd><input type=\"number\" id=\"mod-tel\" value="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1._user_tel : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.memberTel : depth0), depth0))
     + "></dd>\n        </dl>\n\n        <button id=\"btn-info-modify\">수정하기</button>\n    </div>\n\n    <div class=\"vertical-line\"></div>\n\n    <div class=\"my-store\">\n        <dl class=\"my-store-form\">\n            <dt>우리가게 이름</dt>\n            <dd>"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.store : depth0)) != null ? stack1._title : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.title : depth0), depth0))
     + "</dd>\n\n            <dt>우리가게 설명</dt>\n            <dd>"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.store : depth0)) != null ? stack1._description : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.desc : depth0), depth0))
     + "</dd>\n\n            <dt>우리가게 전화번호</dt>\n            <dd>"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.store : depth0)) != null ? stack1._store_tel : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.tel : depth0), depth0))
     + "</dd>\n\n            <dt>우리가게 사진</dt>\n            <dd class=\"my-img-box\">\n                <img src="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.store : depth0)) != null ? stack1._picture : stack1), depth0))
+    + alias2(alias1((depth0 != null ? depth0.imgUrl : depth0), depth0))
     + " alt=\"\">\n            </dd>\n\n            <dt>우리가게 메뉴</dt>\n            <dd class=\"menus\">\n                <table>\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.menus : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "                </table>\n            </dd>\n        </dl>\n\n        <button id=\"btn-go-modify\">수정하러가기</button>\n    </div>\n\n</div>";
@@ -198,7 +198,7 @@ templates['waiting-member'] = template({"1":function(container,depth0,helpers,pa
     + alias2(alias1((depth0 != null ? depth0.headCount : depth0), depth0))
     + "명</span> </p>\n        <p class=\"waiting-tel\">"
     + alias2(alias1((depth0 != null ? depth0.contactNumber : depth0), depth0))
-    + "</p>\n    </div>\n    \n    <div class=\"waiting-btn-area\">\n        <div class=\"after-alarm\">\n            <span id=\"m5\">5</span>\n            <span id=\"m10\">10</span>\n        </div>\n        <div class=\"btn-alarm\">\n            <ul class=\"alarm-opt\">\n                <li>5분 전</li>\n                <li>10분 전</li>\n            </ul>\n        </div>\n        <div class=\"btn-delete\"></div>\n    </div>\n</div>\n";
+    + "</p>\n    </div>\n    \n    <div class=\"waiting-btn-area\">\n        <div class=\"after-alarm\">\n            <span id=\"m5\">5</span>\n            <span id=\"m10\">10</span>\n        </div>\n        <div class=\"btn-alarm\">\n            <ul class=\"alarm-opt\">\n                <li>5분 전</li>\n                <li>10분 전</li>\n            </ul>\n        </div>\n        <div class=\"btn-delete-in\"></div>\n        <div class=\"btn-delete-can\"></div>\n            \n    </div>\n</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 

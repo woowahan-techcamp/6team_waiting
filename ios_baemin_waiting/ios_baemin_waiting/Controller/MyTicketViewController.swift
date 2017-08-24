@@ -1,14 +1,14 @@
 //
-//  CheckTicketViewController.swift
+//  MyTicketViewController.swift
 //  ios_baemin_waiting
 //
-//  Created by 홍창남 on 2017. 8. 19..
+//  Created by woowabrothers on 2017. 8. 24..
 //  Copyright © 2017년 woowabrothers. All rights reserved.
 //
 
 import UIKit
 
-class CheckTicketViewController: UIViewController {
+class MyTicketViewController: UIViewController {
 
     var waitingTicket: WaitingTicket?
 
@@ -29,7 +29,7 @@ class CheckTicketViewController: UIViewController {
 
         if let ticketNum = waitingTicket?.ticketNumber,
             let ticketLine = waitingTicket?.currentInLine {
-            self.ticketNumberContentLabel.text = "\(ticketNum)"
+            self.ticketNumberContentLabel.text = "\(ticketNum)번"
             self.nameLabel.text = waitingTicket?.name
             self.storeLabel.text = waitingTicket?.storeName
             self.orderLabel.text = "\(ticketLine) 번째"
@@ -42,18 +42,18 @@ class CheckTicketViewController: UIViewController {
     override func updateViewConstraints() {
         super.updateViewConstraints()
 
-        topViewHeightConstraint.constant = self.view.bounds.height * 0.55
+        topViewHeightConstraint.constant = self.view.bounds.height * 0.70
 
         topViewHeightConstraint.isActive = true
         if UIDevice.current.isiPhoneSE {
-            ticketNumberLabel.setTitleLabelFont(fontSize: 30)
-            ticketNumberContentLabel.setTitleLabelFont(fontSize: 60)
-            nameLabel.setContentLabelFont(fontSize: 30)
-            nameSubLabel.setSubLabelFont(fontSize: 30)
-            storeLabel.setContentLabelFont(fontSize: 30)
-            storeSubLabel.setSubLabelFont(fontSize: 30)
-            orderLabel.setContentLabelFont(fontSize: 30)
-            orderSubLabel.setSubLabelFont(fontSize: 30)
+            ticketNumberLabel.setTitleLabelFont(fontSize: 20)
+            ticketNumberContentLabel.setTitleLabelFont(fontSize: 55)
+            nameLabel.setContentLabelFont(fontSize: 20)
+            nameSubLabel.setSubLabelFont(fontSize: 20)
+            storeLabel.setContentLabelFont(fontSize: 20)
+            storeSubLabel.setSubLabelFont(fontSize: 20)
+            orderLabel.setContentLabelFont(fontSize: 20)
+            orderSubLabel.setSubLabelFont(fontSize: 20)
         }
     }
     @IBAction func closeBtnTapped(_ sender: UIButton) {
@@ -63,5 +63,8 @@ class CheckTicketViewController: UIViewController {
         self.dismiss(animated: true) {
             navigationController?.popToRootViewController(animated: true)
         }
+    }
+    // 대기취소 버튼 클릭
+    @IBAction func waitCancelTapped(_ sender: UIButton) {
     }
 }
