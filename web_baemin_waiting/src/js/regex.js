@@ -56,32 +56,4 @@ export class Regex {
         return regName.test(title);
     }
 
-    verifyMenu(name, price) {
-        if (this.isMenu(name) && this.isPrice(price)) 
-            return true;
-        else 
-            return false;
-    }
-
-    verifySignIn(id, pwd) {
-        if (this.isID(id) && this.isPassword(pwd)) 
-            return true;
-        else 
-            return false;
-    }
-
-    verifySignUp(id, pwd, name, tel) {
-        if (this.isID(id) && this.isPassword(pwd) && this.isName(name) && this.isTel(tel)) 
-            return true;
-        else 
-            return false;
-    }
-
-    verifyStore(title, desc, add, tel) {
-        if (this.isTitle(title) && this.isDescription(desc) && this.isAddrress(add) && this.isTel(tel))
-            return true;
-        else 
-            return false;
-    }
-
 }

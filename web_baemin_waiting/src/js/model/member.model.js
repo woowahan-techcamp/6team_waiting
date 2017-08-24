@@ -1,11 +1,10 @@
 export class MemberModel {
     
-    constructor(id, pwd, role, tel, name) {
+    constructor(id, pwd, name, tel) {
         this.userId = id;
         this.userPassword = pwd; 
-        this.userMemberRole = role;
-        this.userMemberTel = tel;
         this.userName = name;
+        this.userMemberTel = tel;
     }
     
 }
