@@ -13,6 +13,7 @@ class MainCollectionViewController: UIViewController {
     let locationManager = CLLocationManager()
     var storeList: [Store] = []
     let refresh = UIRefreshControl()
+    let ticketView = MainCollectionReusableView()
 
     // IBOutlet
     @IBOutlet weak var snackbarView: UIView!
@@ -27,6 +28,11 @@ class MainCollectionViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(updateError),
                                                name: NSNotification.Name(rawValue: "updateError"), object: nil)
+
+//        if let ticket = UserDefaults.standard.object(forKey: "waitingTicket") as? WaitingTicket {
+//            ticketView.isHidden = false
+//            ticketView.
+//        }
 
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -143,6 +149,12 @@ extension MainCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath) as? MainCollectionReusableView {
 
+            if UserDefaults.standard.object(forKey: "ticket") != nil {
+                let archiveTicket = UserDefaults.standard.object(forKey: "ticket")
+                let ticket = NSKeyedUnarchiver.unarchiveObject(with: archiveTicket as! Data) as! WaitingTicket
+                sectionHeaderView.putTicket(ticket: ticket)
+            }
+
             return sectionHeaderView
         }
 
@@ -167,6 +179,13 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (self.view.bounds.width / 2) - (15 + 7.5), height: 185)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+
+        let size = UserDefaults.standard.object(forKey: "ticket") == nil ? CGSize(width: 0, height: 0) : CGSize(width: self.view.bounds.width, height: self.view.bounds.height/4)
+
+        return size
     }
 
 }
