@@ -49,7 +49,7 @@ templates['input-menu'] = template({"compiler":[7,">= 4.0.0"],"main":function(co
     return "<input class=\"menu-name\" type=\"text\" placeholder=\"메뉴 이름\">\n<input class=\"menu-price\" type=\"number\" placeholder=\"메뉴 가격\">\n<button class=\"remove-menu\">-</button>\n";
 },"useData":true});
 templates['manage'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"manage\">\n    <h1>가게 이름</h1>\n\n    <div class=\"manage-switch\">\n        <div class=\"onoff\">\n            <span>OFF</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"store-status\">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>ON</span>\n        </div>\n\n        <div class=\"line\">\n            <span>거부</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"line-status\">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>허용</span>\n        </div>\n    <div>\n\n    <div class=\"waiting-list\">\n    </div>\n\n    <div class=\"manage-input-area\">\n        <dl class=\"client-form\">\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"add-name\"></dd>\n            <dt>인원</dt>\n            <dd><input type=\"number\" id=\"add-count\"></dd>\n            <dt>전화번호</dt>\n            <dd><input type=\"number\" id=\"add-tel\"></dd>\n        </dl>\n        <button id=\"btn-add-client\">추가</button>\n    </div>\n</div>\n";
+    return "<div class=\"manage\">\n    <h1>가게 이름</h1>\n\n    <div class=\"manage-switch\">\n        <div class=\"onoff\">\n            <span>OFF</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"store-status\">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>ON</span>\n        </div>\n\n        <div class=\"line\">\n            <span>대기 거부</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"line-status\">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>대기 허용</span>\n        </div>\n    <div>\n\n    <div class=\"waiting-list\">\n    </div>\n\n    <div class=\"manage-input-area\">\n        <dl class=\"client-form\">\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"add-name\"></dd>\n            <dt>인원</dt>\n            <dd><input type=\"number\" id=\"add-count\"></dd>\n            <dt>전화번호</dt>\n            <dd><input type=\"number\" id=\"add-tel\"></dd>\n        </dl>\n        <button id=\"btn-add-client\">추가</button>\n    </div>\n</div>\n";
 },"useData":true});
 templates['modify-store'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"register-store\">\n    <h1 class=\"regist-title\">사장님의 가게를 수정해주세요</h1>\n    <div>\n        <dl class=\"reg-form\">\n            \n            <dt>업체명</dt>\n            <dd>\n                <input type=\"text\" id=\"mod-name\" value=\"원래 저장된 이름\">\n                <button id=\"btn-search-store\">검색</button>\n            </dd>\n\n            <dt>업체 위치</dt>\n            <dd><input type=\"text\" id=\"mod-location\" value=\"원래 저장된 설명\"></dd>\n\n            <dt>업체 설명</dt>\n            <dd><input type=\"text\" id=\"mod-desc\"></dd>\n\n            <dt>업체 사진</dt>\n            <dd><input type=\"file\"></dd>\n\n            <dt>메뉴</dt>\n            <dd class=\"menus\">\n                <button class=\"add-menu\">+</button>\n            </dd>\n            \n        </dl>\n    </div>\n\n    <button id=\"btn-reg-store\">가게등록</button>\n\n</div>";
@@ -92,7 +92,7 @@ templates['no-store'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
     return "<div class=\"go-register\">\n    <span>등록된 가게가 없습니다.</span>\n    <span>먼저 가게를 등록해주세요.</span>\n    <button id=\"btn-go-register\">가게 등록 하기</button>\n</div>";
 },"useData":true});
 templates['register'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"register-store\">\n    <h1 class=\"regist-title\">사장님의 가게를 등록해주세요</h1>\n    <h1 class=\"m-regist-title\">가게등록</h1>\n    <div>\n        <dl class=\"reg-form\">\n            \n            <dt>업체명</dt>\n            <dd>\n                <input type=\"text\" id=\"regist-name\">\n                <button id=\"btn-search-store\">검색</button>\n            </dd>\n\n            <dt>업체 위치</dt>\n            <dd>\n                <input type=\"text\" id=\"regist-location\" placeholder=\"도로명 주소를 입력 후 검색해주세요\">\n                <button id=\"btn-search-location\">지도검색</button>\n            </dd>\n\n            <dt>전화번호</dt>\n            <dd><input type=\"number\" id=\"regist-tel\"></dd>\n\n            <dt>업체 설명</dt>\n            <dd><input type=\"text\" id=\"regist-desc\"></dd>\n\n            <dt>업체 사진</dt>\n            <dd><input type=\"file\" id=\"regist-file\"></dd>\n\n            <dt>메뉴</dt>\n            <dd class=\"menus\">\n                <button class=\"add-menu\">+</button>\n            </dd>\n            \n        </dl>\n    </div>\n\n    <button id=\"btn-reg-store\">가게등록</button>\n</div>\n\n\n<div class=\"map-modal\">\n    <div class=\"map-modal-content\">\n        <span id=\"btn-map-close\" class=\"btn-close\"><img src=\"/dist/public/images/close.png\"></span>\n        <div id=\"map\"></div>\n        <button id=\"btn-map-confirm\">확인</button>\n    </div>\n</div>";
+    return "<div class=\"register-store\">\n    <h1 class=\"regist-title\">사장님의 가게를 등록해주세요</h1>\n    <h1 class=\"m-regist-title\">가게등록</h1>\n    <div>\n        <dl class=\"reg-form\">\n            \n            <dt>업체명</dt>\n            <dd>\n                <input type=\"text\" id=\"regist-name\">\n            </dd>\n\n            <dt>업체 위치</dt>\n            <dd>\n                <input type=\"text\" id=\"regist-location\" placeholder=\"도로명 주소 입력 후 지도확인을 해주세요\">\n                <button id=\"btn-search-location\">지도확인</button>\n            </dd>\n\n            <dt>전화번호</dt>\n            <dd><input type=\"number\" id=\"regist-tel\"></dd>\n\n            <dt>업체 설명</dt>\n            <dd><input type=\"text\" id=\"regist-desc\"></dd>\n\n            <dt>업체 사진</dt>\n            <dd><input type=\"file\" id=\"regist-file\"></dd>\n\n            <dt>메뉴</dt>\n            <dd class=\"menus\">\n                <button class=\"add-menu\">+</button>\n            </dd>\n            \n        </dl>\n    </div>\n\n    <button id=\"btn-reg-store\">가게등록</button>\n</div>\n\n\n<div class=\"map-modal\">\n    <div class=\"map-modal-content\">\n        <span id=\"btn-map-close\" class=\"btn-close\"><img src=\"/dist/public/images/close.png\"></span>\n        <div id=\"map\"></div>\n        <button id=\"btn-map-confirm\">확인</button>\n    </div>\n</div>";
 },"useData":true});
 templates['statistic'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
@@ -168,16 +168,36 @@ templates['statistic'] = template({"compiler":[7,">= 4.0.0"],"main":function(con
     + " y=\"130\" dy=\".35em\">50대</text>\n                    </g>\n                </svg>\n        </figure>\n\n    </div>\n</div>";
 },"useData":true});
 templates['store-detail'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"detail-btn-area\">\n    <button id=\"btn-back\">뒤로가기</button>\n</div>\n<div class=\"store-detail\">\n    <div class=\"store-detail-img\">\n        <img src=\"/dist/public/images/background.jpg\">\n    </div>\n    <div class=\"store-detail-info\">\n        <h2 class=\"store-detail-title\">가게 이름</h2>\n        <p class=\"store-detail-desc\">\n            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.\n        </p>\n    </div>\n</div>";
+    var alias1=container.lambda, alias2=container.escapeExpression;
+
+  return "<div class=\"detail-btn-area\">\n    <button id=\"btn-back\">뒤로가기</button>\n</div>\n<div class=\"store-detail\">\n    <div class=\"store-detail-img\">\n        <img src=\""
+    + alias2(alias1((depth0 != null ? depth0.imgUrl : depth0), depth0))
+    + "\">\n    </div>\n    <div class=\"store-detail-info\">\n        <h2 class=\"store-detail-title\">"
+    + alias2(alias1((depth0 != null ? depth0.title : depth0), depth0))
+    + "</h2>\n        <p class=\"store-detail-desc\">\n            상세설명 :: "
+    + alias2(alias1((depth0 != null ? depth0.desc : depth0), depth0))
+    + " <br>\n            전화번호 :: "
+    + alias2(alias1((depth0 != null ? depth0.tel : depth0), depth0))
+    + " <br>\n            주소 :: "
+    + alias2(alias1((depth0 != null ? depth0.addr : depth0), depth0))
+    + " \n        </p>\n    </div>\n</div>";
 },"useData":true});
 templates['store-list'] = template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "        <div class=\"store-card\">\n            <img class=\"card-img\" src= \""
+  return "        <div class=\"store-card\" id=\""
+    + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
+    + "\">\n            <img class=\"card-img\" id=\""
+    + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
+    + "\" src= \""
     + alias2(alias1((depth0 != null ? depth0.storeImgUrl : depth0), depth0))
-    + "\" alt=\"\">\n            <dl>\n                <dt class=\"card-title\">"
+    + "\" alt=\"\">\n            <dl>\n                <dt class=\"card-title\" id=\""
+    + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
+    + "\">"
     + alias2(alias1((depth0 != null ? depth0.storeName : depth0), depth0))
-    + "</dt>\n                <dd class=\"card-desc\">"
+    + "</dt>\n                <dd class=\"card-desc\" id=\""
+    + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
+    + "\">"
     + alias2((helpers.trimString || (depth0 && depth0.trimString) || helpers.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.storeAddress : depth0),0,38,{"name":"trimString","hash":{},"data":data}))
     + "</dd>\n            </dl>\n        </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {

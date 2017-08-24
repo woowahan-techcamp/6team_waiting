@@ -133,10 +133,10 @@ export class Auth {
 
         if (!menu.isOK) return;
 
-        if (!this.regex.isName(title)) {
-            alert("2 - 20 글자 수의 가게명을 입력해주세요");
-            return;
-        }
+        // if (!this.regex.isName(title)) {
+        //     alert("2 - 20 글자 수의 가게명을 입력해주세요");
+        //     return;
+        // }
 
         if (!this.regex.isDescription(desc)) {
             alert("2 - 40 글자 수의 가게 설명을 입력해주세요");
@@ -154,17 +154,17 @@ export class Auth {
         }
 
         if (!(map.addrX && map.addrY)) {
-            alert("가게 주소 검색을 해주세요");
+            alert("가게 주소를 입력하고 지도확인을 해주세요");
             return;
         }
 
         this.isSaving = true;
-        service.saveImageInStorage(id)
+        service.saveImageInStorage(memberid)
             .then((path) => {
                 return service.getStoreImageUrl(path);
             })
             .then((url) => {
-                return service.registerRestaurant(id, title, desc, tel, addr, map.addrX, map.addrY, menu, url);
+                return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menu, url);
             })
             .then((storeid) => {
                 const token = JSON.parse(window.sessionStorage.getItem("token"));

@@ -8,7 +8,7 @@ import { TicketModel } from "../model/ticket.model.js";
 import { PushModel } from "../model/push.model.js";
 import { StatusModel } from "../model/status.model.js";
 import { TokenModel } from "../model/token.model.js";
-
+import { PageModel } from "../model/page.model.js";
 
 const service = (() => {
     // Private member
@@ -70,7 +70,7 @@ const service = (() => {
                 .catch((err) => { return (err) });
         },
 
-        getStores() {
+        getStores() { //사용 안함 (모든 가게정보 다 가져오는 기능)
             return requestAjax("GET", `${baseUrl}/stores`)
                 .then((result) => { return (result); })
                 .catch((err) => { return (err) });
@@ -117,11 +117,16 @@ const service = (() => {
 
         saveImageInStorage(id) {
             const file = document.getElementById("regist-file").files[0];
-            const storeFolder = `${id}/${file.name}`;
-            const iref = fireStorageRef.child(storeFolder);
-            return iref.put(file)
-                .then((snapshot) =>  { return (iref.location.path); })
-                .catch((err) => console.log(err));
+            if(file){
+                const storeFolder = `${id}/${file.name}`;
+                const iref = fireStorageRef.child(storeFolder);
+                return iref.put(file)
+                    .then((snapshot) =>  { return (iref.location.path); })
+                    .catch((err) => console.log(err));
+            }else{
+                alert("사진을 등록해주세요");
+                return;
+            }
         },
 
         waitingList(id) {
@@ -141,6 +146,24 @@ const service = (() => {
             const token = new TokenModel(currentToken);
             return requestAjax("POST", `${baseUrl}/storeInfo`, token)
                 .then((storeInfo) => { return (storeInfo);});
+        },
+
+        getOtherStoreDetail(storeId){
+            const id = {"storeId" : storeId};
+            return requestAjax("POST", `${baseUrl}/otherStoreDetail`, id)
+                .then((storeInfo) => { return (storeInfo); });
+        },
+
+        getOtherStoreList(firstNum, lastNum){
+            const page = new PageModel( 1, 11);
+            //const page = new PageModel( firstNum, lastNum);
+            return requestAjax("POST", `${baseUrl}/otherStores`, page)
+                .then((result) => { return (result); });
+        },
+
+        getCountStores(){
+            return requestAjax("POST", `${baseUrl}/countStores`)
+                .then((result) => { return (result); });
         }
     }
 
