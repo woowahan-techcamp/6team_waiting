@@ -22,14 +22,21 @@
         <a class="next">&#10095;</a>
     </div>
 
-    <div class="intro-desc">
+    <div class="slide-dots">
+        <span data-n="1" class="curr"></span>
+        <span data-n="2"></span>
+        <span data-n="3"></span>
+        <span data-n="4"></span>
+    </div>
+
+    <div class="slides">
         {{#each serv-desc}}
-        <div class="slides">
-            <img src={{this.img}}>
-            <p>{{this.content}}</p>
+        <div class="slide-box">
+            <div class="slides-img"><img src={{this.img}}></div>
+            <p>{{this.content}}</p>  
         </div>
         {{/each}}
-    </div> 
+    </div>
 </div>
 
 
