@@ -268,7 +268,9 @@
                                     </constraints>
                                     <connections>
                                         <outlet property="headerContents" destination="cWU-wb-gMC" id="GEw-jr-ZHZ"/>
-                                        <outlet property="restaurantsName" destination="o5f-GN-DvK" id="QLt-ri-8Hh"/>
+                                        <outlet property="nameLabel" destination="o5f-GN-DvK" id="aeY-bz-3Bl"/>
+                                        <outlet property="orderLabel" destination="wcN-mu-QGL" id="i0e-Me-aiF"/>
+                                        <outlet property="storeNameLabel" destination="3K7-K3-TVv" id="GEs-1Z-TP1"/>
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>

@@ -29,11 +29,13 @@ class CheckTicketViewController: UIViewController {
 
         if let ticketNum = waitingTicket?.ticketNumber,
             let ticketLine = waitingTicket?.currentInLine {
-
             self.ticketNumberContentLabel.text = "\(ticketNum)"
             self.nameLabel.text = waitingTicket?.name
             self.storeLabel.text = waitingTicket?.storeName
             self.orderLabel.text = "\(ticketLine) 번째"
+
+            let ticket = NSKeyedArchiver.archivedData(withRootObject: waitingTicket!)
+            UserDefaults.standard.set(ticket, forKey: "ticket")
         }
     }
 

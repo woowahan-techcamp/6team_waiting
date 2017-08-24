@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct WaitingTicket {
+class WaitingTicket: NSObject, NSCoding {
     private(set) var name: String
     private(set) var phoneNumber: String {
         didSet {
@@ -32,6 +32,28 @@ struct WaitingTicket {
         self._ticketNumber = 0
         self._storeName = ""
         self._currentInLine = 0
+    }
+
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.name, forKey: "name")
+        aCoder.encode(self.phoneNumber, forKey: "phoneNumber")
+        aCoder.encode(self.headCount, forKey: "headCount")
+        aCoder.encode(self.isStaying, forKey: "isStaying")
+        aCoder.encode(self.storeId, forKey: "storeId")
+        aCoder.encode(self._ticketNumber, forKey: "_ticketNumber")
+        aCoder.encode(self._storeName, forKey: "_storeName")
+        aCoder.encode(self._currentInLine, forKey: "_currentInLine")
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        self.name = aDecoder.decodeObject(forKey: "name") as! String
+        self.phoneNumber = aDecoder.decodeObject(forKey: "phoneNumber") as! String
+        self.headCount = aDecoder.decodeInteger(forKey: "headCount")
+        self.isStaying = aDecoder.decodeBool(forKey: "isStaying")
+        self.storeId = aDecoder.decodeInteger(forKey: "storeId")
+        self._ticketNumber = aDecoder.decodeInteger(forKey: "_ticketNumber")
+        self._storeName = aDecoder.decodeObject(forKey: "_storeName") as! String
+        self._currentInLine = aDecoder.decodeInteger(forKey: "_currentInLine")
     }
 
     public var ticketNumber: Int {
