@@ -1,22 +1,10 @@
 import service from "./services/service.js";
 
+
 const util = {
     log(content) {
         if (window.console) console.log(content);
         else alert(content);
-    },
-
-    requestAjax(protocol, url, data) {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open(protocol, url);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    resolve(JSON.parse(xhr.response));
-                }
-            };
-            xhr.send(JSON.stringify(data));
-        });
     },
 
     setTemplateInHtml(position, temp, data) {

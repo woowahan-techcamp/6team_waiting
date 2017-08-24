@@ -5,18 +5,48 @@ import service from "./services/service.js";
 export class Manage {
 
     constructor(token){
-        this.messages = ["입장 5분 전 입니다", "입장 10분 전 입니다"];
+        this.status = "off";
+        this.messages = ["입장 5분 전 입니다", "입장 10분 전 입니다", "얼른 안오면 삭제합니다"];
         this.storeId = token.storeId;
+        this.managePage();
+    }
+
+    managePage() {
+        util.setTemplateInHtml(".board", "manage").then(() => {
+            this.switchStatus = document.querySelector("#store-status");
+            this.lineStatus = document.querySelector("#line-status");
+            this.on();
+        });
+    }
+
+    on() {
+        this.switchStatus.addEventListener("change", () => {
+            if (!this.switchStatus.checked) {
+                this.switchHandler();
+            }
+        })
+        this.lineStatus.addEventListener("change", () => {
+            if (!this.lineStatus.checked) {
+                this.lineHandler();
+            }
+        })
+
         this.getWaitingList();
     }
 
     getWaitingList() {
         const id = this.storeId;
         service.waitingList(id).then((list) => this.setWaitingListInHtml(list));
+        setInterval(() => {
+            // @TODO : haeun.kim
+            // 가게 관리 페이지를 보고 있을 때만, 지속적으로 받아와야함
+            console.log("Get!!");
+            service.waitingList(id).then((list) => this.setWaitingListInHtml(list));
+        }, 5000);
     }
 
     setWaitingListInHtml(list) {
-        util.setTemplateInHtml(".board", "manage", list)
+        util.setTemplateInHtml(".waiting-list", "waiting-member", list)
             .then(() => this.init());
     }
 
@@ -30,14 +60,15 @@ export class Manage {
                     this.btnWaitingHandler(e, ticketNum);
                 }
                 if (e.target && e.target.nodeName === "LI") {
-                    const ticketNum = e.target.parentNode.parentNode.parentNode.parentNode.dataset.num;
-                    this.sendMessage(e, ticketNum);
+                    const target = e.target.parentNode.parentNode.parentNode.parentNode;
+                    this.sendMessage(e, target);
                 }
             })
         })
     }
 
-    btnWaitingHandler(e, num) {
+
+    btnWaitingHandler(e, target, num) {
         if (e.target.className === "btn-alarm") {
             this.alarmHandler(e.target);
         } else if (e.target.className === "btn-delete"){
@@ -57,19 +88,37 @@ export class Manage {
         }
     }
 
-    sendMessage(e, num) {
+    sendMessage(e, target) {
         const opt = e.target.innerHTML;
-        if (opt === "5분 전") {
-            // @TODO : haeun.kim 
-            // send message to DB
-            const msg = {"msg": this.messages[0]};
-            // util.requestAjax("POST", "http://52.78.157.5:8080/push", msg);
-            console.log(num, this.messages[0]);
-        } else if (opt === "10분 전") {
-            console.log(num, this.messages[1]);
-        }
+        let message = this.messages[0];
 
-        e.target.parentNode.classList.remove("show-opt");
-        document.querySelector(".alarm-opt").classList.remove("show-opt");
+        if (opt === "5분 전") {
+            target.querySelector("#m5").style.visibility = "visible";
+            message = this.messages[0];
+        } else if (opt === "10분 전") {
+            target.querySelector("#m10").style.visibility = "visible";
+            message = this.messages[1];
+        } 
+
+        service.push(target.dataset.num, message);
+    }
+
+    switchHandler() {
+        const answer = confirm("가게를 닫고, 모든 대기 고객을 삭제 하시겠습니까?");
+        if (answer) {
+            this.switchStatus.checked = false;
+            this.lineStatus.checked = false;
+        } else {
+            this.switchStatus.checked = true;
+        }
+    }
+
+    lineHandler() {
+        const answer = confirm("대기 거부를 하시면 앱에서 대기 신청을 할 수 없습니다. 대기 거부를 하시겠습니까?");
+        if (answer) {
+            this.lineStatus.checked = false;
+        } else {
+            this.lineStatus.checked = true;
+        }
     }
 }
