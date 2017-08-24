@@ -20,6 +20,7 @@ class Store {
     private var _storeTel: String
     private var _storeIsOpened: Bool
     private var _currentInLine: Int
+    private var _storeShortAddress: String
 
     init() {
         self._storeName = ""
@@ -33,6 +34,7 @@ class Store {
         self._storeTel = ""
         self._storeIsOpened = true
         self._currentInLine = 0
+        self._storeShortAddress = ""
     }
     convenience init(storeName: String, storeId: Int, storeAddress: String, storeLatitude: String, storeLongitude: String, storeImgUrl: URL, currentInLine: Int) {
         self.init()
@@ -107,6 +109,10 @@ class Store {
         set { self._currentInLine = newValue }
     }
 
+    public var storeShortDistance: String {
+        return self._storeShortAddress
+    }
+
     public func getDistanceFromUser(userLocation: CLLocation) {
         let storeLat = CLLocationDegrees(self.storeLatitude)
         let storeLong = CLLocationDegrees(self.storeLongitude)
@@ -116,6 +122,29 @@ class Store {
         let distance = userLocation.distance(from: storeLocation)
 
         self._distanceToUser = distance
+
+    }
+    public func getShortAddress(address: String) {
+        let addrArray = address.components(separatedBy: " ")
+
+        var result = ""
+        if addrArray.count >= 3 {
+            var gu = addrArray[1]
+            var dong = addrArray[2]
+
+            if gu.hasSuffix("구") {
+                gu.remove(at: gu.index(before: gu.endIndex))
+            }
+            result += "\(gu)/"
+
+            if dong.hasSuffix("동") {
+                dong.remove(at: dong.index(before: dong.endIndex))
+            }
+
+            result += "\(dong)"
+        }
+
+        self._storeShortAddress = result
 
     }
 }

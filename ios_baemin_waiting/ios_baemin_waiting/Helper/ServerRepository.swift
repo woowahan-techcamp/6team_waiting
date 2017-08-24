@@ -106,6 +106,7 @@ class ServerRepository {
                         let store = Store(storeName: name, storeId: id, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL, currentInLine: currentInLine)
 
                         store.getDistanceFromUser(userLocation: currentLocation)
+                        store.getShortAddress(address: address)
 
                         self.storeList.append(store)
                     }

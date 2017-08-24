@@ -14,7 +14,8 @@ class MainMapCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
-    @IBOutlet weak var addrLabel: UILabel!
+    @IBOutlet weak var locationAndDistanceLabel: UILabel!
+
     @IBOutlet weak var currentInLineLabel: UILabel!
 
     @IBOutlet weak var backView: UIView!
@@ -28,7 +29,9 @@ class MainMapCollectionViewCell: UICollectionViewCell {
     func putCellContent(storeInfo: Store) {
 
         titleLabel.text = storeInfo.storeName
-        addrLabel.text = storeInfo.storeAddress
+
+        locationAndDistanceLabel.text = "\(storeInfo.storeShortDistance), \(Int(storeInfo.storeDistance))m"
+
         currentInLineLabel.text = "\(storeInfo.currentInLine)명"
 
         if let imgURL = storeInfo.storeImgUrl {

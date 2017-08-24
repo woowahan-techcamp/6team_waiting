@@ -36,16 +36,16 @@
                                 <rect key="frame" x="156" y="8" width="181" height="104"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IdN-AA-9mK">
-                                        <rect key="frame" x="0.0" y="0.0" width="152" height="54"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="82" height="54"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="멘야하나비" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjZ-gb-1P8">
-                                                <rect key="frame" x="0.0" y="0.0" width="152" height="39.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="82" height="39.5"/>
                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="서울특별시 마포구 독막로 221-7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sii-vF-8Je">
-                                                <rect key="frame" x="0.0" y="39.5" width="152" height="14.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="마포/독막, 840m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sii-vF-8Je">
+                                                <rect key="frame" x="0.0" y="39.5" width="82" height="14.5"/>
                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Light" family="Apple SD Gothic Neo" pointSize="12"/>
                                                 <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -96,10 +96,10 @@
                 <constraint firstAttribute="trailing" secondItem="tS7-Vt-fQ1" secondAttribute="trailing" id="Z1p-el-NkN"/>
             </constraints>
             <connections>
-                <outlet property="addrLabel" destination="sii-vF-8Je" id="VDF-Md-zbm"/>
                 <outlet property="backView" destination="tS7-Vt-fQ1" id="Td3-DA-U7c"/>
                 <outlet property="currentInLineLabel" destination="9eS-jw-cd0" id="FGy-af-9xj"/>
                 <outlet property="imageView" destination="eva-zU-AEX" id="YHL-kE-EL1"/>
+                <outlet property="locationAndDistanceLabel" destination="sii-vF-8Je" id="UOz-Dc-lHG"/>
                 <outlet property="titleLabel" destination="IjZ-gb-1P8" id="IJE-TT-QY7"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="63"/>
