@@ -38,14 +38,17 @@ extension MapViewController: UICollectionViewDelegate {
             }
         }
     }
-
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         print(targetContentOffset.pointee.x)
 
         let index = targetContentOffset.pointee.x / (self.view.bounds.width - 64 - 10)
 
-        print(index)
+        if Int(index) < storeList.count {
+            let indexPath = IndexPath(item: Int(index), section: 0)
+            print(Int32(index))
 
+            mapCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
         if let overlay = overlayItems {
             overlay.selectPOIitem(at: Int32(index), moveToCenter: true)
         }
