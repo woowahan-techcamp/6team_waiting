@@ -91,18 +91,19 @@ extension DetailViewController : UITableViewDataSource {
                 cell = descriptionCell
             }
         case 2:
-            if let callStoreCell = tableView.dequeueReusableCell(withIdentifier: "storeCallButtonCell") as? StoreCallButtonCell {
-                cell = callStoreCell
-            }
-        case 3:
-            if let mapViewCell = tableView.dequeueReusableCell(withIdentifier: "storeMapViewCell") as? StoreMapViewCell {
-                mapIndexPath = indexPath
-                cell = mapViewCell
-            }
-        case 4:
             if let lineShowCell = tableView.dequeueReusableCell(withIdentifier: "storeLineShowCell") as? StoreLineShowCell {
                 lineShowCell.putlineNumber(lineNumber: detailStore.currentInLine)
                 cell = lineShowCell
+            }
+
+        case 3:
+            if let callStoreCell = tableView.dequeueReusableCell(withIdentifier: "storeCallButtonCell") as? StoreCallButtonCell {
+                cell = callStoreCell
+            }
+        case 4:
+            if let mapViewCell = tableView.dequeueReusableCell(withIdentifier: "storeMapViewCell") as? StoreMapViewCell {
+                mapIndexPath = indexPath
+                cell = mapViewCell
             }
         default:
             cell = UITableViewCell()
@@ -123,11 +124,11 @@ extension DetailViewController: UITableViewDelegate {
         case 1:
             cellHeight = 130
         case 2:
-            cellHeight = 50
+            cellHeight = 75
         case 3:
-            cellHeight = 85
+            cellHeight = 65
         case 4:
-            cellHeight = 70
+            cellHeight = 160
         default:
             cellHeight = 150
         }
