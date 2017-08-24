@@ -217,6 +217,9 @@
                                                                 <constraint firstAttribute="width" constant="25" id="bpZ-ix-gIO"/>
                                                             </constraints>
                                                             <state key="normal" image="refresh"/>
+                                                            <connections>
+                                                                <action selector="refreshBtnTapped:" destination="Sal-mY-Zos" eventType="touchUpInside" id="Myd-3E-cDu"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zM-cZ-Y2B">
                                                             <rect key="frame" x="315" y="73" width="45" height="28"/>

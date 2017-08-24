@@ -14,54 +14,6 @@ class ServerRepository {
 
     static var storeList: [Store] = []
 
-    static func getStoreList(query: String, completion: @escaping ([Store]) -> Void) {
-
-        guard let url = URL(string: baseURL + query)
-            else {
-                print("URL is nil")
-                return
-        }
-
-        var urlRequest = URLRequest(url: url)
-        urlRequest.timeoutInterval = 10
-
-        Alamofire.request(urlRequest).responseJSON { response in
-            guard response.result.isSuccess else {
-                print("Response get store error: \(response.result.error!)")
-                return
-            }
-
-            // 항상 성공
-            guard let value = response.result.value else { return }
-
-            let swiftyJson = JSON(value)
-
-            for (_, item): (String, JSON) in swiftyJson {
-
-                if let name = item["storeName"].string,
-                    let id = item["storeId"].int,
-                    let address = item["storeAddress"].string,
-                    let lat = item["storeLatitude"].string,
-                    let long = item["storeLongitude"].string,
-                    let currentInLine = item["currentInLine"].int,
-                    let img = item["storeImgUrl"].string {
-
-                    if let imgURL = URL(string: img) {
-                        let store = Store(storeName: name, storeId: id, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL, currentInLine: currentInLine)
-
-                        self.storeList.append(store)
-                    }
-                }
-            }
-
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataUpdate"),
-                                            object: nil, userInfo: ["storeData": self.storeList])
-            DispatchQueue.main.async {
-                completion(self.storeList)
-            }
-        }
-    }
-
     static func postCurrentLocation(currentLocation: CLLocation, completion: @escaping (Bool, [Store]) -> Void) {
         self.storeList = []
 
@@ -113,8 +65,6 @@ class ServerRepository {
                 }
             }
 
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataUpdate"),
-                                            object: nil, userInfo: ["storeData": self.storeList])
             DispatchQueue.main.async {
                 completion(true, self.storeList)
             }

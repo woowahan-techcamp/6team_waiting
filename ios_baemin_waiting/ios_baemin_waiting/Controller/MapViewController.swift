@@ -20,8 +20,6 @@ class MapViewController: UIViewController {
     var mapView: NMapView?
     var myLocation: NGeoPoint?
     var circleArea: NMapCircleData?
-    var markers: [NMapPOIitem] = []
-
     var overlayItems: NMapPOIdataOverlay?
     var storeList: [Store] = []
 
@@ -35,11 +33,11 @@ class MapViewController: UIViewController {
 
         mapView = initMap(frame: self.view.bounds)
 
-        if let mapView = mapView {
-            mapView.delegate = self
-            mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        if let map = mapView {
+            map.delegate = self
+            map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
-            view.addSubview(mapView)
+            view.addSubview(map)
         }
 
         switch currentState {
@@ -61,6 +59,9 @@ class MapViewController: UIViewController {
 
     // NotificationCenter 메소드
     func dataUpdated(_ notification: NSNotification) {
+
+        print("Map data Updated")
+
         guard let storeListData = notification.userInfo?["storeData"] as? [Store] else {
             print("Error: Data not Passed")
             return
@@ -70,6 +71,8 @@ class MapViewController: UIViewController {
             self.storeList = self.storeList.sorted { (store1: Store, store2: Store) -> Bool in
                 return store1.storeDistance < store2.storeDistance
             }
+
+            self.addMarker()
             DispatchQueue.main.async {
                 self.mapCollectionView.reloadData()
             }
@@ -96,19 +99,28 @@ class MapViewController: UIViewController {
 
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        mapView?.viewDidDisappear()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         mapView?.viewDidAppear()
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         mapView?.viewWillDisappear()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        currentState = .tracking
+        print("appear")
         if let location = myLocation {
             mapView?.setMapCenter(location, atLevel: 9)
         }

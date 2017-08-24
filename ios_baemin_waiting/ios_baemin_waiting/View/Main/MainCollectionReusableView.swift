@@ -19,6 +19,7 @@ class MainCollectionReusableView: UICollectionReusableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
     }
 
     func putTicket(ticket: WaitingTicket) {

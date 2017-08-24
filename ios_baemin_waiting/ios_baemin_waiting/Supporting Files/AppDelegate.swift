@@ -28,18 +28,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         print("enter foreground")
 
-        let rootStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        let mainCollectionStoryBoard = UIStoryboard(name: "MainCollectionView", bundle: nil)
+        if self.window?.rootViewController?.childViewControllers != nil {
 
-        let rootVC  = rootStoryBoard.instantiateViewController(withIdentifier: "RootNavigation")
-        let mainCollectionVC = mainCollectionStoryBoard.instantiateViewController(withIdentifier: "MainCollectionView") as? MainCollectionViewController
+            let rootStoryBoard = UIStoryboard(name: "Main", bundle: nil)
 
-        mainCollectionVC?.refreshData()
-        self.window?.rootViewController = rootVC
+            let rootVC = rootStoryBoard.instantiateViewController(withIdentifier: "RootNavigation")
 
-        self.window?.makeKeyAndVisible()
+            if let mainContainerVC = self.window?.rootViewController?.childViewControllers[0] as? MainContainerViewController {
+
+                let mapVC = mainContainerVC.childViewControllers[0] as? MapViewController
+                let collectionVC = mainContainerVC.childViewControllers[1] as? MainCollectionViewController
+
+                collectionVC?.refreshData()
+
+                self.window?.rootViewController = rootVC
+                self.window?.makeKeyAndVisible()
+            }
+        }
+
     }
-
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {

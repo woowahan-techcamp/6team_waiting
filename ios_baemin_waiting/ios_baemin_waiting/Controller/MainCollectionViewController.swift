@@ -118,6 +118,7 @@ class MainCollectionViewController: UIViewController {
     }
 
     func refreshData() {
+        print(locationManager.delegate)
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }
@@ -137,6 +138,9 @@ class MainCollectionViewController: UIViewController {
     func exceptionLabel(show: Bool) {
         noResultLabel.isHidden = show
         noResultRefreshBtn.isHidden = show
+    }
+    @IBAction func refreshBtnTapped(_ sender: UIButton) {
+        refreshData()
     }
 }
 
@@ -222,12 +226,18 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
             if isSuccess {
                 self.storeList = storeData
 
+                print("Location Update Success")
+
                 if self.storeList.count > 0 {
                     self.storeList = self.storeList.sorted { (store1: Store, store2: Store) -> Bool in
                         return store1.storeDistance < store2.storeDistance
                     }
 
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataUpdate"),
+                                                    object: nil, userInfo: ["storeData": self.storeList])
+
                     self.collectionView.reloadData()
+
                 } else {
                     // 검색 결과가 없는 경우
                     self.stopActivityIndicator()
@@ -239,6 +249,8 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
             } else {
                 // 서버에서 정보를 받아 올 수 없는 경우
                 self.noResultLabel.text = "서버에서 정보를 받아올 수 없습니다."
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
                 self.noResultLabel.isHidden = false
                 self.noResultRefreshBtn.isHidden = false
             }

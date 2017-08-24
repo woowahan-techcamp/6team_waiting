@@ -214,11 +214,6 @@ extension MapViewController {
                         if let location = myLocation {
                             if isInCircle(point1: location, point2: markerLocation, distance: 1500) {
 
-                                // 마커의 인덱스와 위치 정보만 획득
-                                let marker = NMapPOIitem()
-                                marker.location = markerLocation
-                                markers.append(marker)
-
                                 poiDataOverlay.addPOIitem(atLocation: markerLocation, title: store.storeName,
                                                           type: userPOIflagTypeDefault, iconIndex: Int32(idx), with: nil)
                             }
