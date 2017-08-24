@@ -99,6 +99,7 @@
                 <outlet property="backView" destination="tS7-Vt-fQ1" id="Td3-DA-U7c"/>
                 <outlet property="currentInLineLabel" destination="9eS-jw-cd0" id="FGy-af-9xj"/>
                 <outlet property="imageView" destination="eva-zU-AEX" id="YHL-kE-EL1"/>
+                <outlet property="imageWidth" destination="AJz-zw-PyD" id="U9Z-yZ-d2C"/>
                 <outlet property="locationAndDistanceLabel" destination="sii-vF-8Je" id="UOz-Dc-lHG"/>
                 <outlet property="titleLabel" destination="IjZ-gb-1P8" id="IJE-TT-QY7"/>
             </connections>

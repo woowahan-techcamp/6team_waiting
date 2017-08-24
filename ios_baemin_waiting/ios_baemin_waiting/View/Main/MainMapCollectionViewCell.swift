@@ -19,11 +19,15 @@ class MainMapCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var currentInLineLabel: UILabel!
 
     @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var imageWidth: NSLayoutConstraint!
     override func awakeFromNib() {
         super.awakeFromNib()
 
         backView.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0).cgColor
         backView.layer.borderWidth = 0.4
+
+        let ratio: CGFloat = 140 / 375
+        imageWidth.constant = self.backView.bounds.width * ratio
     }
 
     func putCellContent(storeInfo: Store) {
