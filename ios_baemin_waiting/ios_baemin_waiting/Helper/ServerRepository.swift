@@ -159,7 +159,7 @@ class ServerRepository {
                     DispatchQueue.main.async {
                         completion(isSuccessBool, checkTicket)
                     }
-                }
+            }
         }
     }
 
@@ -234,4 +234,43 @@ class ServerRepository {
             }
         }
     }
+
+    static func postMylineCheck(ticket: WaitingTicket, completion: @escaping (WaitingTicket) -> Void) {
+        let mylineTicket = ticket
+
+        let parameter: Parameters = [
+            "storeId": ticket.storeId,
+            "ticketNumber": ticket.ticketNumber
+        ]
+
+        guard let url = URL(string: baseURL + "/mylineCheck")
+            else {
+                print("URL is nil")
+                return
+        }
+
+        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            guard response.result.isSuccess else {
+                print("Response get myline error: \(response.result.error!)")
+                return
+            }
+
+            guard let value = response.result.value else { return }
+            let mylineJson = JSON(value)
+
+            if let ticketNumber = mylineJson["ticketNumber"].int,
+                let storeName = mylineJson["storeName"].string,
+                let currentInLine = mylineJson["currentInLine"].int {
+
+                mylineTicket.storeName = storeName
+                mylineTicket.currentInLine = currentInLine
+                mylineTicket.ticketNumber = ticketNumber
+
+                DispatchQueue.main.async {
+                    completion(mylineTicket)
+                }
+            }
+        }
+    }
+
 }
