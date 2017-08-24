@@ -4,8 +4,9 @@
   "description": "woowahan tech camp project",
   "main": "index.js",
   "scripts": {
+    "build-css": "node-sass --include-path scss src/style/waiting-style.scss src/style/waiting-style.css",
     "devserver": "webpack-dev-server --inline",
-    "start": "webpack",
+    "start": "npm run build-css && webpack",
     "test": "npm run start && mocha --compilers js:babel-core/register"
   },
   "keywords": [
@@ -25,6 +26,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
     "mocha": "^3.5.0",
+    "node-sass": "^4.5.3",
     "style-loader": "^0.18.2",
     "webpack": "^3.4.1",
     "webpack-dev-server": "^2.6.1"
