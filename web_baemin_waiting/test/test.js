@@ -9,6 +9,7 @@ describe("Service", function() {
     describe("signin method", function() {
         it("check token is existed", function() {
             service.signInUser("id","pwd").then((token) => {
+                console.log(token);
                 assert.exist(token);
             });
         }) 
