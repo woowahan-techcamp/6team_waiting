@@ -2,6 +2,9 @@ import util from "./util.js";
 import service from "./services/service.js";
 
 import { Regex } from "./regex.js";
+import { Manage } from "./manage.js";
+import { Map } from "./map.js";
+import { Menu } from "./menu.js";
 import { View } from "./view.js";
 
 
@@ -12,7 +15,7 @@ export class Auth {
         this.isNotDuplication = true; // @TODO : haeun.kim
         this.regex = new Regex();
         this.view = new View(".view");
-        
+        this.isSaving = false;
     }
 
     signIn() {
@@ -31,10 +34,13 @@ export class Auth {
 
         service.signInUser(id, pwd)
             .then((token) => {
-                // @TODO : haeun.kim
-                // token 이 fail 일 경우에는 로그인이 되면 안됨
-                window.sessionStorage.setItem("token", JSON.stringify(token));
-                this.view.showInitialBoard();
+                if (!(token.token === "fail")) {
+                    window.sessionStorage.setItem("token", JSON.stringify(token));
+                    this.view.showInitialBoard();
+                    this.checkMyStore();
+                } else {
+                    alert("아이디와 비밀번호를 확인해주세요");
+                }
             })
             .catch((err) => {
                 alert(err);
@@ -84,7 +90,7 @@ export class Auth {
 
     signOut() {
         const token = this.currentToken();
-        service.signOutUser(token)
+        service.changeStatus(token, "off")
             .then((res) => {
                 //console.log(res);
                 if(res.resultStatus == "off"){
@@ -111,24 +117,60 @@ export class Auth {
             });
     }
     
-    registerStore(id, title, desc, tel, add, x, y, menu) {
-        // @TODO : haeun.kim
-        // 사용자가 버튼을 여러번 누를 경우,
-        // 서버에 요청이 여러번 날아가게 됨 
+    registerStore(map, menu) {
+        if (this.isSaving) {
+            return alert("처리중입니다");
+        }
 
-        // @TODO : haeun.kim
-        // regex check
+        const token = this.currentToken();
+        const storeid = token.storeId;
+        const memberid = token.memberId;
+        const menus = menu.getMenus();
+        const title = document.getElementById("regist-name").value;
+        const desc = document.getElementById("regist-desc").value;
+        const tel = document.getElementById("regist-tel").value;
+        const addr = document.getElementById("regist-location").value;
+
+        if (!menu.isOK) return;
+
+        if (!this.regex.isName(title)) {
+            alert("2 - 20 글자 수의 가게명을 입력해주세요");
+            return;
+        }
+
+        if (!this.regex.isDescription(desc)) {
+            alert("2 - 40 글자 수의 가게 설명을 입력해주세요");
+            return;
+        }
+
+        if (!this.regex.isTel(tel)) {
+            alert("잘못된 전화번호 형식입니다");
+            return;
+        }
+
+        if (!this.regex.isAddrress(addr)) {
+            alert("2 - 40 글자 수의 가게 주소를 입력해주세요");
+            return;
+        }
+
+        if (!(map.addrX && map.addrY)) {
+            alert("가게 주소 검색을 해주세요");
+            return;
+        }
+
+        this.isSaving = true;
         service.saveImageInStorage(id)
             .then((path) => {
                 return service.getStoreImageUrl(path);
             })
             .then((url) => {
-                return service.registerRestaurant(id, title, desc, tel, add, x, y, menu, url);
+                return service.registerRestaurant(id, title, desc, tel, addr, map.addrX, map.addrY, menu, url);
             })
             .then((storeid) => {
                 const token = JSON.parse(window.sessionStorage.getItem("token"));
                 token.storeId = storeid;
                 window.sessionStorage.setItem("token", JSON.stringify(token));
+                this.isSaving = false;
             });
     }
 
@@ -137,6 +179,44 @@ export class Auth {
         if (!(token === "undefined")) {
             return JSON.parse(token);
         }
+    }
+
+    checkMyStore() {
+        const token = this.currentToken();
+        
+        if (!token) {
+            this.view.showElement("sign-in");
+            this.view.inactivateRoot();
+        } else if (token.storeId === 0) {
+            this.hasNoStore();
+        } else {
+             const manage = new Manage(token);
+        }
+    }
+
+    hasNoStore() {
+        this.view.showNaviPage("no-store").then(() => {
+            const btnGoRegister = document.getElementById("btn-go-register");
+            btnGoRegister.addEventListener("click", () => {
+                this.view.showNaviPage("register").then(() => { this.readyToRegister() });
+            });
+        });
+    }
+
+    readyToRegister() {
+        const menu = new Menu(".menus");
+        menu.addMenuInput();
+
+        const btnAddMenu = document.querySelector(".add-menu");
+        btnAddMenu.addEventListener("click", () => {
+            menu.addMenuInput();
+        });
+
+        const map = new Map();
+        map.on();
+        
+        const btnRegister = document.getElementById("btn-reg-store");
+        btnRegister.addEventListener("click", () => this.registerStore(map, menu));
     }
 
 }

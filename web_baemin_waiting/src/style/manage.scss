@@ -2,6 +2,7 @@
 
 $manage-green: #92e595;
 $manage-red: #ff7575;
+$manage-blue: #ffd775;
 
 div.manage {
     width: 100%;
@@ -46,6 +47,9 @@ div.waiting-info {
     -moz-box-sizing: border-box;
 }
 
+div.waiting-cli {
+    float: left;
+}
 p.waiting-name {
     font-weight: bold;
     font-size: 1.5em;
@@ -75,11 +79,15 @@ div.waiting-btn-area div {
     background-position: center center;
 }
 
+div.after-alarm {
+    float: right;
+}
+
 div.after-alarm span {
     float: left;
     width: 20px;
     height: 20px;
-    background-color: $primary-color;
+    background-color: $manage-green;
     border-radius: 20px;
     color: white;
     margin-top: 10px;
@@ -102,7 +110,8 @@ div.btn-delete-in {
 }
 
 div.btn-delete-can {
-    background-color: $secondary-color;
+    background-image: url("/dist/public/images/login.png");
+    background-color: $manage-blue;
 }
 
 div.manage-input-area {
@@ -218,8 +227,32 @@ input:checked + .slider:before {
 }
 
 
+@media only screen and (min-width : 840px) and (max-width : 1200px) {
+    // div.waiting-member {
+    //     width: 180px;
+    //     height: 120px;
+    // }
+    div.waiting-btn-area div {
+        width: 50px;
+    }
 
-@media screen and (max-width: 768px) {
+    span.waiting-num {
+        color: $primary-color;
+        margin-left: 15px;
+    }
+
+    p.waiting-tel {
+        margin-top: 5px;
+        font-size: 1em;
+    }
+    ul.alarm-opt {
+        width: 50px;
+        position: absolute;
+        top: 49px;
+    }
+}
+
+@media screen and (max-width: 840px) {
     div.waiting-member {
         width: 180px;
         height: 120px;
@@ -245,8 +278,11 @@ input:checked + .slider:before {
         font-size: 1em;
     }
     ul.alarm-opt {
-        width: 90px;
+        width: 60px;
         position: absolute;
         top: 49px;
+    }
+    div.after-alarm {
+        display: none;
     }
 }

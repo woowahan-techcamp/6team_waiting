@@ -7,6 +7,7 @@ export class Menu {
         this.menus = document.querySelector(menus);
         this.count = 0;
         this.LIMIT = 10;
+        this.isOK = false;
     }
 
     addMenuInput() {
@@ -43,7 +44,8 @@ export class Menu {
     getMenus() {
         const menuList = document.querySelectorAll(".input-menu");
         const menus = this.menuIntoArray(menuList);
-        return menus;
+        if (this.isOK)
+            return menus;
     }
 
     menuIntoArray(menuList) {
@@ -64,6 +66,7 @@ export class Menu {
         }
 
         if (isSuccess) {
+            this.isOK = true;
             return arr;
         }
     }
