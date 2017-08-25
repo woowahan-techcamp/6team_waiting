@@ -266,9 +266,7 @@ class ServerRepository {
                 mylineTicket.currentInLine = currentInLine
                 mylineTicket.ticketNumber = ticketNumber
 
-
                 completion(mylineTicket)
-
             }
         }
     }
