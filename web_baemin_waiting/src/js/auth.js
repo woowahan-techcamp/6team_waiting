@@ -164,7 +164,7 @@ export class Auth {
                 return service.getStoreImageUrl(path);
             })
             .then((url) => {
-                return service.registerRestaurant(id, title, desc, tel, addr, map.addrX, map.addrY, menu, url);
+                return service.registerRestaurant(id, title, desc, tel, addr, map.addrX, map.addrY, menus, url);
             })
             .then((storeid) => {
                 const token = JSON.parse(window.sessionStorage.getItem("token"));
