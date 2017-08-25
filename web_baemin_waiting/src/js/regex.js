@@ -45,7 +45,7 @@ export class Regex {
     }
 
     isTel(tel) {
-        // 0 으로 시작하는 숫자에 대한 {6,12} 글자 확인
+        // 0 으로 시작하는 숫자에 대한 {7,12} 글자 확인
         const regId = /^0[0-9_]{7,12}$/;
         return regId.test(tel);
     }
@@ -56,32 +56,10 @@ export class Regex {
         return regName.test(title);
     }
 
-    verifyMenu(name, price) {
-        if (this.isMenu(name) && this.isPrice(price)) 
+    verifyMenu(menu, price) {
+        if (this.isMenu(menu) && this.isPrice(price)) {
             return true;
-        else 
-            return false;
+        }
+        return false;
     }
-
-    verifySignIn(id, pwd) {
-        if (this.isID(id) && this.isPassword(pwd)) 
-            return true;
-        else 
-            return false;
-    }
-
-    verifySignUp(id, pwd, name, tel) {
-        if (this.isID(id) && this.isPassword(pwd) && this.isName(name) && this.isTel(tel)) 
-            return true;
-        else 
-            return false;
-    }
-
-    verifyStore(title, desc, add, tel) {
-        if (this.isTitle(title) && this.isDescription(desc) && this.isAddrress(add) && this.isTel(tel))
-            return true;
-        else 
-            return false;
-    }
-
 }

@@ -1,5 +1,6 @@
 # compiled output
 /dist
+*.css
 
 # depedencies
 /node_modules

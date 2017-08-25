@@ -2,13 +2,13 @@
     <div class="my-auth">
         <dl class="my-auth-form">
             <dt>이름</dt>
-            <dd><input type="text" id="mod-name" value={{user._name}}></dd>
+            <dd><input type="text" id="mod-name" value={{this.memberName}}></dd>
 
             <dt>비밀번호</dt>
             <dd><input type="password" id="mod-pwd"></dd>
 
             <dt>연락처</dt>
-            <dd><input type="number" id="mod-tel" value={{user._user_tel}}></dd>
+            <dd><input type="number" id="mod-tel" value={{this.memberTel}}></dd>
         </dl>
 
         <button id="btn-info-modify">수정하기</button>
@@ -19,17 +19,17 @@
     <div class="my-store">
         <dl class="my-store-form">
             <dt>우리가게 이름</dt>
-            <dd>{{store._title}}</dd>
+            <dd>{{this.title}}</dd>
 
             <dt>우리가게 설명</dt>
-            <dd>{{store._description}}</dd>
+            <dd>{{this.desc}}</dd>
 
             <dt>우리가게 전화번호</dt>
-            <dd>{{store._store_tel}}</dd>
+            <dd>{{this.tel}}</dd>
 
             <dt>우리가게 사진</dt>
             <dd class="my-img-box">
-                <img src={{store._picture}} alt="">
+                <img src={{this.imgUrl}} alt="">
             </dd>
 
             <dt>우리가게 메뉴</dt>

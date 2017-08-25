@@ -38,12 +38,14 @@ export class HomeNavigator {
 
         this.regex = new Regex();
         this.auth = new Auth();
-        this.slide = new Slide("slides");
+        this.slide = new Slide("slide-box");
         this.view = new View(".view");
+
+        this.whichBtnIng = "";
     }
 
     on() {
-        this.slide.plusSlide(1);
+        this.slide.showSlide(1);
 
         this.btnIntro.addEventListener("click", () => {
             this.view.showElement("intro");
@@ -57,7 +59,7 @@ export class HomeNavigator {
         
         this.btnGoStore.addEventListener("click", this.goStoreHandler.bind(this));
 
-        this.btnLogin.addEventListener("click", this.signInHandler.bind(this));
+        this.btnLogin.addEventListener("click", () => this.auth.signIn());
 
         this.btnLoginClose.addEventListener("click", () => {
             this.view.hideElement("sign-in");
@@ -68,7 +70,7 @@ export class HomeNavigator {
             this.view.showElement("sign-up");
         });
 
-        this.btnSignUp.addEventListener("click", this.signUpHandler.bind(this));
+        this.btnSignUp.addEventListener("click", () => this.auth.signUp());
 
         this.btnSignUpClose.addEventListener("click", () => {
             this.view.hideElement("sign-up");
@@ -123,10 +125,7 @@ export class HomeNavigator {
     confirmMyPage() {
         const btnConfirm = document.getElementById("btn-confirm");
         btnConfirm.addEventListener("click", () => {
-            const pwd = document.querySelector("#pwd-confirm").value;
-            this.auth.confirmPassword(pwd).then(() => {
-                util.setTemplateInHtml(".board", "my-info");
-            });
+            this.auth.confirmPassword();
         })
     }
 
@@ -139,7 +138,7 @@ export class HomeNavigator {
     }
 
     goStoreHandler() {
-        const token = window.sessionStorage.getItem("token");
+        const token = this.auth.currentToken();
 
         if (token) {
             this.view.showElement("board");
@@ -193,7 +192,7 @@ export class HomeNavigator {
     showNaviPage(destination) {
         switch (destination) {
             case "home":
-                this.goHome();
+                this.view.goHome();
                 break;
 
             case "my-page":
@@ -215,7 +214,7 @@ export class HomeNavigator {
                 break;
 
             case "logout": 
-                this.signOutHandler();
+                this.auth.signOut();
                 break;
 
             default:
@@ -224,93 +223,11 @@ export class HomeNavigator {
         }
     }
 
-    showInitialBoard() {
-        this.view.hideElement("sign-in");
-        this.view.showElement("nav");
-        this.view.showElement("board");
-        this.showNaviPage("manage");
-    }
-
-    goHome() {
-        this.view.activateRoot();
-        this.view.hideElement("nav");
-        this.view.hideElement("board");
-    }
-
-    signInHandler() {
-        const id = document.getElementById("login-id").value;
-        const pwd = document.getElementById("login-pwd").value;
-        const that = this;
-
-        if (!this.regex.isID(id)) {
-            console.log("아이디가 잘못됨");
-            return;
-        }
-
-        if (!this.regex.isPassword(pwd)) {
-            console.log("비밀번호가 잘못됨");
-            return;
-        }
-
-        service.signInUser(id, pwd).then((token) => {
-            window.sessionStorage.setItem("token", JSON.stringify(token));
-            // 뷰처리
-        });
-    }
-
-    signUpHandler() {
-        const id = document.getElementById("sign-id").value;
-        const pwd = document.getElementById("sign-pwd").value;
-        const name = document.getElementById("sign-name").value;
-        const tel = document.getElementById("sign-tel").value;
-
-
-        if (!this.regex.isID(id)) {
-            console.log("아이디 형식이 잘못됨");
-            return;
-        }
-
-        if (!this.regex.isPassword(pwd)) {
-            console.log("비밀번호 형식이 잘못됨");
-            return;
-        }
-
-        if (!this.regex.isName(name)) {
-            console.log("이름 형식이 잘못됨");
-            return;
-        }
-
-        if (!this.regex.isTel(tel)) {
-            console.log("전화번호 형식이 잘못됨");
-            return;
-        }
-        
-        if (this.auth.isNotDuplication && (this.auth.authId === id)) {
-            service.signUpUser(id, pwd, name, tel)
-                .then(() => {
-                    this.view.hideElement("sign-up");
-                    document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
-                    document.querySelector("#check-dup").style.color = "#FF6666";
-                })
-                .catch(() => {
-                    console.log("회원가입 실패");
-                });
-        } else {
-            alert("아이디 중복 확인을 해주세요");
-        }
-    }
-
-    signOutHandler() {
-        // @TODO : haeun.kim
-        // 가게 turn off
-        const token = sessionStorage.getItem("token");
-        sessionStorage.removeItem("token");
-        service.signOutUser(token);
-        this.goHome();
-    }
-
     registerHandler(map, menu) {
-        const token = JSON.parse(sessionStorage.getItem("token"));
+
+
+        const token = this.auth.currentToken();
+
         const storeid = token.storeId;
         const memberid = token.memberId;
         const menus = menu.getMenus();
@@ -323,16 +240,18 @@ export class HomeNavigator {
     }
     
     manageHandler() {
-        const token = JSON.parse(sessionStorage.getItem("token"));
-
+        const token = this.auth.currentToken();
+        
         if (!token) {
             this.view.showElement("sign-in");
             this.view.inactivateRoot();
         } else if (token.storeId === 0) {
             this.showRegister();
-        } else if (token.storeId > 0){
+        } else {
              const manage = new Manage(token);
         }
     }
+
+    
 
 }

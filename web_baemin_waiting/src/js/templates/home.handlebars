@@ -22,14 +22,21 @@
         <a class="next">&#10095;</a>
     </div>
 
-    <div class="intro-desc">
+    <div class="slide-dots">
+        <span data-n="1" class="curr"></span>
+        <span data-n="2"></span>
+        <span data-n="3"></span>
+        <span data-n="4"></span>
+    </div>
+
+    <div class="slides">
         {{#each serv-desc}}
-        <div class="slides">
-            <img src={{this.img}}>
-            <p>{{this.content}}</p>
+        <div class="slide-box">
+            <div class="slides-img"><img src={{this.img}}></div>
+            <p>{{this.content}}</p>  
         </div>
         {{/each}}
-    </div> 
+    </div>
 </div>
 
 
@@ -37,8 +44,8 @@
     <span id="btn-login-close" class="btn-close"><img src="/dist/public/images/close.png"></span>
     <div class="sign-area">
         <img class="logo" src="/dist/public/images/facebook-logo.png" alt="logo">
-        <input type="text" id="login-id">
-        <input type="password" id="login-pwd">
+        <input type="text" id="login-id" placeholder="ID">
+        <input type="password" id="login-pwd" placeholder="●●●●●●">
         <p class="sign-warning">아이디와 비밀번호를 확인해주세요<p>
         <button id="btn-login">로그인</button>
         <button id="btn-go-sign-up">회원가입 하기</button>
@@ -52,16 +59,16 @@
     <div class="sign-up-form">
         <dl>
             <dt>이름</dt>
-            <dd><input type="text" id="sign-name"></dd>
+            <dd><input type="text" id="sign-name" placeholder="ex) 크롱 (2-20 글자)"></dd>
             <dt>아이디</dt>
             <dd>
-                <input type="text" id="sign-id">
+                <input type="text" id="sign-id" placeholder="ex) crong12 (4-10 글자)">
                 <span id="check-dup">아이디 중복확인을 해주세요</span><button id="btn-duplication">중복확인</button>    
             </dd>
             <dt>비밀번호</dt>
-            <dd><input type="password" id="sign-pwd"></dd>
+            <dd><input type="password" id="sign-pwd" placeholder="문자와 숫자를 포함한 6-16 글자"></dd>
             <dt>전화번호</dt>
-            <dd><input type="text" id="sign-tel"></dd>
+            <dd><input type="text" id="sign-tel" placeholder="ex) 01012345678"></dd>
         </dl>
         <button id="btn-sign-up">회원가입</button>
     </div>
