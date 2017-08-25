@@ -7,10 +7,9 @@ const assert = require("chai").assert;
 
 describe("Service", function() {
     describe("signin method", function() {
-        it("check token is existed", function() {
+        it("check token storeId is 'test'", function() {
             service.signInUser("id","pwd").then((token) => {
-                console.log(token);
-                assert.exist(token);
+                assert.equal(token.storeId === "test");
             });
         }) 
     })
