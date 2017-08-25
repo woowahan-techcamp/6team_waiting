@@ -1,3 +1,6 @@
+import util from "./util.js";
+
+
 export class View {
     
     constructor(view) {
@@ -34,6 +37,10 @@ export class View {
         this.hideElement("sign-in");
         this.showElement("nav");
         this.showElement("board");
-        this.showNaviPage("manage"); // @TODO : view class 내에는 showNaviPage function 이 존재하지 않음
     }
+
+    showNaviPage(page, data) {
+        return util.setTemplateInHtml(".board", page, data);
+    }
+
 }
