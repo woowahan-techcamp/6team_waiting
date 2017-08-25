@@ -173,7 +173,7 @@ class WaitingTicketViewController: UIViewController {
             }
 
         }
-
+        sender.isEnabled = false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
