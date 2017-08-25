@@ -59,7 +59,7 @@
                         <barButtonItem key="leftBarButtonItem" image="ticket" id="Ach-mU-evZ">
                             <connections>
                                 <action selector="ticketShowBtnTapped:" destination="shz-0b-mnd" id="Wvc-jQ-BnG"/>
-                                <segue destination="TQt-o4-7e8" kind="presentation" id="34C-Fe-ruY"/>
+                                <segue destination="TQt-o4-7e8" kind="presentation" identifier="myTicketSegue" id="34C-Fe-ruY"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -178,6 +178,6 @@
     <resources>
         <image name="map" width="22" height="20"/>
         <image name="search" width="20" height="20"/>
-        <image name="ticket" width="20" height="20"/>
+        <image name="ticket" width="26" height="26"/>
     </resources>
 </document>
