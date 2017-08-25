@@ -2,11 +2,11 @@
     <h1>가게 둘러보기</h1>
     <div class="store-card-list">
         {{#each this}}
-        <div class="store-card">
-            <img class="card-img" src= "{{this.storeImgUrl}}" alt="">
+        <div class="store-card" id="{{this.storeId}}">
+            <img class="card-img" id="{{this.storeId}}" src= "{{this.storeImgUrl}}" alt="">
             <dl>
-                <dt class="card-title">{{this.storeName}}</dt>
-                <dd class="card-desc">{{trimString this.storeAddress 0 38}}</dd>
+                <dt class="card-title" id="{{this.storeId}}">{{this.storeName}}</dt>
+                <dd class="card-desc" id="{{this.storeId}}">{{trimString this.storeAddress 0 38}}</dd>
             </dl>
         </div>
         {{/each}}
