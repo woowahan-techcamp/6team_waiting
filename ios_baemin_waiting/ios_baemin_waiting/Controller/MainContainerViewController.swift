@@ -23,13 +23,19 @@ class MainContainerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         if UserDefaults.standard.getTicket(keyName: "ticket") == nil {
             ticketBtn.isEnabled = false
             ticketBtn.tintColor = .clear
+        } else {
+            ticketBtn.isEnabled = true
+            ticketBtn.tintColor = .black
         }
     }
-
     // IBAction
     @IBAction func mapBtnTapped(_ sender: UIBarButtonItem) {
         mapBtnSelected = !mapBtnSelected
@@ -67,6 +73,14 @@ class MainContainerViewController: UIViewController {
             }
         }
 
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "myTicketSegue" {
+            if let myTicketViewController = segue.destination as? MyTicketViewController {
+                myTicketViewController.waitingTicket = UserDefaults.standard.getTicket(keyName: "ticket")
+            }
+        }
     }
 
 }
