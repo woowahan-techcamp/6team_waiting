@@ -28,7 +28,7 @@ const service = (() => {
     const fireStorage = app.storage();
     const fireStorageRef = app.storage().ref();
 
-    const baseUrl = "http://demo3901264.mockable.io/";
+    const baseUrl = "http://demo3901264.mockable.io";
 
 
     const requestAjax = function(protocol, url, data) {

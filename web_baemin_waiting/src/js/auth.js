@@ -170,12 +170,14 @@ export class Auth {
                 return service.getStoreImageUrl(path);
             })
             .then((url) => {
-                return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menu, url);
+                return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus, url);
             })
             .then((storeid) => {
                 const token = JSON.parse(window.sessionStorage.getItem("token"));
                 token.storeId = storeid;
                 window.sessionStorage.setItem("token", JSON.stringify(token));
+                this.view.showNaviPage("manage");
+
                 this.isSaving = false;
             });
     }
