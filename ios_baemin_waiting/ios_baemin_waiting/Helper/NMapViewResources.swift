@@ -22,7 +22,7 @@ class NMapViewResources: NSObject {
         case NMapPOIflagTypeLocationOff:
             return #imageLiteral(resourceName: "pubtrans_ic_mylocation_off")
         case userPOIflagTypeDefault:
-            return #imageLiteral(resourceName: "pubtrans_exact_default")
+            return #imageLiteral(resourceName: "marker")
         case userPOIflagTypeInvisible:
             return #imageLiteral(resourceName: "1px_dot")
         default:
