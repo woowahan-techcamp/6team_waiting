@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import { View } from "../src/js/view.js";
+
 import { Regex } from "../src/js/regex.js";
 import service from "../src/js/services/service.test.js";
 

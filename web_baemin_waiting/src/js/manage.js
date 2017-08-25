@@ -120,41 +120,53 @@ export class Manage {
 
     switchHandler() {
         if (!this.switchStatus.checked) {
-            const answer = confirm("가게를 닫고, 모든 대기 고객을 삭제 하시겠습니까?");
-            if (answer) {
-                this.switchStatus.checked = false;
-                this.lineStatus.checked = false;
-                service.changeStatus(this.token, "off").then((result) => {
-                    this.getWaitingList(this.storeId);
-                    clearInterval(this.refresh);
-                });
-            } else {
-                this.switchStatus.checked = true;
-            }
+            this.closeStore();
         } else {
             service.changeStatus(this.token, "deny").then((result) => this.getWaitingList(this.storeId));
         }
     }
 
+    closeStore() {
+        const answer = confirm("가게를 닫고, 모든 대기 고객을 삭제 하시겠습니까?");
+        if (answer) {
+            this.switchStatus.checked = false;
+            this.lineStatus.checked = false;
+            service.changeStatus(this.token, "off").then((result) => {
+                this.getWaitingList(this.storeId);
+                clearInterval(this.refresh);
+            });
+        } else {
+            this.switchStatus.checked = true;
+        }
+    }
+
     lineHandler() {
         if (this.switchStatus.checked) {
-            if (!this.lineStatus.checked) {
-                const answer = confirm("대기 거부를 하시면 앱에서 대기 신청을 할 수 없습니다. 대기 거부를 하시겠습니까?");
-                if (answer) {
-                    this.lineStatus.checked = false;
-                    service.changeStatus(this.token, "deny").then((result) => {
-                        this.getWaitingList(this.storeId);
-                        clearInterval(this.refresh);
-                    });
-                } else {
-                    this.lineStatus.checked = true;
-                }
-            } else {
-                service.changeStatus(this.token, "on").then((result) => this.refreshList());
-            }
+            this.allowWaitingLine();
         } else {
             alert("가게가 닫혀있어서 대기를 허용할 수 없습니다.");
             this.lineStatus.checked = false;
         }
     }
+
+    allowWaitingLine() {
+        if (!this.lineStatus.checked) {
+            this.denyWaitingLine();
+        } else {
+            service.changeStatus(this.token, "on").then((result) => this.refreshList());
+        }
+    }
+    denyWaitingLine() {
+        const answer = confirm("대기 거부를 하시면 앱에서 대기 신청을 할 수 없습니다. 대기 거부를 하시겠습니까?");
+        if (answer) {
+            this.lineStatus.checked = false;
+            service.changeStatus(this.token, "deny").then((result) => {
+                this.getWaitingList(this.storeId);
+                clearInterval(this.refresh);
+            });
+        } else {
+            this.lineStatus.checked = true;
+        }
+    }
+
 }
