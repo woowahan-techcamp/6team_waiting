@@ -156,14 +156,13 @@ extension MainCollectionViewController: UICollectionViewDataSource {
 
             if UserDefaults.standard.object(forKey: "ticket") != nil {
                 let archiveTicket = UserDefaults.standard.object(forKey: "ticket")
-                let ticket = NSKeyedUnarchiver.unarchiveObject(with: archiveTicket as! Data) as! WaitingTicket
+                var myTicket = NSKeyedUnarchiver.unarchiveObject(with: archiveTicket as! Data) as! WaitingTicket
 
-                ServerRepository.postMylineCheck(ticket: ticket) {
-                    
+                ServerRepository.postMylineCheck(ticket: myTicket) { mylineCheck in
+                    myTicket = mylineCheck
+                    sectionHeaderView.putTicket(ticket: myTicket)
+                    sectionHeaderView.setAlert(title: "대기취소", message: "현재 식당에서 대기가 취소됩니다.", popUI: self)
                 }
-
-                sectionHeaderView.putTicket(ticket: ticket)
-                sectionHeaderView.setAlert(title: "대기취소", message: "현재 식당에서 대기가 취소됩니다.", popUI: self)
             }
 
             return sectionHeaderView

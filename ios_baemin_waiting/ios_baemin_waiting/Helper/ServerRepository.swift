@@ -266,9 +266,9 @@ class ServerRepository {
                 mylineTicket.currentInLine = currentInLine
                 mylineTicket.ticketNumber = ticketNumber
 
-                DispatchQueue.main.async {
-                    completion(mylineTicket)
-                }
+
+                completion(mylineTicket)
+
             }
         }
     }
