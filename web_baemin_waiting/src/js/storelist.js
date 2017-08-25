@@ -8,64 +8,94 @@ export class StoreList {
 
     constructor() {
         this.scroll = new Scroll();
-        this.storelistPage();
+
+        this.stores = [];
         this.pageNow = 0;//현재 페이지
-        this.howManyPerPage = 10; //페이지당 몇 개
-        this.pageLIMIT = 0; //최대 식당 개수
-        this.init();
-        this.heightNow = 0;
+        this.limit = 0; //최대 식당 개수
+        this.PAGE_COUNT = 10;
+        this.position = 0;
         
+        this.storelistPage();
+        this.init();       
     }
 
     init(){
-        //리미트 페이지 받아오기
         service.getCountStores().then((result) => {
             this.pageLIMIT = result.count;
         });
-        const elem = document.querySelector(".store-card-list");
-        elem.addEventListener("scroll", () => {
-            this.heightNow = this.elem.scrollTop;
-            
-        });
 
-        //다른 페이지로 이동했을땐 페이지가 초기화될것
+        this.getMoreStore();
     }
 
     storeListHandler() {
         document.querySelector(".store-list").addEventListener("click", (e) => {
             if (e.target.nodeName === "DD" || e.target.nodeName === "IMG" || e.target.nodeName === "DT") {
-                this.scroll.saveScrollPosition(".store-card-list");
+                document.querySelector(".store-card-list").removeEventListener("scroll", this.currentPosition);
                 this.storedetailPage(e.target.id);
             }
         })
     }
 
     storelistPage() {
-        // @TODO : haeun.kim 
-        // 한 번에 가져오는 stores 의 갯수를 조절 페이지처리
-        const firstNum = this.pageNow;
-        const lastNum = (this.pageNow + this.howManyPerPage);
-        service.getOtherStoreList(firstNum, lastNum).then((stores) => {
-            util.setTemplateInHtml(".board", "store-list", stores)
-                .then(() => {
-                    this.scroll.setScrollPosition(".store-card-list");
-                    this.storeListHandler();
-                    this.scroll.scrollPositionReset();
-                    this.pageNow = lastNum;
-                });
-        });
+        util.setTemplateInHtml(".board", "store-list", this.stores)
+            .then(() => {
+                console.log("POSITION",this.position);
+                document.querySelector(".store-card-list").scrollTop += this.position;
+                this.storeListHandler();
+                this.scroll.scrollPositionReset();
 
+                document.querySelector(".store-card-list").addEventListener("scroll", this.currentPosition.bind(this));
+            });
     }
 
     storedetailPage(id) {
-        service.getOtherStoreDetail(id).then((storeInfo) => {
-            util.setTemplateInHtml(".store-card-list", "store-detail", storeInfo)
-                .then(() => {
-                    const btnBack = document.querySelector("#btn-back");
-                    btnBack.addEventListener("click", () => {
-                        this.storelistPage();
-                    });
-                });
+        service.getOtherStoreDetail(id)
+            .then((info) => {
+                return util.setTemplateInHtml(".store-card-list", "store-detail", info)
+            })
+            .then((re) => {
+                const btnBack = document.querySelector("#btn-back");
+                btnBack.addEventListener("click", () => {
+                    this.storelistPage();
+                })
             });
     }
+
+    currentPosition() {
+        const dom = document.querySelector(".store-card-list");
+        this.position = dom.scrollTop;
+
+        if ((dom.scrollHeight - this.position) == dom.clientHeight) {
+            this.getMoreStore();
+        }
+    }
+
+    getMoreStore() {
+
+        const firstNum = this.pageNow;
+        const lastNum = (this.pageNow + this.PAGE_COUNT);
+
+        return service.getOtherStoreList(firstNum, lastNum)
+            .then((stores) => {
+                stores.forEach((store) => {
+                    this.stores.push(store);
+                })
+            })
+            .then(() => {
+                this.pageNow += this.PAGE_COUNT;
+                this.storelistPage();
+            });
+    }
+
+    throttle(fn, wait) {
+        var time = Date.now();
+        return function() {
+            if ((time + wait - Date.now()) < 0) {
+                fn();
+                time = Date.now();
+            }
+        }
+    }
+   
+
 }

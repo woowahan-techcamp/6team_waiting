@@ -28,7 +28,7 @@ const service = (() => {
     const fireStorage = app.storage();
     const fireStorageRef = app.storage().ref();
 
-    const baseUrl = "http://52.78.157.5:8080";
+    const baseUrl = "http://demo3901264.mockable.io";
 
 
     const requestAjax = function(protocol, url, data) {
@@ -149,7 +149,8 @@ const service = (() => {
         },
 
         getOtherStoreList(firstNum, lastNum){
-            const page = new PageModel(firstNum, lastNum);
+            const page = new PageModel( 1, 11);
+            //const page = new PageModel( firstNum, lastNum);
             return requestAjax("POST", `${baseUrl}/otherStores`, page)
                 .then((result) => { return result });
         },
