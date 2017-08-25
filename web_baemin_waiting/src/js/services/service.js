@@ -1,12 +1,14 @@
 import * as firebase from "firebase/app";
 import 'firebase/storage';
 
+import { ClientModel } from "../model/client.model.js";
 import { MemberModel } from "../model/member.model.js";
-import { StoreRegModel } from "../model/storereg.model.js";
+import { StoreModel } from "../model/store.model.js";
 import { TicketModel } from "../model/ticket.model.js";
 import { PushModel } from "../model/push.model.js";
 import { StatusModel } from "../model/status.model.js";
 import { TokenModel } from "../model/token.model.js";
+import { PageModel } from "../model/page.model.js";
 
 const service = (() => {
     // Private member
@@ -35,12 +37,10 @@ const service = (() => {
             const xhr = new XMLHttpRequest();
             xhr.open(protocol, url);
             xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-                    if (xhr.status == 200) {
-                        resolve(JSON.parse(xhr.response));
-                    } else {
-                        reject(xhr.responseText);
-                    }
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    resolve(JSON.parse(xhr.response));
+                } else {
+                    // 백엔드 에러
                 }
             };
             xhr.send(JSON.stringify(data));
@@ -49,6 +49,13 @@ const service = (() => {
 
     return {
         // Public member 
+
+        addTicket(id, name, count, isStaying, tel) {
+            const client = new ClientModel(id, name, count, isStaying, tel);
+            return requestAjax("POST", `${baseUrl}/addWaitingTicket`, client)
+                .then((result) => { return (result); })
+                .catch((err) => { return (err); })
+        },
 
         checkDuplication(id) {
             return requestAjax("POST", `${baseUrl}/checkPK`, {"userId": id})
@@ -63,7 +70,7 @@ const service = (() => {
                 .catch((err) => { return (err) });
         },
 
-        getStores() {
+        getStores() { //사용 안함 (모든 가게정보 다 가져오는 기능)
             return requestAjax("GET", `${baseUrl}/stores`)
                 .then((result) => { return (result); })
                 .catch((err) => { return (err) });
@@ -81,7 +88,7 @@ const service = (() => {
         },
 
         registerRestaurant(id, title, desc, tel, addr, x, y, menu, img) {
-            const store = new StoreRegModel(title, desc, tel, addr, x, y, id, menu, img);
+            const store = new StoreModel(title, desc, tel, addr, x, y, id, menu, img);
             return requestAjax("POST", `${baseUrl}/store`, store)
                 .then((result) => { return (result.storeId); })
                 .catch((err) => { return (err) });
@@ -102,19 +109,24 @@ const service = (() => {
                 .catch((err) => { return (err) });
         },
 
-        signOutUser(token) {
-            const status = new StatusModel(token, "off")
+        changeStatus(token, stat) {
+            const status = new StatusModel(token, stat);
             return requestAjax("POST", `${baseUrl}/status`, status)
                 .then((res) => { return(res); }); 
         },
 
         saveImageInStorage(id) {
             const file = document.getElementById("regist-file").files[0];
-            const storeFolder = `${id}/${file.name}`;
-            const iref = fireStorageRef.child(storeFolder);
-            return iref.put(file)
-                .then((snapshot) =>  { return (iref.location.path); })
-                .catch((err) => console.log(err));
+            if(file){
+                const storeFolder = `${id}/${file.name}`;
+                const iref = fireStorageRef.child(storeFolder);
+                return iref.put(file)
+                    .then((snapshot) =>  { return (iref.location.path); })
+                    .catch((err) => console.log(err));
+            }else{
+                alert("사진을 등록해주세요");
+                return;
+            }
         },
 
         waitingList(id) {
@@ -134,6 +146,26 @@ const service = (() => {
             const token = new TokenModel(currentToken);
             return requestAjax("POST", `${baseUrl}/storeInfo`, token)
                 .then((storeInfo) => { return (storeInfo);});
+
+        },
+
+        getOtherStoreDetail(storeId){
+            const id = {"storeId" : storeId};
+            return requestAjax("POST", `${baseUrl}/otherStoreDetail`, id)
+                .then((storeInfo) => { return (storeInfo); });
+        },
+
+        getOtherStoreList(firstNum, lastNum){
+            const page = new PageModel( 1, 11);
+            //const page = new PageModel( firstNum, lastNum);
+            return requestAjax("POST", `${baseUrl}/otherStores`, page)
+                .then((result) => { return (result); });
+        },
+
+        getCountStores(){
+            return requestAjax("POST", `${baseUrl}/countStores`)
+                .then((result) => { return (result); });
+
         }
     }
 

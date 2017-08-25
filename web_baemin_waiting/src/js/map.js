@@ -9,8 +9,11 @@ export class Map {
     on() {
         this.btnSearchLocation.addEventListener("click", () => {
             const location = document.querySelector("#regist-location").value;
-            this.searchLocationOnMap(location);
-
+            if(location){
+                this.searchLocationOnMap(location);
+            }else{
+                alert("도로명 주소를 먼저 입력해주세요");
+            }
         });
 
         this.btnMapClose.addEventListener("click", () => {

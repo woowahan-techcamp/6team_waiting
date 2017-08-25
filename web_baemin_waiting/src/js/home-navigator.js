@@ -3,17 +3,12 @@ import service from "./services/service.js";
 
 import { Auth } from "./auth.js";
 import { Regex } from "./regex.js";
-import { Menu } from "./menu.js";
 import { Slide } from "./slide.js";
 import { StoreList } from "./storelist.js";
 import { View } from "./view.js";
 import { Manage } from "./manage.js";
-import { Map } from "./map.js";
 
 import { stat } from "./stat.data.js";
-
-import { MemberModel } from "./model/member.model.js";
-import { StoreRegModel } from "./model/storereg.model.js";
 
 
 export class HomeNavigator {
@@ -150,22 +145,6 @@ export class HomeNavigator {
 
         this.view.inactivateRoot();
     }
-    
-    registerPage() {
-        const menu = new Menu(".menus");
-        menu.addMenuInput();
-
-        const btnAddMenu = document.querySelector(".add-menu");
-        btnAddMenu.addEventListener("click", () => {
-            menu.addMenuInput();
-        });
-
-        const map = new Map();
-        map.on();
-        
-        const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", () => this.registerHandler(map, menu));
-    }
 
     myInfoHandler() {
         const btnInfoMod = document.getElementById("btn-info-modify");
@@ -196,17 +175,17 @@ export class HomeNavigator {
                 break;
 
             case "my-page":
-                util.setTemplateInHtml(".board", destination).then(() =>
+                this.view.showNaviPage(destination).then(() =>
                     this.confirmMyPage()
                 );
                 break;
 
             case "manage":
-                this.manageHandler();
+                this.auth.checkMyStore();
                 break;
 
             case "statistic":
-                util.setTemplateInHtml(".board", destination, stat);
+                this.view.showNaviPage(destination, stat);
                 break;
 
             case "store-list":
@@ -218,40 +197,9 @@ export class HomeNavigator {
                 break;
 
             default:
-                util.setTemplateInHtml(".board", destination);
+                this.view.showNaviPage(destination);
                 break;
         }
     }
-
-    registerHandler(map, menu) {
-
-
-        const token = this.auth.currentToken();
-
-        const storeid = token.storeId;
-        const memberid = token.memberId;
-        const menus = menu.getMenus();
-        const title = document.getElementById("regist-name").value;
-        const desc = document.getElementById("regist-desc").value;
-        const tel = document.getElementById("regist-tel").value;
-        const addr = document.getElementById("regist-location").value;
-
-        this.auth.registerStore(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus);
-    }
-    
-    manageHandler() {
-        const token = this.auth.currentToken();
-        
-        if (!token) {
-            this.view.showElement("sign-in");
-            this.view.inactivateRoot();
-        } else if (token.storeId === 0) {
-            this.showRegister();
-        } else {
-             const manage = new Manage(token);
-        }
-    }
-
-    
 
 }

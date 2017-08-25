@@ -40,7 +40,6 @@ export class Slide {
         } 
 
         for (let i = 0; i < this.size; i++) {
-            console.log(this.slides);
            this.slides[i].style.display = "none"; 
         }
 

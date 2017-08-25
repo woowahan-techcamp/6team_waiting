@@ -3,12 +3,14 @@
 </div>
 <div class="store-detail">
     <div class="store-detail-img">
-        <img src="/dist/public/images/background.jpg">
+        <img src="{{this.imgUrl}}">
     </div>
     <div class="store-detail-info">
-        <h2 class="store-detail-title">가게 이름</h2>
+        <h2 class="store-detail-title">{{this.title}}</h2>
         <p class="store-detail-desc">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+            상세설명 :: {{this.desc}} <br>
+            전화번호 :: {{this.tel}} <br>
+            주소 :: {{this.addr}} 
         </p>
     </div>
 </div>
