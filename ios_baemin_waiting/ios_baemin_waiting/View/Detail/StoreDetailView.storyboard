@@ -63,7 +63,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pLW-Gw-WZR">
-                                                    <rect key="frame" x="16" y="16" width="335" height="104"/>
+                                                    <rect key="frame" x="16" y="16" width="335" height="107.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="멘하야나비" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMM-1l-Qe3">
                                                             <rect key="frame" x="0.0" y="0.0" width="121.5" height="40"/>
@@ -81,8 +81,8 @@
                                                                 <constraint firstAttribute="height" constant="0.40000000000000002" id="ZJZ-eY-wHP"/>
                                                             </constraints>
                                                         </view>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="eh1-XP-QxT">
-                                                            <rect key="frame" x="0.0" y="56.5" width="325.5" height="47.5"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="eh1-XP-QxT">
+                                                            <rect key="frame" x="0.0" y="56.5" width="325.5" height="51"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="업체 소개" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2h-2k-O3b">
                                                                     <rect key="frame" x="0.0" y="0.0" width="63.5" height="18"/>
@@ -94,7 +94,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="멘야하나비는 고등어가 맛있어요. 멘야하나비는 상추도 맛있어요. 멘야하나비는 변도 맛있어요. 국물도 맛있어요" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1E-9o-tv8">
-                                                                    <rect key="frame" x="0.0" y="18" width="325.5" height="29.5"/>
+                                                                    <rect key="frame" x="0.0" y="22" width="325.5" height="29"/>
                                                                     <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
                                                                     <color key="textColor" red="0.42554356812169314" green="0.42554356812169314" blue="0.42554356812169314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -112,7 +112,6 @@
                                                 <constraint firstItem="pLW-Gw-WZR" firstAttribute="leading" secondItem="eiY-HX-ZrM" secondAttribute="leading" constant="16" id="Jn0-bs-oaq"/>
                                                 <constraint firstItem="pLW-Gw-WZR" firstAttribute="top" secondItem="eiY-HX-ZrM" secondAttribute="topMargin" constant="8" id="Lg7-d0-yjy"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="pLW-Gw-WZR" secondAttribute="trailing" constant="16" id="Tgk-Oz-Sz6"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="pLW-Gw-WZR" secondAttribute="bottom" constant="8" id="Wbb-i1-pHQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -326,6 +325,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="waiting" width="553" height="514"/>
+        <image name="waiting" width="31" height="30"/>
     </resources>
 </document>

@@ -168,7 +168,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SxC-Bc-jEa">
-                                <rect key="frame" x="15" y="25" width="32" height="32"/>
+                                <rect key="frame" x="15" y="15" width="22" height="22"/>
                                 <state key="normal" image="close">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -180,7 +180,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="SYI-i6-G1f" firstAttribute="leading" secondItem="rQL-Ti-ooU" secondAttribute="leading" id="5FU-Jw-yQC"/>
-                            <constraint firstItem="SxC-Bc-jEa" firstAttribute="top" secondItem="lfJ-7N-ZXM" secondAttribute="bottom" constant="25" id="7w8-Oj-PRf"/>
+                            <constraint firstItem="SxC-Bc-jEa" firstAttribute="top" secondItem="lfJ-7N-ZXM" secondAttribute="bottom" constant="15" id="7w8-Oj-PRf"/>
                             <constraint firstItem="SYI-i6-G1f" firstAttribute="top" secondItem="4cE-CH-rcB" secondAttribute="bottom" id="86g-gf-o6f"/>
                             <constraint firstAttribute="trailing" secondItem="SYI-i6-G1f" secondAttribute="trailing" id="F8n-JH-Xt5"/>
                             <constraint firstItem="SxC-Bc-jEa" firstAttribute="leading" secondItem="rQL-Ti-ooU" secondAttribute="leading" constant="15" id="FeX-Qh-sRY"/>
@@ -213,7 +213,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="close" width="32" height="32"/>
+        <image name="close" width="22" height="22"/>
         <image name="foodBackground" width="300" height="300"/>
     </resources>
 </document>
