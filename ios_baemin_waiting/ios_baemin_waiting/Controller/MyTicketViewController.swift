@@ -43,8 +43,8 @@ class MyTicketViewController: UIViewController {
         super.updateViewConstraints()
 
         topViewHeightConstraint.constant = self.view.bounds.height * 0.70
-
         topViewHeightConstraint.isActive = true
+
         if UIDevice.current.isiPhoneSE {
             ticketNumberLabel.setTitleLabelFont(fontSize: 20)
             ticketNumberContentLabel.setTitleLabelFont(fontSize: 55)

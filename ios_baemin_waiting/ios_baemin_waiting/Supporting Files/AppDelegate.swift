@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let collectionVC = mainContainerVC.childViewControllers[1] as? MainCollectionViewController
 
                 collectionVC?.refreshData()
+                mapVC?.mapView?.setZoomLevel(9)
 
                 self.window?.rootViewController = rootVC
                 self.window?.makeKeyAndVisible()
