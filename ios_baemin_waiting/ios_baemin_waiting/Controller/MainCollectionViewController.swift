@@ -142,6 +142,7 @@ class MainCollectionViewController: UIViewController {
     @IBAction func refreshBtnTapped(_ sender: UIButton) {
         refreshData()
     }
+
 }
 
 // MARK: UICollectionViewDataSource
@@ -155,8 +156,13 @@ extension MainCollectionViewController: UICollectionViewDataSource {
 
             if UserDefaults.standard.object(forKey: "ticket") != nil {
                 let archiveTicket = UserDefaults.standard.object(forKey: "ticket")
-                let ticket = NSKeyedUnarchiver.unarchiveObject(with: archiveTicket as! Data) as! WaitingTicket
-                sectionHeaderView.putTicket(ticket: ticket)
+                var myTicket = NSKeyedUnarchiver.unarchiveObject(with: archiveTicket as! Data) as! WaitingTicket
+
+                ServerRepository.postMylineCheck(ticket: myTicket) { mylineCheck in
+                    myTicket = mylineCheck
+                    sectionHeaderView.putTicket(ticket: myTicket)
+                    sectionHeaderView.setAlert(title: "대기취소", message: "현재 식당에서 대기가 취소됩니다.", popUI: self)
+                }
             }
 
             return sectionHeaderView
@@ -274,6 +280,8 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         locationManager.delegate = nil
     }
+
+    
 }
 
 extension UserDefaults {
