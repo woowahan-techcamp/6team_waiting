@@ -45,9 +45,9 @@ extension MapViewController: NMapPOIdataOverlayDelegate {
     // 마커에 해당하는 이미지를 반환
     // 마커 선택 시 표시되는 이미지는 selected 값이 YES인 경우 반환
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, imageForOverlayItem poiItem: NMapPOIitem!, selected: Bool) -> UIImage! {
-//        if selected {
-//            poiItem.poiFlagType = userPOIflagTypeSelected
-//        }
+        if selected {
+            poiItem.poiFlagType = userPOIflagTypeSelected
+        }
         return NMapViewResources.imageWithType(poiItem.poiFlagType, selected: selected)
     }
 
