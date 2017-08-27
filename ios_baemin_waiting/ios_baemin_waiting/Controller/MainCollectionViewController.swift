@@ -246,6 +246,7 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
                 print("Location Update Success")
 
                 if self.storeList.count > 0 {
+
                     self.storeList = self.storeList.sorted { (store1: Store, store2: Store) -> Bool in
                         return store1.storeDistance < store2.storeDistance
                     }
