@@ -12,7 +12,7 @@ import UIKit
 // NMapPOIflagTypeReserved 보다 큰 값으로 설정.
 let userPOIflagTypeDefault: NMapPOIflagType = NMapPOIflagTypeReserved + 1
 let userPOIflagTypeInvisible: NMapPOIflagType = NMapPOIflagTypeReserved + 2
-//let userPOIflagTypeSelected: NMapPOIflagType = NMapPOIflagTypeReserved + 3
+let userPOIflagTypeSelected: NMapPOIflagType = NMapPOIflagTypeReserved + 3
 
 class NMapViewResources: NSObject {
 
@@ -24,8 +24,8 @@ class NMapViewResources: NSObject {
             return #imageLiteral(resourceName: "pubtrans_ic_mylocation_off")
         case userPOIflagTypeDefault:
             return #imageLiteral(resourceName: "marker")
-//        case userPOIflagTypeSelected:
-//            return #imageLiteral(resourceName: "pubtrans_exact_default")
+        case userPOIflagTypeSelected:
+            return #imageLiteral(resourceName: "pubtrans_exact_default")
         case userPOIflagTypeInvisible:
             return #imageLiteral(resourceName: "1px_dot")
         default:
