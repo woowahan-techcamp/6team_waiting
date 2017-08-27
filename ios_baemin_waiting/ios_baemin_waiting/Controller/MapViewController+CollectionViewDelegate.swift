@@ -38,20 +38,48 @@ extension MapViewController: UICollectionViewDelegate {
             }
         }
     }
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        print(targetContentOffset.pointee.x)
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        prevOffset = scrollView.contentOffset
 
-        let index = targetContentOffset.pointee.x / (self.view.bounds.width - 64 - 10)
-
-        if Int(index) < storeList.count {
-            let indexPath = IndexPath(item: Int(index), section: 0)
-            print(Int32(index))
-
-            mapCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        }
         if let overlay = overlayItems {
-            overlay.selectPOIitem(at: Int32(index), moveToCenter: true)
+            overlay.deselctFocusedPOIitem()
         }
     }
 
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+
+        let currentOffset = targetContentOffset.pointee
+        let visibleItemIndexPath = mapCollectionView.indexPathsForVisibleItems
+        var indexPath: IndexPath?
+
+        if let prev = prevOffset {
+            if prev.x < currentOffset.x {
+                // 앞으로, 큰 쪽 선택
+                if var max = visibleItemIndexPath.first {
+                    for item in visibleItemIndexPath {
+                        if item.row > max.row {
+                            max = item
+                        }
+                    }
+                    indexPath = max
+                }
+            } else {
+                // 뒤로. 작은 쪽 선택
+                if var min = visibleItemIndexPath.first {
+                    for item in visibleItemIndexPath {
+                        if item.row < min.row {
+                            min = item
+                        }
+                    }
+                    indexPath = min
+                }
+            }
+        }
+
+        if let idxPath = indexPath {
+            if let overlay = overlayItems {
+                overlay.selectPOIitem(at: Int32(idxPath.row), moveToCenter: true)
+            }
+        }
+    }
 }
