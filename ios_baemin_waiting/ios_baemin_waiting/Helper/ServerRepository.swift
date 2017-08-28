@@ -293,8 +293,10 @@ class ServerRepository {
             guard let value = response.result.value else { return }
             let deleteTicket = JSON(value)
 
-            if let isSuccess = deleteTicket["isSuccess"].int {
+            if let isSuccess = deleteTicket.int {
                 completion(isSuccess)
+            } else {
+                completion(0)
             }
         }
     }

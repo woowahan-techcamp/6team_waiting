@@ -174,11 +174,8 @@ class WaitingTicketViewController: UIViewController {
                         self?.performSegue(withIdentifier: "showTicketResult", sender: ticket)
                     }
                 } else {
-
                     let alert = AlertHelper.okAlert(title: "알람 설정 필요", message: "티켓을 발행하기 위해서는 알람 설정이 필요합니다.\n알람 설정은 '설정'탭에서 확인할 수 있습니다.")
                     self?.present(alert, animated: true, completion: nil)
-
-
                 }
             } else {
 

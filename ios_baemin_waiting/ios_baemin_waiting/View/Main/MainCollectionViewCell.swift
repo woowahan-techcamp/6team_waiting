@@ -19,7 +19,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var storeStatusBackground: UIView!
     @IBOutlet weak var storeStatusLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
