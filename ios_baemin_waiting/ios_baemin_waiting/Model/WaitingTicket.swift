@@ -23,7 +23,19 @@ class WaitingTicket: NSObject, NSCoding {
     private var _storeName: String
     private var _currentInLine: Int
 
-    init(name: String, phoneNumber: String, headCount: Int, isStaying: Bool, storeId: Int) {
+    override init() {
+        self.name = ""
+        self.phoneNumber = ""
+        self.headCount = 0
+        self.isStaying = true
+        self.storeId = 0
+        self._ticketNumber = 0
+        self._storeName = ""
+        self._currentInLine = 0
+    }
+
+    convenience init(name: String, phoneNumber: String, headCount: Int, isStaying: Bool, storeId: Int) {
+        self.init()
         self.name = name
         self.phoneNumber = "010" + phoneNumber
         self.headCount = headCount

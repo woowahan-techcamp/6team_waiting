@@ -184,12 +184,13 @@ extension MainCollectionViewController: UICollectionViewDataSource {
             if UserDefaults.standard.object(forKey: "ticket") != nil {
                 let archiveTicket = UserDefaults.standard.object(forKey: "ticket")
                 var myTicket = NSKeyedUnarchiver.unarchiveObject(with: archiveTicket as! Data) as! WaitingTicket
+                let lineCancleAlert = LineCancleAlert(popUI: self, waitingTicket: myTicket)
 
                 ServerRepository.postMylineCheck(ticket: myTicket) { mylineCheck in
                     myTicket = mylineCheck
                     sectionHeaderView.putTicket(ticket: myTicket)
-                    sectionHeaderView.setAlert(title: "대기취소", message: "현재 식당에서 대기가 취소됩니다.", popUI: self)
                 }
+                sectionHeaderView.setAlert(alert: lineCancleAlert)
             }
 
             return sectionHeaderView
@@ -232,6 +233,10 @@ extension MainCollectionViewController: UICollectionViewDelegate {
         if indexPath.row == collectionView.indexPathsForVisibleItems.last?.count {
             activityIndicator.stopAnimating()
             collectionView.isHidden = false
+            //알수 없음
+        } else {
+            activityIndicator.stopAnimating()
+            collectionView.isHidden = false
         }
     }
 }
@@ -269,7 +274,6 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
 
             if isSuccess {
                 self.storeList = storeData
-
                 print("Location Update Success")
 
                 if self.storeList.count > 0 {

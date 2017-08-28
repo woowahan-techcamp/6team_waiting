@@ -47,7 +47,7 @@ class Store {
         self._currentInLine = currentInLine
     }
     convenience init(storeName: String, storeId: Int, storeDescription: String, storeTel: String, storeLatitude: String,
-                     storeLongitude: String, storeImgUrl: URL, storeIsOpened: Bool, currentInLine: Int) {
+                     storeLongitude: String, storeImgUrl: URL, currentInLine: Int) {
         self.init()
         self._storeName = storeName
         self._storeId = storeId
@@ -56,7 +56,6 @@ class Store {
         self._storeLatitude = storeLatitude
         self._storeLongitude = storeLongitude
         self._storeImgUrl = storeImgUrl
-        self._storeIsOpened = storeIsOpened
         self._currentInLine = currentInLine
     }
 
@@ -146,5 +145,13 @@ class Store {
 
         self._storeShortAddress = result
 
+    }
+    public func getStoreStatus(isOpened: Int) {
+        switch isOpened {
+        case 1:
+            self._storeIsOpened = true
+        default:
+            self._storeIsOpened = false
+        }
     }
 }
