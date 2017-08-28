@@ -148,10 +148,7 @@ class MainCollectionViewController: UIViewController {
                 parentVC.ticketBtn.tintColor = .black
             }
         }
-
-//        refreshTicket()
     }
-
 }
 
 // MARK: UICollectionViewDataSource
