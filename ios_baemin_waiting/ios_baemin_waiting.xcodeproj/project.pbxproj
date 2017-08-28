@@ -45,7 +45,7 @@
 		9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9879D9AE1F34054900B4131A /* AppDelegate.swift */; };
 		9879D9B61F34054900B4131A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9879D9B51F34054900B4131A /* Assets.xcassets */; };
 		9879D9F21F342CCC00B4131A /* BaeminWaitingUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */; };
-		98A87A3D1F5315DB00D2D20B /* LineCancleAlret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A87A3C1F5315DB00D2D20B /* LineCancleAlret.swift */; };
+		98A87A3F1F54060200D2D20B /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A87A3E1F54060200D2D20B /* AlertHelper.swift */; };
 		98A9EDAA1F4D03E6008A3198 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A9EDA91F4D03E6008A3198 /* UIDevice.swift */; };
 		98A9EDAC1F4D083A008A3198 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A9EDAB1F4D083A008A3198 /* UIFont+Extension.swift */; };
 		98BE03D61F38614200179D43 /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE03D51F38614200179D43 /* ApiGatewayMac.framework */; };
@@ -126,7 +126,7 @@
 		9879D9EF1F342CCC00B4131A /* BaeminWaitingUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaeminWaitingUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaeminWaitingUnitTests.swift; sourceTree = "<group>"; };
 		9879D9F31F342CCC00B4131A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		98A87A3C1F5315DB00D2D20B /* LineCancleAlret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineCancleAlret.swift; sourceTree = "<group>"; };
+		98A87A3E1F54060200D2D20B /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		98A9EDA91F4D03E6008A3198 /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		98A9EDAB1F4D083A008A3198 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		98BE03D51F38614200179D43 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ApiGatewayMac.framework; sourceTree = "<group>"; };
@@ -332,7 +332,7 @@
 				98A9EDA91F4D03E6008A3198 /* UIDevice.swift */,
 				98A9EDAB1F4D083A008A3198 /* UIFont+Extension.swift */,
 				985804961F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift */,
-				98A87A3C1F5315DB00D2D20B /* LineCancleAlret.swift */,
+				98A87A3E1F54060200D2D20B /* AlertHelper.swift */,
 			);
 			name = Helper/Util;
 			path = Helper;
@@ -601,6 +601,7 @@
 			files = (
 				9814FD771F4AB65F002571EB /* DetailMapViewController.swift in Sources */,
 				9870FECE1F3AFDB400656EEC /* MainCollectionViewCell.swift in Sources */,
+				98A87A3F1F54060200D2D20B /* AlertHelper.swift in Sources */,
 				986B3DAA1F3D3FFE00432FF7 /* StoreLineShowCell.swift in Sources */,
 				9870FECC1F3AFD6900656EEC /* MainCollectionViewController.swift in Sources */,
 				9847E3F41F4EF7E300D91F35 /* MyTicketViewController.swift in Sources */,
@@ -624,7 +625,6 @@
 				980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */,
 				981F72381F4C1338001A6318 /* MainMapCollectionViewCell.swift in Sources */,
 				986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */,
-				98A87A3D1F5315DB00D2D20B /* LineCancleAlret.swift in Sources */,
 				9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */,
 				981F72351F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift in Sources */,
 			);
@@ -768,7 +768,10 @@
 					"-framework",
 					"\"SwiftyJSON\"",
 				);
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC -lxml2";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-lxml2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.woowabrothers.ios-baemin-waiting";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ios_baemin_waiting/Supporting Files/ios_baemin_waiting-Bridging-Header.h";

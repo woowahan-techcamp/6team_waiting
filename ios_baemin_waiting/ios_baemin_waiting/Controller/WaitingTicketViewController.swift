@@ -67,7 +67,9 @@ class WaitingTicketViewController: UIViewController {
     func registerPushNotifications(completion: @escaping () -> Void) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
             if !granted {
-                self.popUpAlert(title: "푸쉬알람 설정", message: "푸쉬알람 설정이 거절되었습니다.\n해당 설정은 '설정'탭에서 변경할 수 있습니다.")
+                let alert = AlertHelper.okAlert(title: "푸쉬알람 설정", message: "푸쉬알람 설정이 거절되었습니다.\n해당 설정은 '설정'탭에서 변경할 수 있습니다.")
+
+                self.present(alert, animated: true, completion: nil)
             }
             print("Notification Permission Granted: \(granted)")
 
@@ -110,7 +112,8 @@ class WaitingTicketViewController: UIViewController {
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         if sender.value == 0 {
             sender.value = 1
-            popUpAlert(title: "인원 수 오류", message: "대기인원은 1명 이상이어야 합니다.")
+            let alert = AlertHelper.okAlert(title: "인원 수 오류", message: "대기인원은 1명 이상이어야 합니다.")
+            self.present(alert, animated: true, completion: nil)
         } else {
             headCountLabel.text = "\(Int(sender.value))명"
         }
@@ -132,10 +135,15 @@ class WaitingTicketViewController: UIViewController {
     }
     @IBAction func makeWaitingTicketTapped(_ sender: UIButton) {
         if nameTextField.text == "" {
-            popUpAlert(title: "잠깐만요", message: "이름을 입력해주세요.")
+
+            let alert = AlertHelper.okAlert(title: "잠깐만요", message: "이름을 입력해주세요.")
+            self.present(alert, animated: true, completion: nil)
+
             return
         } else if phoneNumberTextField.text == "" {
-            popUpAlert(title: "잠깐만요", message: "전화번호를 입력해주세요.")
+            let alert = AlertHelper.okAlert(title: "잠깐만요", message: "전화번호를 입력해주세요.")
+            self.present(alert, animated: true, completion: nil)
+
             return
         }
 
@@ -166,10 +174,17 @@ class WaitingTicketViewController: UIViewController {
                         self?.performSegue(withIdentifier: "showTicketResult", sender: ticket)
                     }
                 } else {
-                    self?.popUpAlert(title: "알람 설정 필요", message: "티켓을 발행하기 위해서는 알람 설정이 필요합니다.\n알람 설정은 '설정'탭에서 확인할 수 있습니다.")
+
+                    let alert = AlertHelper.okAlert(title: "알람 설정 필요", message: "티켓을 발행하기 위해서는 알람 설정이 필요합니다.\n알람 설정은 '설정'탭에서 확인할 수 있습니다.")
+                    self?.present(alert, animated: true, completion: nil)
+
+
                 }
             } else {
-                self?.popUpAlert(title: "네트워크 에러", message: "일시적인 오류로 티켓을 발행할 수 없습니다.")
+
+                let alert = AlertHelper.okAlert(title: "네트워크 에러", message: "일시적인 오류로 티켓을 발행할 수 없습니다.")
+                self?.present(alert, animated: true, completion: nil)
+
             }
 
         }
@@ -221,20 +236,12 @@ extension WaitingTicketViewController: UITextFieldDelegate {
             let result2 = validateInput(expression: "\\d{4}\\d{4}$", value: text)
 
             if text != "" && !result1 && !result2 {
-                popUpAlert(title: "번호입력 오류", message: "잘못된 형식의 번호입니다.")
+                let alert = AlertHelper.okAlert(title: "번호입력 오류", message: "잘못된 형식의 번호입니다.")
+                self.present(alert, animated: true, completion: nil)
+
                 return false
             }
         }
         return true
     }
-
-    func popUpAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(ok)
-
-        self.present(alert, animated: true, completion: nil)
-    }
-
 }

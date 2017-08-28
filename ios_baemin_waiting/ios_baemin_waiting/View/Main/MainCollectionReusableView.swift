@@ -15,10 +15,11 @@ class MainCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var orderLabel: UILabel!
 
     @IBAction func lineCancleButton(_ sender: Any) {
-        alert.showAlert()
+        self.popUI.present(alert, animated: true, completion: nil)
     }
 
-    var alert = LineCancleAlert()
+    var alert = UIAlertController()
+    var popUI = UIViewController()
     var ticket = WaitingTicket(name: "", phoneNumber: "", headCount: 0, isStaying: true, storeId: 0)
 
     override func awakeFromNib() {
@@ -34,7 +35,8 @@ class MainCollectionReusableView: UICollectionReusableView {
         self.ticket = ticket
     }
 
-    func setAlert(alert: LineCancleAlert) {
+    func setAlert(alert: UIAlertController, popUI: UIViewController) {
         self.alert = alert
+        self.popUI = popUI
     }
 }
