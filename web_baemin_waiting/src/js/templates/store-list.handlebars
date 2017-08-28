@@ -5,7 +5,7 @@
         <div class="store-card" id="{{this.storeId}}">
             <img class="card-img" id="{{this.storeId}}" src= "{{this.storeImgUrl}}" alt="">
             <dl>
-                <dt class="card-title" id="{{this.storeId}}">{{this.storeName}}</dt>
+                <dt class="card-title" id="{{this.storeId}}">{{trimString this.storeName 0 10}}</dt>
                 <dd class="card-desc" id="{{this.storeId}}">{{trimString this.storeAddress 0 38}}</dd>
             </dl>
         </div>

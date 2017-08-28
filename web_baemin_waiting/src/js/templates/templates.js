@@ -183,7 +183,7 @@ templates['store-detail'] = template({"compiler":[7,">= 4.0.0"],"main":function(
     + " \n        </p>\n    </div>\n</div>";
 },"useData":true});
 templates['store-list'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var alias1=container.lambda, alias2=container.escapeExpression;
+    var alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : (container.nullContext || {}), alias4=helpers.helperMissing;
 
   return "        <div class=\"store-card\" id=\""
     + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
@@ -194,11 +194,11 @@ templates['store-list'] = template({"1":function(container,depth0,helpers,partia
     + "\" alt=\"\">\n            <dl>\n                <dt class=\"card-title\" id=\""
     + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
     + "\">"
-    + alias2(alias1((depth0 != null ? depth0.storeName : depth0), depth0))
+    + alias2((helpers.trimString || (depth0 && depth0.trimString) || alias4).call(alias3,(depth0 != null ? depth0.storeName : depth0),0,10,{"name":"trimString","hash":{},"data":data}))
     + "</dt>\n                <dd class=\"card-desc\" id=\""
     + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
     + "\">"
-    + alias2((helpers.trimString || (depth0 && depth0.trimString) || helpers.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.storeAddress : depth0),0,38,{"name":"trimString","hash":{},"data":data}))
+    + alias2((helpers.trimString || (depth0 && depth0.trimString) || alias4).call(alias3,(depth0 != null ? depth0.storeAddress : depth0),0,38,{"name":"trimString","hash":{},"data":data}))
     + "</dd>\n            </dl>\n        </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
