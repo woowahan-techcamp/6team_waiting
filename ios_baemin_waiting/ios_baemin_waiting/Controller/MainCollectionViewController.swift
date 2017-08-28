@@ -163,9 +163,7 @@ extension MainCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath) as? MainCollectionReusableView {
 
-            if UserDefaults.standard.object(forKey: "ticket") != nil {
-                let archiveTicket = UserDefaults.standard.object(forKey: "ticket")
-                var myTicket = NSKeyedUnarchiver.unarchiveObject(with: archiveTicket as! Data) as! WaitingTicket
+            if var myTicket = UserDefaults.standard.getTicket(keyName: "ticket") {
                 let lineCancleAlert = LineCancleAlert(popUI: self, waitingTicket: myTicket)
 
                 ServerRepository.postMylineCheck(ticket: myTicket) { mylineCheck in

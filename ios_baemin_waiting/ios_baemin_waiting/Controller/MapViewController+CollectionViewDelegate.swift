@@ -56,20 +56,16 @@ extension MapViewController: UICollectionViewDelegate {
             if prev.x < currentOffset.x {
                 // 앞으로, 큰 쪽 선택
                 if var max = visibleItemIndexPath.first {
-                    for item in visibleItemIndexPath {
-                        if item.row > max.row {
-                            max = item
-                        }
+                    for item in visibleItemIndexPath where item.row > max.row {
+                        max = item
                     }
                     indexPath = max
                 }
             } else {
                 // 뒤로. 작은 쪽 선택
                 if var min = visibleItemIndexPath.first {
-                    for item in visibleItemIndexPath {
-                        if item.row < min.row {
-                            min = item
-                        }
+                    for item in visibleItemIndexPath where item.row < min.row {
+                        min = item
                     }
                     indexPath = min
                 }
