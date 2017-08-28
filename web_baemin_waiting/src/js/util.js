@@ -44,7 +44,6 @@ Handlebars.registerHelper("storeStatus", function(status, num) {
         storeStatus = ["checked", ""];
     }
 
-    console.log(storeStatus);
     return storeStatus[num];
 });
 

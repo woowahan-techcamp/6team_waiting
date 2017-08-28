@@ -16,7 +16,6 @@ export class Manage {
 
     managePage() {
         service.getStoreInfo(this.token).then((info) => {
-            console.log(info);
             util.setTemplateInHtml(".board", "manage", info).then(() => {
                 this.switchStatus = document.querySelector("#store-status");
                 this.lineStatus = document.querySelector("#line-status");

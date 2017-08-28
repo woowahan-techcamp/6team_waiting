@@ -53,9 +53,9 @@ templates['manage'] = template({"compiler":[7,">= 4.0.0"],"main":function(contai
 
   return "<div class=\"manage\">\n    <h1>"
     + alias1(container.lambda((depth0 != null ? depth0.title : depth0), depth0))
-    + "</h1>\n\n    <div class=\"manage-switch\">\n        <div class=\"onoff\">\n            <span>OFF</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"store-status\" \n        "
+    + "</h1>\n\n    <div class=\"manage-switch\">\n        <div class=\"onoff\">\n            <span>OFF</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"store-status\" "
     + alias1((helpers.storeStatus || (depth0 && depth0.storeStatus) || alias3).call(alias2,(depth0 != null ? depth0.opened : depth0),0,{"name":"storeStatus","hash":{},"data":data}))
-    + ">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>ON</span>\n        </div>\n\n        <div class=\"line\">\n            <span>대기 거부</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"line-status\"  "
+    + ">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>ON</span>\n        </div>\n\n        <div class=\"line\">\n            <span>대기 거부</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"line-status\" "
     + alias1((helpers.storeStatus || (depth0 && depth0.storeStatus) || alias3).call(alias2,(depth0 != null ? depth0.opened : depth0),1,{"name":"storeStatus","hash":{},"data":data}))
     + ">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>대기 허용</span>\n        </div>\n    <div>\n\n    <div class=\"waiting-list\">\n    </div>\n\n    <div class=\"manage-input-area\">\n        <dl class=\"client-form\">\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"add-name\"></dd>\n            <dt>인원</dt>\n            <dd><input type=\"number\" id=\"add-count\"></dd>\n            <dt>전화번호</dt>\n            <dd><input type=\"number\" id=\"add-tel\"></dd>\n        </dl>\n        <button id=\"btn-add-client\">추가</button>\n    </div>\n</div>\n";
 },"useData":true});
