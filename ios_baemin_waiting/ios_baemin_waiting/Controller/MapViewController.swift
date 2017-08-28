@@ -122,12 +122,9 @@ class MapViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         currentState = .tracking
-        print("appear")
-        if let location = myLocation {
-            mapView?.setMapCenter(location, atLevel: 9)
-        }
-
         mapView?.viewWillAppear()
+
+        print("appear")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

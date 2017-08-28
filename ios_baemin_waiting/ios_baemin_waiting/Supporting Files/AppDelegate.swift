@@ -32,11 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             if let mainContainerVC = self.window?.rootViewController?.childViewControllers[0] as? MainContainerViewController {
 
-                if let mapVC = mainContainerVC.childViewControllers[0] as? MapViewController,
-                    let collectionVC = mainContainerVC.childViewControllers[1] as? MainCollectionViewController {
-
+                if let collectionVC = mainContainerVC.childViewControllers[1] as? MainCollectionViewController {
                     collectionVC.refreshData()
-                    mapVC.mapView?.setZoomLevel(11)
                 }
                 self.window?.rootViewController = rootVC
                 self.window?.makeKeyAndVisible()
