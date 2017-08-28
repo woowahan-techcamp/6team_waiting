@@ -11,7 +11,6 @@ import UIKit
 class MyTicketViewController: UIViewController {
 
     var waitingTicket: WaitingTicket?
-    var lineCancleAlert: LineCancleAlert?
 
     @IBOutlet weak var ticketNumberLabel: UILabel!
     @IBOutlet weak var ticketNumberContentLabel: UILabel!
@@ -38,7 +37,6 @@ class MyTicketViewController: UIViewController {
             let ticket = NSKeyedArchiver.archivedData(withRootObject: waitingTicket!)
             UserDefaults.standard.set(ticket, forKey: "ticket")
         }
-        lineCancleAlert = LineCancleAlert(popUI: self, waitingTicket: waitingTicket!)
     }
 
     override func updateViewConstraints() {
@@ -68,6 +66,7 @@ class MyTicketViewController: UIViewController {
     }
     // 대기취소 버튼 클릭
     @IBAction func waitCancelTapped(_ sender: UIButton) {
-        lineCancleAlert?.showAlert()
+        let lineCancelAlert = AlertHelper.lineCancelAlert(title: "대기취소", message: "현재 식당 대기가 취소됩니다.", waitingTicket: waitingTicket!, popUI: self)
+        self.present(lineCancelAlert, animated: true, completion: nil)
     }
 }

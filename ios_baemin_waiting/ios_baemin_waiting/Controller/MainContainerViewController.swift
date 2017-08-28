@@ -27,14 +27,6 @@ class MainContainerViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        if UserDefaults.standard.getTicket(keyName: "ticket") == nil {
-            ticketBtn.isEnabled = false
-            ticketBtn.tintColor = .clear
-        } else {
-            ticketBtn.isEnabled = true
-            ticketBtn.tintColor = .black
-        }
     }
     // IBAction
     @IBAction func mapBtnTapped(_ sender: UIBarButtonItem) {
@@ -70,7 +62,11 @@ class MainContainerViewController: UIViewController {
                 if !valid {
                     UserDefaults.standard.removeObject(forKey: "ticket")
                 }
+                self.performSegue(withIdentifier: "myTicketSegue", sender: nil)
             }
+        } else {
+            let alert = AlertHelper.okAlert(title: "티켓 없음", message: "현재 등록된 티켓이 없습니다.")
+            self.present(alert, animated: true, completion: nil)
         }
 
     }
@@ -78,7 +74,9 @@ class MainContainerViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "myTicketSegue" {
             if let myTicketViewController = segue.destination as? MyTicketViewController {
-                myTicketViewController.waitingTicket = UserDefaults.standard.getTicket(keyName: "ticket")
+                if let myTicket = UserDefaults.standard.getTicket(keyName: "ticket") {
+                    myTicketViewController.waitingTicket = myTicket
+                }
             }
         }
     }

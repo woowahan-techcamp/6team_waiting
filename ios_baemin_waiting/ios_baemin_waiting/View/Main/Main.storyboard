@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UaN-zs-nkx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UaN-zs-nkx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -59,7 +59,6 @@
                         <barButtonItem key="leftBarButtonItem" image="ticket" id="Ach-mU-evZ">
                             <connections>
                                 <action selector="ticketShowBtnTapped:" destination="shz-0b-mnd" id="Wvc-jQ-BnG"/>
-                                <segue destination="TQt-o4-7e8" kind="presentation" identifier="myTicketSegue" id="34C-Fe-ruY"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -80,6 +79,7 @@
                         <outlet property="mapView" destination="hxD-6u-ejB" id="LIe-mh-Y4J"/>
                         <outlet property="searchBtn" destination="6jt-bV-C3P" id="jRZ-yu-wBQ"/>
                         <outlet property="ticketBtn" destination="Ach-mU-evZ" id="WOL-z2-Jko"/>
+                        <segue destination="TQt-o4-7e8" kind="presentation" identifier="myTicketSegue" id="Ehq-El-UaE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jtx-rl-mlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
