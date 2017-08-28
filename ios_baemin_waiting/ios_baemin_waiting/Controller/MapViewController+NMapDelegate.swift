@@ -69,6 +69,22 @@ extension MapViewController: NMapPOIdataOverlayDelegate {
         return nil
     }
 
+    func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, didChangeSelectedPOIitemAt index: Int32, with object: Any!) -> Bool {
+
+        if let prevIdx = prevIndex {
+            if let poiItems = poiDataOverlay.poiData() as? [NMapPOIitem] {
+                poiItems[Int(prevIdx)].poiFlagType = userPOIflagTypeDefault
+            }
+            poiDataOverlay.updateImage(at: prevIdx)
+        } else {
+            prevIndex = index
+        }
+        poiDataOverlay.updateImage(at: index)
+        prevIndex = index
+
+        return true
+    }
+
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, viewForCalloutOverlayItem poiItem: NMapPOIitem!, calloutPosition: UnsafeMutablePointer<CGPoint>!) -> UIView! {
 
         // CollectionView 선택하기

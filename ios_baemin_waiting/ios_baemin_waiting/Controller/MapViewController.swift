@@ -24,6 +24,7 @@ class MapViewController: UIViewController {
     var storeList: [Store] = []
 
     var prevOffset: CGPoint?
+    var prevIndex: Int32?
 
     private var currentState: State = .disabled
 
