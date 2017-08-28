@@ -9,13 +9,14 @@
 import UIKit
 
 class MapCollectionViewFlowLayout: UICollectionViewFlowLayout {
+
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
 
         if let cv = self.collectionView {
 
             let cvBounds = cv.bounds
             let halfWidth = cvBounds.size.width * 0.5
-            let proposedContentOffsetCenterX = proposedContentOffset.x + halfWidth
+            let proposedContentOffsetCenterX = proposedContentOffset.x + halfWidth + 5
 
             if let attributesForVisibleCells = self.layoutAttributesForElements(in: cvBounds) {
 
@@ -51,4 +52,5 @@ class MapCollectionViewFlowLayout: UICollectionViewFlowLayout {
         // Fallback
         return super.targetContentOffset(forProposedContentOffset: proposedContentOffset)
     }
+
 }

@@ -93,9 +93,6 @@ class MainCollectionViewController: UIViewController {
                     detailViewController.storeId = storeId
 
                     stopActivityIndicator()
-
-                    detailViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-                    detailViewController.navigationItem.leftItemsSupplementBackButton = true
                 }
             }
         }
@@ -122,6 +119,25 @@ class MainCollectionViewController: UIViewController {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }
+
+/*
+    func refreshTicket() {
+        if UserDefaults.standard.getTicket(keyName: "ticket") != nil {
+            if let ticket = UserDefaults.standard.getTicket(keyName: "ticket") {
+                ServerRepository.postTicketValidCheck(ticketNumber: ticket.ticketNumber) { statusTicket in
+                    let valid = statusTicket >= 10 ? false : true
+
+                    if !valid {
+                        UserDefaults.standard.removeObject(forKey: "ticket")
+                    }
+                }
+            }
+        }
+        let header = self.collectionView.supplementaryView(forElementKind: "SectionHeader", at: IndexPath(item: 0, section: 0))
+        header?.setNeedsDisplay()
+
+    }
+*/
     @IBAction func noResultRefreshBtnTapped(_ sender: UIButton) {
         exceptionLabel(show: true)
         refreshData()
@@ -141,6 +157,17 @@ class MainCollectionViewController: UIViewController {
     }
     @IBAction func refreshBtnTapped(_ sender: UIButton) {
         refreshData()
+        if let parentVC = self.parent as? MainContainerViewController {
+            if UserDefaults.standard.getTicket(keyName: "ticket") == nil {
+                parentVC.ticketBtn.isEnabled = false
+                parentVC.ticketBtn.tintColor = .clear
+            } else {
+                parentVC.ticketBtn.isEnabled = true
+                parentVC.ticketBtn.tintColor = .black
+            }
+        }
+
+//        refreshTicket()
     }
 
 }
@@ -250,6 +277,7 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
                 print("Location Update Success")
 
                 if self.storeList.count > 0 {
+
                     self.storeList = self.storeList.sorted { (store1: Store, store2: Store) -> Bool in
                         return store1.storeDistance < store2.storeDistance
                     }
