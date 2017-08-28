@@ -160,8 +160,8 @@
                                             <outlet property="restaurantsImage" destination="L7A-ou-jO4" id="0L7-JD-j6p"/>
                                             <outlet property="restaurantsLine" destination="bec-x9-IR1" id="GMA-aM-cmR"/>
                                             <outlet property="restaurantsName" destination="dbb-G4-cYd" id="Tvy-CT-jh7"/>
-                                            <outlet property="storeStatusImage" destination="B8T-fj-l3n" id="UEg-2x-Jtl"/>
-                                            <outlet property="storeStatusLabel" destination="FS6-6k-2ZZ" id="txp-jT-4Tc"/>
+                                            <outlet property="storeStatusBackground" destination="B8T-fj-l3n" id="dQS-Gs-eLe"/>
+                                            <outlet property="storeStatusLabel" destination="FS6-6k-2ZZ" id="jdG-Nd-wjj"/>
                                             <segue destination="b5O-bj-pBX" kind="show" identifier="mainSegue" id="a8g-h1-VBV"/>
                                         </connections>
                                     </collectionViewCell>

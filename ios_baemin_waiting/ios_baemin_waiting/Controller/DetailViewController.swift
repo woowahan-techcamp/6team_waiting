@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
     var storeLocation: NGeoPoint?
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var lineButtion: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,15 @@ class DetailViewController: UIViewController {
 
         ServerRepository.getStoreDetail(detailStoreId: storeId) { detailStoreData in
             self.detailStore = detailStoreData
+
+            switch self.detailStore.storeIsOpened {
+            case false:
+                self.lineButtion.isEnabled = false
+                self.lineButtion.backgroundColor = UIColor.lightGray
+                self.lineButtion.setTitle("오픈 준비중 입니다.", for: .normal)
+            default:
+                self.lineButtion.isEnabled = true
+            }
 
             if let indexPath = self.mapIndexPath {
                 if let cell = self.tableView.cellForRow(at: indexPath) as? StoreMapViewCell {

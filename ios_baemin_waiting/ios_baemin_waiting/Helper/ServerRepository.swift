@@ -52,13 +52,14 @@ class ServerRepository {
                     let lat = item["storeLatitude"].string,
                     let long = item["storeLongitude"].string,
                     let currentInLine = item["currentInLine"].int,
-                    let img = item["storeImgUrl"].string {
-
+                    let img = item["storeImgUrl"].string,
+                    let isOpened = item["storeIsOpened"].int {
                     if let imgURL = URL(string: img) {
                         let store = Store(storeName: name, storeId: id, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL, currentInLine: currentInLine)
 
                         store.getDistanceFromUser(userLocation: currentLocation)
                         store.getShortAddress(address: address)
+                        store.getStoreStatus(isOpened: isOpened)
 
                         self.storeList.append(store)
                     }
@@ -107,10 +108,9 @@ class ServerRepository {
 
                 if let imgURL = URL(string: img) {
 
-                    let isOpenBool = isOpened == 1 ? true : false
-
                     let store = Store(storeName: name, storeId: id, storeDescription: description, storeTel: tel, storeLatitude: lat,
-                                      storeLongitude: long, storeImgUrl: imgURL, storeIsOpened: isOpenBool, currentInLine: currentInLine)
+                                      storeLongitude: long, storeImgUrl: imgURL, currentInLine: currentInLine)
+                    store.getStoreStatus(isOpened: isOpened)
 
                     DispatchQueue.main.async {
                         completion(store)
@@ -267,6 +267,34 @@ class ServerRepository {
                 mylineTicket.ticketNumber = ticketNumber
 
                 completion(mylineTicket)
+            }
+        }
+    }
+
+    static func postCancleLine(ticket: WaitingTicket, completion: @escaping (Int) -> Void) {
+
+        let parameter: Parameters = [
+            "ticketNumber": ticket.ticketNumber,
+            "status": "customerCancel"
+        ]
+
+        guard let url = URL(string: baseURL + "/deleteTicket")
+            else {
+                print("URL is nil")
+                return
+        }
+
+        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            guard response.result.isSuccess else {
+                print("Response get myline error: \(response.result.error!)")
+                return
+            }
+
+            guard let value = response.result.value else { return }
+            let deleteTicket = JSON(value)
+
+            if let isSuccess = deleteTicket["isSuccess"].int {
+                completion(isSuccess)
             }
         }
     }

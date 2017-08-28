@@ -289,6 +289,7 @@
                         <size key="landscapeSize" width="603" height="375"/>
                     </fixedSimulatedSizeMetrics>
                     <connections>
+                        <outlet property="lineButtion" destination="Usf-vx-JcD" id="BZ4-1Q-ynm"/>
                         <outlet property="tableView" destination="8iY-wh-dXw" id="mUK-Cu-qFy"/>
                         <segue destination="4rB-MM-4Jq" kind="show" identifier="showDetailMap" id="vMV-XH-ASM"/>
                     </connections>

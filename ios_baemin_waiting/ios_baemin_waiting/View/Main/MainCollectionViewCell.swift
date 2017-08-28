@@ -17,6 +17,9 @@ class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var restaurantsDistance: UILabel!
     @IBOutlet weak var restaurantsLine: UILabel!
 
+    @IBOutlet weak var storeStatusBackground: UIView!
+    @IBOutlet weak var storeStatusLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -29,10 +32,21 @@ class MainCollectionViewCell: UICollectionViewCell {
     }
     func putCellContent(storeInfo: Store) {
         restaurantsName.text = storeInfo.storeName
-
         restaurantsDistance.text = "\(Int(storeInfo.storeDistance))m"
         restaurantsLine.text = "\(Int(storeInfo.currentInLine))명"
+        print(storeInfo.storeIsOpened)
 
         restaurantsImage.af_setImage(withURL: storeInfo.storeImgUrl!)
+
+        switch storeInfo.storeIsOpened {
+        case false:
+            storeStatusBackground.isHidden = false
+            storeStatusLabel.isHidden = false
+            storeStatusLabel.text = "오픈 준비중입니다."
+
+        default:
+            storeStatusBackground.isHidden = true
+            storeStatusLabel.isHidden = true
+        }
     }
 }
