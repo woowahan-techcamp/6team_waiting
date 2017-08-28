@@ -1,24 +1,14 @@
 import 'babel-polyfill';
 
 import { Regex } from "../src/js/regex.js";
-import service from "../src/js/services/service.test.js";
 
 const assert = require("chai").assert;
 
-describe("Service", function() {
-    describe("signin method", function() {
-        it("check token storeId is 'test'", function() {
-            service.signInUser("id","pwd").then((token) => {
-                assert.equal(token.storeId === "test");
-            });
-        }) 
-    })
-})
-
 describe("Regex", function() {
-    describe("check isID() method", function() {
-        const regex = new Regex();
 
+    const regex = new Regex();
+
+    describe("check isID() method", function() {
         it("'qwe123' should return true", function() {
             assert.equal(regex.isID("qwe123"), true);
         })
@@ -31,8 +21,6 @@ describe("Regex", function() {
     })
 
     describe("check isName() method", function() {
-        const regex = new Regex();
-
         it("'크롱' should return true", function() {
             assert.equal(regex.isName("크롱"), true);
         })
@@ -41,6 +29,21 @@ describe("Regex", function() {
         }) 
         it("'qqqqqqqqqqqq111' should return false", function() {
             assert.equal(regex.isName(""), false);
+        }) 
+    })
+
+    describe("check isTitle() method", function() {
+        it("'가게123' should return true", function() {
+            assert.equal(regex.isTitle("가게123"), true);
+        })
+        it("'' should return false", function() {
+            assert.equal(regex.isTitle(" "), false);
+        }) 
+        it("'abc def' should return false", function() {
+            assert.equal(regex.isTitle("abc def"), true);
+        })
+        it("'abcdef ' should return false", function() {
+            assert.equal(regex.isTitle("abc def"), true);
         }) 
     })
 })
