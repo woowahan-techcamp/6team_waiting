@@ -191,7 +191,7 @@ export class Auth {
 
     checkMyStore() {
         const token = this.currentToken();
-        
+       
         if (!token) {
             this.view.showElement("sign-in");
             this.view.inactivateRoot();

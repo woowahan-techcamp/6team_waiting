@@ -24,12 +24,28 @@ const util = {
 
 }
 
-Handlebars.registerHelper('trimString', function(passedString, startstring, endstring) {
-   var theString = passedString.substring(startstring, endstring);
+Handlebars.registerHelper("trimString", function(passedString, startstring, endstring) {
+   let theString = passedString.substring(startstring, endstring);
+
    if (passedString.length > endstring) {
        theString += "...";
    }
    return new Handlebars.SafeString(theString);
+});
+
+Handlebars.registerHelper("storeStatus", function(status, num) {
+    let storeStatus = [];
+
+    if (status === 0) {
+        storeStatus = ["", ""];
+    } else if (status === 1) {
+        storeStatus = ["checked", "checked"];
+    } else {
+        storeStatus = ["checked", ""];
+    }
+
+    console.log(storeStatus);
+    return storeStatus[num];
 });
 
 export default util;

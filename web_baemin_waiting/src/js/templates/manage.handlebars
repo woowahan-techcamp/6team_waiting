@@ -1,11 +1,12 @@
 <div class="manage">
-    <h1>가게 이름</h1>
+    <h1>{{this.title}}</h1>
 
     <div class="manage-switch">
         <div class="onoff">
             <span>OFF</span>
             <label class="switch">
-                <input type="checkbox" id="store-status">
+                <input type="checkbox" id="store-status" 
+        {{storeStatus this.opened 0}}>
                 <span class="slider round"></span>
             </label>
             <span>ON</span>
@@ -14,7 +15,7 @@
         <div class="line">
             <span>대기 거부</span>
             <label class="switch">
-                <input type="checkbox" id="line-status">
+                <input type="checkbox" id="line-status"  {{storeStatus this.opened 1}}>
                 <span class="slider round"></span>
             </label>
             <span>대기 허용</span>
