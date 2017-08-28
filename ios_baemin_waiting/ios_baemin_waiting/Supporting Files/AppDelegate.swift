@@ -71,4 +71,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             UIApplication.shared.applicationIconBadgeNumber = aps["badge"] as! Int
         }
     }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+         completionHandler(.alert)
+    }
 }
