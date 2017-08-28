@@ -17,7 +17,7 @@ export class StoreList {
 
     init(){
         service.getCountStores().then((result) => {
-            this.pageLIMIT = result.count;
+            this.limit = result.count;
         });
 
         this.getMoreStore();
@@ -26,7 +26,8 @@ export class StoreList {
     storeListHandler() {
         document.querySelector(".store-list").addEventListener("click", (e) => {
             if (e.target.nodeName === "DD" || e.target.nodeName === "IMG" || e.target.nodeName === "DT") {
-                //document.querySelector(".store-card-list").removeEventListener("scroll", this.currentPosition);
+                console.log("HANDLER", this.scrollPosition);
+                document.querySelector(".store-card-list").removeEventListener("scroll", this.currentPosition);
                 this.storedetailPage(e.target.id);
             }
         })
@@ -45,11 +46,12 @@ export class StoreList {
     }
 
     storedetailPage(id) {
+        console.log("DETAIL", this.scrollPosition);
         service.getOtherStoreDetail(id)
             .then((info) => {
                 return util.setTemplateInHtml(".store-card-list", "store-detail", info)
             })
-            .then((re) => {
+            .then(() => {
                 const btnBack = document.querySelector("#btn-back");
                 btnBack.addEventListener("click", () => {
                     this.storelistPage();
@@ -69,6 +71,8 @@ export class StoreList {
     }
 
     getMoreStore() {
+        if (this.limit !==0 && this.limit === this.stores.length) return;
+
         const firstNum = this.pageNow + 1;
         const lastNum = (this.pageNow + this.PAGE_COUNT);
 
