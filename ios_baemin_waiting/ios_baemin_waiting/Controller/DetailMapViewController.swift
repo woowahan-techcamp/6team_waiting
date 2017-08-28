@@ -67,7 +67,7 @@ class DetailMapViewController: UIViewController {
                 poiDataOverlay.initPOIdata(1)
 
                 poiDataOverlay.addPOIitem(atLocation: location, title: nil,
-                                          type: userPOIflagTypeDefault, iconIndex: 0, with: nil)
+                                          type: userPOIflagTypeSelected, iconIndex: 0, with: nil)
 
                 poiDataOverlay.endPOIdata()
                 poiDataOverlay.showAllPOIdata()
@@ -77,7 +77,6 @@ class DetailMapViewController: UIViewController {
 }
 
 // MARK: NMapViewDelegate
-// 지도 상태 변경 및 터치 이벤트 발생 시 호출되는 콜백 프로토콜
 extension DetailMapViewController: NMapViewDelegate {
     func onMapView(_ mapView: NMapView!, initHandler error: NMapError!) {
         if error == nil {
@@ -91,8 +90,6 @@ extension DetailMapViewController: NMapViewDelegate {
 }
 
 // MARK: NMapPOIdataOverlayDelegate
-// 지도 위에 표시되는 오버레이 아이템 클래스이며 NMapPOIdataOverlay 클래스에서 표시하는 기본 객체로 사용됩니다.
-// 지도에 표시되는 마커 이미지는 NMapPOIdataOverlayDelegate 프로토콜을 통해서 전달합니다.
 extension DetailMapViewController: NMapPOIdataOverlayDelegate {
     // 마커에 해당하는 이미지를 반환
     // 마커 선택 시 표시되는 이미지는 selected 값이 YES인 경우 반환

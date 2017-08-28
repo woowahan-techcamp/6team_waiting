@@ -71,6 +71,7 @@ extension MapViewController: NMapPOIdataOverlayDelegate {
 
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, didChangeSelectedPOIitemAt index: Int32, with object: Any!) -> Bool {
 
+        // 선택한 마커와 선택 해제된 마커 이미지 업데이트
         if let prevIdx = prevIndex {
             if let poiItems = poiDataOverlay.poiData() as? [NMapPOIitem] {
                 poiItems[Int(prevIdx)].poiFlagType = userPOIflagTypeDefault
