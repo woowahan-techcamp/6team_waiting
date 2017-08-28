@@ -45,8 +45,11 @@ export class Manage {
     }
 
     setWaitingListInHtml(list) {
-        util.setTemplateInHtml(".waiting-list", "waiting-member", list)
-            .then(() => this.init());
+        const waitingList = document.querySelector(".waiting-list");
+        if (waitingList) {
+            util.setTemplateInHtml(".waiting-list", "waiting-member", list)
+                .then(() => this.init());
+        }
     }
 
     init() {
