@@ -28,7 +28,7 @@ extension MapViewController: NMapViewDelegate {
 
     func onMapView(_ mapView: NMapView!, initHandler error: NMapError!) {
         if error == nil {
-            mapView.setMapCenter(NGeoPoint(longitude: 126.978371, latitude: 37.5666091), atLevel: 9)
+            mapView.setMapCenter(NGeoPoint(longitude: 126.978371, latitude: 37.5666091), atLevel: 10)
             mapView.setMapEnlarged(true, mapHD: true)
             mapView.mapViewMode = .vector
         } else {
@@ -70,7 +70,6 @@ extension MapViewController: NMapPOIdataOverlayDelegate {
     }
 
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, didChangeSelectedPOIitemAt index: Int32, with object: Any!) -> Bool {
-
         // 선택한 마커와 선택 해제된 마커 이미지 업데이트
         if let prevIdx = prevIndex {
             if let poiItems = poiDataOverlay.poiData() as? [NMapPOIitem] {
@@ -104,6 +103,7 @@ extension MapViewController: NMapPOIdataOverlayDelegate {
 extension MapViewController: NMapLocationManagerDelegate {
     // 현재 위치 변경시 호출
     func locationManager(_ locationManager: NMapLocationManager!, didUpdateTo location: CLLocation!) {
+        print("map location change")
         let coordinate = location.coordinate
 
         myLocation = NGeoPoint(longitude: coordinate.longitude, latitude: coordinate.latitude)
