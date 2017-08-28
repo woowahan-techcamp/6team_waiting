@@ -29,7 +29,7 @@ const service = (() => {
     const fireStorageRef = app.storage().ref();
 
     const baseUrl = "http://52.78.157.5:8080";
-
+    const testUrl = "http://192.168.100.18:8080/baeminWaiting004";
 
     const requestAjax = function(protocol, url, data) {
         return new Promise((resolve, reject) => {
@@ -153,7 +153,7 @@ const service = (() => {
 
         getStoreInfo(currentToken){
             const token = new TokenModel(currentToken);
-            return requestAjax("POST", `${baseUrl}/storeInfo`, token)
+            return requestAjax("POST", `${testUrl}/storeInfo`, token)
                 .then((storeInfo) => { return storeInfo });
 
         },
