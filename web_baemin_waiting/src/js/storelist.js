@@ -26,7 +26,6 @@ export class StoreList {
     storeListHandler() {
         document.querySelector(".store-list").addEventListener("click", (e) => {
             if (e.target.nodeName === "DD" || e.target.nodeName === "IMG" || e.target.nodeName === "DT") {
-                console.log("HANDLER", this.scrollPosition);
                 document.querySelector(".store-card-list").removeEventListener("scroll", this.currentPosition);
                 this.storedetailPage(e.target.id);
             }
@@ -36,8 +35,6 @@ export class StoreList {
     storelistPage() {
         util.setTemplateInHtml(".board", "store-list", this.stores)
             .then(() => {
-
-                console.log("STORE_LIST_PAGE",this.scrollPosition);
                 document.querySelector(".store-card-list").scrollTop += this.scrollPosition;
                 this.storeListHandler();
 
@@ -46,7 +43,6 @@ export class StoreList {
     }
 
     storedetailPage(id) {
-        console.log("DETAIL", this.scrollPosition);
         service.getOtherStoreDetail(id)
             .then((info) => {
                 return util.setTemplateInHtml(".store-card-list", "store-detail", info)
@@ -60,8 +56,6 @@ export class StoreList {
     }
 
     currentPosition() {
-        console.log("POSITION",this.scrollPosition);
-        
         const dom = document.querySelector(".store-card-list");
         this.scrollPosition = dom.scrollTop;
 
@@ -84,7 +78,6 @@ export class StoreList {
             })
             .then(() => {
                 this.pageNow += this.PAGE_COUNT;
-                console.log("GET_MORE", this.scrollPosition);
                 this.storelistPage();
             });
     }
