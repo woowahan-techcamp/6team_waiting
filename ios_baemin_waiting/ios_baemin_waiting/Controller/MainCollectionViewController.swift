@@ -120,24 +120,6 @@ class MainCollectionViewController: UIViewController {
         locationManager.startUpdatingLocation()
     }
 
-/*
-    func refreshTicket() {
-        if UserDefaults.standard.getTicket(keyName: "ticket") != nil {
-            if let ticket = UserDefaults.standard.getTicket(keyName: "ticket") {
-                ServerRepository.postTicketValidCheck(ticketNumber: ticket.ticketNumber) { statusTicket in
-                    let valid = statusTicket >= 10 ? false : true
-
-                    if !valid {
-                        UserDefaults.standard.removeObject(forKey: "ticket")
-                    }
-                }
-            }
-        }
-        let header = self.collectionView.supplementaryView(forElementKind: "SectionHeader", at: IndexPath(item: 0, section: 0))
-        header?.setNeedsDisplay()
-
-    }
-*/
     @IBAction func noResultRefreshBtnTapped(_ sender: UIButton) {
         exceptionLabel(show: true)
         refreshData()
@@ -231,10 +213,6 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
 extension MainCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == collectionView.indexPathsForVisibleItems.last?.count {
-            activityIndicator.stopAnimating()
-            collectionView.isHidden = false
-            //알수 없음
-        } else {
             activityIndicator.stopAnimating()
             collectionView.isHidden = false
         }

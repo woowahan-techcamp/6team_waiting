@@ -34,7 +34,6 @@ class MainCollectionViewCell: UICollectionViewCell {
         restaurantsName.text = storeInfo.storeName
         restaurantsDistance.text = "\(Int(storeInfo.storeDistance))m"
         restaurantsLine.text = "\(Int(storeInfo.currentInLine))명"
-        print(storeInfo.storeIsOpened)
 
         restaurantsImage.af_setImage(withURL: storeInfo.storeImgUrl!)
 
