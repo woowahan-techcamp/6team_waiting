@@ -267,8 +267,15 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
 
-        var size = ticket == nil ? CGSize(width: 0, height: 0) : CGSize(width: self.view.bounds.width, height: self.view.bounds.height/4)
-        size = section == 1 ? CGSize(width: 0, height: 0) : CGSize(width: self.view.bounds.width, height: self.view.bounds.height/4)
+        var size = CGSize()
+
+        if ticket == nil {
+            size = CGSize(width: 0, height: 0)
+        } else if ticket != nil && section == 1 {
+            size = CGSize(width: 0, height: 0)
+        } else {
+            size = CGSize(width: self.view.bounds.width, height: self.view.bounds.height/4)
+        }
 
         return size
     }
