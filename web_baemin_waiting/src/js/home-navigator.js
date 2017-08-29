@@ -36,7 +36,6 @@ export class HomeNavigator {
         this.slide = new Slide("slide-box");
         this.view = new View(".view");
 
-        this.whichViewIng = "";
     }
 
     on() {
