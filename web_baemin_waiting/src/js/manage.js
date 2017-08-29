@@ -109,6 +109,13 @@ export class Manage {
         const name = document.querySelector("#add-name").value;
         const count = document.querySelector("#add-count").value;
         const tel = document.querySelector("#add-tel").value;
+        const available = document.querySelector("#line-status").checked;
+
+        // if (available) {
+        //     service.addTicket(this.storeId, name, count, 0, tel).then(() => this.getWaitingList(this.storeId));
+        // } else {
+        //     alert("대기 허용으로 상태를 변경해주세요");
+        // }
 
         service.addTicket(this.storeId, name, count, 0, tel).then(() => this.getWaitingList(this.storeId));
     }

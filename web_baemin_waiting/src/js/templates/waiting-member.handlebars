@@ -11,7 +11,7 @@
             <span id="m10">10</span>
         </div>
     </div>
-    
+    {{#ticketStatus this.status}}
     <div class="waiting-btn-area">
         <div class="btn-alarm">
             <ul class="alarm-opt">
@@ -23,5 +23,6 @@
         <div class="btn-delete-in"></div>
             
     </div>
+    {{/ticketStatus}}
 </div>
 {{/each}}
