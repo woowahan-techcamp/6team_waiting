@@ -13,6 +13,7 @@ import SwiftyJSON
 class ServerRepository {
 
     static var storeList: [Store] = []
+    static var detailStore: Store?
 
     static func postCurrentLocation(currentLocation: CLLocation, completion: @escaping (Bool, [Store]) -> Void) {
         self.storeList = []
@@ -44,26 +45,8 @@ class ServerRepository {
 
             let swiftyJson = JSON(value)
 
-            for (_, item): (String, JSON) in swiftyJson {
-
-                if let name = item["storeName"].string,
-                    let id = item["storeId"].int,
-                    let address = item["storeAddress"].string,
-                    let lat = item["storeLatitude"].string,
-                    let long = item["storeLongitude"].string,
-                    let currentInLine = item["currentInLine"].int,
-                    let img = item["storeImgUrl"].string,
-                    let isOpened = item["storeIsOpened"].int {
-                    if let imgURL = URL(string: img) {
-                        let store = Store(storeName: name, storeId: id, storeAddress: address, storeLatitude: lat, storeLongitude: long, storeImgUrl: imgURL, currentInLine: currentInLine)
-
-                        store.getDistanceFromUser(userLocation: currentLocation)
-                        store.getShortAddress(address: address)
-                        store.getStoreStatus(isOpened: isOpened)
-
-                        self.storeList.append(store)
-                    }
-                }
+            for (_, jsonItem): (String, JSON) in swiftyJson {
+                updateStore(currentLocation: currentLocation, item: jsonItem, isMain: true)
             }
 
             DispatchQueue.main.async {
@@ -96,73 +79,85 @@ class ServerRepository {
 
             let detailJson = JSON(value)
 
-            if let name = detailJson["storeName"].string,
-                let id = detailJson["storeId"].int,
-                let description = detailJson["storeDescription"].string,
-                let tel = detailJson["storeTel"].string,
-                let img = detailJson["storeImgUrl"].string,
-                let currentInLine = detailJson["currentInLine"].int,
-                let isOpened = detailJson["storeIsOpened"].int,
-                let lat = detailJson["storeLatitude"].string,
-                let long = detailJson["storeLongitude"].string {
+            updateStore(currentLocation: nil, item: detailJson, isMain: false)
 
-                if let imgURL = URL(string: img) {
-
-                    let store = Store(storeName: name, storeId: id, storeDescription: description, storeTel: tel, storeLatitude: lat,
-                                      storeLongitude: long, storeImgUrl: imgURL, currentInLine: currentInLine)
-                    store.getStoreStatus(isOpened: isOpened)
-
-                    DispatchQueue.main.async {
-                        completion(store)
-                    }
+            if let detailStore = self.detailStore {
+                DispatchQueue.main.async {
+                    completion(detailStore)
                 }
             }
         }
     }
 
-    static func postWaitingTicketCreate(params ticket: WaitingTicket, completion: @escaping (Bool, WaitingTicket) -> Void) {
+    static func updateStore(currentLocation: CLLocation?, item: JSON, isMain: Bool) {
 
-        let checkTicket = ticket
-        let isStaying = ticket.isStaying ? 1 : 0
-        let parameter: Parameters = ["name": ticket.name, "phoneNumber": ticket.phoneNumber,
-                                     "headCount": ticket.headCount, "isStaying": isStaying,
-                                     "storeId": ticket.storeId]
-
-        guard let url = URL(string: baseURL + "/addWaitingTicket")
-            else {
-                print("URL is nil")
-                return
+        guard let name = item["storeName"].string else {
+            print("Update Store name 없음")
+            return
+        }
+        guard let id = item["storeId"].int else {
+            print("Update Store ID 없음")
+            return
+        }
+        guard let lat = item["storeLatitude"].string else {
+            print("Update Store 위도 없음")
+            return
+        }
+        guard let long = item["storeLongitude"].string else {
+            print("Update Store 경도 없음")
+            return
         }
 
-        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+        // 필수적으로 들어가야 하는 부분
+        let store = Store(storeName: name, storeId: id, storeLatitude: lat, storeLongitude: long)
 
-            guard response.result.isSuccess else {
-                print("Response post WaitingTicket Error: \(response.result.error!)")
-                return
+        // 공통적으로 들어가는 부분
+        if let currentInLine = item["currentInLine"].int {
+            store.currentInLine = currentInLine
+        } else {
+            store.currentInLine = 0
+        }
+
+        if let isOpened = item["storeIsOpened"].int {
+            store.getStoreStatus(isOpened: isOpened)
+        } else {
+            store.getStoreStatus(isOpened: 0)
+        }
+        if let img = item["storeImgUrl"].string {
+            if let imgURL = URL(string: img) {
+                // 모든 케이스 있음
+                store.storeImgUrl = imgURL
+            }
+        }
+
+        // 화면 별로 다른 부분
+        if isMain {
+
+            if let location = currentLocation {
+                store.getDistanceFromUser(userLocation: location)
             }
 
-            guard let value = response.result.value else { return }
-
-            let checkingJson = JSON(value)
-
-            if let ticketNumber = checkingJson["ticketNumber"].int,
-                let storeName = checkingJson["storeName"].string,
-                let currentInLine = checkingJson["currentInLine"].int,
-                let isSuccess = checkingJson["isSuccess"].int {
-
-                    let isSuccessBool = isSuccess == 1 ? true : false
-                    checkTicket.storeName = storeName
-                    checkTicket.currentInLine = currentInLine
-                    checkTicket.ticketNumber = ticketNumber
-
-                    print(isSuccessBool)
-                    DispatchQueue.main.async {
-                        completion(isSuccessBool, checkTicket)
-                    }
+            if let address = item["storeAddress"].string {
+                store.storeAddress = address
+                store.getShortAddress(address: address)
             }
+
+            self.storeList.append(store)
+        } else {
+            // Detail
+
+            if let description = item["storeDescription"].string {
+                store.storeDescription = description
+            }
+            if let tel = item["storeTel"].string {
+                store.storeTel = tel
+            }
+
+            self.detailStore = store
         }
     }
 
+    /* 이건 뭐지??
     static func postDeviceToken(ticketNumber: Int, token: String) {
 
         let parameter: Parameters = [
@@ -185,120 +180,9 @@ class ServerRepository {
 
         }
     }
-
-    static func saveDeviceTokenToServer(ticketNumber: Int, token: String, completion: @escaping (Bool) -> Void) {
-
-        let parameter: Parameters = [
-            "ticketNumber": ticketNumber,
-            "token": token
-        ]
-
-        guard let url = URL(string: baseURL + "/addToken")
-            else {
-                print("URL is nil")
-                return
-        }
-
-        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-            guard response.result.isSuccess else {
-                print("Post register TOKEN Error: \(response.result.error!)")
-                completion(false)
-                return
-            }
-            completion(true)
-        }
-    }
-
-    static func postTicketValidCheck(ticketNumber: Int, completion: @escaping (Int) -> Void) {
-        let parameter: Parameters = [
-            "ticketNum": ticketNumber
-        ]
-
-        guard let url = URL(string: baseURL + "/validCheckTicket")
-            else {
-                print("URL is nil")
-                return
-        }
-
-        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-            guard response.result.isSuccess else {
-                print("Response get validTicket error: \(response.result.error!)")
-                return
-            }
-
-            guard let value = response.result.value else { return }
-            let statusTicketJson = JSON(value)
-
-            if let statusTicket = statusTicketJson.int {
-                completion(statusTicket)
-            }
-        }
-    }
-
-    static func postMylineCheck(ticket: WaitingTicket, completion: @escaping (WaitingTicket) -> Void) {
-        let mylineTicket = ticket
-
-        let parameter: Parameters = [
-            "storeId": ticket.storeId,
-            "ticketNumber": ticket.ticketNumber
-        ]
-
-        guard let url = URL(string: baseURL + "/mylineCheck")
-            else {
-                print("URL is nil")
-                return
-        }
-
-        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-            guard response.result.isSuccess else {
-                print("Response get myline error: \(response.result.error!)")
-                return
-            }
-
-            guard let value = response.result.value else { return }
-            let mylineJson = JSON(value)
-
-            if let ticketNumber = mylineJson["ticketNumber"].int,
-                let storeName = mylineJson["storeName"].string,
-                let currentInLine = mylineJson["currentInLine"].int {
-
-                mylineTicket.storeName = storeName
-                mylineTicket.currentInLine = currentInLine
-                mylineTicket.ticketNumber = ticketNumber
-
-                completion(mylineTicket)
-            }
-        }
-    }
-
-    static func postCancleLine(ticket: WaitingTicket, completion: @escaping (Int) -> Void) {
-
-        let parameter: Parameters = [
-            "ticketNumber": ticket.ticketNumber,
-            "status": "customerCancel"
-        ]
-
-        guard let url = URL(string: baseURL + "/deleteTicket")
-            else {
-                print("URL is nil")
-                return
-        }
-
-        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-            guard response.result.isSuccess else {
-                print("Response get myline error: \(response.result.error!)")
-                return
-            }
-
-            guard let value = response.result.value else { return }
-            let deleteTicket = JSON(value)
-
-            if let isSuccess = deleteTicket.int {
-                completion(isSuccess)
-            } else {
-                completion(0)
-            }
-        }
-    }
+     */
 
 }
+    
+
+

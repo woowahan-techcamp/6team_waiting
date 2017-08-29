@@ -36,28 +36,37 @@ class Store {
         self._currentInLine = 0
         self._storeShortAddress = ""
     }
-    convenience init(storeName: String, storeId: Int, storeAddress: String, storeLatitude: String, storeLongitude: String, storeImgUrl: URL, currentInLine: Int) {
+    convenience init(storeName: String, storeId: Int, storeLatitude: String, storeLongitude: String) {
         self.init()
         self._storeName = storeName
         self._storeId = storeId
-        self._storeAddress = storeAddress
         self._storeLatitude = storeLatitude
         self._storeLongitude = storeLongitude
-        self._storeImgUrl = storeImgUrl
-        self._currentInLine = currentInLine
     }
-    convenience init(storeName: String, storeId: Int, storeDescription: String, storeTel: String, storeLatitude: String,
-                     storeLongitude: String, storeImgUrl: URL, currentInLine: Int) {
-        self.init()
-        self._storeName = storeName
-        self._storeId = storeId
-        self._storeDescription = storeDescription
-        self._storeTel = storeTel
-        self._storeLatitude = storeLatitude
-        self._storeLongitude = storeLongitude
-        self._storeImgUrl = storeImgUrl
-        self._currentInLine = currentInLine
-    }
+
+//    convenience init(storeName: String, storeId: Int, storeAddress: String, storeLatitude: String, storeLongitude: String, storeImgUrl: URL?, currentInLine: Int) {
+//        self.init()
+//        self._storeName = storeName
+//        self._storeId = storeId
+//        self._storeAddress = storeAddress
+//        self._storeLatitude = storeLatitude
+//        self._storeLongitude = storeLongitude
+//        self._storeImgUrl = storeImgUrl
+//        self._currentInLine = currentInLine
+//    }
+//
+//    convenience init(storeName: String, storeId: Int, storeDescription: String, storeTel: String, storeLatitude: String,
+//                     storeLongitude: String, storeImgUrl: URL, currentInLine: Int) {
+//        self.init()
+//        self._storeName = storeName
+//        self._storeId = storeId
+//        self._storeDescription = storeDescription
+//        self._storeTel = storeTel
+//        self._storeLatitude = storeLatitude
+//        self._storeLongitude = storeLongitude
+//        self._storeImgUrl = storeImgUrl
+//        self._currentInLine = currentInLine
+//    }
 
     public var storeName: String {
         get { return self._storeName }

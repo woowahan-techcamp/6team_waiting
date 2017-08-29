@@ -20,6 +20,8 @@ class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var storeStatusBackground: UIView!
     @IBOutlet weak var storeStatusLabel: UILabel!
 
+    let placeholderImage = #imageLiteral(resourceName: "blankImage")
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -35,7 +37,9 @@ class MainCollectionViewCell: UICollectionViewCell {
         restaurantsDistance.text = "\(Int(storeInfo.storeDistance))m"
         restaurantsLine.text = "\(Int(storeInfo.currentInLine))명"
 
-        restaurantsImage.af_setImage(withURL: storeInfo.storeImgUrl!)
+        if let imgURL = storeInfo.storeImgUrl {
+            restaurantsImage.af_setImage(withURL: imgURL, placeholderImage: placeholderImage)
+        }
 
         switch storeInfo.storeIsOpened {
         case false:

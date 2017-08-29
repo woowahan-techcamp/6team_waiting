@@ -22,7 +22,7 @@ class StoreUnitTests: XCTestCase {
 
     func testStoreToUser() {
 
-        store = Store(storeName: "", storeAddress: "", storeLatitude: "37.50442938232422", storeLongitude: "127.11729052734376", storeImgUrl: URL(string: "")!)
+        store = Store(storeName: "", storeAddress: "", storeLatitude: "37.50442938232422", storeImgUrl: URL(string: "")!, storeLongitude: "127.11729052734376")
 //        let distance = store?.getDistanceFromUser(userLocation: CLLocation)
 
         guard let userLat = CLLocationDegrees("37.518778141797853") else { return }

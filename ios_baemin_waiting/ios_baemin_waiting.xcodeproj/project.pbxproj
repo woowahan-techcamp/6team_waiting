@@ -51,6 +51,7 @@
 		9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9879D9AE1F34054900B4131A /* AppDelegate.swift */; };
 		9879D9B61F34054900B4131A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9879D9B51F34054900B4131A /* Assets.xcassets */; };
 		9879D9F21F342CCC00B4131A /* BaeminWaitingUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */; };
+		987D647A1F55C69F001150CA /* ServerRepository+WaitingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987D64791F55C69F001150CA /* ServerRepository+WaitingTicket.swift */; };
 		98A87A3F1F54060200D2D20B /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A87A3E1F54060200D2D20B /* AlertHelper.swift */; };
 		98BE03D61F38614200179D43 /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE03D51F38614200179D43 /* ApiGatewayMac.framework */; };
 		98BE03D71F38614200179D43 /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE03D51F38614200179D43 /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -145,6 +146,7 @@
 		9879D9EF1F342CCC00B4131A /* BaeminWaitingUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaeminWaitingUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaeminWaitingUnitTests.swift; sourceTree = "<group>"; };
 		9879D9F31F342CCC00B4131A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		987D64791F55C69F001150CA /* ServerRepository+WaitingTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServerRepository+WaitingTicket.swift"; sourceTree = "<group>"; };
 		98A87A3E1F54060200D2D20B /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		98BE03D51F38614200179D43 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ApiGatewayMac.framework; sourceTree = "<group>"; };
 		98BE03D91F38615400179D43 /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMapViewerSDK.framework; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				980A56EF1F3C16D800A81DFE /* ServerRepository.swift */,
+				987D64791F55C69F001150CA /* ServerRepository+WaitingTicket.swift */,
 				9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */,
 				7E1273CD1F434257000C7912 /* Constant.swift */,
 				9842DB881F454EC400B8C409 /* WaitingTextField.swift */,
@@ -713,6 +716,7 @@
 				980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */,
 				981F72381F4C1338001A6318 /* MainMapCollectionViewCell.swift in Sources */,
 				986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */,
+				987D647A1F55C69F001150CA /* ServerRepository+WaitingTicket.swift in Sources */,
 				9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */,
 				981F72351F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift in Sources */,
 				980A61EF1F54FF65002BEC8C /* StoreListManager.swift in Sources */,
@@ -971,6 +975,7 @@
 				980A62041F5577C7002BEC8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9879D9A61F34054900B4131A /* Build configuration list for PBXProject "ios_baemin_waiting" */ = {
 			isa = XCConfigurationList;
