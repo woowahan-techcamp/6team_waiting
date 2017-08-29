@@ -177,7 +177,7 @@ export class HomeNavigator {
                 break;
 
             case "logout": 
-                this.auth.signOut().then(() => this.view.goHome());
+                this.auth.signOut();
                 break;
 
             default:
