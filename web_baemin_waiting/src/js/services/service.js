@@ -165,6 +165,13 @@ const service = (() => {
             return requestAjax("POST",`${baseUrl}/updateUserInfo`, member)
                 .then((status) => { return status })
                 .catch((err) => { return err });
+        },
+
+        getUserInfo(currentToken){
+            const token = new TokenModel(currentToken);
+            return requestAjax("POST", `${baseUrl}/getuserinfo`, token)
+                .then((userInfo) => { return userInfo });
+
         }
     }
 
