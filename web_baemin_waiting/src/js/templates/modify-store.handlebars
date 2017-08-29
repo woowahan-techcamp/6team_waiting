@@ -5,18 +5,21 @@
             
             <dt>업체명</dt>
             <dd>
-                <input type="text" id="mod-name" value="원래 저장된 이름">
-                <button id="btn-search-store">검색</button>
+                <input type="text" id="mod-name" value="{{this.title}}">
             </dd>
 
             <dt>업체 위치</dt>
-            <dd><input type="text" id="mod-location" value="원래 저장된 설명"></dd>
+            <dd>
+                <input type="text" id="mod-location" value="{{this.addr}}">
+                <button id="btn-search-location">지도확인</button>
+            </dd>
+
 
             <dt>업체 설명</dt>
-            <dd><input type="text" id="mod-desc"></dd>
+            <dd><input type="text" id="mod-desc" value="{{this.desc}}"></dd>
 
             <dt>업체 사진</dt>
-            <dd><input type="file"></dd>
+            <dd><input type="file" placeholder="파일선택을 눌러 변경"></dd>
 
             <dt>메뉴</dt>
             <dd class="menus">
@@ -28,4 +31,14 @@
 
     <button id="btn-reg-store">가게등록</button>
 
+</div>
+
+
+
+<div class="map-modal">
+    <div class="map-modal-content">
+        <span id="btn-map-close" class="btn-close"><img src="/dist/public/images/close.png"></span>
+        <div id="map"></div>
+        <button id="btn-map-confirm">확인</button>
+    </div>
 </div>

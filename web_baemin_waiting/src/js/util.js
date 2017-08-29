@@ -1,6 +1,5 @@
 import service from "./services/service.js";
 
-
 const util = {
     log(content) {
         if (window.console) console.log(content);
