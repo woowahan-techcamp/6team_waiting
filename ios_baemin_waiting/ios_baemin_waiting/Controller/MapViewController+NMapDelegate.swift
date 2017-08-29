@@ -104,6 +104,8 @@ extension MapViewController: NMapLocationManagerDelegate {
     // 현재 위치 변경시 호출
     func locationManager(_ locationManager: NMapLocationManager!, didUpdateTo location: CLLocation!) {
         print("map location change")
+        print("mapview controller")
+
         let coordinate = location.coordinate
 
         myLocation = NGeoPoint(longitude: coordinate.longitude, latitude: coordinate.latitude)
