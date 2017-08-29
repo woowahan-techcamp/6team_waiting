@@ -174,7 +174,11 @@ templates['waiting-member'] = template({"1":function(container,depth0,helpers,pa
     + alias2(alias1((depth0 != null ? depth0.headCount : depth0), depth0))
     + "명</span> </p>\n            <p class=\"waiting-tel\">"
     + alias2(alias1((depth0 != null ? depth0.contactNumber : depth0), depth0))
-    + "</p>\n        </div>\n    </div>\n    \n    <div class=\"waiting-btn-area\">\n        <div class=\"btn-alarm\">\n            <ul class=\"alarm-opt\">\n                <li>5분 전</li>\n                <li>10분 전</li>\n            </ul>\n        </div>\n        <div class=\"btn-delete-can\"></div>\n        <div class=\"btn-delete-in\"></div>\n            \n    </div>\n</div>\n";
+    + "</p>\n        </div>\n    </div>\n"
+    + ((stack1 = (helpers.ticketStatus || (depth0 && depth0.ticketStatus) || helpers.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.status : depth0),{"name":"ticketStatus","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</div>\n";
+},"2":function(container,depth0,helpers,partials,data) {
+    return "    <div class=\"waiting-btn-area\">\n        <div class=\"btn-alarm\">\n            <ul class=\"alarm-opt\">\n                <li>5분 전</li>\n                <li>10분 전</li>\n            </ul>\n        </div>\n        <div class=\"btn-delete-can\"></div>\n        <div class=\"btn-delete-in\"></div>\n            \n    </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
