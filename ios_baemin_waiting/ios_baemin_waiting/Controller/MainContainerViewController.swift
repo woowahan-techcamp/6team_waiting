@@ -18,11 +18,18 @@ class MainContainerViewController: UIViewController {
     @IBOutlet weak var mapBtn: UIBarButtonItem!
     @IBOutlet weak var ticketBtn: UIBarButtonItem!
 
+    var ticket: WaitingTicket?
+
     var mapBtnSelected = false
-    var storeList: [Store] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTicket),
+                                               name: NSNotification.Name(rawValue: "validTicket"), object: nil)
+    }
+
+    func refreshTicket(_ notification: Notification) {
+        ticket = notification.userInfo?["ticket"] as! WaitingTicket?
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,15 +62,9 @@ class MainContainerViewController: UIViewController {
 
         mainCollectionVC.startActivityIndicator()
 
-        if let ticket = UserDefaults.standard.getTicket(keyName: "ticket") {
-            ServerRepository.postTicketValidCheck(ticketNumber: ticket.ticketNumber) { statusTicket in
-                let valid = statusTicket >= 10 ? false : true
-
-                if !valid {
-                    UserDefaults.standard.removeObject(forKey: "ticket")
-                }
-                self.performSegue(withIdentifier: "myTicketSegue", sender: nil)
-            }
+        // TODO: ticket manager 메소드 설정
+        if ticket != nil {
+            self.performSegue(withIdentifier: "myTicketSegue", sender: nil)
         } else {
             let alert = AlertHelper.okAlert(title: "티켓 없음", message: "현재 등록된 티켓이 없습니다.")
             self.present(alert, animated: true, completion: nil)

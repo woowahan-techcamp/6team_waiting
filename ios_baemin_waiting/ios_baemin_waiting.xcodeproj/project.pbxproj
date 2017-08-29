@@ -25,6 +25,8 @@
 		9847E3F21F4EF76000D91F35 /* MyTicket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9847E3F11F4EF76000D91F35 /* MyTicket.storyboard */; };
 		9847E3F41F4EF7E300D91F35 /* MyTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9847E3F31F4EF7E300D91F35 /* MyTicketViewController.swift */; };
 		985804971F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985804961F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift */; };
+		986B12251F55012600B25A1B /* WaitingTicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B12241F55012600B25A1B /* WaitingTicketManager.swift */; };
+		986B12291F554AB200B25A1B /* Userdefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B12281F554AB200B25A1B /* Userdefaults+Extension.swift */; };
 		986B3D9D1F3D3E1A00432FF7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */; };
 		986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D9E1F3D3E6600432FF7 /* StoreImageCell.swift */; };
 		986B3DA11F3D3E8100432FF7 /* StoreDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DA01F3D3E8100432FF7 /* StoreDescriptionCell.swift */; };
@@ -102,6 +104,8 @@
 		9847E3F11F4EF76000D91F35 /* MyTicket.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MyTicket.storyboard; path = View/Waiting/MyTicket.storyboard; sourceTree = "<group>"; };
 		9847E3F31F4EF7E300D91F35 /* MyTicketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTicketViewController.swift; sourceTree = "<group>"; };
 		985804961F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		986B12241F55012600B25A1B /* WaitingTicketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTicketManager.swift; sourceTree = "<group>"; };
+		986B12281F554AB200B25A1B /* Userdefaults+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Userdefaults+Extension.swift"; sourceTree = "<group>"; };
 		986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		986B3D9E1F3D3E6600432FF7 /* StoreImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreImageCell.swift; sourceTree = "<group>"; };
 		986B3DA01F3D3E8100432FF7 /* StoreDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDescriptionCell.swift; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 			children = (
 				980A56F51F3C304000A81DFE /* Store.swift */,
 				7E5E9EF41F4820AF007E2ADD /* WaitingTicket.swift */,
+				986B12241F55012600B25A1B /* WaitingTicketManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 				9842DB881F454EC400B8C409 /* WaitingTextField.swift */,
 				98A9EDA91F4D03E6008A3198 /* UIDevice.swift */,
 				98A9EDAB1F4D083A008A3198 /* UIFont+Extension.swift */,
+				986B12281F554AB200B25A1B /* Userdefaults+Extension.swift */,
 				985804961F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift */,
 				98A87A3E1F54060200D2D20B /* AlertHelper.swift */,
 			);
@@ -603,6 +609,7 @@
 				9870FECE1F3AFDB400656EEC /* MainCollectionViewCell.swift in Sources */,
 				98A87A3F1F54060200D2D20B /* AlertHelper.swift in Sources */,
 				986B3DAA1F3D3FFE00432FF7 /* StoreLineShowCell.swift in Sources */,
+				986B12291F554AB200B25A1B /* Userdefaults+Extension.swift in Sources */,
 				9870FECC1F3AFD6900656EEC /* MainCollectionViewController.swift in Sources */,
 				9847E3F41F4EF7E300D91F35 /* MyTicketViewController.swift in Sources */,
 				986B3D9D1F3D3E1A00432FF7 /* DetailViewController.swift in Sources */,
@@ -610,6 +617,7 @@
 				985804971F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift in Sources */,
 				7E5E9EF51F4820AF007E2ADD /* WaitingTicket.swift in Sources */,
 				980A56F61F3C304000A81DFE /* Store.swift in Sources */,
+				986B12251F55012600B25A1B /* WaitingTicketManager.swift in Sources */,
 				98A9EDAA1F4D03E6008A3198 /* UIDevice.swift in Sources */,
 				986B3DA61F3D3FCA00432FF7 /* StoreCallButtionCell.swift in Sources */,
 				7E1273CE1F434257000C7912 /* Constant.swift in Sources */,
