@@ -91,7 +91,6 @@ export class Manage {
         const answer = confirm("고객을 삭제하시겠습니까?");
         if (answer) {
             service.deleteTicket(num, "cancel").then(() => this.getWaitingList(this.storeId));
-            //jw
             service.push(num, this.messages[3]);
         }
     }
@@ -100,7 +99,6 @@ export class Manage {
         const answer = confirm("고객이 가게에 입장했습니까?");
         if (answer) {
             service.deleteTicket(num, "in").then(() => this.getWaitingList(this.storeId));
-            //jw
             service.push(num, this.messages[4]);
         }
     }
