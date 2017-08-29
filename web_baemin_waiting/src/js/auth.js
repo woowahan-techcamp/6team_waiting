@@ -89,13 +89,7 @@ export class Auth {
 
     signOut() {
         const token = this.currentToken();
-        return service.changeStatus(token, "off")
-            .then((res) => {
-                if(res.resultStatus === "off"){
-                    sessionStorage.removeItem("token");
-                    return "success";
-                } 
-            });        
+        sessionStorage.removeItem("token");
     }
 
     confirmPassword() {
@@ -116,7 +110,7 @@ export class Auth {
     userInfoInMypage(token) {
         service.getUserInfo(token)
             .then((userInfo) => {
-                util.setTemplateInHtml(".board", "my-info", userInfo)
+                util.setTemplateInHtml(".my-page-area", "my-info", userInfo)
                 this.myInfoHandler(userInfo);
             })
             .then(() => {
@@ -127,7 +121,7 @@ export class Auth {
     storeInfoInMypage(token) {
         service.getStoreInfo(token)
             .then((storeInfo) => {
-                util.setTemplateInHtml(".board", "my-info", storeInfo)
+                util.setTemplateInHtml(".my-page-area", "my-info", storeInfo)
                 this.myInfoHandler(storeInfo);
             });
     }
@@ -256,7 +250,7 @@ export class Auth {
         }
 
         this.isSaving = true;
-        service.saveImageInStorage(file, memberid)
+        return service.saveImageInStorage(file, memberid)
             .then((path) => {
                 return service.getStoreImageUrl(path);
             })
