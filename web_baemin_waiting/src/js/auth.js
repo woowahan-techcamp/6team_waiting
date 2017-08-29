@@ -73,28 +73,26 @@ export class Auth {
             return;
         }
         
-        if (this.isNotDuplication && (this.authId === id)) {
-            service.signUpUser(id, pwd, name, tel)
-                .then(() => {
-                    this.view.hideElement("sign-up");
-                    document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
-                    document.querySelector("#check-dup").style.color = "#FF6666";
-                })
-                .catch(() => {
-                    alert("회원가입 실패");
-                });
-        } else {
+        if (!this.isNotDuplication || (this.authId !== is)) {
             alert("아이디 중복 확인을 해주세요");
+            return;
         }
+
+        
+        return service.signUpUser(id, pwd, name, tel)
+            .then(() => {
+                return "success";
+            })
+            .catch(() => {
+                alert("회원가입 실패");
+            });
     }
 
     signOut() {
-
         const token = this.currentToken();
         service.changeStatus(token, "off")
             .then((res) => {
-                //console.log(res);
-                if(res.resultStatus == "off"){
+                if(res.resultStatus === "off"){
                     sessionStorage.removeItem("token");
                     this.view.goHome();
                 }  
@@ -106,13 +104,12 @@ export class Auth {
         const pwd = document.querySelector("#pwd-confirm").value;  
         service.signInUser(token.memberId, pwd)
             .then((token) => {
-                if(token.token == "fail"){
+                if (token.token === "fail") {
                     alert("잘못된 비밀번호입니다");
-                }else{
+                } else {
                     //jw
                     service.getStoreInfo(token)
                         .then((storeInfo) => {
-                            console.log(storeInfo);
                             util.setTemplateInHtml(".board", "my-info", storeInfo)
                                 .then(() => {
                                     this.myInfoHandler(storeInfo);
@@ -122,7 +119,6 @@ export class Auth {
             });
     }
 
-    //jw
     myInfoHandler(storeInfo) {
         const btnInfoMod = document.getElementById("btn-info-modify");
         const btnGoModify = document.getElementById("btn-go-modify");
@@ -252,44 +248,6 @@ export class Auth {
         if (!(token === "undefined")) {
             return JSON.parse(token);
         }
-    }
-
-    checkMyStore() {
-        const token = this.currentToken();
-       
-        if (!token) {
-            this.view.showElement("sign-in");
-            this.view.inactivateRoot();
-        } else if (token.storeId === 0) {
-            this.hasNoStore();
-        } else {
-             const manage = new Manage(token);
-        }
-    }
-
-    hasNoStore() {
-        this.view.showNaviPage("no-store").then(() => {
-            const btnGoRegister = document.getElementById("btn-go-register");
-            btnGoRegister.addEventListener("click", () => {
-                this.view.showNaviPage("register").then(() => { this.readyToRegister() });
-            });
-        });
-    }
-
-    readyToRegister() {
-        const menu = new Menu(".menus");
-        menu.addMenuInput();
-
-        const btnAddMenu = document.querySelector(".add-menu");
-        btnAddMenu.addEventListener("click", () => {
-            menu.addMenuInput();
-        });
-
-        const map = new Map("#regist-location");
-        map.on();
-        
-        const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", () => this.registerStore(map, menu));
     }
 
     updateStore(map, menu) {
