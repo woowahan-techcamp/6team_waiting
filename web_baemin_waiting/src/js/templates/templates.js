@@ -174,7 +174,7 @@ templates['waiting-member'] = template({"1":function(container,depth0,helpers,pa
     + alias2(alias1((depth0 != null ? depth0.headCount : depth0), depth0))
     + "명</span> </p>\n            <p class=\"waiting-tel\">"
     + alias2(alias1((depth0 != null ? depth0.contactNumber : depth0), depth0))
-    + "</p>\n        </div>\n\n        <div class=\"after-alarm\">\n            <span id=\"m5\">5</span>\n            <span id=\"m10\">10</span>\n        </div>\n    </div>\n    \n    <div class=\"waiting-btn-area\">\n        <div class=\"btn-alarm\">\n            <ul class=\"alarm-opt\">\n                <li>5분 전</li>\n                <li>10분 전</li>\n            </ul>\n        </div>\n        <div class=\"btn-delete-can\"></div>\n        <div class=\"btn-delete-in\"></div>\n            \n    </div>\n</div>\n";
+    + "</p>\n        </div>\n    </div>\n    \n    <div class=\"waiting-btn-area\">\n        <div class=\"btn-alarm\">\n            <ul class=\"alarm-opt\">\n                <li>5분 전</li>\n                <li>10분 전</li>\n            </ul>\n        </div>\n        <div class=\"btn-delete-can\"></div>\n        <div class=\"btn-delete-in\"></div>\n            \n    </div>\n</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 

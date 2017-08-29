@@ -1,6 +1,9 @@
 import util from "./util.js";
 import service from "./services/service.js";
 
+import { Regex } from "./regex.js";
+
+
 export class Manage {
 
     constructor(token){
@@ -104,9 +107,20 @@ export class Manage {
     }
 
     addClient() {
+        const regex = new Regex();
         const name = document.querySelector("#add-name");
         const count = document.querySelector("#add-count");
         const tel = document.querySelector("#add-tel");
+
+        if (!regex.isName(name.value)) {
+            alert("잘못된 이름 형식 입니다. 다시 입력해주세요");
+            return;
+        }
+
+        if (!regex.isTel(tel.value)) {
+            alert("잘못된 전화번호 형식 입니다. 다시 입력해주세요");
+            return;
+        }
 
         service.addTicket(this.storeId, name.value, count.value, 0, tel.value)
             .then(() => {
