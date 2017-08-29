@@ -14,12 +14,17 @@ export class Manage {
     }
 
     managePage() {
-        util.setTemplateInHtml(".board", "manage").then(() => {
-            this.switchStatus = document.querySelector("#store-status");
-            this.lineStatus = document.querySelector("#line-status");
-            this.btnAdd = document.querySelector("#btn-add-client");
-            this.on();
-        });
+        service.getStoreInfo(this.token).then((info) => {
+            console.log(info);
+            util.setTemplateInHtml(".board", "manage", info).then(() => {
+                this.switchStatus = document.querySelector("#store-status");
+                this.lineStatus = document.querySelector("#line-status");
+                this.btnAdd = document.querySelector("#btn-add-client");
+                this.on();
+            });
+        }).then(() => {
+            this.getWaitingList(this.token.storeId);
+        })
     }
 
     on() {
@@ -44,8 +49,11 @@ export class Manage {
     }
 
     setWaitingListInHtml(list) {
-        util.setTemplateInHtml(".waiting-list", "waiting-member", list)
-            .then(() => this.init());
+        const waitingList = document.querySelector(".waiting-list");
+        if (waitingList) {
+            util.setTemplateInHtml(".waiting-list", "waiting-member", list)
+                .then(() => this.init());
+        }
     }
 
     init() {
@@ -118,7 +126,7 @@ export class Manage {
             message = this.messages[1];
         } 
 
-        service.push(target.dataset.num, message);
+        service.push(parseInt(target.dataset.num), message);
     }
 
     switchHandler() {
@@ -159,6 +167,7 @@ export class Manage {
             service.changeStatus(this.token, "on").then((result) => this.refreshList());
         }
     }
+
     denyWaitingLine() {
         const answer = confirm("대기 거부를 하시면 앱에서 대기 신청을 할 수 없습니다. 대기 거부를 하시겠습니까?");
         if (answer) {

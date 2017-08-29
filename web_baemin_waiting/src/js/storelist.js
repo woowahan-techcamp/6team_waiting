@@ -1,19 +1,15 @@
 import util from "./util.js";
 import service from "./services/service.js";
 
-import { Scroll } from "./scroll.js";
-
 
 export class StoreList {
 
     constructor() {
-        this.scroll = new Scroll();
-
         this.stores = [];
-        this.pageNow = 0;//현재 페이지
+        this.pageNow = -1;//현재 페이지
         this.limit = 0; //최대 식당 개수
         this.PAGE_COUNT = 10;
-        this.position = 0;
+        this.scrollPosition = 0;
         
         this.storelistPage();
         this.init();       
@@ -21,7 +17,7 @@ export class StoreList {
 
     init(){
         service.getCountStores().then((result) => {
-            this.pageLIMIT = result.count;
+            this.limit = result.count;
         });
 
         this.getMoreStore();
@@ -39,10 +35,8 @@ export class StoreList {
     storelistPage() {
         util.setTemplateInHtml(".board", "store-list", this.stores)
             .then(() => {
-                console.log("POSITION",this.position);
-                document.querySelector(".store-card-list").scrollTop += this.position;
+                document.querySelector(".store-card-list").scrollTop += this.scrollPosition;
                 this.storeListHandler();
-                this.scroll.scrollPositionReset();
 
                 document.querySelector(".store-card-list").addEventListener("scroll", this.currentPosition.bind(this));
             });
@@ -53,7 +47,7 @@ export class StoreList {
             .then((info) => {
                 return util.setTemplateInHtml(".store-card-list", "store-detail", info)
             })
-            .then((re) => {
+            .then(() => {
                 const btnBack = document.querySelector("#btn-back");
                 btnBack.addEventListener("click", () => {
                     this.storelistPage();
@@ -63,16 +57,17 @@ export class StoreList {
 
     currentPosition() {
         const dom = document.querySelector(".store-card-list");
-        this.position = dom.scrollTop;
+        this.scrollPosition = dom.scrollTop;
 
-        if ((dom.scrollHeight - this.position) == dom.clientHeight) {
+        if ((dom.scrollHeight - this.scrollPosition) == dom.clientHeight) {
             this.getMoreStore();
         }
     }
 
     getMoreStore() {
+        if (this.limit !==0 && this.limit === this.stores.length) return;
 
-        const firstNum = this.pageNow;
+        const firstNum = this.pageNow + 1;
         const lastNum = (this.pageNow + this.PAGE_COUNT);
 
         return service.getOtherStoreList(firstNum, lastNum)

@@ -4,11 +4,11 @@ import service from "./services/service.js";
 import { Auth } from "./auth.js";
 import { Regex } from "./regex.js";
 import { Slide } from "./slide.js";
+import { Statistic } from "./statistic.js";
 import { StoreList } from "./storelist.js";
 import { View } from "./view.js";
 import { Manage } from "./manage.js";
 
-import { stat } from "./stat.data.js";
 
 
 export class HomeNavigator {
@@ -171,7 +171,7 @@ export class HomeNavigator {
                 break;
 
             case "statistic":
-                this.view.showNaviPage(destination, stat);
+                const stat = new Statistic();
                 break;
 
             case "store-list":

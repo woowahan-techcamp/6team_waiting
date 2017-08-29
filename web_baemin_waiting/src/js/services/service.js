@@ -47,6 +47,21 @@ const service = (() => {
         });
     }
 
+    const requestPush = function(protocol, url, data) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open(protocol, url);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    resolve(JSON.parse(xhr.response));
+                } else {
+                    // 백엔드 에러
+                }
+            };
+            xhr.send(data);
+        });
+    }
+
     return {
         // Public member 
 
@@ -138,7 +153,7 @@ const service = (() => {
 
         getStoreInfo(currentToken){
             const token = new TokenModel(currentToken);
-            return requestAjax("POST", `${baseUrl}/storeInfo`, token)
+            return requestAjax("POST", `${testUrl}/storeInfo`, token)
                 .then((storeInfo) => { return storeInfo });
 
         },

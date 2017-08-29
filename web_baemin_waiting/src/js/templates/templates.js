@@ -49,7 +49,15 @@ templates['input-menu'] = template({"compiler":[7,">= 4.0.0"],"main":function(co
     return "<input class=\"menu-name\" type=\"text\" placeholder=\"메뉴 이름\">\n<input class=\"menu-price\" type=\"number\" placeholder=\"메뉴 가격\">\n<button class=\"remove-menu\">-</button>\n";
 },"useData":true});
 templates['manage'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"manage\">\n    <h1>가게 이름</h1>\n\n    <div class=\"manage-switch\">\n        <div class=\"onoff\">\n            <span>OFF</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"store-status\">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>ON</span>\n        </div>\n\n        <div class=\"line\">\n            <span>대기 거부</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"line-status\">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>대기 허용</span>\n        </div>\n    <div>\n\n    <div class=\"waiting-list\">\n    </div>\n\n    <div class=\"manage-input-area\">\n        <dl class=\"client-form\">\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"add-name\"></dd>\n            <dt>인원</dt>\n            <dd><input type=\"number\" id=\"add-count\"></dd>\n            <dt>전화번호</dt>\n            <dd><input type=\"number\" id=\"add-tel\"></dd>\n        </dl>\n        <button id=\"btn-add-client\">추가</button>\n    </div>\n</div>\n";
+    var alias1=container.escapeExpression, alias2=depth0 != null ? depth0 : (container.nullContext || {}), alias3=helpers.helperMissing;
+
+  return "<div class=\"manage\">\n    <h1>"
+    + alias1(container.lambda((depth0 != null ? depth0.title : depth0), depth0))
+    + "</h1>\n\n    <div class=\"manage-switch\">\n        <div class=\"onoff\">\n            <span>OFF</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"store-status\" \n        "
+    + alias1((helpers.storeStatus || (depth0 && depth0.storeStatus) || alias3).call(alias2,(depth0 != null ? depth0.opened : depth0),0,{"name":"storeStatus","hash":{},"data":data}))
+    + ">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>ON</span>\n        </div>\n\n        <div class=\"line\">\n            <span>대기 거부</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"line-status\"  "
+    + alias1((helpers.storeStatus || (depth0 && depth0.storeStatus) || alias3).call(alias2,(depth0 != null ? depth0.opened : depth0),1,{"name":"storeStatus","hash":{},"data":data}))
+    + ">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>대기 허용</span>\n        </div>\n    <div>\n\n    <div class=\"waiting-list\">\n    </div>\n\n    <div class=\"manage-input-area\">\n        <dl class=\"client-form\">\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"add-name\"></dd>\n            <dt>인원</dt>\n            <dd><input type=\"number\" id=\"add-count\"></dd>\n            <dt>전화번호</dt>\n            <dd><input type=\"number\" id=\"add-tel\"></dd>\n        </dl>\n        <button id=\"btn-add-client\">추가</button>\n    </div>\n</div>\n";
 },"useData":true});
 templates['modify-store'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
@@ -113,77 +121,7 @@ templates['register'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
     + "\"></dd>\n\n            <dt>업체 사진</dt>\n            <dd><input type=\"file\" id=\"regist-file\"></dd>\n\n            <dt>메뉴</dt>\n            <dd class=\"menus\">\n                <button class=\"add-menu\">+</button>\n            </dd>\n            \n        </dl>\n    </div>\n\n    <button id=\"btn-reg-store\">가게등록</button>\n</div>\n\n\n<div class=\"map-modal\">\n    <div class=\"map-modal-content\">\n        <span id=\"btn-map-close\" class=\"btn-close\"><img src=\"/dist/public/images/close.png\"></span>\n        <div id=\"map\"></div>\n        <button id=\"btn-map-confirm\">확인</button>\n    </div>\n</div>";
 },"useData":true});
 templates['statistic'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
-
-  return "<div class=\"stat\">\n\n    <h1>가계 통계</h1>\n    <div>\n        <figure class=\"time-chart\">\n            <figcaption>주간 시간별 고객 수</figcaption>\n            <svg class=\"chart\" width=\"360\" height=\"160\" aria-labelledby=\"title\" role=\"img\">\n                <title id=\"title\">시간별 고객 수</title>\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["0"] : stack1), depth0))
-    + " * 2)\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["0"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text y=\"150\" dy=\".35em\">9시</text>\n                </g>\n\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["1"] : stack1), depth0))
-    + " * 2)\" x=\"30\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["1"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text x=\"30\" y=\"150\" dy=\".35em\">10시</text>\n                </g>\n\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["2"] : stack1), depth0))
-    + " * 2)\" x=\"60\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["2"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text x=\"60\" y=\"150\" dy=\".35em\">11시</text>\n                </g>\n\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["3"] : stack1), depth0))
-    + " * 2)\" x=\"90\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["3"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text x=\"90\" y=\"150\" dy=\".35em\">12시</text>\n                </g>\n\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["4"] : stack1), depth0))
-    + " * 2)\" x=\"120\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["4"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text x=\"120\" y=\"150\" dy=\".35em\">13시</text>\n                </g>\n\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["5"] : stack1), depth0))
-    + " * 2)\" x=\"150\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["5"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text x=\"150\" y=\"150\" dy=\".35em\">14시</text>\n                </g>\n\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["6"] : stack1), depth0))
-    + " * 2)\" x=\"180\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["6"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text x=\"180\" y=\"150\" dy=\".35em\">15시</text>\n                </g>\n\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["7"] : stack1), depth0))
-    + " * 2)\" x=\"210\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["7"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text x=\"210\" y=\"150\" dy=\".35em\">16시</text>\n                </g>\n\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["8"] : stack1), depth0))
-    + " * 2)\" x=\"240\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["8"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text x=\"240\" y=\"150\" dy=\".35em\">17시</text>\n                </g>\n\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["9"] : stack1), depth0))
-    + " * 2)\" x=\"270\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["9"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text x=\"270\" y=\"150\" dy=\".35em\">18시</text>\n                </g>\n\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["10"] : stack1), depth0))
-    + " * 2)\" x=\"300\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["10"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text x=\"300\" y=\"150\" dy=\".35em\">19시</text>\n                </g>\n\n                <g class=\"bar\">\n                    <rect width=\"20\" height=\"calc("
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["11"] : stack1), depth0))
-    + " * 2)\" x=\"330\" y=\"calc(140 - "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.time : depth0)) != null ? stack1["11"] : stack1), depth0))
-    + " * 2)\"></rect>\n                    <text x=\"330\" y=\"150\" dy=\".35em\">20시</text>\n                </g>\n            </svg>\n        </figure>\n\n        <figure class=\"age-chart\">\n            <figcaption>주간 연령별 고객 수</figcaption>\n                <svg class=\"age-chart\" width=\"400\" height=\"150\" aria-labelledby=\"title\" role=\"img\">\n                    <title id=\"title\">A bart chart showing information</title>\n                    <g class=\"age-bar\">\n                        <rect width="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.age : depth0)) != null ? stack1["0"] : stack1), depth0))
-    + " height=\"20\"></rect>\n                        <text x="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.age : depth0)) != null ? stack1["0"] : stack1), depth0))
-    + " y=\"10\" dy=\".35em\">10대</text>\n                    </g>\n                    <g class=\"age-bar\">\n                        <rect width="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.age : depth0)) != null ? stack1["1"] : stack1), depth0))
-    + " height=\"20\" y=\"30\"></rect>\n                        <text x="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.age : depth0)) != null ? stack1["1"] : stack1), depth0))
-    + " y=\"40\" dy=\".35em\">20대</text>\n                    </g>\n                    <g class=\"age-bar\">\n                        <rect width="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.age : depth0)) != null ? stack1["2"] : stack1), depth0))
-    + " height=\"20\" y=\"60\"></rect>\n                        <text x="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.age : depth0)) != null ? stack1["2"] : stack1), depth0))
-    + " y=\"70\" dy=\".35em\">30대</text>\n                    </g>\n                    <g class=\"age-bar\">\n                        <rect width="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.age : depth0)) != null ? stack1["3"] : stack1), depth0))
-    + " height=\"20\" y=\"90\"></rect>\n                        <text x="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.age : depth0)) != null ? stack1["3"] : stack1), depth0))
-    + " y=\"100\" dy=\".35em\">40대</text>\n                    </g>\n                    <g class=\"age-bar\">\n                        <rect width="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.age : depth0)) != null ? stack1["4"] : stack1), depth0))
-    + " height=\"20\" y=\"120\"></rect>\n                        <text x="
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.age : depth0)) != null ? stack1["4"] : stack1), depth0))
-    + " y=\"130\" dy=\".35em\">50대</text>\n                    </g>\n                </svg>\n        </figure>\n\n    </div>\n</div>";
+    return "<div class=\"stat\">\n    <h1>가계 통계</h1>\n\n    <div class=\"chart-area\">\n        <div class=\"weekCount-area\">\n            <h3>최근 4주간 주별 고객 수 통계</h3>\n            <canvas id=\"weekHeadCount\"></canvas>\n        </div>\n\n        <div class=\"age-area\">\n            <h3>최근 4주간 연령대별 고객 통계</h3>\n            <canvas id=\"clientAge\"></canvas>\n        </div>\n\n        <div class=\"time-area\">\n            <h3>시간대 별 평균 고객 수</h3>\n            <canvas id=\"clientTime\"></canvas>\n        </div>\n\n        <div class=\"party-area\">\n            <h3>동반 인원수별 고객 비율</h3>\n            <canvas id=\"clientParty\"></canvas>\n        </div>\n    </div>\n\n</div>";
 },"useData":true});
 templates['store-detail'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
@@ -201,7 +139,7 @@ templates['store-detail'] = template({"compiler":[7,">= 4.0.0"],"main":function(
     + " \n        </p>\n    </div>\n</div>";
 },"useData":true});
 templates['store-list'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var alias1=container.lambda, alias2=container.escapeExpression;
+    var alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : (container.nullContext || {}), alias4=helpers.helperMissing;
 
   return "        <div class=\"store-card\" id=\""
     + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
@@ -212,11 +150,11 @@ templates['store-list'] = template({"1":function(container,depth0,helpers,partia
     + "\" alt=\"\">\n            <dl>\n                <dt class=\"card-title\" id=\""
     + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
     + "\">"
-    + alias2(alias1((depth0 != null ? depth0.storeName : depth0), depth0))
+    + alias2((helpers.trimString || (depth0 && depth0.trimString) || alias4).call(alias3,(depth0 != null ? depth0.storeName : depth0),0,10,{"name":"trimString","hash":{},"data":data}))
     + "</dt>\n                <dd class=\"card-desc\" id=\""
     + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
     + "\">"
-    + alias2((helpers.trimString || (depth0 && depth0.trimString) || helpers.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.storeAddress : depth0),0,38,{"name":"trimString","hash":{},"data":data}))
+    + alias2((helpers.trimString || (depth0 && depth0.trimString) || alias4).call(alias3,(depth0 != null ? depth0.storeAddress : depth0),0,38,{"name":"trimString","hash":{},"data":data}))
     + "</dd>\n            </dl>\n        </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;

@@ -199,8 +199,8 @@ export class Auth {
 
         if (!menu.isOK) return;
 
-        if (!this.regex.isName(title)) {
-            alert("2 - 20 글자 수의 가게명을 입력해주세요");
+        if (!this.regex.isTitle(title)) {
+            alert("1 - 20 글자 수의 가게명을 입력해주세요");
             return;
         }
 
@@ -256,7 +256,7 @@ export class Auth {
 
     checkMyStore() {
         const token = this.currentToken();
-        
+       
         if (!token) {
             this.view.showElement("sign-in");
             this.view.inactivateRoot();
