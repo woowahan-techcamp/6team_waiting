@@ -28,8 +28,9 @@ const service = (() => {
     const fireStorage = app.storage();
     const fireStorageRef = app.storage().ref();
 
-    const baseUrl = "http://52.78.157.5:8080";
-
+    //const baseUrl = "http://52.78.157.5:8080";
+    const baseUrl = "http://192.168.100.18:8080/baeminWaiting004";
+    
 
     const requestAjax = function(protocol, url, data) {
         return new Promise((resolve, reject) => {
@@ -51,7 +52,7 @@ const service = (() => {
 
         addTicket(id, name, count, isStaying, tel) {
             const client = new ClientModel(id, name, count, isStaying, tel);
-            return requestAjax("POST", `${baseUrl}/addWaitingTicket`, client)
+            return requestAjax("POST", `${baseUrl}/addWebWaitingTicket`, client)
                 .then((result) => { return result })
                 .catch((err) => { return err });
         },
@@ -86,8 +87,8 @@ const service = (() => {
                 .then((result) => { return result })
         },
 
-        registerRestaurant(id, title, desc, tel, addr, x, y, menu, img) {
-            const store = new StoreModel(title, desc, tel, addr, x, y, id, menu, img);
+        registerRestaurant(id, title, desc, tel, addr, x, y, menu, img, storeId) {
+            const store = new StoreModel(title, desc, tel, addr, x, y, id, menu, img, storeId);
             return requestAjax("POST", `${baseUrl}/store`, store)
                 .then((result) => { return result.storeId })
                 .catch((err) => { return err });
@@ -130,7 +131,7 @@ const service = (() => {
 
         push(ticket, msg) {
             const push = new PushModel(ticket, msg);
-            return requestAjax("POST", `${baseUrl}/webpush`, push)
+            return requestAjax("POST", `${baseUrl}/push`, push)//url:: webpush(LOCAL), push(AWS) 
                 .then((status) => { return status })
                 .catch((err) => { return err });
         },
@@ -157,6 +158,20 @@ const service = (() => {
         getCountStores(){
             return requestAjax("POST", `${baseUrl}/countStores`)
                 .then((result) => { return result });
+        },
+
+        updateMemberInfo(id, pwd, name, tel){
+            const member = new MemberModel(id, pwd, name, tel);
+            return requestAjax("POST",`${baseUrl}/updateUserInfo`, member)
+                .then((status) => { return status })
+                .catch((err) => { return err });
+        },
+
+        getUserInfo(currentToken){
+            const token = new TokenModel(currentToken);
+            return requestAjax("POST", `${baseUrl}/getuserinfo`, token)
+                .then((userInfo) => { return userInfo });
+
         }
     }
 

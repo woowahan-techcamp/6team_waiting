@@ -9,11 +9,17 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AppleSDGothicNeo.ttc">
+            <string>AppleSDGothicNeo-Medium</string>
+            <string>AppleSDGothicNeo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Waiting Ticket View Controller-->
         <scene sceneID="ltc-7R-ELF">
             <objects>
-                <viewController id="N8g-JL-6T9" customClass="WaitingTicketViewController" customModule="ios_baemin_waiting" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WaitingTicketCreate" id="N8g-JL-6T9" customClass="WaitingTicketViewController" customModule="ios_baemin_waiting" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7c1-XR-f1v"/>
                         <viewControllerLayoutGuide type="bottom" id="Qrt-ML-EcC"/>
@@ -23,10 +29,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlh-FL-BZJ">
-                                <rect key="frame" x="16" y="16" width="343" height="319.5"/>
+                                <rect key="frame" x="16" y="16" width="343" height="339.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="jWI-Ou-qKG">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="319.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="339.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="cKn-E2-Nuo">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
@@ -55,19 +61,22 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Pkd-wa-XYI">
-                                                <rect key="frame" x="0.0" y="65" width="343" height="40"/>
+                                                <rect key="frame" x="0.0" y="65" width="343" height="60"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PK7-UM-tQ8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PK7-UM-tQ8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="foc-Gg-Kfs">
-                                                                <rect key="frame" x="0.0" y="10" width="59" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="70" id="psb-Sj-3U7"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-L5-49w">
-                                                                <rect key="frame" x="69" y="0.0" width="60" height="40"/>
+                                                                <rect key="frame" x="80" y="0.0" width="60" height="40"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="010" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0y2-Rk-gJi">
                                                                         <rect key="frame" x="16.5" y="10" width="27.5" height="20.5"/>
@@ -84,27 +93,45 @@
                                                                     <constraint firstItem="0y2-Rk-gJi" firstAttribute="centerY" secondItem="TLd-L5-49w" secondAttribute="centerY" id="qvI-xi-9aW"/>
                                                                 </constraints>
                                                             </view>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="12345678" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MGw-4l-TcJ" customClass="WaitingTextField" customModule="ios_baemin_waiting" customModuleProvider="target">
-                                                                <rect key="frame" x="139" y="0.0" width="204" height="40"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="0Uw-G3-bwc"/>
-                                                                </constraints>
-                                                                <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                                <textInputTraits key="textInputTraits"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="underlineStyle" value="YES"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </textField>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="jbM-hv-6He">
+                                                                <rect key="frame" x="150" y="0.0" width="193" height="60"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="12345678" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MGw-4l-TcJ" customClass="WaitingTextField" customModule="ios_baemin_waiting" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="193" height="40"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="40" id="Nah-f2-eYs"/>
+                                                                        </constraints>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="underlineStyle" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="numberTextFieldChanged:" destination="N8g-JL-6T9" eventType="editingChanged" id="xRh-Ow-JOU"/>
+                                                                        </connections>
+                                                                    </textField>
+                                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잘못된 형식의 전화번호입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSy-Lx-Zfw">
+                                                                        <rect key="frame" x="0.0" y="46" width="193" height="14"/>
+                                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Light" family="Apple SD Gothic Neo" pointSize="12"/>
+                                                                        <color key="textColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="TLd-L5-49w" firstAttribute="centerY" secondItem="foc-Gg-Kfs" secondAttribute="centerY" id="vHP-3S-93C"/>
+                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="PK7-UM-tQ8" secondAttribute="trailing" id="VBO-Of-DN2"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PK7-UM-tQ8" secondAttribute="trailing" id="40i-Z5-mKB"/>
+                                                    <constraint firstAttribute="height" constant="60" id="jwz-4U-0T5"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="94U-RB-MSh">
-                                                <rect key="frame" x="0.0" y="130" width="343" height="29"/>
+                                                <rect key="frame" x="0.0" y="150" width="343" height="29"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjF-Bx-fAz">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
@@ -136,7 +163,7 @@
                                                 <color key="tintColor" red="1" green="0.67843137249999996" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="S4f-mU-quW">
-                                                <rect key="frame" x="0.0" y="184" width="343" height="65.5"/>
+                                                <rect key="frame" x="0.0" y="204" width="343" height="65.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="매장 대기 여부" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMy-GC-2lY">
                                                         <rect key="frame" x="0.0" y="0.0" width="97.5" height="20.5"/>
@@ -150,8 +177,8 @@
                                                             <constraint firstAttribute="height" constant="35" id="Lwe-UH-lR6"/>
                                                         </constraints>
                                                         <segments>
-                                                            <segment title="매장에서 대기"/>
                                                             <segment title="밖에서 대기"/>
+                                                            <segment title="매장에서 대기"/>
                                                         </segments>
                                                         <color key="tintColor" red="1" green="0.67843137249999996" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </segmentedControl>
@@ -161,7 +188,7 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpZ-Y0-fu8">
-                                                <rect key="frame" x="0.0" y="274.5" width="343" height="45"/>
+                                                <rect key="frame" x="0.0" y="294.5" width="343" height="45"/>
                                                 <color key="backgroundColor" red="1" green="0.67843137249999996" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="Hgo-sA-P0b"/>
@@ -185,6 +212,9 @@
                                     <constraint firstAttribute="bottom" secondItem="jWI-Ou-qKG" secondAttribute="bottom" id="gcs-qC-Vjo"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="heI-cO-r22">
+                                <rect key="frame" x="177" y="291.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -192,6 +222,8 @@
                             <constraint firstAttribute="trailingMargin" secondItem="xlh-FL-BZJ" secondAttribute="trailing" id="2VR-aW-Gr0"/>
                             <constraint firstItem="xlh-FL-BZJ" firstAttribute="top" secondItem="7c1-XR-f1v" secondAttribute="bottom" constant="16" id="HPs-kL-PdO"/>
                             <constraint firstItem="xlh-FL-BZJ" firstAttribute="leading" secondItem="lfa-Hf-pYy" secondAttribute="leadingMargin" id="RE0-xY-ewJ"/>
+                            <constraint firstItem="heI-cO-r22" firstAttribute="centerX" secondItem="lfa-Hf-pYy" secondAttribute="centerX" id="WCe-4t-6Yp"/>
+                            <constraint firstItem="heI-cO-r22" firstAttribute="centerY" secondItem="lfa-Hf-pYy" secondAttribute="centerY" id="o4s-H2-mTH"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="kBI-Y6-NBh" appends="YES" id="eWq-VT-Zv9"/>
@@ -203,11 +235,15 @@
                         <size key="landscapeSize" width="603" height="375"/>
                     </fixedSimulatedSizeMetrics>
                     <connections>
+                        <outlet property="activityIndicator" destination="heI-cO-r22" id="p8U-8Q-rhp"/>
                         <outlet property="headCountLabel" destination="nbT-Ii-k2b" id="nNL-NM-4wX"/>
                         <outlet property="nameTextField" destination="JfX-On-E1K" id="pnK-aa-H5t"/>
                         <outlet property="phoneHeadView" destination="TLd-L5-49w" id="wAo-ml-1iH"/>
                         <outlet property="phoneNumberTextField" destination="MGw-4l-TcJ" id="AhM-iP-B6m"/>
+                        <outlet property="segmentedControl" destination="dKR-ga-nsy" id="PKe-xj-BPD"/>
                         <outlet property="stepperView" destination="yM2-sw-OSA" id="XJd-XW-WrY"/>
+                        <outlet property="wrongNumberLabel" destination="cSy-Lx-Zfw" id="h2K-zS-Z5B"/>
+                        <segue destination="39r-Ch-qb4" kind="presentation" identifier="showTicketResult" id="7uh-fY-R5W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ytA-YF-Ath" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -218,6 +254,14 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="5530" y="-88"/>
+        </scene>
+        <!--MyTicket-->
+        <scene sceneID="zDT-Oe-9sS">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MyTicket" storyboardName="MyTicket" referencedIdentifier="MyTicket" id="39r-Ch-qb4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="igv-LB-iqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6437.6000000000004" y="-89.505247376311857"/>
         </scene>
     </scenes>
 </document>

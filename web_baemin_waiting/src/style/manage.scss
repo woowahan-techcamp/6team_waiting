@@ -15,6 +15,18 @@ div.manage {
     -moz-box-sizing: border-box;
 }
 
+div.manage-switch  > .onoff {
+    float: left;
+    margin-left: 30px;
+    position: relative;
+}
+
+div.manage-switch  > .line {
+    float: right;
+    margin-right: 30px;
+    position: relative;
+}
+
 div.waiting-list {
     width: 50vw;
     padding: 5px;
@@ -104,12 +116,12 @@ div.btn-alarm {
     background-color: $manage-green;
 }
 
-div.btn-delete-in {
+div.btn-delete-can {
     background-image: url("/dist/public/images/close-white.png");
     background-color: $manage-red;
 }
 
-div.btn-delete-can {
+div.btn-delete-in {
     background-image: url("/dist/public/images/login.png");
     background-color: $manage-blue;
 }
@@ -127,6 +139,29 @@ div.manage-input-area {
 dl.client-form {
     width: 400px;
     margin-left: 30px;
+}
+
+dl.client-form dt {
+    width: 30%;
+    height: 20px;
+    float: left;
+    margin-top: 10px;
+}
+
+dl.client-form dd {
+    width: 70%;
+    height: 20px;
+    float: right;
+    margin-top: 10px;
+}
+
+dd input {
+    width: 80%;
+    height: 20px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 button#btn-add-client {
@@ -168,6 +203,35 @@ ul.show-opt > li {
     }
 }
 
+div.onoff > div, div.line > div {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+div#switch-off {
+    background-image: url("/dist/public/images/closed.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+div#switch-on {
+    background-image: url("/dist/public/images/open.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+div#switch-deny {
+    background-image: url("/dist/public/images/cancel.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+div#switch-allow {
+    background-image: url("/dist/public/images/checked.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 .switch {
   position: relative;
@@ -284,5 +348,21 @@ input:checked + .slider:before {
     }
     div.after-alarm {
         display: none;
+    }
+
+    div.manage-input-area {
+        height: 150px;
+    }
+
+    dl.client-form {
+        width: 300px;
+        margin-left: 10px;
+    }
+
+    button#btn-add-client {
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
     }
 }

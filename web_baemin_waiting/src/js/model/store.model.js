@@ -1,5 +1,5 @@
 export class StoreModel {
-    constructor(title, desc, tel, addr, addrX, addrY, id, menu, img){
+    constructor(title, desc, tel, addr, addrX, addrY, id, menu, img, storeid){
         this.storeName = title;
         this.storeTel = tel;
         this.storeAddress = addr;
@@ -9,5 +9,6 @@ export class StoreModel {
         this.memberId = id;
         this.menus = menu;
         this.storeImgUrl = img;
+        this.storeId = storeid;
     }
 }

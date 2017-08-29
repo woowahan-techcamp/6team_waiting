@@ -1,12 +1,14 @@
 import util from "./util.js";
 import service from "./services/service.js";
 
+import { Regex } from "./regex.js";
+
 
 export class Manage {
 
     constructor(token){
         this.status = "off";
-        this.messages = ["입장 5분 전 입니다", "입장 10분 전 입니다", "얼른 안오면 삭제합니다"];
+        this.messages = ["입장 5분 전 입니다", "입장 10분 전 입니다", "얼른 안오면 삭제합니다", "죄송합니다. 식당의 사정으로 대기표를 취소합니다.", "식당에 입장하셨습니다. 대기표를 삭제합니다."];
         this.token = token;
         this.storeId = token.storeId;
         this.refresh = undefined;
@@ -15,12 +17,16 @@ export class Manage {
     }
 
     managePage() {
-        util.setTemplateInHtml(".board", "manage").then(() => {
-            this.switchStatus = document.querySelector("#store-status");
-            this.lineStatus = document.querySelector("#line-status");
-            this.btnAdd = document.querySelector("#btn-add-client");
-            this.on();
-        });
+        service.getStoreInfo(this.token).then((info) => {
+            util.setTemplateInHtml(".board", "manage", info).then(() => {
+                this.switchStatus = document.querySelector("#store-status");
+                this.lineStatus = document.querySelector("#line-status");
+                this.btnAdd = document.querySelector("#btn-add-client");
+                this.on();
+            });
+        }).then(() => {
+            this.getWaitingList(this.token.storeId);
+        })
     }
 
     on() {
@@ -45,8 +51,11 @@ export class Manage {
     }
 
     setWaitingListInHtml(list) {
-        util.setTemplateInHtml(".waiting-list", "waiting-member", list)
-            .then(() => this.init());
+        const waitingList = document.querySelector(".waiting-list");
+        if (waitingList) {
+            util.setTemplateInHtml(".waiting-list", "waiting-member", list)
+                .then(() => this.init());
+        }
     }
 
     init() {
@@ -69,7 +78,7 @@ export class Manage {
     btnWaitingHandler(e, num) {
         if (e.target.className === "btn-alarm") {
             this.alarmHandler(e.target);
-        } else if (e.target.className === "btn-delete-in"){
+        } else if (e.target.className === "btn-delete-can"){
             this.cancelHandler(e.target, num);
         } else {
             this.deleteHandler(e.target, num);
@@ -85,6 +94,7 @@ export class Manage {
         const answer = confirm("고객을 삭제하시겠습니까?");
         if (answer) {
             service.deleteTicket(num, "cancel").then(() => this.getWaitingList(this.storeId));
+            service.push(num, this.messages[3]);
         }
     }
 
@@ -92,15 +102,33 @@ export class Manage {
         const answer = confirm("고객이 가게에 입장했습니까?");
         if (answer) {
             service.deleteTicket(num, "in").then(() => this.getWaitingList(this.storeId));
+            service.push(num, this.messages[4]);
         }
     }
 
     addClient() {
-        const name = document.querySelector("#add-name").value;
-        const count = document.querySelector("#add-count").value;
-        const tel = document.querySelector("#add-tel").value;
+        const regex = new Regex();
+        const name = document.querySelector("#add-name");
+        const count = document.querySelector("#add-count");
+        const tel = document.querySelector("#add-tel");
 
-        service.addTicket(this.storeId, name, count, 0, tel).then(() => this.getWaitingList(this.storeId));
+        if (!regex.isName(name.value)) {
+            alert("잘못된 이름 형식 입니다. 다시 입력해주세요");
+            return;
+        }
+
+        if (!regex.isTel(tel.value)) {
+            alert("잘못된 전화번호 형식 입니다. 다시 입력해주세요");
+            return;
+        }
+
+        service.addTicket(this.storeId, name.value, count.value, 0, tel.value)
+            .then(() => {
+                name.value = "";
+                count.value = "";
+                tel.value = "";
+                this.getWaitingList(this.storeId)
+            });
     }
 
     sendMessage(e, target) {
@@ -115,7 +143,7 @@ export class Manage {
             message = this.messages[1];
         } 
 
-        service.push(target.dataset.num, message);
+        service.push(parseInt(target.dataset.num), message);
     }
 
     switchHandler() {
@@ -156,6 +184,7 @@ export class Manage {
             service.changeStatus(this.token, "on").then((result) => this.refreshList());
         }
     }
+
     denyWaitingLine() {
         const answer = confirm("대기 거부를 하시면 앱에서 대기 신청을 할 수 없습니다. 대기 거부를 하시겠습니까?");
         if (answer) {

@@ -5,13 +5,8 @@
             <p class="waiting-name">{{this.name}} <span class="waiting-num">{{this.headCount}}명</span> </p>
             <p class="waiting-tel">{{this.contactNumber}}</p>
         </div>
-
-        <div class="after-alarm">
-            <span id="m5">5</span>
-            <span id="m10">10</span>
-        </div>
     </div>
-    
+    {{#ticketStatus this.status}}
     <div class="waiting-btn-area">
         <div class="btn-alarm">
             <ul class="alarm-opt">
@@ -19,9 +14,10 @@
                 <li>10분 전</li>
             </ul>
         </div>
-        <div class="btn-delete-in"></div>
         <div class="btn-delete-can"></div>
+        <div class="btn-delete-in"></div>
             
     </div>
+    {{/ticketStatus}}
 </div>
 {{/each}}
