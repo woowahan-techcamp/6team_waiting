@@ -32,14 +32,13 @@ export class Auth {
             return;
         }
 
-        service.signInUser(id, pwd)
+        return service.signInUser(id, pwd)
             .then((token) => {
-                if (!(token.token === "fail")) {
-                    window.sessionStorage.setItem("token", JSON.stringify(token));
-                    this.view.showInitialBoard();
-                    this.checkMyStore();
-                } else {
+                if (token.token === "fail") {
                     alert("아이디와 비밀번호를 확인해주세요");
+                } else {
+                    window.sessionStorage.setItem("token", JSON.stringify(token));
+                    return token;
                 }
             })
             .catch((err) => {
@@ -189,42 +188,6 @@ export class Auth {
         }
     }
 
-    checkMyStore() {
-        const token = this.currentToken();
-       
-        if (!token) {
-            this.view.showElement("sign-in");
-            this.view.inactivateRoot();
-        } else if (token.storeId === 0) {
-            this.hasNoStore();
-        } else {
-             const manage = new Manage(token);
-        }
-    }
-
-    hasNoStore() {
-        this.view.showNaviPage("no-store").then(() => {
-            const btnGoRegister = document.getElementById("btn-go-register");
-            btnGoRegister.addEventListener("click", () => {
-                this.view.showNaviPage("register").then(() => { this.readyToRegister() });
-            });
-        });
-    }
-
-    readyToRegister() {
-        const menu = new Menu(".menus");
-        menu.addMenuInput();
-
-        const btnAddMenu = document.querySelector(".add-menu");
-        btnAddMenu.addEventListener("click", () => {
-            menu.addMenuInput();
-        });
-
-        const map = new Map();
-        map.on();
-        
-        const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", () => this.registerStore(map, menu));
-    }
+    
 
 }

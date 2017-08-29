@@ -54,7 +54,12 @@ export class HomeNavigator {
         
         this.btnGoStore.addEventListener("click", this.goStoreHandler.bind(this));
 
-        this.btnLogin.addEventListener("click", () => this.auth.signIn());
+        this.btnLogin.addEventListener("click", () => {
+            this.auth.signIn().then(() => {
+                this.view.showInitialBoard();
+                this.manageHandler();
+            })
+        });
 
         this.btnLoginClose.addEventListener("click", () => {
             this.view.hideElement("sign-in");
@@ -181,7 +186,7 @@ export class HomeNavigator {
                 break;
 
             case "manage":
-                this.auth.checkMyStore();
+                this.manageHandler();
                 break;
 
             case "statistic":
@@ -200,6 +205,44 @@ export class HomeNavigator {
                 this.view.showNaviPage(destination);
                 break;
         }
+    }
+
+    manageHandler() {
+        const token = this.auth.currentToken();
+       
+        if (!token) {
+            this.view.showElement("sign-in");
+            this.view.inactivateRoot();
+        } else if (token.storeId === 0) {
+            this.hasNoStore();
+        } else {
+            const manage = new Manage(token);
+        };
+    }
+
+    hasNoStore() {
+        this.view.showNaviPage("no-store").then(() => {
+            const btnGoRegister = document.getElementById("btn-go-register");
+            btnGoRegister.addEventListener("click", () => {
+                this.view.showNaviPage("register").then(() => { this.readyToRegister() });
+            });
+        });
+    }
+
+    readyToRegister() {
+        const menu = new Menu(".menus");
+        menu.addMenuInput();
+
+        const btnAddMenu = document.querySelector(".add-menu");
+        btnAddMenu.addEventListener("click", () => {
+            menu.addMenuInput();
+        });
+
+        const map = new Map();
+        map.on();
+        
+        const btnRegister = document.getElementById("btn-reg-store");
+        btnRegister.addEventListener("click", () => this.auth.registerStore(map, menu));
     }
 
 }
