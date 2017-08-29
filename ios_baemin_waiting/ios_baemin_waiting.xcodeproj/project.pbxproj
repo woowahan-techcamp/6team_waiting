@@ -17,6 +17,7 @@
 		980A61EF1F54FF65002BEC8C /* StoreListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A61EE1F54FF65002BEC8C /* StoreListManager.swift */; };
 		980A61F21F55552A002BEC8C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A61F11F55552A002BEC8C /* UILabel+Extension.swift */; };
 		980A61F41F555545002BEC8C /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A61F31F555545002BEC8C /* UIDevice+Extension.swift */; };
+		980A61F61F556554002BEC8C /* waitingSound.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 980A61F51F556554002BEC8C /* waitingSound.aiff */; };
 		9814FD771F4AB65F002571EB /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9814FD761F4AB65F002571EB /* DetailMapViewController.swift */; };
 		981F72331F4C0863001A6318 /* MapViewController+NMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72321F4C0863001A6318 /* MapViewController+NMapDelegate.swift */; };
 		981F72351F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72341F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift */; };
@@ -94,6 +95,7 @@
 		980A61EE1F54FF65002BEC8C /* StoreListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListManager.swift; sourceTree = "<group>"; };
 		980A61F11F55552A002BEC8C /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		980A61F31F555545002BEC8C /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		980A61F51F556554002BEC8C /* waitingSound.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = waitingSound.aiff; sourceTree = "<group>"; };
 		9814FD761F4AB65F002571EB /* DetailMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
 		9814FD781F4AC9C6002571EB /* ios_baemin_waiting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ios_baemin_waiting.entitlements; sourceTree = "<group>"; };
 		981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		988FBEF41F3D842400161756 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				980A61F51F556554002BEC8C /* waitingSound.aiff */,
 				9870FEB91F3AD0C700656EEC /* 송파구.json */,
 				9879D9B51F34054900B4131A /* Assets.xcassets */,
 			);
@@ -459,6 +462,7 @@
 				9847E3F21F4EF76000D91F35 /* MyTicket.storyboard in Resources */,
 				98BE03DC1F38617D00179D43 /* Scripts in Resources */,
 				9842DB811F452E8A00B8C409 /* Waiting.storyboard in Resources */,
+				980A61F61F556554002BEC8C /* waitingSound.aiff in Resources */,
 				9871557A1F41738B001D81E4 /* LaunchScreen.storyboard in Resources */,
 				9870FEC61F3AFC1F00656EEC /* MainCollectionView.storyboard in Resources */,
 				987155781F4172EA001D81E4 /* StoreDetailView.storyboard in Resources */,
