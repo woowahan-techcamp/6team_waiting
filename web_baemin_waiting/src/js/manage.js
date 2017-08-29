@@ -136,13 +136,11 @@ export class Manage {
         let message = this.messages[0];
 
         if (opt === "5분 전") {
-            target.querySelector("#m5").style.visibility = "visible";
             message = this.messages[0];
         } else if (opt === "10분 전") {
-            target.querySelector("#m10").style.visibility = "visible";
             message = this.messages[1];
         } 
-
+        document.querySelector(".alarm-opt").classList.remove("show-opt");
         service.push(parseInt(target.dataset.num), message);
     }
 

@@ -4,6 +4,7 @@ export class Map {
         this.btnSearchLocation = document.querySelector("#btn-search-location");
         this.btnMapClose = document.querySelector("#btn-map-close");
         this.btnConfirm = document.querySelector("#btn-map-confirm");
+        this.map = 
         this.input = input;
     }
 
