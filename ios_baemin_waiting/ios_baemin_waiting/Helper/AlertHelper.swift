@@ -25,11 +25,10 @@ class AlertHelper {
                 if isSuccess == 1 {
 
                     UserDefaults.standard.removeObject(forKey: "ticket")
-
                     WaitingTicketManager.checkValidTicket()
 
                     if let mainCollectionVC = popUI as? MainCollectionViewController {
-                        mainCollectionVC.refreshData()
+                        mainCollectionVC.refreshHeader()
                     }
                 }
             }

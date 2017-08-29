@@ -126,7 +126,7 @@ class MainCollectionViewController: UIViewController {
     }
 
     func setDelegate() {
-        locationManager.delegate = self.storeListManager
+        locationManager.delegate = storeListManager
         locationManager.startUpdatingLocation()
     }
 
@@ -146,6 +146,10 @@ class MainCollectionViewController: UIViewController {
     }
 
     @IBAction func refreshBtnTapped(_ sender: UIButton) {
+        collectionView.reloadSections(IndexSet(0..<1))
+    }
+
+    func refreshHeader() {
         collectionView.reloadSections(IndexSet(0..<1))
     }
 
@@ -233,7 +237,7 @@ extension MainCollectionViewController: UICollectionViewDataSource {
         if let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath) as? MainCollectionReusableView {
 
             WaitingTicketManager.checkValidTicket()
-
+            refreshHeader()
             if let ticket = ticket {
                 sectionHeaderView.putTicket(ticket: ticket)
                 let lineCancelAlert = AlertHelper.lineCancelAlert(title: "대기취소", message: "현재 식당 대기가 취소됩니다.", waitingTicket: ticket, popUI: self)
