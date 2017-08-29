@@ -104,11 +104,17 @@ export class Manage {
     }
 
     addClient() {
-        const name = document.querySelector("#add-name").value;
-        const count = document.querySelector("#add-count").value;
-        const tel = document.querySelector("#add-tel").value;
+        const name = document.querySelector("#add-name");
+        const count = document.querySelector("#add-count");
+        const tel = document.querySelector("#add-tel");
 
-        service.addTicket(this.storeId, name, count, 0, tel).then(() => this.getWaitingList(this.storeId));
+        service.addTicket(this.storeId, name.value, count.value, 0, tel.value)
+            .then(() => {
+                name.value = "";
+                count.value = "";
+                tel.value = "";
+                this.getWaitingList(this.storeId)
+            });
     }
 
     sendMessage(e, target) {
