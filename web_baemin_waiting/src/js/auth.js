@@ -106,23 +106,29 @@ export class Auth {
                 if (token.token === "fail") {
                     alert("잘못된 비밀번호입니다");
                 } else if ( token.storeId === 0) { 
-                    service.getUserInfo(token)
-                        .then((userInfo) => {
-                            util.setTemplateInHtml(".board", "my-info", userInfo)
-                                .then(() => {
-                                    this.myInfoHandler(userInfo);
-                                    document.querySelector(".my-store").innerHTML = "";
-                                });
-                        });
+                    this.userInfoInMypage(token);
                 } else {
-                    service.getStoreInfo(token)
-                        .then((storeInfo) => {
-                            util.setTemplateInHtml(".board", "my-info", storeInfo)
-                                .then(() => {
-                                    this.myInfoHandler(storeInfo);
-                                });
-                        });             
+                    this.storeInfoInMypage(token);        
                 }
+            });
+    }
+
+    userInfoInMypage(token) {
+        service.getUserInfo(token)
+            .then((userInfo) => {
+                util.setTemplateInHtml(".board", "my-info", userInfo)
+                this.myInfoHandler(userInfo);
+            })
+            .then(() => {
+                document.querySelector(".my-store").innerHTML = "등록된 가게가 없습니다";
+            });;
+    }
+
+    storeInfoInMypage(token) {
+        service.getStoreInfo(token)
+            .then((storeInfo) => {
+                util.setTemplateInHtml(".board", "my-info", storeInfo)
+                this.myInfoHandler(storeInfo);
             });
     }
 
@@ -145,16 +151,24 @@ export class Auth {
         const name = document.querySelector("#mod-name").value;
         const tel = document.querySelector("#mod-tel").value;
         
+        if (!this.regex.isPassword(pwd)) {
+            alert("비밀번호 형식이 잘못됨");
+            return;
+        }
+
+        if (!this.regex.isName(name)) {
+            alert("이름 형식이 잘못됨");
+            return;
+        }
+
+        if (!this.regex.isTel(tel)) {
+            alert("전화번호 형식이 잘못됨");
+            return;
+        }
+
         service.updateMemberInfo(id, pwd, name, tel)
             .then(() => {
-                this.view.showNaviPage("my-page")
-                    .then(() => {
-                        const btnConfirm = document.getElementById("btn-confirm");
-                        btnConfirm.addEventListener("click", () => {
-                            this.confirmPassword();
-                        });
-                    });
-                alert("회원정보 수정이 되었습니다.");
+                alert("회원정보 수정이 완료되었습니다.");
             });
     }
 
