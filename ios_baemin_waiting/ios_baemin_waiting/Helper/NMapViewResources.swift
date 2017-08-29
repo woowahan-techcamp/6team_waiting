@@ -23,9 +23,9 @@ class NMapViewResources: NSObject {
         case NMapPOIflagTypeLocationOff:
             return #imageLiteral(resourceName: "pubtrans_ic_mylocation_off")
         case userPOIflagTypeDefault:
-            return #imageLiteral(resourceName: "marker")
+            return #imageLiteral(resourceName: "defaultMarker")
         case userPOIflagTypeSelected:
-            return #imageLiteral(resourceName: "pubtrans_exact_default")
+            return #imageLiteral(resourceName: "selectedMarker")
         case userPOIflagTypeInvisible:
             return #imageLiteral(resourceName: "1px_dot")
         default:
@@ -40,6 +40,8 @@ class NMapViewResources: NSObject {
         case NMapPOIflagTypeCompass:
             return CGPoint(x: 0.5, y: 0.5)
         case userPOIflagTypeDefault:
+            return CGPoint(x: 0.5, y: 1.0)
+        case userPOIflagTypeSelected:
             return CGPoint(x: 0.5, y: 1.0)
         case userPOIflagTypeInvisible:
             return CGPoint(x: 0.5, y: 0.5)
