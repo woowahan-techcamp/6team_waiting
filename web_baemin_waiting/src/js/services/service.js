@@ -158,6 +158,13 @@ const service = (() => {
         getCountStores(){
             return requestAjax("POST", `${baseUrl}/countStores`)
                 .then((result) => { return result });
+        },
+
+        updateMemberInfo(id, pwd, name, tel){
+            const member = new MemberModel(id, pwd, name, tel);
+            return requestAjax("POST",`${baseUrl}/updateUserInfo`, member)
+                .then((status) => { return status })
+                .catch((err) => { return err });
         }
     }
 

@@ -128,8 +128,22 @@ export class Auth {
         const btnGoModify = document.getElementById("btn-go-modify");
 
         btnInfoMod.addEventListener("click", () => {
-            // @TODO : haeun.kim
-            // 사용자 정보 업데이트
+            const id = this.currentToken().memberId; //질문
+            const pwd = document.querySelector("#mod-pwd").value;
+            const name = document.querySelector("#mod-name").value;
+            const tel = document.querySelector("#mod-tel").value;
+            service.updateMemberInfo(id, pwd, name, tel)
+                .then(() => {
+                    this.view.showNaviPage("my-page")
+                        .then(() => {
+                            const btnConfirm = document.getElementById("btn-confirm");
+                            btnConfirm.addEventListener("click", () => {
+                                this.confirmPassword();
+                            });
+                        });
+                    alert("회원정보 수정이 되었습니다.");
+                });
+
         });
         btnGoModify.addEventListener("click", () => {
             util.setTemplateInHtml(".board", "register", storeInfo)
