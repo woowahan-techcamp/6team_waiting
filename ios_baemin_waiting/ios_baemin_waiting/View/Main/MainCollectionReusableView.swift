@@ -10,9 +10,33 @@ import UIKit
 
 class MainCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var headerContents: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var storeNameLabel: UILabel!
+    @IBOutlet weak var orderLabel: UILabel!
 
-    @IBOutlet weak var restaurantsName: UILabel!
-    @IBOutlet weak var lineNumber: UILabel!
     @IBAction func lineCancleButton(_ sender: Any) {
+        self.popUI.present(alert, animated: true, completion: nil)
+    }
+
+    var alert = UIAlertController()
+    var popUI = UIViewController()
+    var ticket = WaitingTicket(name: "", phoneNumber: "", headCount: 0, isStaying: true, storeId: 0)
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+    }
+
+    func putTicket(ticket: WaitingTicket) {
+        nameLabel.text = ticket.name
+        storeNameLabel.text = ticket.storeName
+        orderLabel.text = "\(ticket.currentInLine) 번째"
+
+        self.ticket = ticket
+    }
+
+    func setAlert(alert: UIAlertController, popUI: UIViewController) {
+        self.alert = alert
+        self.popUI = popUI
     }
 }

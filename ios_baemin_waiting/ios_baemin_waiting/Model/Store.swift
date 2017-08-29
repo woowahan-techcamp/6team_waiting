@@ -20,6 +20,7 @@ class Store {
     private var _storeTel: String
     private var _storeIsOpened: Bool
     private var _currentInLine: Int
+    private var _storeShortAddress: String
 
     init() {
         self._storeName = ""
@@ -33,6 +34,7 @@ class Store {
         self._storeTel = ""
         self._storeIsOpened = true
         self._currentInLine = 0
+        self._storeShortAddress = ""
     }
     convenience init(storeName: String, storeId: Int, storeAddress: String, storeLatitude: String, storeLongitude: String, storeImgUrl: URL, currentInLine: Int) {
         self.init()
@@ -44,23 +46,19 @@ class Store {
         self._storeImgUrl = storeImgUrl
         self._currentInLine = currentInLine
     }
-    convenience init(storeName: String, storeId: Int, storeDescription: String, storeTel: String,
-                     storeImgUrl: URL, storeIsOpened: Bool, currentInLine: Int) {
+    convenience init(storeName: String, storeId: Int, storeDescription: String, storeTel: String, storeLatitude: String,
+                     storeLongitude: String, storeImgUrl: URL, currentInLine: Int) {
         self.init()
         self._storeName = storeName
         self._storeId = storeId
         self._storeDescription = storeDescription
         self._storeTel = storeTel
+        self._storeLatitude = storeLatitude
+        self._storeLongitude = storeLongitude
         self._storeImgUrl = storeImgUrl
-        self._storeIsOpened = storeIsOpened
         self._currentInLine = currentInLine
     }
 
-/*
-    빈거
-    mainStore
-    detailStore
-*/
     public var storeName: String {
         get { return self._storeName }
         set { self._storeName = newValue }
@@ -110,6 +108,10 @@ class Store {
         set { self._currentInLine = newValue }
     }
 
+    public var storeShortDistance: String {
+        return self._storeShortAddress
+    }
+
     public func getDistanceFromUser(userLocation: CLLocation) {
         let storeLat = CLLocationDegrees(self.storeLatitude)
         let storeLong = CLLocationDegrees(self.storeLongitude)
@@ -120,5 +122,36 @@ class Store {
 
         self._distanceToUser = distance
 
+    }
+    public func getShortAddress(address: String) {
+        let addrArray = address.components(separatedBy: " ")
+
+        var result = ""
+        if addrArray.count >= 3 {
+            var gu = addrArray[1]
+            var dong = addrArray[2]
+
+            if gu.hasSuffix("구") {
+                gu.remove(at: gu.index(before: gu.endIndex))
+            }
+            result += "\(gu)/"
+
+            if dong.hasSuffix("동") {
+                dong.remove(at: dong.index(before: dong.endIndex))
+            }
+
+            result += "\(dong)"
+        }
+
+        self._storeShortAddress = result
+
+    }
+    public func getStoreStatus(isOpened: Int) {
+        switch isOpened {
+        case 1:
+            self._storeIsOpened = true
+        default:
+            self._storeIsOpened = false
+        }
     }
 }

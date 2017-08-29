@@ -1,28 +1,50 @@
 //
-//  NaverMapHandler.swift
+//  DetailMapViewController.swift
 //  ios_baemin_waiting
 //
-//  Created by woowabrothers on 2017. 8. 8..
+//  Created by woowabrothers on 2017. 8. 21..
 //  Copyright © 2017년 woowabrothers. All rights reserved.
 //
 
 import UIKit
 
-class NaverMapHandler: NSObject {
+class DetailMapViewController: UIViewController {
 
-    enum State {
-        case disabled
-        case tracking
+    var mapView: NMapView?
+
+    var location: NGeoPoint?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        mapView = initMap(frame: self.view.bounds)
+
+        if let nMap = mapView {
+            nMap.delegate = self
+            nMap.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+            self.view.addSubview(nMap)
+
+            if let storeLocation = location {
+                nMap.setMapCenter(storeLocation)
+
+                addMarker(location: storeLocation)
+
+            }
+        }
+
     }
 
-    private var _currentState: State = .disabled
-    var myLocation: NGeoPoint?
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-    public var currentState: State {
-        get { return self._currentState }
-        set { self._currentState = newValue }
+        mapView?.viewWillAppear()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
 
+        mapView?.viewWillDisappear()
+    }
     func initMap(frame: CGRect) -> NMapView {
         guard let filePath = Bundle.main.path(forResource: "Info", ofType: "plist") else { return NMapView() }
 
@@ -36,12 +58,26 @@ class NaverMapHandler: NSObject {
         return mapView
     }
 
+    func addMarker(location: NGeoPoint) {
+
+        if let mapOverlayManager = mapView?.mapOverlayManager {
+
+            if let poiDataOverlay = mapOverlayManager.newPOIdataOverlay() {
+
+                poiDataOverlay.initPOIdata(1)
+
+                poiDataOverlay.addPOIitem(atLocation: location, title: nil,
+                                          type: userPOIflagTypeSelected, iconIndex: 0, with: nil)
+
+                poiDataOverlay.endPOIdata()
+                poiDataOverlay.showAllPOIdata()
+            }
+        }
+    }
 }
 
 // MARK: NMapViewDelegate
-// 지도 상태 변경 및 터치 이벤트 발생 시 호출되는 콜백 프로토콜
-
-extension NaverMapHandler: NMapViewDelegate {
+extension DetailMapViewController: NMapViewDelegate {
     func onMapView(_ mapView: NMapView!, initHandler error: NMapError!) {
         if error == nil {
             mapView.setMapCenter(NGeoPoint(longitude: 126.978371, latitude: 37.5666091), atLevel: 9)
@@ -51,24 +87,10 @@ extension NaverMapHandler: NMapViewDelegate {
             print("onMapView:initHandler: \(error.description)")
         }
     }
-
-    func onMapView(_ mapView: NMapView!, touchesEnded touches: Set<AnyHashable>!, with event: UIEvent!) {
-        if let touch = event.allTouches?.first {
-            // Get the specific point that was touched
-            let scrPoint = touch.location(in: mapView)
-
-            let touchedLocation = mapView.fromPoint(scrPoint)
-
-            mapView.setMapCenter(touchedLocation)
-        }
-    }
 }
 
 // MARK: NMapPOIdataOverlayDelegate
-// 지도 위에 표시되는 오버레이 아이템 클래스이며 NMapPOIdataOverlay 클래스에서 표시하는 기본 객체로 사용됩니다.
-// 지도에 표시되는 마커 이미지는 NMapPOIdataOverlayDelegate 프로토콜을 통해서 전달합니다.
-
-extension NaverMapHandler: NMapPOIdataOverlayDelegate {
+extension DetailMapViewController: NMapPOIdataOverlayDelegate {
     // 마커에 해당하는 이미지를 반환
     // 마커 선택 시 표시되는 이미지는 selected 값이 YES인 경우 반환
     func onMapOverlay(_ poiDataOverlay: NMapPOIdataOverlay!, imageForOverlayItem poiItem: NMapPOIitem!, selected: Bool) -> UIImage! {

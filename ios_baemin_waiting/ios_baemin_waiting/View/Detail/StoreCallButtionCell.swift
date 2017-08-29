@@ -13,6 +13,7 @@ class StoreCallButtonCell: UITableViewCell {
 
     @IBOutlet weak var callButton: UIButton!
     @IBAction func storeCallButton(_ sender: Any) {
+        print(tel)
         if let url = URL(string: "tel://\(tel)"), UIApplication.shared.canOpenURL(url) {
             if #available(iOS 10, *) {
                 UIApplication.shared.open(url)
