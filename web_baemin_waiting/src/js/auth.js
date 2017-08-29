@@ -105,7 +105,7 @@ export class Auth {
             .then((token) => {
                 if (token.token === "fail") {
                     alert("잘못된 비밀번호입니다");
-                } else if ( token.storeId == 0) { 
+                } else if ( token.storeId === 0) { 
                     service.getUserInfo(token)
                         .then((userInfo) => {
                             util.setTemplateInHtml(".board", "my-info", userInfo)
@@ -115,7 +115,6 @@ export class Auth {
                                 });
                         });
                 } else {
-                    //jw
                     service.getStoreInfo(token)
                         .then((storeInfo) => {
                             util.setTemplateInHtml(".board", "my-info", storeInfo)
