@@ -34,18 +34,6 @@ extension StoreListManager: CLLocationManagerDelegate {
 
         print("StoreList: Location Update Called")
 
-        //화면로딩시 userDefault의 티켓값이 유효인지 확인
-        // TODO: ticket Manager 메소드 수정
-        if let ticket = UserDefaults.standard.getTicket(keyName: "ticket") {
-            ServerRepository.postTicketValidCheck(ticketNumber: ticket.ticketNumber) { statusTicket in
-                let valid = statusTicket >= 10 ? false : true
-
-                if !valid {
-                    UserDefaults.standard.removeObject(forKey: "ticket")
-                }
-            }
-        }
-
         ServerRepository.postCurrentLocation(currentLocation: currentLocation) { isSuccess, storeData in
 
             if isSuccess {

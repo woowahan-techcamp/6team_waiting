@@ -77,6 +77,7 @@ class DetailViewController: UIViewController {
     }
 }
 
+// MARK: UITableViewDataSource
 extension DetailViewController : UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -125,6 +126,7 @@ extension DetailViewController : UITableViewDataSource {
 
 }
 
+// MARK: UITableViewDelegate
 extension DetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var cellHeight = CGFloat()

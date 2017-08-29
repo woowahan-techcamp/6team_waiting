@@ -10,7 +10,6 @@ import Foundation
 
 // MARK: NMapViewDelegate
 // 지도 상태 변경 및 터치 이벤트 발생 시 호출되는 콜백 프로토콜
-
 extension MapViewController: NMapViewDelegate {
 
     func initMap(frame: CGRect) -> NMapView {
@@ -100,6 +99,7 @@ extension MapViewController: NMapPOIdataOverlayDelegate {
 
 }
 
+// MARK: NMapLocationManagerDelegate
 extension MapViewController: NMapLocationManagerDelegate {
     // 현재 위치 변경시 호출
     func locationManager(_ locationManager: NMapLocationManager!, didUpdateTo location: CLLocation!) {
@@ -165,6 +165,7 @@ extension MapViewController: NMapLocationManagerDelegate {
 
 }
 
+// MARK: 원 그리기
 extension MapViewController {
 
     func addCircleAroundMyPosition() {

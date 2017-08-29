@@ -17,6 +17,8 @@ class MainCollectionViewController: UIViewController {
     let ticketView = MainCollectionReusableView()
 
     var storeList: [[Store]] = []
+    var ticket: WaitingTicket?
+
     var openStoreList: [Store] = []
     var closeStoreList: [Store] = []
 
@@ -45,6 +47,10 @@ class MainCollectionViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(endRefreshControl),
                                                name: NSNotification.Name(rawValue: "endRefreshControl"), object: nil)
 
+        // valid ticket
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTicket),
+                                               name: NSNotification.Name(rawValue: "validTicket"), object: nil)
+
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isHidden = true
@@ -58,7 +64,8 @@ class MainCollectionViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("appear")
+
+        WaitingTicketManager.checkValidTicket()
         startActivityIndicator()
         setDelegate()
     }
@@ -74,6 +81,7 @@ class MainCollectionViewController: UIViewController {
             startActivityIndicator()
 
             if let indexPath = collectionView.indexPathsForSelectedItems {
+
                 let storeId = storeList[indexPath[0].section][indexPath[0].item].storeId
                 if let detailViewController = segue.destination as? DetailViewController {
                     detailViewController.storeId = storeId
@@ -97,7 +105,9 @@ class MainCollectionViewController: UIViewController {
 
     func refreshDataUsingControl() {
         setDelegate()
+        WaitingTicketManager.checkValidTicket()
     }
+
     func refreshData() {
         startActivityIndicator()
         collectionView.isHidden = true
@@ -124,6 +134,7 @@ class MainCollectionViewController: UIViewController {
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
     }
+
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
@@ -135,16 +146,11 @@ class MainCollectionViewController: UIViewController {
     }
 
     @IBAction func refreshBtnTapped(_ sender: UIButton) {
-        refreshData()
-        if let parentVC = self.parent as? MainContainerViewController {
-            if UserDefaults.standard.getTicket(keyName: "ticket") == nil {
-                parentVC.ticketBtn.isEnabled = false
-                parentVC.ticketBtn.tintColor = .clear
-            } else {
-                parentVC.ticketBtn.isEnabled = true
-                parentVC.ticketBtn.tintColor = .black
-            }
-        }
+        collectionView.reloadSections(IndexSet(0..<1))
+    }
+
+    func refreshTicket(_ notification: Notification) {
+        ticket = notification.userInfo?["ticket"] as? WaitingTicket
     }
 
     func locationManagerFail(_ notification: NSNotification) {
@@ -226,15 +232,10 @@ extension MainCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath) as? MainCollectionReusableView {
 
-            if var myTicket = UserDefaults.standard.getTicket(keyName: "ticket") {
-                let lineCancelAlert = AlertHelper.lineCancelAlert(title: "대기취소", message: "현재 식당 대기가 취소됩니다.", waitingTicket: myTicket, popUI: self)
-
-                ServerRepository.postMylineCheck(ticket: myTicket) { mylineCheck in
-                    myTicket = mylineCheck
-                    sectionHeaderView.putTicket(ticket: myTicket)
-                }
-                sectionHeaderView.setAlert(alert: lineCancelAlert, popUI: self)
-            }
+            WaitingTicketManager.checkValidTicket()
+            sectionHeaderView.putTicket(ticket: ticket!)
+            let lineCancelAlert = AlertHelper.lineCancelAlert(title: "대기취소", message: "현재 식당 대기가 취소됩니다.", waitingTicket: ticket!, popUI: self)
+            sectionHeaderView.setAlert(alert: lineCancelAlert, popUI: self)
 
             return sectionHeaderView
         }
@@ -265,7 +266,7 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 
-        let size = UserDefaults.standard.object(forKey: "ticket") == nil ? CGSize(width: 0, height: 0) : CGSize(width: self.view.bounds.width, height: self.view.bounds.height/4)
+        let size = ticket == nil ? CGSize(width: 0, height: 0) : CGSize(width: self.view.bounds.width, height: self.view.bounds.height/4)
 
         return size
     }
@@ -278,21 +279,5 @@ extension MainCollectionViewController: UICollectionViewDelegate {
             activityIndicator.stopAnimating()
             collectionView.isHidden = false
         }
-    }
-}
-
-extension UserDefaults {
-    func getTicket(keyName: String) -> WaitingTicket? {
-        if self.object(forKey: keyName) != nil {
-            guard let archiveTicket = UserDefaults.standard.object(forKey: keyName) as? Data else {
-                return nil
-            }
-            guard let ticket = NSKeyedUnarchiver.unarchiveObject(with: archiveTicket) as? WaitingTicket else {
-                return nil
-            }
-
-            return ticket
-        }
-        return nil
     }
 }
