@@ -18,6 +18,7 @@
 		980A61F21F55552A002BEC8C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A61F11F55552A002BEC8C /* UILabel+Extension.swift */; };
 		980A61F41F555545002BEC8C /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A61F31F555545002BEC8C /* UIDevice+Extension.swift */; };
 		980A61F61F556554002BEC8C /* waitingSound.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 980A61F51F556554002BEC8C /* waitingSound.aiff */; };
+		980A61FE1F5577C7002BEC8C /* BaeminWaitingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A61FD1F5577C7002BEC8C /* BaeminWaitingUITests.swift */; };
 		9814FD771F4AB65F002571EB /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9814FD761F4AB65F002571EB /* DetailMapViewController.swift */; };
 		981F72331F4C0863001A6318 /* MapViewController+NMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72321F4C0863001A6318 /* MapViewController+NMapDelegate.swift */; };
 		981F72351F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72341F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift */; };
@@ -60,6 +61,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		980A62001F5577C7002BEC8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9879D9A31F34054900B4131A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9879D9AA1F34054900B4131A;
+			remoteInfo = ios_baemin_waiting;
+		};
 		9879D9F41F342CCC00B4131A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9879D9A31F34054900B4131A /* Project object */;
@@ -96,6 +104,9 @@
 		980A61F11F55552A002BEC8C /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		980A61F31F555545002BEC8C /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		980A61F51F556554002BEC8C /* waitingSound.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = waitingSound.aiff; sourceTree = "<group>"; };
+		980A61FB1F5577C7002BEC8C /* BaeminWaitingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaeminWaitingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		980A61FD1F5577C7002BEC8C /* BaeminWaitingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaeminWaitingUITests.swift; sourceTree = "<group>"; };
+		980A61FF1F5577C7002BEC8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9814FD761F4AB65F002571EB /* DetailMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
 		9814FD781F4AC9C6002571EB /* ios_baemin_waiting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ios_baemin_waiting.entitlements; sourceTree = "<group>"; };
 		981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +157,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		980A61F81F5577C7002BEC8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9879D9A81F34054900B4131A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -199,6 +217,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		980A61FC1F5577C7002BEC8C /* BaeminWaitingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				980A61FD1F5577C7002BEC8C /* BaeminWaitingUITests.swift */,
+				980A61FF1F5577C7002BEC8C /* Info.plist */,
+			);
+			path = BaeminWaitingUITests;
+			sourceTree = "<group>";
+		};
 		9842DB7F1F452E2D00B8C409 /* Waiting */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +241,7 @@
 				98BE03DB1F38617D00179D43 /* Scripts */,
 				9879D9AD1F34054900B4131A /* ios_baemin_waiting */,
 				9879D9F01F342CCC00B4131A /* BaeminWaitingUnitTests */,
+				980A61FC1F5577C7002BEC8C /* BaeminWaitingUITests */,
 				9879D9AC1F34054900B4131A /* Products */,
 				5433655D992779CE2FC79340 /* Pods */,
 				186DE9CF2B62B9A463548A4B /* Frameworks */,
@@ -225,6 +253,7 @@
 			children = (
 				9879D9AB1F34054900B4131A /* ios_baemin_waiting.app */,
 				9879D9EF1F342CCC00B4131A /* BaeminWaitingUnitTests.xctest */,
+				980A61FB1F5577C7002BEC8C /* BaeminWaitingUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -358,6 +387,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		980A61FA1F5577C7002BEC8C /* BaeminWaitingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 980A62021F5577C7002BEC8C /* Build configuration list for PBXNativeTarget "BaeminWaitingUITests" */;
+			buildPhases = (
+				980A61F71F5577C7002BEC8C /* Sources */,
+				980A61F81F5577C7002BEC8C /* Frameworks */,
+				980A61F91F5577C7002BEC8C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				980A62011F5577C7002BEC8C /* PBXTargetDependency */,
+			);
+			name = BaeminWaitingUITests;
+			productName = BaeminWaitingUITests;
+			productReference = 980A61FB1F5577C7002BEC8C /* BaeminWaitingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		9879D9AA1F34054900B4131A /* ios_baemin_waiting */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9879D9D31F34054A00B4131A /* Build configuration list for PBXNativeTarget "ios_baemin_waiting" */;
@@ -412,6 +459,12 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = woowabrothers;
 				TargetAttributes = {
+					980A61FA1F5577C7002BEC8C = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = B3PWYBKFUK;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9879D9AA1F34054900B4131A;
+					};
 					9879D9AA1F34054900B4131A = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = B3PWYBKFUK;
@@ -446,11 +499,19 @@
 			targets = (
 				9879D9AA1F34054900B4131A /* ios_baemin_waiting */,
 				9879D9EE1F342CCC00B4131A /* BaeminWaitingUnitTests */,
+				980A61FA1F5577C7002BEC8C /* BaeminWaitingUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		980A61F91F5577C7002BEC8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9879D9A91F34054900B4131A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -613,6 +674,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		980A61F71F5577C7002BEC8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				980A61FE1F5577C7002BEC8C /* BaeminWaitingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9879D9A71F34054900B4131A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -664,6 +733,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		980A62011F5577C7002BEC8C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9879D9AA1F34054900B4131A /* ios_baemin_waiting */;
+			targetProxy = 980A62001F5577C7002BEC8C /* PBXContainerItemProxy */;
+		};
 		9879D9F51F342CCC00B4131A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9879D9AA1F34054900B4131A /* ios_baemin_waiting */;
@@ -672,6 +746,32 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		980A62031F5577C7002BEC8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = BaeminWaitingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.woowabrothers.BaeminWaitingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = ios_baemin_waiting;
+			};
+			name = Debug;
+		};
+		980A62041F5577C7002BEC8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
+				INFOPLIST_FILE = BaeminWaitingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.woowabrothers.BaeminWaitingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = ios_baemin_waiting;
+			};
+			name = Release;
+		};
 		9879D9D11F34054A00B4131A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -864,6 +964,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		980A62021F5577C7002BEC8C /* Build configuration list for PBXNativeTarget "BaeminWaitingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				980A62031F5577C7002BEC8C /* Debug */,
+				980A62041F5577C7002BEC8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		9879D9A61F34054900B4131A /* Build configuration list for PBXProject "ios_baemin_waiting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
