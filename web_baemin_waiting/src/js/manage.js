@@ -1,7 +1,6 @@
 import util from "./util.js";
 import service from "./services/service.js";
 
-
 export class Manage {
 
     constructor(token){
@@ -76,7 +75,7 @@ export class Manage {
     btnWaitingHandler(e, num) {
         if (e.target.className === "btn-alarm") {
             this.alarmHandler(e.target);
-        } else if (e.target.className === "btn-delete-in"){
+        } else if (e.target.className === "btn-delete-can"){
             this.cancelHandler(e.target, num);
         } else {
             this.deleteHandler(e.target, num);
@@ -92,6 +91,8 @@ export class Manage {
         const answer = confirm("고객을 삭제하시겠습니까?");
         if (answer) {
             service.deleteTicket(num, "cancel").then(() => this.getWaitingList(this.storeId));
+            //jw
+            service.push(num, "죄송합니다. 식당의 사정으로 대기표를 취소합니다.");
         }
     }
 
@@ -99,6 +100,8 @@ export class Manage {
         const answer = confirm("고객이 가게에 입장했습니까?");
         if (answer) {
             service.deleteTicket(num, "in").then(() => this.getWaitingList(this.storeId));
+            //jw
+            service.push(num, "식당에 입장하셨습니다. 대기표를 삭제합니다.");
         }
     }
 

@@ -1,26 +1,25 @@
 <div class="register-store">
-    <h1 class="regist-title">사장님의 가게를 등록해주세요</h1>
+    <h1 class="regist-title">가게 정보 정보</h1>
     <h1 class="m-regist-title">가게등록</h1>
     <div>
         <dl class="reg-form">
             
             <dt>업체명</dt>
             <dd>
-                <input type="text" id="regist-name">
-                {{!-- <button id="btn-search-store">검색</button> --}}
+                <input type="text" id="regist-name" value="{{this.title}}">
             </dd>
 
             <dt>업체 위치</dt>
             <dd>
-                <input type="text" id="regist-location" placeholder="도로명 주소 입력 후 지도확인을 해주세요">
+                <input type="text" id="regist-location" placeholder="도로명 주소 입력 후 지도확인을 해주세요" value="{{this.addr}}">
                 <button id="btn-search-location">지도확인</button>
             </dd>
 
             <dt>전화번호</dt>
-            <dd><input type="number" id="regist-tel"></dd>
+            <dd><input type="number" id="regist-tel" value="{{this.tel}}"></dd>
 
             <dt>업체 설명</dt>
-            <dd><input type="text" id="regist-desc"></dd>
+            <dd><input type="text" id="regist-desc" value="{{this.desc}}"></dd>
 
             <dt>업체 사진</dt>
             <dd><input type="file" id="regist-file"></dd>
@@ -34,7 +33,6 @@
     </div>
 
     <button id="btn-reg-store">가게등록</button>
-    {{!-- jw --}}
 </div>
 
 

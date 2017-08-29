@@ -12,7 +12,7 @@ export class Auth {
 
     constructor(){
         this.authId = null;
-        this.isNotDuplication = false; 
+        this.isNotDuplication = true; // @TODO : haeun.kim
         this.regex = new Regex();
         this.view = new View(".view");
         this.isSaving = false;
@@ -32,13 +32,14 @@ export class Auth {
             return;
         }
 
-        return service.signInUser(id, pwd)
+        service.signInUser(id, pwd)
             .then((token) => {
-                if (token.token === "fail") {
-                    alert("아이디와 비밀번호를 확인해주세요");
-                } else {
+                if (!(token.token === "fail")) {
                     window.sessionStorage.setItem("token", JSON.stringify(token));
-                    return token;
+                    this.view.showInitialBoard();
+                    this.checkMyStore();
+                } else {
+                    alert("아이디와 비밀번호를 확인해주세요");
                 }
             })
             .catch((err) => {
@@ -72,28 +73,30 @@ export class Auth {
             return;
         }
         
-        if (!this.isNotDuplication && (this.authId !== id)) {
-            alert("아이디 중복 확인을 해주세요");
-            return;
-        }
-        
-        return service.signUpUser(id, pwd, name, tel)
+        if (this.isNotDuplication && (this.authId === id)) {
+            service.signUpUser(id, pwd, name, tel)
                 .then(() => {
-                    return "success";
+                    this.view.hideElement("sign-up");
+                    document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
+                    document.querySelector("#check-dup").style.color = "#FF6666";
                 })
                 .catch(() => {
                     alert("회원가입 실패");
                 });
-
+        } else {
+            alert("아이디 중복 확인을 해주세요");
+        }
     }
 
     signOut() {
+
         const token = this.currentToken();
         service.changeStatus(token, "off")
             .then((res) => {
+                //console.log(res);
                 if(res.resultStatus == "off"){
                     sessionStorage.removeItem("token");
-                    return "success";
+                    this.view.goHome();
                 }  
             });        
     }
@@ -103,15 +106,80 @@ export class Auth {
         const pwd = document.querySelector("#pwd-confirm").value;  
         service.signInUser(token.memberId, pwd)
             .then((token) => {
-                if (token.token === "fail") {
+                if(token.token == "fail"){
                     alert("잘못된 비밀번호입니다");
-                } else {
+                }else{
+                    //jw
                     service.getStoreInfo(token)
                         .then((storeInfo) => {
-                            util.setTemplateInHtml(".board", "my-info", storeInfo);
+                            console.log(storeInfo);
+                            util.setTemplateInHtml(".board", "my-info", storeInfo)
+                                .then(() => {
+                                    this.myInfoHandler(storeInfo);
+                                });
                         });             
                 }
             });
+    }
+
+    //jw
+    myInfoHandler(storeInfo) {
+        const btnInfoMod = document.getElementById("btn-info-modify");
+        const btnGoModify = document.getElementById("btn-go-modify");
+
+        btnInfoMod.addEventListener("click", () => {
+            const id = this.currentToken().memberId; //질문
+            const pwd = document.querySelector("#mod-pwd").value;
+            const name = document.querySelector("#mod-name").value;
+            const tel = document.querySelector("#mod-tel").value;
+            service.updateMemberInfo(id, pwd, name, tel)
+                .then(() => {
+                    this.view.showNaviPage("my-page")
+                        .then(() => {
+                            const btnConfirm = document.getElementById("btn-confirm");
+                            btnConfirm.addEventListener("click", () => {
+                                this.confirmPassword();
+                            });
+                        });
+                    alert("회원정보 수정이 되었습니다.");
+                });
+
+        });
+        btnGoModify.addEventListener("click", () => {
+            util.setTemplateInHtml(".board", "register", storeInfo)
+                .then(() => {
+                    const map = new Map("#regist-location");
+                    map.on();
+
+                    const menu = new Menu(".menus");
+                    const menuSize = storeInfo.menus.length;
+
+                    for( var i = 0 ; i < menuSize; i++ ){                        
+                        menu.addMenuInput();
+                    }
+
+                    const menuNameArr = document.querySelectorAll(".menu-name");                   
+                    for( var i = 0; i < menuSize; i++ ){
+                        menuNameArr[i].value = storeInfo.menus[i].name;
+                    }
+
+                    const menuPriceArr = document.querySelectorAll(".menu-price");
+                    for( var i = 0; i < menuSize; i++ ){
+                        menuPriceArr[i].value = storeInfo.menus[i].price;
+                    }
+
+                    const btnAddMenu = document.querySelector(".add-menu");
+                    btnAddMenu.addEventListener("click", () => {
+                        menu.addMenuInput();
+                    });
+                    
+                    const btnModify = document.querySelector("#btn-reg-store");
+                    btnModify.addEventListener("click", () => {
+                        this.updateStore(map, menu);
+                        
+                    });
+                });
+        });
     }
     
     registerStore(map, menu) {
@@ -157,33 +225,140 @@ export class Auth {
         }
 
         if (!file) {
-            aler("사진을 등록해주세요");
+            alert("사진을 등록해주세요");
             return;
         }
 
         this.isSaving = true;
-
-        return service.saveImageInStorage(file, memberid)
+        service.saveImageInStorage(file, memberid)
             .then((path) => {
                 return service.getStoreImageUrl(path);
             })
             .then((url) => {
-                return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus, url);
+                return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus, url, storeid);
             })
             .then((storeid) => {
                 const token = JSON.parse(window.sessionStorage.getItem("token"));
                 token.storeId = storeid;
                 window.sessionStorage.setItem("token", JSON.stringify(token));
+                this.view.showNaviPage("manage");
+
                 this.isSaving = false;
             });
     }
 
     currentToken() {
         const token = sessionStorage.getItem("token");
-        if (token !== "undefined") {
+        if (!(token === "undefined")) {
             return JSON.parse(token);
         }
     }
+
+    checkMyStore() {
+        const token = this.currentToken();
+       
+        if (!token) {
+            this.view.showElement("sign-in");
+            this.view.inactivateRoot();
+        } else if (token.storeId === 0) {
+            this.hasNoStore();
+        } else {
+             const manage = new Manage(token);
+        }
+    }
+
+    hasNoStore() {
+        this.view.showNaviPage("no-store").then(() => {
+            const btnGoRegister = document.getElementById("btn-go-register");
+            btnGoRegister.addEventListener("click", () => {
+                this.view.showNaviPage("register").then(() => { this.readyToRegister() });
+            });
+        });
+    }
+
+    readyToRegister() {
+        const menu = new Menu(".menus");
+        menu.addMenuInput();
+
+        const btnAddMenu = document.querySelector(".add-menu");
+        btnAddMenu.addEventListener("click", () => {
+            menu.addMenuInput();
+        });
+
+        const map = new Map("#regist-location");
+        map.on();
+        
+        const btnRegister = document.getElementById("btn-reg-store");
+        btnRegister.addEventListener("click", () => this.registerStore(map, menu));
+    }
+
+    updateStore(map, menu) {
+        if (this.isSaving) {
+            return alert("처리중입니다");
+        }
+
+        const token = this.currentToken();
+        const storeid = token.storeId;
+        const memberid = token.memberId;
+        const menus = menu.getMenus();
+        const title = document.getElementById("regist-name").value;
+        const desc = document.getElementById("regist-desc").value;
+        const tel = document.getElementById("regist-tel").value;
+        const addr = document.getElementById("regist-location").value;
+        const file = document.getElementById("regist-file").files[0];
+
+        if (!menu.isOK) return;
+
+        if (!this.regex.isName(title)) {
+            alert("2 - 20 글자 수의 가게명을 입력해주세요");
+            return;
+        }
+
+        if (!this.regex.isDescription(desc)) {
+            alert("2 - 40 글자 수의 가게 설명을 입력해주세요");
+            return;
+        }
+
+        if (!this.regex.isTel(tel)) {
+            alert("잘못된 전화번호 형식입니다");
+            return;
+        }
+
+        if (!this.regex.isAddrress(addr)) {
+            alert("2 - 40 글자 수의 가게 주소를 입력해주세요");
+            return;
+        }
+
+        this.isSaving = true;
+
+        if (file == null) {
+            service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus, file, storeid)
+                .then((storeid) => {
+                    const token = JSON.parse(window.sessionStorage.getItem("token"));
+                    token.storeId = storeid;
+                    window.sessionStorage.setItem("token", JSON.stringify(token));
+                    this.view.showNaviPage("manage");
+
+                    this.isSaving = false;
+                });
+        } else {
+            service.saveImageInStorage(file, memberid)
+                .then((path) => {
+                    return service.getStoreImageUrl(path);
+                })
+                .then((url) => {
+                    return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus, url, storeid);
+                })
+                .then((storeid) => {
+                    const token = JSON.parse(window.sessionStorage.getItem("token"));
+                    token.storeId = storeid;
+                    window.sessionStorage.setItem("token", JSON.stringify(token));
+                    this.view.showNaviPage("manage");
     
+                    this.isSaving = false;
+                });
+        }
+
+    }
 
 }

@@ -36,7 +36,6 @@ export class HomeNavigator {
         this.slide = new Slide("slide-box");
         this.view = new View(".view");
 
-        this.whichBtnIng = "";
     }
 
     on() {
@@ -155,19 +154,6 @@ export class HomeNavigator {
         }
 
         this.view.inactivateRoot();
-    }
-
-    myInfoHandler() {
-        const btnInfoMod = document.getElementById("btn-info-modify");
-        const btnGoModify = document.getElementById("btn-go-modify");
-
-        btnInfoMod.addEventListener("click", () => {
-            // @TODO : haeun.kim
-            // 사용자 정보 업데이트
-        });
-        btnGoModify.addEventListener("click", () => {
-            util.setTemplateInHtml(".board", "modify-store");
-        });
     }
     
     showRegister() {

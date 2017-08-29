@@ -1,14 +1,15 @@
 export class Map {
 
-    constructor() {
+    constructor(input) {
         this.btnSearchLocation = document.querySelector("#btn-search-location");
         this.btnMapClose = document.querySelector("#btn-map-close");
         this.btnConfirm = document.querySelector("#btn-map-confirm");
+        this.input = input;
     }
 
     on() {
         this.btnSearchLocation.addEventListener("click", () => {
-            const location = document.querySelector("#regist-location").value;
+            const location = document.querySelector(this.input).value;
             if (location) {
                 this.searchLocationOnMap(location);
             } else {

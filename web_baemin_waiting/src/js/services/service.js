@@ -28,8 +28,9 @@ const service = (() => {
     const fireStorage = app.storage();
     const fireStorageRef = app.storage().ref();
 
-    const baseUrl = "http://52.78.157.5:8080";
-    const testUrl = "http://192.168.100.18:8080/baeminWaiting004";
+    //const baseUrl = "http://52.78.157.5:8080";
+    const baseUrl = "http://192.168.100.18:8080/baeminWaiting004";
+    
 
     const requestAjax = function(protocol, url, data) {
         return new Promise((resolve, reject) => {
@@ -43,21 +44,6 @@ const service = (() => {
                 }
             };
             xhr.send(JSON.stringify(data));
-        });
-    }
-
-    const requestPush = function(protocol, url, data) {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open(protocol, url);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    resolve(JSON.parse(xhr.response));
-                } else {
-                    // 백엔드 에러
-                }
-            };
-            xhr.send(data);
         });
     }
 
@@ -101,8 +87,8 @@ const service = (() => {
                 .then((result) => { return result })
         },
 
-        registerRestaurant(id, title, desc, tel, addr, x, y, menu, img) {
-            const store = new StoreModel(title, desc, tel, addr, x, y, id, menu, img);
+        registerRestaurant(id, title, desc, tel, addr, x, y, menu, img, storeId) {
+            const store = new StoreModel(title, desc, tel, addr, x, y, id, menu, img, storeId);
             return requestAjax("POST", `${baseUrl}/store`, store)
                 .then((result) => { return result.storeId })
                 .catch((err) => { return err });
@@ -145,15 +131,14 @@ const service = (() => {
 
         push(ticket, msg) {
             const push = new PushModel(ticket, msg);
-            console.log(push);
-            return requestAjax("POST", `${baseUrl}/webpush`, push)
+            return requestAjax("POST", `${baseUrl}/push`, push)//url:: webpush(LOCAL), push(AWS) 
                 .then((status) => { return status })
                 .catch((err) => { return err });
         },
 
         getStoreInfo(currentToken){
             const token = new TokenModel(currentToken);
-            return requestAjax("POST", `${testUrl}/storeInfo`, token)
+            return requestAjax("POST", `${baseUrl}/storeInfo`, token)
                 .then((storeInfo) => { return storeInfo });
 
         },
@@ -173,6 +158,13 @@ const service = (() => {
         getCountStores(){
             return requestAjax("POST", `${baseUrl}/countStores`)
                 .then((result) => { return result });
+        },
+
+        updateMemberInfo(id, pwd, name, tel){
+            const member = new MemberModel(id, pwd, name, tel);
+            return requestAjax("POST",`${baseUrl}/updateUserInfo`, member)
+                .then((status) => { return status })
+                .catch((err) => { return err });
         }
     }
 
