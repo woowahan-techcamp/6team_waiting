@@ -49,7 +49,15 @@ templates['input-menu'] = template({"compiler":[7,">= 4.0.0"],"main":function(co
     return "<input class=\"menu-name\" type=\"text\" placeholder=\"메뉴 이름\">\n<input class=\"menu-price\" type=\"number\" placeholder=\"메뉴 가격\">\n<button class=\"remove-menu\">-</button>\n";
 },"useData":true});
 templates['manage'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"manage\">\n    <h1>가게 이름</h1>\n\n    <div class=\"manage-switch\">\n        <div class=\"onoff\">\n            <span>OFF</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"store-status\">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>ON</span>\n        </div>\n\n        <div class=\"line\">\n            <span>대기 거부</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"line-status\">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>대기 허용</span>\n        </div>\n    <div>\n\n    <div class=\"waiting-list\">\n    </div>\n\n    <div class=\"manage-input-area\">\n        <dl class=\"client-form\">\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"add-name\"></dd>\n            <dt>인원</dt>\n            <dd><input type=\"number\" id=\"add-count\"></dd>\n            <dt>전화번호</dt>\n            <dd><input type=\"number\" id=\"add-tel\"></dd>\n        </dl>\n        <button id=\"btn-add-client\">추가</button>\n    </div>\n</div>\n";
+    var alias1=container.escapeExpression, alias2=depth0 != null ? depth0 : (container.nullContext || {}), alias3=helpers.helperMissing;
+
+  return "<div class=\"manage\">\n    <h1>"
+    + alias1(container.lambda((depth0 != null ? depth0.title : depth0), depth0))
+    + "</h1>\n\n    <div class=\"manage-switch\">\n        <div class=\"onoff\">\n            <span>OFF</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"store-status\" \n        "
+    + alias1((helpers.storeStatus || (depth0 && depth0.storeStatus) || alias3).call(alias2,(depth0 != null ? depth0.opened : depth0),0,{"name":"storeStatus","hash":{},"data":data}))
+    + ">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>ON</span>\n        </div>\n\n        <div class=\"line\">\n            <span>대기 거부</span>\n            <label class=\"switch\">\n                <input type=\"checkbox\" id=\"line-status\"  "
+    + alias1((helpers.storeStatus || (depth0 && depth0.storeStatus) || alias3).call(alias2,(depth0 != null ? depth0.opened : depth0),1,{"name":"storeStatus","hash":{},"data":data}))
+    + ">\n                <span class=\"slider round\"></span>\n            </label>\n            <span>대기 허용</span>\n        </div>\n    <div>\n\n    <div class=\"waiting-list\">\n    </div>\n\n    <div class=\"manage-input-area\">\n        <dl class=\"client-form\">\n            <dt>이름</dt>\n            <dd><input type=\"text\" id=\"add-name\"></dd>\n            <dt>인원</dt>\n            <dd><input type=\"number\" id=\"add-count\"></dd>\n            <dt>전화번호</dt>\n            <dd><input type=\"number\" id=\"add-tel\"></dd>\n        </dl>\n        <button id=\"btn-add-client\">추가</button>\n    </div>\n</div>\n";
 },"useData":true});
 templates['modify-store'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"register-store\">\n    <h1 class=\"regist-title\">사장님의 가게를 수정해주세요</h1>\n    <div>\n        <dl class=\"reg-form\">\n            \n            <dt>업체명</dt>\n            <dd>\n                <input type=\"text\" id=\"mod-name\" value=\"원래 저장된 이름\">\n                <button id=\"btn-search-store\">검색</button>\n            </dd>\n\n            <dt>업체 위치</dt>\n            <dd><input type=\"text\" id=\"mod-location\" value=\"원래 저장된 설명\"></dd>\n\n            <dt>업체 설명</dt>\n            <dd><input type=\"text\" id=\"mod-desc\"></dd>\n\n            <dt>업체 사진</dt>\n            <dd><input type=\"file\"></dd>\n\n            <dt>메뉴</dt>\n            <dd class=\"menus\">\n                <button class=\"add-menu\">+</button>\n            </dd>\n            \n        </dl>\n    </div>\n\n    <button id=\"btn-reg-store\">가게등록</button>\n\n</div>";
@@ -183,7 +191,7 @@ templates['store-detail'] = template({"compiler":[7,">= 4.0.0"],"main":function(
     + " \n        </p>\n    </div>\n</div>";
 },"useData":true});
 templates['store-list'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var alias1=container.lambda, alias2=container.escapeExpression;
+    var alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : (container.nullContext || {}), alias4=helpers.helperMissing;
 
   return "        <div class=\"store-card\" id=\""
     + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
@@ -194,11 +202,11 @@ templates['store-list'] = template({"1":function(container,depth0,helpers,partia
     + "\" alt=\"\">\n            <dl>\n                <dt class=\"card-title\" id=\""
     + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
     + "\">"
-    + alias2(alias1((depth0 != null ? depth0.storeName : depth0), depth0))
+    + alias2((helpers.trimString || (depth0 && depth0.trimString) || alias4).call(alias3,(depth0 != null ? depth0.storeName : depth0),0,10,{"name":"trimString","hash":{},"data":data}))
     + "</dt>\n                <dd class=\"card-desc\" id=\""
     + alias2(alias1((depth0 != null ? depth0.storeId : depth0), depth0))
     + "\">"
-    + alias2((helpers.trimString || (depth0 && depth0.trimString) || helpers.helperMissing).call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.storeAddress : depth0),0,38,{"name":"trimString","hash":{},"data":data}))
+    + alias2((helpers.trimString || (depth0 && depth0.trimString) || alias4).call(alias3,(depth0 != null ? depth0.storeAddress : depth0),0,38,{"name":"trimString","hash":{},"data":data}))
     + "</dd>\n            </dl>\n        </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;

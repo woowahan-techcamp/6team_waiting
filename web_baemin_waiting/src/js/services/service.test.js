@@ -28,8 +28,8 @@ const service = (() => {
     const fireStorage = app.storage();
     const fireStorageRef = app.storage().ref();
 
-    const baseUrl = "http://52.78.157.5:8080";
-    const testUrl = "http://192.168.100.18:8080/baeminWaiting004";
+    const baseUrl = "http://demo3901264.mockable.io";
+
 
     const requestAjax = function(protocol, url, data) {
         return new Promise((resolve, reject) => {
@@ -43,21 +43,6 @@ const service = (() => {
                 }
             };
             xhr.send(JSON.stringify(data));
-        });
-    }
-
-    const requestPush = function(protocol, url, data) {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open(protocol, url);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    resolve(JSON.parse(xhr.response));
-                } else {
-                    // 백엔드 에러
-                }
-            };
-            xhr.send(data);
         });
     }
 
@@ -145,7 +130,6 @@ const service = (() => {
 
         push(ticket, msg) {
             const push = new PushModel(ticket, msg);
-            console.log(push);
             return requestAjax("POST", `${baseUrl}/webpush`, push)
                 .then((status) => { return status })
                 .catch((err) => { return err });
@@ -153,7 +137,7 @@ const service = (() => {
 
         getStoreInfo(currentToken){
             const token = new TokenModel(currentToken);
-            return requestAjax("POST", `${testUrl}/storeInfo`, token)
+            return requestAjax("POST", `${baseUrl}/storeInfo`, token)
                 .then((storeInfo) => { return storeInfo });
 
         },
@@ -165,7 +149,8 @@ const service = (() => {
         },
 
         getOtherStoreList(firstNum, lastNum){
-            const page = new PageModel(firstNum, lastNum);
+            const page = new PageModel( 1, 11);
+            //const page = new PageModel( firstNum, lastNum);
             return requestAjax("POST", `${baseUrl}/otherStores`, page)
                 .then((result) => { return result });
         },

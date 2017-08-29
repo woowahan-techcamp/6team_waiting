@@ -130,13 +130,14 @@ export class Auth {
         const desc = document.getElementById("regist-desc").value;
         const tel = document.getElementById("regist-tel").value;
         const addr = document.getElementById("regist-location").value;
+        const file = document.getElementById("regist-file").files[0];
 
         if (!menu.isOK) return;
 
-        // if (!this.regex.isName(title)) {
-        //     alert("2 - 20 글자 수의 가게명을 입력해주세요");
-        //     return;
-        // }
+        if (!this.regex.isTitle(title)) {
+            alert("1 - 20 글자 수의 가게명을 입력해주세요");
+            return;
+        }
 
         if (!this.regex.isDescription(desc)) {
             alert("2 - 40 글자 수의 가게 설명을 입력해주세요");
@@ -158,18 +159,25 @@ export class Auth {
             return;
         }
 
+        if (!file) {
+            aler("사진을 등록해주세요");
+            return;
+        }
+
         this.isSaving = true;
-        service.saveImageInStorage(memberid)
+        service.saveImageInStorage(file, memberid)
             .then((path) => {
                 return service.getStoreImageUrl(path);
             })
             .then((url) => {
-                return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menu, url);
+                return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus, url);
             })
             .then((storeid) => {
                 const token = JSON.parse(window.sessionStorage.getItem("token"));
                 token.storeId = storeid;
                 window.sessionStorage.setItem("token", JSON.stringify(token));
+                this.view.showNaviPage("manage");
+
                 this.isSaving = false;
             });
     }
@@ -183,7 +191,7 @@ export class Auth {
 
     checkMyStore() {
         const token = this.currentToken();
-        
+       
         if (!token) {
             this.view.showElement("sign-in");
             this.view.inactivateRoot();

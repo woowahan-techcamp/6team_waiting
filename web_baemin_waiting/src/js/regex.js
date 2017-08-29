@@ -20,6 +20,12 @@ export class Regex {
         return regId.test(id);
     }
 
+    isImage(file) {
+        // jpg, jpeg, gif 또는 png 확장자를 가진 그림 파일명
+        const regImg = /([^\s]+(?=\.(jpg|jpeg|gif|png))\.\2)/;
+        return regImg.test(file);
+    }
+
     isMenu(menu) {
         // 모든 문자열에 대한 {1,10} 글자 수 확인
         const regMenu = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{1,10}$/;
@@ -51,8 +57,8 @@ export class Regex {
     }
 
     isTitle(title) {
-        // 모든 문자열에 대한 {1,10} 글자 수 확인
-        const regName = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{1,10}$/;
+        // 띄어쓰기를 포함한 모든 문자열에 대한 {1,10} 글자 수 확인
+        const regName = /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣](.+\s?){1,10}$/;
         return regName.test(title);
     }
 
