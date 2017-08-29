@@ -233,10 +233,12 @@ extension MainCollectionViewController: UICollectionViewDataSource {
         if let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath) as? MainCollectionReusableView {
 
             WaitingTicketManager.checkValidTicket()
-            sectionHeaderView.putTicket(ticket: ticket!)
-            let lineCancelAlert = AlertHelper.lineCancelAlert(title: "대기취소", message: "현재 식당 대기가 취소됩니다.", waitingTicket: ticket!, popUI: self)
-            sectionHeaderView.setAlert(alert: lineCancelAlert, popUI: self)
 
+            if let ticket = ticket {
+                sectionHeaderView.putTicket(ticket: ticket)
+                let lineCancelAlert = AlertHelper.lineCancelAlert(title: "대기취소", message: "현재 식당 대기가 취소됩니다.", waitingTicket: ticket, popUI: self)
+                sectionHeaderView.setAlert(alert: lineCancelAlert, popUI: self)
+            }
             return sectionHeaderView
         }
 

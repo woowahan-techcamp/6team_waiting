@@ -23,7 +23,10 @@ class AlertHelper {
         let ok = UIAlertAction(title: "OK", style: .destructive) { (_: UIAlertAction!) in
             ServerRepository.postCancleLine(ticket: waitingTicket) { isSuccess in
                 if isSuccess == 1 {
+
                     UserDefaults.standard.removeObject(forKey: "ticket")
+
+                    WaitingTicketManager.checkValidTicket()
 
                     if let mainCollectionVC = popUI as? MainCollectionViewController {
                         mainCollectionVC.refreshData()
