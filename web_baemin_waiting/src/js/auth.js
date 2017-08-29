@@ -12,7 +12,7 @@ export class Auth {
 
     constructor(){
         this.authId = null;
-        this.isNotDuplication = true; // @TODO : haeun.kim
+        this.isNotDuplication = false; 
         this.regex = new Regex();
         this.view = new View(".view");
         this.isSaving = false;
@@ -32,12 +32,11 @@ export class Auth {
             return;
         }
 
-        service.signInUser(id, pwd)
+        return service.signInUser(id, pwd)
             .then((token) => {
                 if (!(token.token === "fail")) {
                     window.sessionStorage.setItem("token", JSON.stringify(token));
-                    this.view.showInitialBoard();
-                    this.checkMyStore();
+                    return "success";
                 } else {
                     alert("아이디와 비밀번호를 확인해주세요");
                 }
@@ -90,12 +89,12 @@ export class Auth {
 
     signOut() {
         const token = this.currentToken();
-        service.changeStatus(token, "off")
+        return service.changeStatus(token, "off")
             .then((res) => {
                 if(res.resultStatus === "off"){
                     sessionStorage.removeItem("token");
-                    this.view.goHome();
-                }  
+                    return "success";
+                } 
             });        
     }
 

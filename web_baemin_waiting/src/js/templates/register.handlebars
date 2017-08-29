@@ -1,25 +1,24 @@
 <div class="register-store">
-    <h1 class="regist-title">가게 정보 정보</h1>
-    <h1 class="m-regist-title">가게등록</h1>
+    <h1 class="regist-title">우리 가게 정보</h1>
     <div>
         <dl class="reg-form">
             
             <dt>업체명</dt>
             <dd>
-                <input type="text" id="regist-name" value="{{this.title}}">
+                <input type="text" id="regist-name" value="{{this.title}}" placeholder="가게명을 입력해주세요">
             </dd>
 
             <dt>업체 위치</dt>
             <dd>
-                <input type="text" id="regist-location" placeholder="도로명 주소 입력 후 지도확인을 해주세요" value="{{this.addr}}">
-                <button id="btn-search-location">지도확인</button>
+                <input type="text" id="regist-location" placeholder="도로명 주소 입력 후 '위치 확인' 버튼을 눌러주세요" value="{{this.addr}}">
+                <button id="btn-search-location">위치 확인</button>
             </dd>
 
             <dt>전화번호</dt>
-            <dd><input type="number" id="regist-tel" value="{{this.tel}}"></dd>
+            <dd><input type="number" id="regist-tel" value="{{this.tel}}" placeholder="가게 연락처를 입력해주세요('-'를 제외한 숫자)"></dd>
 
             <dt>업체 설명</dt>
-            <dd><input type="text" id="regist-desc" value="{{this.desc}}"></dd>
+            <dd><input type="text" id="regist-desc" value="{{this.desc}}" placeholder="우리 가게에 대해 간단하게 설명해주세요"></dd>
 
             <dt>업체 사진</dt>
             <dd><input type="file" id="regist-file"></dd>

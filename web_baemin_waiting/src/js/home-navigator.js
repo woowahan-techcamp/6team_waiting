@@ -2,13 +2,13 @@ import util from "./util.js";
 import service from "./services/service.js";
 
 import { Auth } from "./auth.js";
-import { Regex } from "./regex.js";
 import { Slide } from "./slide.js";
 import { Statistic } from "./statistic.js";
 import { StoreList } from "./storelist.js";
 import { View } from "./view.js";
 import { Manage } from "./manage.js";
-
+import { Map } from "./map.js";
+import { Menu } from "./menu.js";
 
 
 export class HomeNavigator {
@@ -31,7 +31,6 @@ export class HomeNavigator {
         this.prev = document.querySelector(".prev");
         this.next = document.querySelector(".next");
 
-        this.regex = new Regex();
         this.auth = new Auth();
         this.slide = new Slide("slide-box");
         this.view = new View(".view");
@@ -52,12 +51,7 @@ export class HomeNavigator {
         
         this.btnGoStore.addEventListener("click", this.goStoreHandler.bind(this));
 
-        this.btnLogin.addEventListener("click", () => {
-            this.auth.signIn().then(() => {
-                this.view.showInitialBoard();
-                this.manageHandler();
-            })
-        });
+        this.btnLogin.addEventListener("click", this.signinHandler.bind(this));
 
         this.btnLoginClose.addEventListener("click", () => {
             this.view.hideElement("sign-in");
@@ -68,13 +62,7 @@ export class HomeNavigator {
             this.view.showElement("sign-up");
         });
 
-        this.btnSignUp.addEventListener("click", () => {
-            this.auth.signUp().then(() => {
-                this.view.hideElement("sign-up");
-                document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
-                document.querySelector("#check-dup").style.color = "#FF6666";
-            })
-        });
+        this.btnSignUp.addEventListener("click", this.signupHandler.bind(this));
 
         this.btnSignUpClose.addEventListener("click", () => {
             this.view.hideElement("sign-up");
@@ -159,7 +147,7 @@ export class HomeNavigator {
         util.setTemplateInHtml(".board", "no-store").then(() => {
             const btnGoRegister = document.getElementById("btn-go-register");
             btnGoRegister.addEventListener("click", () => {
-                util.setTemplateInHtml(".board", "register").then(() => this.registerPage());
+                util.setTemplateInHtml(".board", "register");
             });
         });
     }
@@ -196,6 +184,21 @@ export class HomeNavigator {
                 this.view.showNaviPage(destination);
                 break;
         }
+    }
+
+    signinHandler() {
+        this.auth.signIn().then(() => {
+            this.view.showInitialBoard();
+            this.manageHandler();
+        })
+    }
+
+    signupHandler() {
+        this.auth.signUp().then(() => {
+            this.view.hideElement("sign-up");
+            document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
+            document.querySelector("#check-dup").style.color = "#FF6666";
+        })
     }
 
     manageHandler() {
