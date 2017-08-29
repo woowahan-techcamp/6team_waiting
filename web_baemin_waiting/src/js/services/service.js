@@ -52,7 +52,7 @@ const service = (() => {
 
         addTicket(id, name, count, isStaying, tel) {
             const client = new ClientModel(id, name, count, isStaying, tel);
-            return requestAjax("POST", `${baseUrl}/addWaitingTicket`, client)
+            return requestAjax("POST", `${baseUrl}/addWebWaitingTicket`, client)
                 .then((result) => { return result })
                 .catch((err) => { return err });
         },

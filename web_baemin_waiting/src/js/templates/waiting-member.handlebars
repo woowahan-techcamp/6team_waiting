@@ -6,7 +6,7 @@
             <p class="waiting-tel">{{this.contactNumber}}</p>
         </div>
     </div>
-    
+    {{#ticketStatus this.status}}
     <div class="waiting-btn-area">
         <div class="btn-alarm">
             <ul class="alarm-opt">
@@ -18,5 +18,6 @@
         <div class="btn-delete-in"></div>
             
     </div>
+    {{/ticketStatus}}
 </div>
 {{/each}}

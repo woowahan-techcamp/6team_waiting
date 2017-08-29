@@ -164,7 +164,7 @@ templates['store-list'] = template({"1":function(container,depth0,helpers,partia
     + "    </div>\n\n</div>";
 },"useData":true});
 templates['waiting-member'] = template({"1":function(container,depth0,helpers,partials,data) {
-    var alias1=container.lambda, alias2=container.escapeExpression;
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
   return "<div class=\"waiting-member\" data-num="
     + alias2(alias1((depth0 != null ? depth0.ticketNumber : depth0), depth0))
