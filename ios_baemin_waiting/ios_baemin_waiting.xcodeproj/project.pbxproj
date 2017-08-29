@@ -9,13 +9,22 @@
 /* Begin PBXBuildFile section */
 		1AEDA164B436F8CD19A2F7F2 /* Pods_BaeminWaitingUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0BB622D19A24682C6A15E3 /* Pods_BaeminWaitingUnitTests.framework */; };
 		7E1273CE1F434257000C7912 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1273CD1F434257000C7912 /* Constant.swift */; };
+		7E5E9EF51F4820AF007E2ADD /* WaitingTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5E9EF41F4820AF007E2ADD /* WaitingTicket.swift */; };
 		7ED312BB1F4411640080ACB8 /* StoreUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED312BA1F4411640080ACB8 /* StoreUnitTests.swift */; };
 		980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56EF1F3C16D800A81DFE /* ServerRepository.swift */; };
 		980A56F41F3C19CE00A81DFE /* AlamofireUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */; };
 		980A56F61F3C304000A81DFE /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980A56F51F3C304000A81DFE /* Store.swift */; };
+		9814FD771F4AB65F002571EB /* DetailMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9814FD761F4AB65F002571EB /* DetailMapViewController.swift */; };
+		981F72331F4C0863001A6318 /* MapViewController+NMapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72321F4C0863001A6318 /* MapViewController+NMapDelegate.swift */; };
+		981F72351F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72341F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift */; };
+		981F72381F4C1338001A6318 /* MainMapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F72361F4C1338001A6318 /* MainMapCollectionViewCell.swift */; };
+		981F72391F4C1338001A6318 /* MainMapCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 981F72371F4C1338001A6318 /* MainMapCollectionViewCell.xib */; };
 		9842DB811F452E8A00B8C409 /* Waiting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9842DB801F452E8A00B8C409 /* Waiting.storyboard */; };
 		9842DB891F454EC400B8C409 /* WaitingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9842DB881F454EC400B8C409 /* WaitingTextField.swift */; };
 		9842DB8B1F454EF900B8C409 /* WaitingTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */; };
+		9847E3F21F4EF76000D91F35 /* MyTicket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9847E3F11F4EF76000D91F35 /* MyTicket.storyboard */; };
+		9847E3F41F4EF7E300D91F35 /* MyTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9847E3F31F4EF7E300D91F35 /* MyTicketViewController.swift */; };
+		985804971F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985804961F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift */; };
 		986B3D9D1F3D3E1A00432FF7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */; };
 		986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3D9E1F3D3E6600432FF7 /* StoreImageCell.swift */; };
 		986B3DA11F3D3E8100432FF7 /* StoreDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DA01F3D3E8100432FF7 /* StoreDescriptionCell.swift */; };
@@ -24,7 +33,6 @@
 		986B3DAA1F3D3FFE00432FF7 /* StoreLineShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3DA91F3D3FFE00432FF7 /* StoreLineShowCell.swift */; };
 		9870FEB31F3ACC8C00656EEC /* NMapViewResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */; };
 		9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB51F3ACE4F00656EEC /* MapViewController.swift */; };
-		9870FEB81F3ACF1300656EEC /* NaverMapHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */; };
 		9870FEBA1F3AD0C700656EEC /* 송파구.json in Resources */ = {isa = PBXBuildFile; fileRef = 9870FEB91F3AD0C700656EEC /* 송파구.json */; };
 		9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9870FEBB1F3AE4A400656EEC /* MainContainerViewController.swift */; };
 		9870FEC61F3AFC1F00656EEC /* MainCollectionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9870FEC51F3AFC1F00656EEC /* MainCollectionView.storyboard */; };
@@ -37,6 +45,9 @@
 		9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9879D9AE1F34054900B4131A /* AppDelegate.swift */; };
 		9879D9B61F34054900B4131A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9879D9B51F34054900B4131A /* Assets.xcassets */; };
 		9879D9F21F342CCC00B4131A /* BaeminWaitingUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */; };
+		98A87A3F1F54060200D2D20B /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A87A3E1F54060200D2D20B /* AlertHelper.swift */; };
+		98A9EDAA1F4D03E6008A3198 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A9EDA91F4D03E6008A3198 /* UIDevice.swift */; };
+		98A9EDAC1F4D083A008A3198 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A9EDAB1F4D083A008A3198 /* UIFont+Extension.swift */; };
 		98BE03D61F38614200179D43 /* ApiGatewayMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE03D51F38614200179D43 /* ApiGatewayMac.framework */; };
 		98BE03D71F38614200179D43 /* ApiGatewayMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE03D51F38614200179D43 /* ApiGatewayMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		98BE03DA1F38615400179D43 /* NMapViewerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98BE03D91F38615400179D43 /* NMapViewerSDK.framework */; };
@@ -73,14 +84,24 @@
 		18F59FA31D335960EA9BB38B /* Pods-BaeminWaitingUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B0BB622D19A24682C6A15E3 /* Pods_BaeminWaitingUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaeminWaitingUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E1273CD1F434257000C7912 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		7E5E9EF41F4820AF007E2ADD /* WaitingTicket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTicket.swift; sourceTree = "<group>"; };
 		7ED312BA1F4411640080ACB8 /* StoreUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreUnitTests.swift; sourceTree = "<group>"; };
 		980A56EF1F3C16D800A81DFE /* ServerRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerRepository.swift; sourceTree = "<group>"; };
 		980A56F31F3C19CE00A81DFE /* AlamofireUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireUnitTests.swift; sourceTree = "<group>"; };
 		980A56F51F3C304000A81DFE /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		9814FD761F4AB65F002571EB /* DetailMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMapViewController.swift; sourceTree = "<group>"; };
+		9814FD781F4AC9C6002571EB /* ios_baemin_waiting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ios_baemin_waiting.entitlements; sourceTree = "<group>"; };
 		981AA44EC3C56C18A78CC0E5 /* Pods-BaeminWaitingUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaeminWaitingUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaeminWaitingUnitTests/Pods-BaeminWaitingUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		981F72321F4C0863001A6318 /* MapViewController+NMapDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+NMapDelegate.swift"; sourceTree = "<group>"; };
+		981F72341F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MapViewController+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		981F72361F4C1338001A6318 /* MainMapCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMapCollectionViewCell.swift; sourceTree = "<group>"; };
+		981F72371F4C1338001A6318 /* MainMapCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMapCollectionViewCell.xib; sourceTree = "<group>"; };
 		9842DB801F452E8A00B8C409 /* Waiting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Waiting.storyboard; path = ios_baemin_waiting/View/Waiting/Waiting.storyboard; sourceTree = SOURCE_ROOT; };
 		9842DB881F454EC400B8C409 /* WaitingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTextField.swift; sourceTree = "<group>"; };
 		9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingTicketViewController.swift; sourceTree = "<group>"; };
+		9847E3F11F4EF76000D91F35 /* MyTicket.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MyTicket.storyboard; path = View/Waiting/MyTicket.storyboard; sourceTree = "<group>"; };
+		9847E3F31F4EF7E300D91F35 /* MyTicketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTicketViewController.swift; sourceTree = "<group>"; };
+		985804961F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		986B3D9E1F3D3E6600432FF7 /* StoreImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreImageCell.swift; sourceTree = "<group>"; };
 		986B3DA01F3D3E8100432FF7 /* StoreDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDescriptionCell.swift; sourceTree = "<group>"; };
@@ -89,7 +110,6 @@
 		986B3DA91F3D3FFE00432FF7 /* StoreLineShowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreLineShowCell.swift; sourceTree = "<group>"; };
 		9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMapViewResources.swift; sourceTree = "<group>"; };
 		9870FEB51F3ACE4F00656EEC /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverMapHandler.swift; sourceTree = "<group>"; };
 		9870FEB91F3AD0C700656EEC /* 송파구.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "송파구.json"; sourceTree = "<group>"; };
 		9870FEBB1F3AE4A400656EEC /* MainContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
 		9870FEC51F3AFC1F00656EEC /* MainCollectionView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainCollectionView.storyboard; sourceTree = "<group>"; };
@@ -106,6 +126,9 @@
 		9879D9EF1F342CCC00B4131A /* BaeminWaitingUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaeminWaitingUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9879D9F11F342CCC00B4131A /* BaeminWaitingUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaeminWaitingUnitTests.swift; sourceTree = "<group>"; };
 		9879D9F31F342CCC00B4131A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98A87A3E1F54060200D2D20B /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
+		98A9EDA91F4D03E6008A3198 /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		98A9EDAB1F4D083A008A3198 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		98BE03D51F38614200179D43 /* ApiGatewayMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ApiGatewayMac.framework; sourceTree = "<group>"; };
 		98BE03D91F38615400179D43 /* NMapViewerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMapViewerSDK.framework; sourceTree = "<group>"; };
 		98BE03DB1F38617D00179D43 /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
@@ -164,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				9842DB801F452E8A00B8C409 /* Waiting.storyboard */,
+				9847E3F11F4EF76000D91F35 /* MyTicket.storyboard */,
 			);
 			name = Waiting;
 			sourceTree = "<group>";
@@ -192,6 +216,7 @@
 		9879D9AD1F34054900B4131A /* ios_baemin_waiting */ = {
 			isa = PBXGroup;
 			children = (
+				9814FD781F4AC9C6002571EB /* ios_baemin_waiting.entitlements */,
 				988FBEFB1F3D856A00161756 /* Helper/Util */,
 				988FBEFA1F3D84E800161756 /* Controller */,
 				988FBEF71F3D849500161756 /* View */,
@@ -238,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				980A56F51F3C304000A81DFE /* Store.swift */,
+				7E5E9EF41F4820AF007E2ADD /* WaitingTicket.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,6 +285,8 @@
 				9870FEC51F3AFC1F00656EEC /* MainCollectionView.storyboard */,
 				9870FECD1F3AFDB400656EEC /* MainCollectionViewCell.swift */,
 				9870FECF1F3AFE0700656EEC /* MainCollectionReusableView.swift */,
+				981F72361F4C1338001A6318 /* MainMapCollectionViewCell.swift */,
+				981F72371F4C1338001A6318 /* MainMapCollectionViewCell.xib */,
 			);
 			name = Main;
 			path = View/Main;
@@ -282,10 +310,14 @@
 			isa = PBXGroup;
 			children = (
 				9870FEBB1F3AE4A400656EEC /* MainContainerViewController.swift */,
-				986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */,
 				9870FECB1F3AFD6900656EEC /* MainCollectionViewController.swift */,
-				9870FEB51F3ACE4F00656EEC /* MapViewController.swift */,
 				9842DB8A1F454EF900B8C409 /* WaitingTicketViewController.swift */,
+				986B3D9C1F3D3E1A00432FF7 /* DetailViewController.swift */,
+				9814FD761F4AB65F002571EB /* DetailMapViewController.swift */,
+				9870FEB51F3ACE4F00656EEC /* MapViewController.swift */,
+				981F72321F4C0863001A6318 /* MapViewController+NMapDelegate.swift */,
+				981F72341F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift */,
+				9847E3F31F4EF7E300D91F35 /* MyTicketViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -294,10 +326,13 @@
 			isa = PBXGroup;
 			children = (
 				980A56EF1F3C16D800A81DFE /* ServerRepository.swift */,
-				9870FEB71F3ACF1300656EEC /* NaverMapHandler.swift */,
 				9870FEB01F3ACC8C00656EEC /* NMapViewResources.swift */,
 				7E1273CD1F434257000C7912 /* Constant.swift */,
 				9842DB881F454EC400B8C409 /* WaitingTextField.swift */,
+				98A9EDA91F4D03E6008A3198 /* UIDevice.swift */,
+				98A9EDAB1F4D083A008A3198 /* UIFont+Extension.swift */,
+				985804961F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift */,
+				98A87A3E1F54060200D2D20B /* AlertHelper.swift */,
 			);
 			name = Helper/Util;
 			path = Helper;
@@ -365,6 +400,11 @@
 						DevelopmentTeam = B3PWYBKFUK;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					9879D9EE1F342CCC00B4131A = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -401,6 +441,8 @@
 				987155761F4172D5001D81E4 /* Main.storyboard in Resources */,
 				9879D9B61F34054900B4131A /* Assets.xcassets in Resources */,
 				9870FEBA1F3AD0C700656EEC /* 송파구.json in Resources */,
+				981F72391F4C1338001A6318 /* MainMapCollectionViewCell.xib in Resources */,
+				9847E3F21F4EF76000D91F35 /* MyTicket.storyboard in Resources */,
 				98BE03DC1F38617D00179D43 /* Scripts in Resources */,
 				9842DB811F452E8A00B8C409 /* Waiting.storyboard in Resources */,
 				9871557A1F41738B001D81E4 /* LaunchScreen.storyboard in Resources */,
@@ -557,25 +599,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9870FEB81F3ACF1300656EEC /* NaverMapHandler.swift in Sources */,
+				9814FD771F4AB65F002571EB /* DetailMapViewController.swift in Sources */,
 				9870FECE1F3AFDB400656EEC /* MainCollectionViewCell.swift in Sources */,
+				98A87A3F1F54060200D2D20B /* AlertHelper.swift in Sources */,
 				986B3DAA1F3D3FFE00432FF7 /* StoreLineShowCell.swift in Sources */,
 				9870FECC1F3AFD6900656EEC /* MainCollectionViewController.swift in Sources */,
+				9847E3F41F4EF7E300D91F35 /* MyTicketViewController.swift in Sources */,
 				986B3D9D1F3D3E1A00432FF7 /* DetailViewController.swift in Sources */,
+				98A9EDAC1F4D083A008A3198 /* UIFont+Extension.swift in Sources */,
+				985804971F4D6F0400AA97DF /* MapCollectionViewFlowLayout.swift in Sources */,
+				7E5E9EF51F4820AF007E2ADD /* WaitingTicket.swift in Sources */,
 				980A56F61F3C304000A81DFE /* Store.swift in Sources */,
+				98A9EDAA1F4D03E6008A3198 /* UIDevice.swift in Sources */,
 				986B3DA61F3D3FCA00432FF7 /* StoreCallButtionCell.swift in Sources */,
 				7E1273CE1F434257000C7912 /* Constant.swift in Sources */,
 				9870FED01F3AFE0700656EEC /* MainCollectionReusableView.swift in Sources */,
 				986B3DA81F3D3FEB00432FF7 /* StoreMapViewCell.swift in Sources */,
 				9879D9AF1F34054900B4131A /* AppDelegate.swift in Sources */,
+				981F72331F4C0863001A6318 /* MapViewController+NMapDelegate.swift in Sources */,
 				9842DB8B1F454EF900B8C409 /* WaitingTicketViewController.swift in Sources */,
 				9842DB891F454EC400B8C409 /* WaitingTextField.swift in Sources */,
 				986B3DA11F3D3E8100432FF7 /* StoreDescriptionCell.swift in Sources */,
 				9870FEB61F3ACE4F00656EEC /* MapViewController.swift in Sources */,
 				9870FEB31F3ACC8C00656EEC /* NMapViewResources.swift in Sources */,
 				980A56F01F3C16D800A81DFE /* ServerRepository.swift in Sources */,
+				981F72381F4C1338001A6318 /* MainMapCollectionViewCell.swift in Sources */,
 				986B3D9F1F3D3E6600432FF7 /* StoreImageCell.swift in Sources */,
 				9870FEBC1F3AE4A400656EEC /* MainContainerViewController.swift in Sources */,
+				981F72351F4C129B001A6318 /* MapViewController+CollectionViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +753,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ios_baemin_waiting/ios_baemin_waiting.entitlements;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -734,6 +786,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ios_baemin_waiting/ios_baemin_waiting.entitlements;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
