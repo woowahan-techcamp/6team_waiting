@@ -28,7 +28,7 @@ class MainCollectionViewCell: UICollectionViewCell {
     }
 
     override func prepareForReuse() {
-        restaurantsImage.image = nil
+        restaurantsImage.image = #imageLiteral(resourceName: "blankImage")
     }
     func putCellContent(storeInfo: Store) {
         restaurantsName.text = storeInfo.storeName
