@@ -70,7 +70,13 @@ export class HomeNavigator {
             this.view.showElement("sign-up");
         });
 
-        this.btnSignUp.addEventListener("click", () => this.auth.signUp());
+        this.btnSignUp.addEventListener("click", () => {
+            this.auth.signUp().then(() => {
+                this.view.hideElement("sign-up");
+                document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
+                document.querySelector("#check-dup").style.color = "#FF6666";
+            })
+        });
 
         this.btnSignUpClose.addEventListener("click", () => {
             this.view.hideElement("sign-up");
@@ -198,7 +204,7 @@ export class HomeNavigator {
                 break;
 
             case "logout": 
-                this.auth.signOut();
+                this.auth.signOut().then(() => this.view.goHome());
                 break;
 
             default:
@@ -242,7 +248,11 @@ export class HomeNavigator {
         map.on();
         
         const btnRegister = document.getElementById("btn-reg-store");
-        btnRegister.addEventListener("click", () => this.auth.registerStore(map, menu));
+        btnRegister.addEventListener("click", () => {
+            this.auth.registerStore(map, menu).then(() => {
+                this.view.showNaviPage("manage");
+            })
+        });
     }
 
 }

@@ -12,7 +12,7 @@ export class Auth {
 
     constructor(){
         this.authId = null;
-        this.isNotDuplication = true; // @TODO : haeun.kim
+        this.isNotDuplication = false; 
         this.regex = new Regex();
         this.view = new View(".view");
         this.isSaving = false;
@@ -72,29 +72,28 @@ export class Auth {
             return;
         }
         
-        if (this.isNotDuplication && (this.authId === id)) {
-            service.signUpUser(id, pwd, name, tel)
+        if (!this.isNotDuplication && (this.authId !== id)) {
+            alert("아이디 중복 확인을 해주세요");
+            return;
+        }
+        
+        return service.signUpUser(id, pwd, name, tel)
                 .then(() => {
-                    this.view.hideElement("sign-up");
-                    document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
-                    document.querySelector("#check-dup").style.color = "#FF6666";
+                    return "success";
                 })
                 .catch(() => {
                     alert("회원가입 실패");
                 });
-        } else {
-            alert("아이디 중복 확인을 해주세요");
-        }
+
     }
 
     signOut() {
         const token = this.currentToken();
         service.changeStatus(token, "off")
             .then((res) => {
-                //console.log(res);
                 if(res.resultStatus == "off"){
                     sessionStorage.removeItem("token");
-                    this.view.goHome();
+                    return "success";
                 }  
             });        
     }
@@ -104,12 +103,11 @@ export class Auth {
         const pwd = document.querySelector("#pwd-confirm").value;  
         service.signInUser(token.memberId, pwd)
             .then((token) => {
-                if(token.token == "fail"){
+                if (token.token === "fail") {
                     alert("잘못된 비밀번호입니다");
-                }else{
+                } else {
                     service.getStoreInfo(token)
                         .then((storeInfo) => {
-                            console.log(storeInfo);
                             util.setTemplateInHtml(".board", "my-info", storeInfo);
                         });             
                 }
@@ -164,7 +162,8 @@ export class Auth {
         }
 
         this.isSaving = true;
-        service.saveImageInStorage(file, memberid)
+
+        return service.saveImageInStorage(file, memberid)
             .then((path) => {
                 return service.getStoreImageUrl(path);
             })
@@ -175,19 +174,16 @@ export class Auth {
                 const token = JSON.parse(window.sessionStorage.getItem("token"));
                 token.storeId = storeid;
                 window.sessionStorage.setItem("token", JSON.stringify(token));
-                this.view.showNaviPage("manage");
-
                 this.isSaving = false;
             });
     }
 
     currentToken() {
         const token = sessionStorage.getItem("token");
-        if (!(token === "undefined")) {
+        if (token !== "undefined") {
             return JSON.parse(token);
         }
     }
-
     
 
 }
