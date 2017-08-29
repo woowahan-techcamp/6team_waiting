@@ -34,14 +34,9 @@ export class Auth {
 
         return service.signInUser(id, pwd)
             .then((token) => {
-                if (!(token.token === "fail")) {
+                if (token.token !== "fail") {
                     window.sessionStorage.setItem("token", JSON.stringify(token));
-<<<<<<< HEAD
                     return "success";
-=======
-                    this.view.showInitialBoard();
-                    //this.checkMyStore();
->>>>>>> 020e3012e677812033fb2f7c5b99969c0e9835c5
                 } else {
                     alert("아이디와 비밀번호를 확인해주세요");
                 }
@@ -137,55 +132,10 @@ export class Auth {
         const btnGoModify = document.getElementById("btn-go-modify");
 
         btnInfoMod.addEventListener("click", () => {
-<<<<<<< HEAD
-            const id = this.currentToken().memberId; //질문
-            const pwd = document.querySelector("#mod-pwd").value;
-            const name = document.querySelector("#mod-name").value;
-            const tel = document.querySelector("#mod-tel").value;
-            service.updateMemberInfo(id, pwd, name, tel)
-                .then(() => {
-                    this.view.showNaviPage("my-page")
-                        .then(() => {
-                            const btnConfirm = document.getElementById("btn-confirm");
-                            btnConfirm.addEventListener("click", () => {
-                                this.confirmPassword();
-                            });
-                        });
-                    alert("회원정보 수정이 되었습니다.");
-                });
-=======
             this.myInfoModify();
->>>>>>> 020e3012e677812033fb2f7c5b99969c0e9835c5
         });
             
         btnGoModify.addEventListener("click", () => {
-<<<<<<< HEAD
-            util.setTemplateInHtml(".board", "register", storeInfo)
-                .then(() => {
-                    const map = new Map("#regist-location");
-                    map.on();
-
-                    const menu = new Menu(".menus");
-                    const menuSize = storeInfo.menus.length;
-
-                    for (let i = 0 ; i < menuSize; i++ ) {                        
-                        menu.addMenuInput();
-                    }
-
-                    const menuNameArr = document.querySelectorAll(".menu-name");                   
-                    for (let i = 0; i < menuSize; i++ ) {
-                        menuNameArr[i].value = storeInfo.menus[i].name;
-                    }
-
-                    const menuPriceArr = document.querySelectorAll(".menu-price");
-                    for (let i = 0; i < menuSize; i++ ) {
-                        menuPriceArr[i].value = storeInfo.menus[i].price;
-                    }
-
-                    const btnAddMenu = document.querySelector(".add-menu");
-                    btnAddMenu.addEventListener("click", () => {
-                        menu.addMenuInput();
-=======
             this.goModify(storeInfo);
         });
     }
@@ -204,7 +154,6 @@ export class Auth {
                         btnConfirm.addEventListener("click", () => {
                             this.confirmPassword();
                         });
->>>>>>> 020e3012e677812033fb2f7c5b99969c0e9835c5
                     });
                 alert("회원정보 수정이 되었습니다.");
             });
