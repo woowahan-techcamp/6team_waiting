@@ -1,3 +1,11 @@
+cyclomatic_complexity:
+  - 15 # warning
+  - 20 # error
+
+function_parameter_count:
+  - 7 # warning
+  - 8 # error
+
 line_length:
   - 200 # warning
   - 300 # error

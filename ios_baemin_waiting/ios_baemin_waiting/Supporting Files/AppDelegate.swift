@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
                      launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
         return true
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        print("enter foreground")
+
+        // background에서 앱 실행시 Main 화면 리프레시 후 호출
+        if self.window?.rootViewController?.childViewControllers != nil {
+
+            let rootStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+
+            let rootVC = rootStoryBoard.instantiateViewController(withIdentifier: "RootNavigation")
+
+            if let mainContainerVC = self.window?.rootViewController?.childViewControllers[0] as? MainContainerViewController {
+
+                if let collectionVC = mainContainerVC.childViewControllers[1] as? MainCollectionViewController {
+                    collectionVC.refreshData()
+                }
+                self.window?.rootViewController = rootVC
+                self.window?.makeKeyAndVisible()
+            }
+        }
+    }
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        // badge 숫자 리셋
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        let token = tokenParts.joined()
+
+        print("Device token: \(token)")
+
+        UserDefaults.standard.set(token, forKey: "token")
+
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Fail to Register: \(error)")
+    }
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+         completionHandler(.alert)
     }
 }
