@@ -10,6 +10,8 @@ import Foundation
 
 class StoreListManager: NSObject {
 
+    var isAlreadyUpdated: Bool = false
+
     var rawStoreList: [Store] = []
     var storeList: [[Store]] = []
     var openStoreList: [Store] = []
@@ -59,11 +61,13 @@ extension StoreListManager: CLLocationManagerDelegate {
                     self.storeList.append(self.openStoreList)
                     self.storeList.append(self.closeStoreList)
 
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "storeListDataUpdate"),
-                                                    object: nil, userInfo: ["storeData": self.storeList])
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "storeListMapDataUpdate"),
-                                                    object: nil, userInfo: ["storeData": self.rawStoreList])
-
+                    if !self.isAlreadyUpdated {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "storeListDataUpdate"),
+                                                        object: nil, userInfo: ["storeData": self.storeList])
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "storeListMapDataUpdate"),
+                                                        object: nil, userInfo: ["storeData": self.rawStoreList])
+                    }
+                    self.isAlreadyUpdated = true
                 } else {
                     // 검색 결과가 없는 경우
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "storeListDataNoResult"),

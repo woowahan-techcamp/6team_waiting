@@ -117,16 +117,13 @@ class MapCollectionViewFlowLayout: UICollectionViewFlowLayout {
                         candidateAttributes = attributes
                         continue
                     }
-
                 }
-
                 return CGPoint(x : candidateAttributes!.center.x - halfWidth, y : proposedContentOffset.y)
             }
         }
-        
+
         // Fallback
         return super.targetContentOffset(forProposedContentOffset: proposedContentOffset)
     }
-    
-}
 
+}
