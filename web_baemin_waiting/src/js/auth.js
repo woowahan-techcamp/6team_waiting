@@ -89,6 +89,7 @@ export class Auth {
     }
 
     signOut() {
+
         const token = this.currentToken();
         service.changeStatus(token, "off")
             .then((res) => {
@@ -108,13 +109,63 @@ export class Auth {
                 if(token.token == "fail"){
                     alert("잘못된 비밀번호입니다");
                 }else{
+                    //jw
                     service.getStoreInfo(token)
                         .then((storeInfo) => {
                             console.log(storeInfo);
-                            util.setTemplateInHtml(".board", "my-info", storeInfo);
+                            util.setTemplateInHtml(".board", "my-info", storeInfo)
+                                .then(() => {
+                                    this.myInfoHandler(storeInfo);
+                                });
                         });             
                 }
             });
+    }
+
+    //jw
+    myInfoHandler(storeInfo) {
+        const btnInfoMod = document.getElementById("btn-info-modify");
+        const btnGoModify = document.getElementById("btn-go-modify");
+
+        btnInfoMod.addEventListener("click", () => {
+            // @TODO : haeun.kim
+            // 사용자 정보 업데이트
+        });
+        btnGoModify.addEventListener("click", () => {
+            util.setTemplateInHtml(".board", "register", storeInfo)
+                .then(() => {
+                    const map = new Map("#regist-location");
+                    map.on();
+
+                    const menu = new Menu(".menus");
+                    const menuSize = storeInfo.menus.length;
+
+                    for( var i = 0 ; i < menuSize; i++ ){                        
+                        menu.addMenuInput();
+                    }
+
+                    const menuNameArr = document.querySelectorAll(".menu-name");                   
+                    for( var i = 0; i < menuSize; i++ ){
+                        menuNameArr[i].value = storeInfo.menus[i].name;
+                    }
+
+                    const menuPriceArr = document.querySelectorAll(".menu-price");
+                    for( var i = 0; i < menuSize; i++ ){
+                        menuPriceArr[i].value = storeInfo.menus[i].price;
+                    }
+
+                    const btnAddMenu = document.querySelector(".add-menu");
+                    btnAddMenu.addEventListener("click", () => {
+                        menu.addMenuInput();
+                    });
+                    
+                    const btnModify = document.querySelector("#btn-reg-store");
+                    btnModify.addEventListener("click", () => {
+                        this.updateStore(map, menu);
+                        
+                    });
+                });
+        });
     }
     
     registerStore(map, menu) {
@@ -160,7 +211,7 @@ export class Auth {
         }
 
         if (!file) {
-            aler("사진을 등록해주세요");
+            alert("사진을 등록해주세요");
             return;
         }
 
@@ -170,7 +221,7 @@ export class Auth {
                 return service.getStoreImageUrl(path);
             })
             .then((url) => {
-                return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus, url);
+                return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus, url, storeid);
             })
             .then((storeid) => {
                 const token = JSON.parse(window.sessionStorage.getItem("token"));
@@ -220,11 +271,81 @@ export class Auth {
             menu.addMenuInput();
         });
 
-        const map = new Map();
+        const map = new Map("#regist-location");
         map.on();
         
         const btnRegister = document.getElementById("btn-reg-store");
         btnRegister.addEventListener("click", () => this.registerStore(map, menu));
+    }
+
+    updateStore(map, menu) {
+        if (this.isSaving) {
+            return alert("처리중입니다");
+        }
+
+        const token = this.currentToken();
+        const storeid = token.storeId;
+        const memberid = token.memberId;
+        const menus = menu.getMenus();
+        const title = document.getElementById("regist-name").value;
+        const desc = document.getElementById("regist-desc").value;
+        const tel = document.getElementById("regist-tel").value;
+        const addr = document.getElementById("regist-location").value;
+        const file = document.getElementById("regist-file").files[0];
+
+        if (!menu.isOK) return;
+
+        if (!this.regex.isName(title)) {
+            alert("2 - 20 글자 수의 가게명을 입력해주세요");
+            return;
+        }
+
+        if (!this.regex.isDescription(desc)) {
+            alert("2 - 40 글자 수의 가게 설명을 입력해주세요");
+            return;
+        }
+
+        if (!this.regex.isTel(tel)) {
+            alert("잘못된 전화번호 형식입니다");
+            return;
+        }
+
+        if (!this.regex.isAddrress(addr)) {
+            alert("2 - 40 글자 수의 가게 주소를 입력해주세요");
+            return;
+        }
+
+        this.isSaving = true;
+
+        if (file == null) {
+            const url = null;
+            service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus, url, storeid)
+                .then((storeid) => {
+                    const token = JSON.parse(window.sessionStorage.getItem("token"));
+                    token.storeId = storeid;
+                    window.sessionStorage.setItem("token", JSON.stringify(token));
+                    this.view.showNaviPage("manage");
+
+                    this.isSaving = false;
+                });
+        } else {
+            service.saveImageInStorage(file, memberid)
+                .then((path) => {
+                    return service.getStoreImageUrl(path);
+                })
+                .then((url) => {
+                    return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus, url, storeid);
+                })
+                .then((storeid) => {
+                    const token = JSON.parse(window.sessionStorage.getItem("token"));
+                    token.storeId = storeid;
+                    window.sessionStorage.setItem("token", JSON.stringify(token));
+                    this.view.showNaviPage("manage");
+    
+                    this.isSaving = false;
+                });
+        }
+
     }
 
 }

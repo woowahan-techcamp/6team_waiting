@@ -28,8 +28,9 @@ const service = (() => {
     const fireStorage = app.storage();
     const fireStorageRef = app.storage().ref();
 
-    const baseUrl = "http://52.78.157.5:8080";
-
+    //const baseUrl = "http://52.78.157.5:8080";
+    const baseUrl = "http://192.168.100.18:8080/baeminWaiting004";
+    
 
     const requestAjax = function(protocol, url, data) {
         return new Promise((resolve, reject) => {
@@ -86,8 +87,8 @@ const service = (() => {
                 .then((result) => { return result })
         },
 
-        registerRestaurant(id, title, desc, tel, addr, x, y, menu, img) {
-            const store = new StoreModel(title, desc, tel, addr, x, y, id, menu, img);
+        registerRestaurant(id, title, desc, tel, addr, x, y, menu, img, storeId) {
+            const store = new StoreModel(title, desc, tel, addr, x, y, id, menu, img, storeId);
             return requestAjax("POST", `${baseUrl}/store`, store)
                 .then((result) => { return result.storeId })
                 .catch((err) => { return err });
@@ -130,7 +131,7 @@ const service = (() => {
 
         push(ticket, msg) {
             const push = new PushModel(ticket, msg);
-            return requestAjax("POST", `${baseUrl}/webpush`, push)
+            return requestAjax("POST", `${baseUrl}/push`, push)//url:: webpush(LOCAL), push(AWS) 
                 .then((status) => { return status })
                 .catch((err) => { return err });
         },
