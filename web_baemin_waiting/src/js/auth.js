@@ -139,8 +139,8 @@ export class Auth {
                         });
                     alert("회원정보 수정이 되었습니다.");
                 });
-
         });
+            
         btnGoModify.addEventListener("click", () => {
             util.setTemplateInHtml(".board", "register", storeInfo)
                 .then(() => {
@@ -150,17 +150,17 @@ export class Auth {
                     const menu = new Menu(".menus");
                     const menuSize = storeInfo.menus.length;
 
-                    for( var i = 0 ; i < menuSize; i++ ){                        
+                    for (let i = 0 ; i < menuSize; i++ ) {                        
                         menu.addMenuInput();
                     }
 
                     const menuNameArr = document.querySelectorAll(".menu-name");                   
-                    for( var i = 0; i < menuSize; i++ ){
+                    for (let i = 0; i < menuSize; i++ ) {
                         menuNameArr[i].value = storeInfo.menus[i].name;
                     }
 
                     const menuPriceArr = document.querySelectorAll(".menu-price");
-                    for( var i = 0; i < menuSize; i++ ){
+                    for (let i = 0; i < menuSize; i++ ) {
                         menuPriceArr[i].value = storeInfo.menus[i].price;
                     }
 

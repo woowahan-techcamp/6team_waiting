@@ -13,18 +13,18 @@ import { Manage } from "./manage.js";
 
 export class HomeNavigator {
 
-    constructor(intro, introClose, goStore, login, loginClose, goSignUp, signUp, signUpClose, nav, drop, list) {
-        this.btnIntro = document.querySelector(intro);
-        this.btnIntroClose = document.querySelector(introClose);
-        this.btnGoStore = document.querySelector(goStore);
-        this.btnLogin = document.querySelector(login);
-        this.btnLoginClose = document.querySelector(loginClose);
-        this.btnGoSignUp = document.querySelector(goSignUp);
-        this.btnSignUp = document.querySelector(signUp);
-        this.btnSignUpClose = document.querySelector(signUpClose);
-        this.navigator = document.querySelector(nav);
-        this.dropdown = document.querySelector(drop);
-        this.dropdownList = document.querySelector(list);
+    constructor() {
+        this.btnIntro = document.querySelector("#btn-intro");
+        this.btnIntroClose = document.querySelector("#btn-intro-close");
+        this.btnGoStore = document.querySelector("#btn-go-store");
+        this.btnLogin = document.querySelector("#btn-login");
+        this.btnLoginClose = document.querySelector("#btn-login-close");
+        this.btnGoSignUp = document.querySelector("#btn-go-sign-up");
+        this.btnSignUp = document.querySelector("#btn-sign-up");
+        this.btnSignUpClose = document.querySelector("#btn-sign-close");
+        this.navigator = document.querySelector(".navigator");
+        this.dropdown = document.querySelector("#drop");
+        this.dropdownList = document.querySelector(".dropdown-list");
 
         this.btnDuplication = document.querySelector("#btn-duplication");
 
@@ -35,7 +35,6 @@ export class HomeNavigator {
         this.auth = new Auth();
         this.slide = new Slide("slide-box");
         this.view = new View(".view");
-
     }
 
     on() {

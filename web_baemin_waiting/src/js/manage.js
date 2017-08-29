@@ -5,7 +5,7 @@ export class Manage {
 
     constructor(token){
         this.status = "off";
-        this.messages = ["입장 5분 전 입니다", "입장 10분 전 입니다", "얼른 안오면 삭제합니다"];
+        this.messages = ["입장 5분 전 입니다", "입장 10분 전 입니다", "얼른 안오면 삭제합니다", "죄송합니다. 식당의 사정으로 대기표를 취소합니다.", "식당에 입장하셨습니다. 대기표를 삭제합니다."];
         this.token = token;
         this.storeId = token.storeId;
         this.refresh = undefined;
@@ -92,7 +92,7 @@ export class Manage {
         if (answer) {
             service.deleteTicket(num, "cancel").then(() => this.getWaitingList(this.storeId));
             //jw
-            service.push(num, "죄송합니다. 식당의 사정으로 대기표를 취소합니다.");
+            service.push(num, this.messages[3]);
         }
     }
 
@@ -101,7 +101,7 @@ export class Manage {
         if (answer) {
             service.deleteTicket(num, "in").then(() => this.getWaitingList(this.storeId));
             //jw
-            service.push(num, "식당에 입장하셨습니다. 대기표를 삭제합니다.");
+            service.push(num, this.messages[4]);
         }
     }
 
