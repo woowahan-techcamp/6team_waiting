@@ -15,6 +15,10 @@ class MainCollectionViewController: UIViewController {
     let refresh = UIRefreshControl()
     let ticketView = MainCollectionReusableView()
 
+    var storeListSortOpen: [[Store]] = []
+    var openStoreList: [Store] = []
+    var closeStoreList: [Store] = []
+
     // IBOutlet
     @IBOutlet weak var snackbarView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -88,7 +92,8 @@ class MainCollectionViewController: UIViewController {
             startActivityIndicator()
 
             if let indexPath = collectionView.indexPathsForSelectedItems {
-                let storeId = storeList[indexPath[0].item].storeId
+                //let storeId = storeList[indexPath[0].item].storeId
+                let storeId = storeListSortOpen[indexPath[0].section][indexPath[0].item].storeId
                 if let detailViewController = segue.destination as? DetailViewController {
                     detailViewController.storeId = storeId
 
@@ -154,7 +159,7 @@ class MainCollectionViewController: UIViewController {
 // MARK: UICollectionViewDataSource
 extension MainCollectionViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return storeListSortOpen.count
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -177,12 +182,12 @@ extension MainCollectionViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return storeList.count
+        return storeListSortOpen[section].count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as? MainCollectionViewCell {
-            cell.putCellContent(storeInfo: storeList[indexPath.row])
+            cell.putCellContent(storeInfo: storeListSortOpen[indexPath.section][indexPath.row])
             return cell
         }
 
@@ -247,6 +252,9 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
 
             if isSuccess {
                 self.storeList = storeData
+                self.openStoreList = []
+                self.closeStoreList = []
+                self.storeListSortOpen = []
                 print("Location Update Success")
 
                 if self.storeList.count > 0 {
@@ -257,6 +265,16 @@ extension MainCollectionViewController: CLLocationManagerDelegate {
 
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dataUpdate"),
                                                     object: nil, userInfo: ["storeData": self.storeList])
+
+                    for store in self.storeList {
+                        if store.storeIsOpened {
+                            self.openStoreList.append(store)
+                        } else {
+                            self.closeStoreList.append(store)
+                        }
+                    }
+                    self.storeListSortOpen.append(self.openStoreList)
+                    self.storeListSortOpen.append(self.closeStoreList)
 
                     self.collectionView.reloadData()
 
