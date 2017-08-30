@@ -11,7 +11,7 @@ const homeData = {
                 "serv-desc": [
                     {"img":"/dist/public/images/intro1.png", "content": "1. 가게 관리 하기 버튼을 클릭해서 회원가입을 해주세요"},
                     {"img":"/dist/public/images/intro2.png", "content": "2. 로그인 후 사장님의 가게 소개, 위치, 메뉴 등을 등록해주세요"}, 
-                    {"img":"/dist/public/images/rose3.jpg", "content": "3. 가게관리 페이지에서 대기 손님을 효율적으로 관리하세요"},
+                    {"img":"/dist/public/images/intro3.png", "content": "3. 가게관리 페이지에서 가게 오픈을 한 뒤, 우측 상단 스위치를 통해 대기 손님을 허용/거부 할 수 있어요"},
                     {"img":"/dist/public/images/intro4.png", "content": "4. 가게 통계 페이지에서 가게 현황을 한 눈에 볼 수 있어요!"}
                 ],
                 "navi-list": [
