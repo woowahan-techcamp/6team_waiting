@@ -38,7 +38,6 @@ extension ServerRepository {
     }
 
     static func postMylineCheck(ticket: WaitingTicket, completion: @escaping (WaitingTicket) -> Void) {
-        let mylineTicket = ticket
 
         let parameter: Parameters = [
             "storeId": ticket.storeId,
@@ -60,16 +59,10 @@ extension ServerRepository {
             guard let value = response.result.value else { return }
             let mylineJson = JSON(value)
 
-            if let ticketNumber = mylineJson["ticketNumber"].int,
-                let storeName = mylineJson["storeName"].string,
-                let currentInLine = mylineJson["currentInLine"].int {
+            let ticket = updateTicket(item: mylineJson)
 
-                mylineTicket.storeName = storeName
-                mylineTicket.currentInLine = currentInLine
-                mylineTicket.ticketNumber = ticketNumber
+            completion(ticket)
 
-                completion(mylineTicket)
-            }
         }
     }
 
@@ -105,7 +98,6 @@ extension ServerRepository {
 
     static func postWaitingTicketCreate(params ticket: WaitingTicket, completion: @escaping (Bool, WaitingTicket) -> Void) {
 
-        let checkTicket = ticket
         let isStaying = ticket.isStaying ? 1 : 0
         let parameter: Parameters = ["name": ticket.name, "phoneNumber": ticket.phoneNumber,
                                      "headCount": ticket.headCount, "isStaying": isStaying,
@@ -128,22 +120,32 @@ extension ServerRepository {
 
             let checkingJson = JSON(value)
 
-            if let ticketNumber = checkingJson["ticketNumber"].int,
-                let storeName = checkingJson["storeName"].string,
-                let currentInLine = checkingJson["currentInLine"].int,
-                let isSuccess = checkingJson["isSuccess"].int {
+            let ticket = updateTicket(item: checkingJson)
 
+            if let isSuccess = checkingJson["isSuccess"].int {
                 let isSuccessBool = isSuccess == 1 ? true : false
-                checkTicket.storeName = storeName
-                checkTicket.currentInLine = currentInLine
-                checkTicket.ticketNumber = ticketNumber
-
-                print(isSuccessBool)
-                DispatchQueue.main.async {
-                    completion(isSuccessBool, checkTicket)
-                }
+                completion(isSuccessBool, ticket)
             }
         }
+    }
+
+    static func updateTicket(item: JSON) -> WaitingTicket {
+        guard let ticketNumber = item["ticketNumber"].int else {
+            return WaitingTicket()
+        }
+        guard let storeName = item["storeName"].string else {
+            return WaitingTicket()
+        }
+        guard let currentInLine = item["currentInLine"].int else {
+            return WaitingTicket()
+        }
+
+        let ticket = WaitingTicket()
+        ticket.storeName = storeName
+        ticket.currentInLine = currentInLine
+        ticket.ticketNumber = ticketNumber
+
+        return ticket
     }
 
     static func saveDeviceTokenToServer(ticketNumber: Int, token: String, completion: @escaping (Bool) -> Void) {

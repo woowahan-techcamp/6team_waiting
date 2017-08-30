@@ -119,9 +119,9 @@ class ServerRepository {
         }
 
         if let isOpened = item["storeIsOpened"].int {
-            store.getStoreStatus(isOpened: isOpened)
+            store.setStoreStatus(isOpened: isOpened)
         } else {
-            store.getStoreStatus(isOpened: 0)
+            store.setStoreStatus(isOpened: 0)
         }
         if let img = item["storeImgUrl"].string {
             if let imgURL = URL(string: img) {
@@ -134,12 +134,12 @@ class ServerRepository {
         if isMain {
 
             if let location = currentLocation {
-                store.getDistanceFromUser(userLocation: location)
+                store.setDistanceFromUser(userLocation: location)
             }
 
             if let address = item["storeAddress"].string {
                 store.storeAddress = address
-                store.getShortAddress(address: address)
+                store.setShortAddress(address: address)
             }
 
             self.storeList.append(store)
@@ -156,33 +156,4 @@ class ServerRepository {
             self.detailStore = store
         }
     }
-
-    /* 이건 뭐지??
-    static func postDeviceToken(ticketNumber: Int, token: String) {
-
-        let parameter: Parameters = [
-            "ticketNumber": ticketNumber,
-            "token": token
-        ]
-
-        guard let url = URL(string: baseURL + "/storefilter")
-            else {
-                print("URL is nil")
-                return
-        }
-
-        Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
-
-            guard response.result.isSuccess else {
-                print("Response get store error: \(response.result.error!)")
-                return
-            }
-
-        }
-    }
-     */
-
 }
-    
-
-

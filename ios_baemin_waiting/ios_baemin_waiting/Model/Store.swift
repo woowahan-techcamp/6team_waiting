@@ -44,30 +44,6 @@ class Store {
         self._storeLongitude = storeLongitude
     }
 
-//    convenience init(storeName: String, storeId: Int, storeAddress: String, storeLatitude: String, storeLongitude: String, storeImgUrl: URL?, currentInLine: Int) {
-//        self.init()
-//        self._storeName = storeName
-//        self._storeId = storeId
-//        self._storeAddress = storeAddress
-//        self._storeLatitude = storeLatitude
-//        self._storeLongitude = storeLongitude
-//        self._storeImgUrl = storeImgUrl
-//        self._currentInLine = currentInLine
-//    }
-//
-//    convenience init(storeName: String, storeId: Int, storeDescription: String, storeTel: String, storeLatitude: String,
-//                     storeLongitude: String, storeImgUrl: URL, currentInLine: Int) {
-//        self.init()
-//        self._storeName = storeName
-//        self._storeId = storeId
-//        self._storeDescription = storeDescription
-//        self._storeTel = storeTel
-//        self._storeLatitude = storeLatitude
-//        self._storeLongitude = storeLongitude
-//        self._storeImgUrl = storeImgUrl
-//        self._currentInLine = currentInLine
-//    }
-
     public var storeName: String {
         get { return self._storeName }
         set { self._storeName = newValue }
@@ -121,7 +97,7 @@ class Store {
         return self._storeShortAddress
     }
 
-    public func getDistanceFromUser(userLocation: CLLocation) {
+    public func setDistanceFromUser(userLocation: CLLocation) {
         let storeLat = CLLocationDegrees(self.storeLatitude)
         let storeLong = CLLocationDegrees(self.storeLongitude)
 
@@ -132,7 +108,7 @@ class Store {
         self._distanceToUser = distance
 
     }
-    public func getShortAddress(address: String) {
+    public func setShortAddress(address: String) {
         let addrArray = address.components(separatedBy: " ")
 
         var result = ""
@@ -155,7 +131,7 @@ class Store {
         self._storeShortAddress = result
 
     }
-    public func getStoreStatus(isOpened: Int) {
+    public func setStoreStatus(isOpened: Int) {
         switch isOpened {
         case 1:
             self._storeIsOpened = true
