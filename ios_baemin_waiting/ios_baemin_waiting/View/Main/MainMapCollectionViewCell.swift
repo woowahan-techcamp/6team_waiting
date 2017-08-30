@@ -18,6 +18,7 @@ class MainMapCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var currentInLineLabel: UILabel!
 
+    @IBOutlet weak var waitingTitleLabel: UILabel!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var imageWidth: NSLayoutConstraint!
     override func awakeFromNib() {
@@ -27,7 +28,16 @@ class MainMapCollectionViewCell: UICollectionViewCell {
         backView.layer.borderWidth = 0.4
 
         let ratio: CGFloat = 140 / 375
-        imageWidth.constant = self.backView.bounds.width * ratio
+        imageWidth.constant = (self.backView.bounds.width - 32) * ratio
+    }
+    override func updateConstraints() {
+        super.updateConstraints()
+        if UIDevice.current.isiPhoneSE {
+            titleLabel.setContentLabelFont(fontSize: 15)
+            waitingTitleLabel.setSubLabelFont(fontSize: 13)
+            currentInLineLabel.setTitleLabelFont(fontSize: 18)
+        }
+
     }
 
     func putCellContent(storeInfo: Store) {
