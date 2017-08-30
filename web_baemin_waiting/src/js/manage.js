@@ -43,7 +43,6 @@ export class Manage {
         clearInterval(this.refresh);
         const id = this.storeId;
         this.refresh = setInterval(() => {
-            console.log("get...");
             this.getWaitingList(id);
         }, 5000);
     }

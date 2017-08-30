@@ -188,7 +188,6 @@ export class HomeNavigator {
 
     signinHandler() {
         this.auth.signIn().then((result) => {
-            console.log(result);
             if (result === "success") {
                 this.view.showInitialBoard();
                 this.manageHandler();
