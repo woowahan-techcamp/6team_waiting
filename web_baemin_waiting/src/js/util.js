@@ -1,6 +1,5 @@
 import service from "./services/service.js";
 
-
 const util = {
     log(content) {
         if (window.console) console.log(content);
@@ -44,8 +43,34 @@ Handlebars.registerHelper("storeStatus", function(status, num) {
         storeStatus = ["checked", ""];
     }
 
-    console.log(storeStatus);
     return storeStatus[num];
+});
+
+Handlebars.registerHelper("ticketStatus", function(status) {
+    let ticketStatus = "";
+
+    if (status === 4) {
+        return new Handlebars.SafeString(
+            '<div class="waiting-btn-area">' +
+                '<div class="btn-delete-can"></div>' +
+                '<div class="btn-delete-in"></div>' +                
+            '</div>'
+        );
+    } else {
+        return new Handlebars.SafeString( 
+            '<div class="waiting-btn-area">' +
+            '<div class="btn-alarm">' +
+                '<ul class="alarm-opt">' +
+                    '<li>5분 전</li>' +
+                    '<li>10분 전</li>' +
+                '</ul>' +
+            '</div>' +
+            '<div class="btn-delete-can"></div>' +
+            '<div class="btn-delete-in"></div>' +                
+            '</div>' 
+        );
+    }
+
 });
 
 export default util;
