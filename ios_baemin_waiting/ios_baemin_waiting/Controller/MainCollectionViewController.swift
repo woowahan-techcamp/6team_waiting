@@ -85,6 +85,7 @@ class MainCollectionViewController: UIViewController {
                 let storeId = storeList[indexPath[0].section][indexPath[0].item].storeId
                 if let detailViewController = segue.destination as? DetailViewController {
                     detailViewController.storeId = storeId
+                    detailViewController.ticket = ticket
 
                     stopActivityIndicator()
                 }
@@ -288,6 +289,10 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
 extension MainCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == collectionView.indexPathsForVisibleItems.last?.count {
+            activityIndicator.stopAnimating()
+            collectionView.isHidden = false
+        } else {
+            //삭제
             activityIndicator.stopAnimating()
             collectionView.isHidden = false
         }

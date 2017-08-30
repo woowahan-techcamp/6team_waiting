@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     var storeId: Int = 0
     var mapIndexPath: IndexPath?
     var storeLocation: NGeoPoint?
+    var ticket: WaitingTicket?
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lineButtion: UIButton!
@@ -64,6 +65,7 @@ class DetailViewController: UIViewController {
             }
         }
     }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
@@ -74,6 +76,17 @@ class DetailViewController: UIViewController {
             }
         }
 
+    }
+
+    @IBAction func lineButtonAction(_ sender: Any) {
+        if ticket != nil {
+            let alert = AlertHelper.lineCancelAlert(title: "티켓 보유 중",
+                                                    message: "현재 티켓을 취소하고 진행하시겠습니까?",
+                                                    waitingTicket: ticket!, popUI: self)
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            self.performSegue(withIdentifier: "selectWaiting", sender: nil)
+        }
     }
 }
 
@@ -164,7 +177,7 @@ extension DetailViewController: UITableViewDelegate {
                     destination.location = location
                 }
             }
-        } else if segue.identifier == "Waiting" {
+        } else if segue.identifier == "selectWaiting" {
             if let waitingTicketViewController = segue.destination as? WaitingTicketViewController {
                 waitingTicketViewController.storeId = self.storeId
             }
