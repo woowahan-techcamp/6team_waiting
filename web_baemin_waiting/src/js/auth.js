@@ -261,7 +261,6 @@ export class Auth {
                 const token = JSON.parse(window.sessionStorage.getItem("token"));
                 token.storeId = storeid;
                 window.sessionStorage.setItem("token", JSON.stringify(token));
-                this.view.showNaviPage("manage");
 
                 this.isSaving = false;
             });
@@ -291,7 +290,7 @@ export class Auth {
 
         if (!menu.isOK) return;
 
-        if (!this.regex.isName(title)) {
+        if (!this.regex.isTitle(title)) {
             alert("2 - 20 글자 수의 가게명을 입력해주세요");
             return;
         }
@@ -319,9 +318,8 @@ export class Auth {
                     const token = JSON.parse(window.sessionStorage.getItem("token"));
                     token.storeId = storeid;
                     window.sessionStorage.setItem("token", JSON.stringify(token));
-                    this.view.showNaviPage("manage");
-
                     this.isSaving = false;
+                    alert("가게 정보 수정이 완료되었습니다.");
                 });
         } else {
             service.saveImageInStorage(file, memberid)
@@ -335,11 +333,11 @@ export class Auth {
                     const token = JSON.parse(window.sessionStorage.getItem("token"));
                     token.storeId = storeid;
                     window.sessionStorage.setItem("token", JSON.stringify(token));
-                    this.view.showNaviPage("manage");
-    
                     this.isSaving = false;
+                    alert("가게 정보 수정이 완료되었습니다.");
                 });
         }
+            
 
     }
 

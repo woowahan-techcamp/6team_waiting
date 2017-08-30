@@ -242,6 +242,7 @@ export class HomeNavigator {
                 const token = this.auth.currentToken();
                 service.getStoreInfo(token).then((info) => {
                     this.view.showNaviPage("manage", info);
+                    const manage = new Manage(this.auth.currentToken);
                 });
             })
         });
