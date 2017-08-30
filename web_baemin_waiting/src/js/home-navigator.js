@@ -251,12 +251,16 @@ export class HomeNavigator {
         const btnRegister = document.getElementById("btn-reg-store");
         btnRegister.addEventListener("click", () => {
             this.auth.registerStore(map, menu).then(() => {
-                const token = this.auth.currentToken();
-                service.getStoreInfo(token).then((info) => {
-                    this.view.showNaviPage("manage", info);
-                    const manage = new Manage(token);
-                });
+                this.afterRegister();
             })
+        });
+    }
+
+    afterRegister() {
+        const token = this.auth.currentToken();
+        service.getStoreInfo(token).then((info) => {
+            this.view.showNaviPage("manage", info);
+            const manage = new Manage(token);
         });
     }
 
