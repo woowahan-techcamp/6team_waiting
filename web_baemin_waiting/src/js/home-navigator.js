@@ -2,41 +2,38 @@ import util from "./util.js";
 import service from "./services/service.js";
 
 import { Auth } from "./auth.js";
-import { Regex } from "./regex.js";
 import { Slide } from "./slide.js";
+import { Statistic } from "./statistic.js";
 import { StoreList } from "./storelist.js";
 import { View } from "./view.js";
 import { Manage } from "./manage.js";
-
-import { stat } from "./stat.data.js";
+import { Map } from "./map.js";
+import { Menu } from "./menu.js";
 
 
 export class HomeNavigator {
 
-    constructor(intro, introClose, goStore, login, loginClose, goSignUp, signUp, signUpClose, nav, drop, list) {
-        this.btnIntro = document.querySelector(intro);
-        this.btnIntroClose = document.querySelector(introClose);
-        this.btnGoStore = document.querySelector(goStore);
-        this.btnLogin = document.querySelector(login);
-        this.btnLoginClose = document.querySelector(loginClose);
-        this.btnGoSignUp = document.querySelector(goSignUp);
-        this.btnSignUp = document.querySelector(signUp);
-        this.btnSignUpClose = document.querySelector(signUpClose);
-        this.navigator = document.querySelector(nav);
-        this.dropdown = document.querySelector(drop);
-        this.dropdownList = document.querySelector(list);
+    constructor() {
+        this.btnIntro = document.querySelector("#btn-intro");
+        this.btnIntroClose = document.querySelector("#btn-intro-close");
+        this.btnGoStore = document.querySelector("#btn-go-store");
+        this.btnLogin = document.querySelector("#btn-login");
+        this.btnLoginClose = document.querySelector("#btn-login-close");
+        this.btnGoSignUp = document.querySelector("#btn-go-sign-up");
+        this.btnSignUp = document.querySelector("#btn-sign-up");
+        this.btnSignUpClose = document.querySelector("#btn-sign-close");
+        this.navigator = document.querySelector(".navigator");
+        this.dropdown = document.querySelector("#drop");
+        this.dropdownList = document.querySelector(".dropdown-list");
 
         this.btnDuplication = document.querySelector("#btn-duplication");
 
         this.prev = document.querySelector(".prev");
         this.next = document.querySelector(".next");
 
-        this.regex = new Regex();
         this.auth = new Auth();
         this.slide = new Slide("slide-box");
         this.view = new View(".view");
-
-        this.whichBtnIng = "";
     }
 
     on() {
@@ -54,7 +51,7 @@ export class HomeNavigator {
         
         this.btnGoStore.addEventListener("click", this.goStoreHandler.bind(this));
 
-        this.btnLogin.addEventListener("click", () => this.auth.signIn());
+        this.btnLogin.addEventListener("click", this.signinHandler.bind(this));
 
         this.btnLoginClose.addEventListener("click", () => {
             this.view.hideElement("sign-in");
@@ -65,7 +62,7 @@ export class HomeNavigator {
             this.view.showElement("sign-up");
         });
 
-        this.btnSignUp.addEventListener("click", () => this.auth.signUp());
+        this.btnSignUp.addEventListener("click", this.signupHandler.bind(this));
 
         this.btnSignUpClose.addEventListener("click", () => {
             this.view.hideElement("sign-up");
@@ -145,25 +142,12 @@ export class HomeNavigator {
 
         this.view.inactivateRoot();
     }
-
-    myInfoHandler() {
-        const btnInfoMod = document.getElementById("btn-info-modify");
-        const btnGoModify = document.getElementById("btn-go-modify");
-
-        btnInfoMod.addEventListener("click", () => {
-            // @TODO : haeun.kim
-            // 사용자 정보 업데이트
-        });
-        btnGoModify.addEventListener("click", () => {
-            util.setTemplateInHtml(".board", "modify-store");
-        });
-    }
     
     showRegister() {
         util.setTemplateInHtml(".board", "no-store").then(() => {
             const btnGoRegister = document.getElementById("btn-go-register");
             btnGoRegister.addEventListener("click", () => {
-                util.setTemplateInHtml(".board", "register").then(() => this.registerPage());
+                util.setTemplateInHtml(".board", "register");
             });
         });
     }
@@ -181,11 +165,11 @@ export class HomeNavigator {
                 break;
 
             case "manage":
-                this.auth.checkMyStore();
+                this.manageHandler();
                 break;
 
             case "statistic":
-                this.view.showNaviPage(destination, stat);
+                const stat = new Statistic();
                 break;
 
             case "store-list":
@@ -194,12 +178,74 @@ export class HomeNavigator {
 
             case "logout": 
                 this.auth.signOut();
+                this.view.goHome();
                 break;
 
             default:
                 this.view.showNaviPage(destination);
                 break;
         }
+    }
+
+    signinHandler() {
+        this.auth.signIn().then(() => {
+            this.view.showInitialBoard();
+            this.manageHandler();
+        })
+    }
+
+    signupHandler() {
+        this.auth.signUp().then(() => {
+            this.view.hideElement("sign-up");
+            document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
+            document.querySelector("#check-dup").style.color = "#FF6666";
+        })
+    }
+
+    manageHandler() {
+        const token = this.auth.currentToken();
+       
+        if (!token) {
+            this.view.showElement("sign-in");
+            this.view.inactivateRoot();
+        } else if (token.storeId === 0) {
+            this.hasNoStore();
+        } else {
+            const manage = new Manage(token);
+        };
+    }
+
+    hasNoStore() {
+        this.view.showNaviPage("no-store").then(() => {
+            const btnGoRegister = document.getElementById("btn-go-register");
+            btnGoRegister.addEventListener("click", () => {
+                this.view.showNaviPage("register").then(() => { this.readyToRegister() });
+            });
+        });
+    }
+
+    readyToRegister() {
+        const menu = new Menu(".menus");
+        menu.addMenuInput();
+
+        const btnAddMenu = document.querySelector(".add-menu");
+        btnAddMenu.addEventListener("click", () => {
+            menu.addMenuInput();
+        });
+
+        const map = new Map("#regist-location");
+        map.on();
+        
+        const btnRegister = document.getElementById("btn-reg-store");
+        btnRegister.addEventListener("click", () => {
+            this.auth.registerStore(map, menu).then(() => {
+                const token = this.auth.currentToken();
+                service.getStoreInfo(token).then((info) => {
+                    this.view.showNaviPage("manage", info);
+                    const manage = new Manage(this.auth.currentToken);
+                });
+            })
+        });
     }
 
 }

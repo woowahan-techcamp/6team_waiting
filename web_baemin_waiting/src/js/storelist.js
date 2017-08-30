@@ -26,7 +26,6 @@ export class StoreList {
     storeListHandler() {
         document.querySelector(".store-list").addEventListener("click", (e) => {
             if (e.target.nodeName === "DD" || e.target.nodeName === "IMG" || e.target.nodeName === "DT") {
-                document.querySelector(".store-card-list").removeEventListener("scroll", this.currentPosition);
                 this.storedetailPage(e.target.id);
             }
         })
@@ -43,16 +42,7 @@ export class StoreList {
     }
 
     storedetailPage(id) {
-        service.getOtherStoreDetail(id)
-            .then((info) => {
-                return util.setTemplateInHtml(".store-card-list", "store-detail", info)
-            })
-            .then(() => {
-                const btnBack = document.querySelector("#btn-back");
-                btnBack.addEventListener("click", () => {
-                    this.storelistPage();
-                })
-            });
+        alert("자세한 가게 정보는 배민 웨이팅 앱에서 확인하실 수 있습니다!");
     }
 
     currentPosition() {
@@ -72,9 +62,7 @@ export class StoreList {
 
         return service.getOtherStoreList(firstNum, lastNum)
             .then((stores) => {
-                stores.forEach((store) => {
-                    this.stores.push(store);
-                })
+                stores.forEach((store) => this.stores.push(store));
             })
             .then(() => {
                 this.pageNow += this.PAGE_COUNT;

@@ -1,99 +1,56 @@
-div.stat{
-    width: 80%;
-    height: 90%;
-    margin: auto;
-    text-align: center;
+canvas {
+  width:400px !important;
+  height:230px !important;
+}
+
+div.stat {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  overflow: auto;
 }
 
 div.stat > h1 {
-    margin-top: 50px;
+  margin-top: 30px;
 }
 
-div.stat > div {
-    width: 90%;
-    height: 90%;
-    margin: auto;
-    position: relative;
+div.chart-area {
+  width: 800px;
+  height: 80%;
+  margin-top: 30px;
+  margin: auto;
+  overflow: auto;
 }
 
-.bar {
-  fill: $secondary-color;
-  height: 21px;
-  transition: fill .3s ease;
-  cursor: pointer;
-  
-  text {
-    fill: #AAA;
-    font-size: .7em;
-  }
+div.weekCount-area {
+  width: 400px;
+  height: 230px;
+  float: left;
 }
 
-.chart:hover,
-.chart:focus {
-  .bar {
-    fill: $secondary-color;
-  }
+div.age-area {
+  width: 400px;
+  height: 230px;
+  float: left;
 }
 
-.bar:hover,
-.bar:focus {
-  fill: $primary-color !important;
-  
-  text {
-    fill: black;
-  }
+div.time-area {
+  width: 400px;
+  height: 230px;
+  float: left;
+  margin-top: 50px;
 }
 
-figcaption {
-  font-weight: bold;
-  color: #000;
-  margin-bottom: 20px;
+div.party-area {
+  width: 400px;
+  height: 230px;
+  float: left;
+  margin-top: 50px;
 }
 
-.time-chart {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 420px;
-    height: 200px;
-    text-align: center;
-}
-
-.age-chart {
-    position: absolute;
-    top: 50px;
-    right: 0;
-    text-align: center;
-}
-
-.age-chart figcaption {
-    width: 400px;
-}
-
-.age-bar {
-  fill: #FAA;
-  height: 21px;
-  transition: fill .3s ease;
-  cursor: pointer;
-  
-  text {
-    fill: #AAA;
-    font-size: .7em;
-  }
-}
-
-.age-chart:hover,
-.age-chart:focus {
-  .age-bar {
-    fill: #FAA;
-  }
-}
-
-.age-bar:hover,
-.age-bar:focus {
-  fill: #FF6D6D !important;
-  
-  text {
-    fill: black;
-  }
+div.party-area > canvas {
+  width:230px !important;
+  margin: auto;
 }
