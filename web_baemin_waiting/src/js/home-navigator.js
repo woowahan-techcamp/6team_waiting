@@ -187,17 +187,26 @@ export class HomeNavigator {
     }
 
     signinHandler() {
-        this.auth.signIn().then(() => {
-            this.view.showInitialBoard();
-            this.manageHandler();
+        this.auth.signIn().then((result) => {
+            console.log(result);
+            if (result === "success") {
+                this.view.showInitialBoard();
+                this.manageHandler();
+            } else {
+                alert("아이디와 비밀번호를 확인해주세요");
+            }
         })
     }
 
     signupHandler() {
-        this.auth.signUp().then(() => {
-            this.view.hideElement("sign-up");
-            document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
-            document.querySelector("#check-dup").style.color = "#FF6666";
+        this.auth.signUp().then((result) => {
+            if (result === "success") {
+                this.view.hideElement("sign-up");
+                document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
+                document.querySelector("#check-dup").style.color = "#FF6666";
+            } else {
+                alert("회원가입에 실패하였습니다")
+            }
         })
     }
 

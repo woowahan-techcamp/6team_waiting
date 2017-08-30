@@ -41,9 +41,7 @@ export class Auth {
                 if (token.token !== "fail") {
                     window.sessionStorage.setItem("token", JSON.stringify(token));
                     return "success";
-                } else {
-                    alert("아이디와 비밀번호를 확인해주세요");
-                }
+                } 
             })
             .catch((err) => {
                 alert(err);

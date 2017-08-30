@@ -28,8 +28,7 @@ const service = (() => {
     const fireStorage = app.storage();
     const fireStorageRef = app.storage().ref();
 
-    //const baseUrl = "http://52.78.157.5:8080";
-    const baseUrl = "http://192.168.100.18:8080/baeminWaiting004";
+    const baseUrl = "http://52.78.157.5:8080";
     
 
     const requestAjax = function(protocol, url, data) {
