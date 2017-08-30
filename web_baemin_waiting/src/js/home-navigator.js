@@ -177,8 +177,7 @@ export class HomeNavigator {
                 break;
 
             case "logout": 
-                this.auth.signOut();
-                this.view.goHome();
+                this.signoutHandler();
                 break;
 
             default:
@@ -200,6 +199,24 @@ export class HomeNavigator {
             document.querySelector("#check-dup").innerHTML = "아이디 중복확인을 해주세요";
             document.querySelector("#check-dup").style.color = "#FF6666";
         })
+    }
+
+    signoutHandler() {
+        const token = this.auth.currentToken();
+        if (token.storeId !== 0) {
+            service.getStoreInfo(token).then((info) => {
+                if (info.opened !== 0) {
+                    const answer = confirm("로그아웃 후에도 가게는 닫히지 않습니다. 가게를 오픈한 상태에서 로그아웃을 하시겠습니까?");
+                    if (answer) {
+                        this.auth.signOut();
+                        this.view.goHome();
+                    }
+                }
+            })
+        } else {
+            this.auth.signOut();
+            this.view.goHome();
+        }
     }
 
     manageHandler() {
@@ -239,12 +256,16 @@ export class HomeNavigator {
         const btnRegister = document.getElementById("btn-reg-store");
         btnRegister.addEventListener("click", () => {
             this.auth.registerStore(map, menu).then(() => {
-                const token = this.auth.currentToken();
-                service.getStoreInfo(token).then((info) => {
-                    this.view.showNaviPage("manage", info);
-                    const manage = new Manage(this.auth.currentToken);
-                });
+                this.afterRegister();
             })
+        });
+    }
+
+    afterRegister() {
+        const token = this.auth.currentToken();
+        service.getStoreInfo(token).then((info) => {
+            this.view.showNaviPage("manage", info);
+            const manage = new Manage(token);
         });
     }
 
