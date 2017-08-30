@@ -172,6 +172,13 @@ div.slides-img > img {
     margin: auto auto;
 }
 
+div.slides-img > video {
+    max-width:100%;
+    max-height:100%;
+    display: block;
+    margin: auto auto;
+}
+
 div.slide-box > p {
     position: relative;
     margin: 0;
@@ -195,10 +202,10 @@ div.sign-in {
 }
 
 div.sign-in img.logo {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     margin-top: 25vh;
-    margin-bottom: 3vh;
+    margin-bottom: 1vh;
 }
 
 span.btn-close {
@@ -497,7 +504,7 @@ button#btn-go-register {
 
     div.slides {
         position: relative;
-        width: 400px;
+        width: 600px;
         overflow: auto;
     }
 }

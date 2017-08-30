@@ -1,6 +1,5 @@
 import service from "./services/service.js";
 
-
 const util = {
     log(content) {
         if (window.console) console.log(content);
@@ -44,8 +43,20 @@ Handlebars.registerHelper("storeStatus", function(status, num) {
         storeStatus = ["checked", ""];
     }
 
-    console.log(storeStatus);
     return storeStatus[num];
+});
+
+Handlebars.registerHelper("ticketStatus", function(status) {
+    let ticketStatus = "";
+
+    if (status === 4) {
+        return new Handlebars.SafeString(
+            '<div class="waiting-btn-area">' +
+                '<div class="btn-delete-in"></div>' +                
+            '</div>'
+        );
+    }
+
 });
 
 export default util;

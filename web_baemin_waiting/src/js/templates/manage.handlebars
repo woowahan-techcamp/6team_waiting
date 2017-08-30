@@ -3,24 +3,23 @@
 
     <div class="manage-switch">
         <div class="onoff">
-            <span>OFF</span>
+            <div id="switch-off"></div>
             <label class="switch">
-                <input type="checkbox" id="store-status" 
-        {{storeStatus this.opened 0}}>
+                <input type="checkbox" id="store-status" {{storeStatus this.opened 0}}>
                 <span class="slider round"></span>
             </label>
-            <span>ON</span>
+            <div id="switch-on"></div>
         </div>
 
         <div class="line">
-            <span>대기 거부</span>
+            <div id="switch-deny"></div>
             <label class="switch">
-                <input type="checkbox" id="line-status"  {{storeStatus this.opened 1}}>
+                <input type="checkbox" id="line-status" {{storeStatus this.opened 1}}>
                 <span class="slider round"></span>
             </label>
-            <span>대기 허용</span>
+            <div id="switch-allow"></div>
         </div>
-    <div>
+    </div>
 
     <div class="waiting-list">
     </div>
