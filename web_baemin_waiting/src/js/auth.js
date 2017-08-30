@@ -89,13 +89,7 @@ export class Auth {
 
     signOut() {
         const token = this.currentToken();
-        return service.changeStatus(token, "off")
-            .then((res) => {
-                if(res.resultStatus === "off"){
-                    sessionStorage.removeItem("token");
-                    return "success";
-                } 
-            });        
+        sessionStorage.removeItem("token");
     }
 
     confirmPassword() {
@@ -116,7 +110,7 @@ export class Auth {
     userInfoInMypage(token) {
         service.getUserInfo(token)
             .then((userInfo) => {
-                util.setTemplateInHtml(".board", "my-info", userInfo)
+                util.setTemplateInHtml(".my-page-area", "my-info", userInfo)
                 this.myInfoHandler(userInfo);
             })
             .then(() => {
@@ -127,7 +121,7 @@ export class Auth {
     storeInfoInMypage(token) {
         service.getStoreInfo(token)
             .then((storeInfo) => {
-                util.setTemplateInHtml(".board", "my-info", storeInfo)
+                util.setTemplateInHtml(".my-page-area", "my-info", storeInfo)
                 this.myInfoHandler(storeInfo);
             });
     }
@@ -256,7 +250,7 @@ export class Auth {
         }
 
         this.isSaving = true;
-        service.saveImageInStorage(file, memberid)
+        return service.saveImageInStorage(file, memberid)
             .then((path) => {
                 return service.getStoreImageUrl(path);
             })
@@ -267,7 +261,6 @@ export class Auth {
                 const token = JSON.parse(window.sessionStorage.getItem("token"));
                 token.storeId = storeid;
                 window.sessionStorage.setItem("token", JSON.stringify(token));
-                this.view.showNaviPage("manage");
 
                 this.isSaving = false;
             });
@@ -297,7 +290,7 @@ export class Auth {
 
         if (!menu.isOK) return;
 
-        if (!this.regex.isName(title)) {
+        if (!this.regex.isTitle(title)) {
             alert("2 - 20 글자 수의 가게명을 입력해주세요");
             return;
         }
@@ -325,9 +318,8 @@ export class Auth {
                     const token = JSON.parse(window.sessionStorage.getItem("token"));
                     token.storeId = storeid;
                     window.sessionStorage.setItem("token", JSON.stringify(token));
-                    this.view.showNaviPage("manage");
-
                     this.isSaving = false;
+                    alert("가게 정보 수정이 완료되었습니다.");
                 });
         } else {
             service.saveImageInStorage(file, memberid)
@@ -341,11 +333,11 @@ export class Auth {
                     const token = JSON.parse(window.sessionStorage.getItem("token"));
                     token.storeId = storeid;
                     window.sessionStorage.setItem("token", JSON.stringify(token));
-                    this.view.showNaviPage("manage");
-    
                     this.isSaving = false;
+                    alert("가게 정보 수정이 완료되었습니다.");
                 });
         }
+            
 
     }
 

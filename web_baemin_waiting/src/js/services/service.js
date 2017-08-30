@@ -131,7 +131,7 @@ const service = (() => {
 
         push(ticket, msg) {
             const push = new PushModel(ticket, msg);
-            return requestAjax("POST", `${baseUrl}/push`, push)//url:: webpush(LOCAL), push(AWS) 
+            return requestAjax("POST", `${baseUrl}/webpush`, push)//url:: webpush(LOCAL), push(AWS) 
                 .then((status) => { return status })
                 .catch((err) => { return err });
         },

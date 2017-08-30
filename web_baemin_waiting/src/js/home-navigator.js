@@ -178,6 +178,7 @@ export class HomeNavigator {
 
             case "logout": 
                 this.auth.signOut();
+                this.view.goHome();
                 break;
 
             default:
@@ -232,13 +233,17 @@ export class HomeNavigator {
             menu.addMenuInput();
         });
 
-        const map = new Map();
+        const map = new Map("#regist-location");
         map.on();
         
         const btnRegister = document.getElementById("btn-reg-store");
         btnRegister.addEventListener("click", () => {
             this.auth.registerStore(map, menu).then(() => {
-                this.view.showNaviPage("manage");
+                const token = this.auth.currentToken();
+                service.getStoreInfo(token).then((info) => {
+                    this.view.showNaviPage("manage", info);
+                    const manage = new Manage(this.auth.currentToken);
+                });
             })
         });
     }

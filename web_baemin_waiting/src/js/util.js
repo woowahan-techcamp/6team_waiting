@@ -49,10 +49,9 @@ Handlebars.registerHelper("storeStatus", function(status, num) {
 Handlebars.registerHelper("ticketStatus", function(status) {
     let ticketStatus = "";
 
-    if (status == 4) {
+    if (status === 4) {
         return new Handlebars.SafeString(
             '<div class="waiting-btn-area">' +
-                '<div style = "text-align:center; margin-top:0px;"> <br> 웹 <br>대기신청</div>' +
                 '<div class="btn-delete-in"></div>' +                
             '</div>'
         );
