@@ -54,7 +54,6 @@ class MyTicketViewController: UIViewController {
         }
     }
     @IBAction func closeBtnTapped(_ sender: UIButton) {
-
         let navigationController = self.presentingViewController as? UINavigationController
 
         self.dismiss(animated: true) {

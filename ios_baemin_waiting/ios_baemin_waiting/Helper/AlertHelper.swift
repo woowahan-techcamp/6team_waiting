@@ -38,6 +38,10 @@ class AlertHelper {
                     navigationController.popToRootViewController(animated: true)
                 }
             }
+
+            if let detailVC = popUI as? DetailViewController {
+                detailVC.performSegue(withIdentifier: "selectWaiting", sender: nil)
+            }
         }
         let cancel = UIAlertAction(title: "티켓 유지", style: .default, handler: nil)
         alert.addAction(ok)
