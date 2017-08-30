@@ -24,6 +24,10 @@ export class Manage {
                 this.btnAdd = document.querySelector("#btn-add-client");
                 this.on();
             });
+
+            if (info.opened === 1) {
+                this.refreshList();
+            }
         }).then(() => {
             this.getWaitingList(this.token.storeId);
         })
