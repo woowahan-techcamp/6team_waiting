@@ -212,6 +212,7 @@ export class HomeNavigator {
 
     signoutHandler() {
         const token = this.auth.currentToken();
+        
         if (token.storeId !== 0) {
             service.getStoreInfo(token).then((info) => {
                 if (info.opened !== 0) {
@@ -220,6 +221,9 @@ export class HomeNavigator {
                         this.auth.signOut();
                         this.view.goHome();
                     }
+                } else {
+                    this.auth.signOut();
+                    this.view.goHome();
                 }
             })
         } else {
