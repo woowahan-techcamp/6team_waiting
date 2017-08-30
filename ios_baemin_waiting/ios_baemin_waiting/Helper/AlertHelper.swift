@@ -20,7 +20,7 @@ class AlertHelper {
     static func lineCancelAlert(title: String, message: String, waitingTicket: WaitingTicket, popUI: UIViewController) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        let ok = UIAlertAction(title: "OK", style: .destructive) { (_: UIAlertAction!) in
+        let ok = UIAlertAction(title: "티켓 취소", style: .destructive) { (_: UIAlertAction!) in
             ServerRepository.postCancleLine(ticket: waitingTicket) { isSuccess in
                 if isSuccess == 1 {
 
@@ -39,7 +39,7 @@ class AlertHelper {
                 }
             }
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let cancel = UIAlertAction(title: "티켓 유지", style: .default, handler: nil)
         alert.addAction(ok)
         alert.addAction(cancel)
 
