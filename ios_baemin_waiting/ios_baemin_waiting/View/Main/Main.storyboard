@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -61,23 +60,17 @@
                                 <action selector="ticketShowBtnTapped:" destination="shz-0b-mnd" id="Wvc-jQ-BnG"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="map" id="PQr-jB-h3m">
-                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="mapBtnTapped:" destination="shz-0b-mnd" id="I62-CS-GSZ"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="search" id="6jt-bV-C3P">
-                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="map" id="PQr-jB-h3m">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="mapBtnTapped:" destination="shz-0b-mnd" id="I62-CS-GSZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="listContainerView" destination="tFK-mB-qdW" id="WT4-eE-Njp"/>
                         <outlet property="mapBtn" destination="PQr-jB-h3m" id="hQw-Ic-ZEl"/>
                         <outlet property="mapView" destination="hxD-6u-ejB" id="LIe-mh-Y4J"/>
-                        <outlet property="searchBtn" destination="6jt-bV-C3P" id="jRZ-yu-wBQ"/>
                         <outlet property="ticketBtn" destination="Ach-mU-evZ" id="WOL-z2-Jko"/>
                         <segue destination="TQt-o4-7e8" kind="presentation" identifier="myTicketSegue" id="Ehq-El-UaE"/>
                     </connections>
@@ -177,7 +170,6 @@
     </scenes>
     <resources>
         <image name="map" width="22" height="20"/>
-        <image name="search" width="20" height="20"/>
         <image name="ticket" width="26" height="26"/>
     </resources>
 </document>

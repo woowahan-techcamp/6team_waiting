@@ -26,7 +26,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tS7-Vt-fQ1">
                         <rect key="frame" x="0.0" y="0.0" width="345" height="120"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eva-zU-AEX">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eva-zU-AEX">
                                 <rect key="frame" x="8" y="8" width="140" height="104"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="AJz-zw-PyD"/>
@@ -102,6 +102,7 @@
                 <outlet property="imageWidth" destination="AJz-zw-PyD" id="U9Z-yZ-d2C"/>
                 <outlet property="locationAndDistanceLabel" destination="sii-vF-8Je" id="UOz-Dc-lHG"/>
                 <outlet property="titleLabel" destination="IjZ-gb-1P8" id="IJE-TT-QY7"/>
+                <outlet property="waitingTitleLabel" destination="Fvx-pD-KNY" id="QNL-aF-tHd"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="63"/>
         </collectionViewCell>

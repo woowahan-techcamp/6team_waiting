@@ -21,25 +21,23 @@ class MapViewController: UIViewController {
     var myLocation: NGeoPoint?
     var circleArea: NMapCircleData?
     var overlayItems: NMapPOIdataOverlay?
-    var storeList: [Store] = []
-
+    private var currentState: State = .disabled
     var prevOffset: CGPoint?
     var prevIndex: Int32?
 
-    private var currentState: State = .disabled
+    var storeList: [Store] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(dataUpdated),
-                                               name: NSNotification.Name(rawValue: "dataUpdate"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(storeListMapDataUpdate),
+                                               name: NSNotification.Name(rawValue: "storeListMapDataUpdate"), object: nil)
 
         mapView = initMap(frame: self.view.bounds)
 
         if let map = mapView {
             map.delegate = self
             map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
             view.addSubview(map)
         }
 
@@ -61,25 +59,25 @@ class MapViewController: UIViewController {
     }
 
     // NotificationCenter 메소드
-    func dataUpdated(_ notification: NSNotification) {
-
+    func storeListMapDataUpdate(_ notification: NSNotification) {
+        self.storeList = []
         print("Map data Updated")
 
         guard let storeListData = notification.userInfo?["storeData"] as? [Store] else {
             print("Error: Data not Passed")
             return
         }
+
         getStoreForCollectionView(storeListData: storeListData) {
             self.storeList = self.storeList.sorted { (store1: Store, store2: Store) -> Bool in
                 return store1.storeDistance < store2.storeDistance
             }
-
             self.addMarker()
+
             DispatchQueue.main.async {
                 self.mapCollectionView.reloadData()
             }
         }
-
     }
 
     func getStoreForCollectionView(storeListData: [Store], completion: @escaping () -> Void) {
@@ -124,7 +122,9 @@ class MapViewController: UIViewController {
         currentState = .tracking
         mapView?.viewWillAppear()
 
-        print("appear")
+        if let location = myLocation {
+            mapView?.setMapCenter(location, atLevel: 9)
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -41,6 +41,8 @@ class WaitingTicketViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(registToken),
+                                               name: NSNotification.Name(rawValue: "registTicketNoti"), object: nil)
         phoneHeadView.layer.borderColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0).cgColor
         phoneHeadView.layer.borderWidth = 0.4
 
@@ -64,6 +66,7 @@ class WaitingTicketViewController: UIViewController {
             self.nameTextField.becomeFirstResponder()
         }
     }
+
     func registerPushNotifications(completion: @escaping () -> Void) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
             if !granted {
@@ -90,10 +93,12 @@ class WaitingTicketViewController: UIViewController {
 
         self.view.endEditing(true)
     }
+
     func configureNameTextField() {
         nameTextField.returnKeyType = .continue
         nameTextField.tintColor = baseOrange
     }
+
     func configurePhoneNumberTextField() {
         phoneNumberTextField.returnKeyType = .done
         phoneNumberTextField.keyboardType = .numberPad
@@ -118,6 +123,7 @@ class WaitingTicketViewController: UIViewController {
             headCountLabel.text = "\(Int(sender.value))명"
         }
     }
+
     @IBAction func numberTextFieldChanged(_ sender: WaitingTextField) {
         wrongNumberLabel.isHidden = false
         guard let text = sender.text else { return }
@@ -133,6 +139,7 @@ class WaitingTicketViewController: UIViewController {
             wrongNumberLabel.textColor = UIColor(red: 27/255, green: 123/255, blue: 236/255, alpha: 1)
         }
     }
+
     @IBAction func makeWaitingTicketTapped(_ sender: UIButton) {
         if nameTextField.text == "" {
 
@@ -152,40 +159,41 @@ class WaitingTicketViewController: UIViewController {
         let headCount = Int(stepperView.value)
         let isStaying = segmentedControl.selectedSegmentIndex == 0 ? false : true
 
-        var ticket = WaitingTicket(name: name, phoneNumber: phoneNumber, headCount: headCount, isStaying: isStaying, storeId: storeId)
+        let ticket = WaitingTicket(name: name, phoneNumber: phoneNumber, headCount: headCount, isStaying: isStaying, storeId: storeId)
 
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
 
-        ServerRepository.postWaitingTicketCreate(params: ticket) {[weak self] isSuccess, checkTicket in
+        WaitingTicketManager.regist(ticket: ticket)
 
-            self?.activityIndicator.stopAnimating()
-            self?.activityIndicator.isHidden = true
-
-            if isSuccess {
-                ticket = checkTicket
-
-                if let token = UserDefaults.standard.object(forKey: "token") as? String {
-
-                    ServerRepository.saveDeviceTokenToServer(ticketNumber: ticket.ticketNumber, token: token) { saveSuccess in
-                        if saveSuccess {
-                            print("Success Saving Token")
-                        }
-                        self?.performSegue(withIdentifier: "showTicketResult", sender: ticket)
-                    }
-                } else {
-                    let alert = AlertHelper.okAlert(title: "알람 설정 필요", message: "티켓을 발행하기 위해서는 알람 설정이 필요합니다.\n알람 설정은 '설정'탭에서 확인할 수 있습니다.")
-                    self?.present(alert, animated: true, completion: nil)
-                }
-            } else {
-
-                let alert = AlertHelper.okAlert(title: "네트워크 에러", message: "일시적인 오류로 티켓을 발행할 수 없습니다.")
-                self?.present(alert, animated: true, completion: nil)
-
-            }
-
-        }
         sender.isEnabled = false
+    }
+
+    func registToken(_ notification: Notification) {
+        if let registTicketResult = notification.userInfo {
+            if let registerSuccess = registTicketResult["isSuccess"] as? Bool {
+                if registerSuccess {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+
+                    if let ticket = registTicketResult["registTicket"] as? WaitingTicket {
+
+                        if let token = UserDefaults.standard.object(forKey: "token") as? String {
+
+                            ServerRepository.saveDeviceTokenToServer(ticketNumber: ticket.ticketNumber, token: token) { saveSuccess in
+                                if saveSuccess {
+                                    print("Success Saving Token")
+                                }
+                                self.performSegue(withIdentifier: "showTicketResult", sender: ticket)
+                            }
+                        } else {
+                            let alert = AlertHelper.okAlert(title: "알람 설정 필요", message: "티켓을 발행하기 위해서는 알람 설정이 필요합니다.\n알람 설정은 '설정'탭에서 확인할 수 있습니다.")
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -199,6 +207,7 @@ class WaitingTicketViewController: UIViewController {
     }
 }
 
+// MARK: UITextFieldDelegate
 extension WaitingTicketViewController: UITextFieldDelegate {
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {

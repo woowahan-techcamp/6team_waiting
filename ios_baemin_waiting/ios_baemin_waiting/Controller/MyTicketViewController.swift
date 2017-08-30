@@ -33,9 +33,6 @@ class MyTicketViewController: UIViewController {
             self.nameLabel.text = waitingTicket?.name
             self.storeLabel.text = waitingTicket?.storeName
             self.orderLabel.text = "\(ticketLine) 번째"
-
-            let ticket = NSKeyedArchiver.archivedData(withRootObject: waitingTicket!)
-            UserDefaults.standard.set(ticket, forKey: "ticket")
         }
     }
 
@@ -57,7 +54,6 @@ class MyTicketViewController: UIViewController {
         }
     }
     @IBAction func closeBtnTapped(_ sender: UIButton) {
-
         let navigationController = self.presentingViewController as? UINavigationController
 
         self.dismiss(animated: true) {

@@ -41,7 +41,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2gR-QV-pvL">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
-                                                    <color key="backgroundColor" red="0.68065267429999998" green="0.73587222949999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -268,7 +268,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Wou-dz-ED6" kind="show" identifier="Waiting" id="lg2-jk-cMj"/>
+                                    <action selector="lineButtonAction:" destination="m1I-qT-kXU" eventType="touchUpInside" id="0Jg-Pe-nCz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -292,6 +292,7 @@
                         <outlet property="lineButtion" destination="Usf-vx-JcD" id="BZ4-1Q-ynm"/>
                         <outlet property="tableView" destination="8iY-wh-dXw" id="mUK-Cu-qFy"/>
                         <segue destination="4rB-MM-4Jq" kind="show" identifier="showDetailMap" id="vMV-XH-ASM"/>
+                        <segue destination="Wou-dz-ED6" kind="show" identifier="selectWaiting" id="bVi-YG-Mmm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2d6-3g-TmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
