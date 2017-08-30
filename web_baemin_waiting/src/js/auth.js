@@ -88,7 +88,6 @@ export class Auth {
     }
 
     signOut() {
-        const token = this.currentToken();
         sessionStorage.removeItem("token");
     }
 
