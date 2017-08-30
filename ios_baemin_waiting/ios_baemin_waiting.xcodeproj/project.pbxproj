@@ -971,6 +971,7 @@
 				980A62041F5577C7002BEC8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9879D9A61F34054900B4131A /* Build configuration list for PBXProject "ios_baemin_waiting" */ = {
 			isa = XCConfigurationList;
