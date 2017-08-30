@@ -19,21 +19,25 @@ export class Auth {
     }
 
     signIn() {
-        const id = document.getElementById("login-id").value;
-        const pwd = document.getElementById("login-pwd").value;
+        const id = document.getElementById("login-id");
+        const pwd = document.getElementById("login-pwd");
 
-        if (!this.regex.isID(id)) {
+        if (!this.regex.isID(id.value)) {
             alert("아이디가 잘못됨");
             return;
         }
 
-        if (!this.regex.isPassword(pwd)) {
+        if (!this.regex.isPassword(pwd.value)) {
             alert("비밀번호가 잘못됨");
             return;
         }
 
-        return service.signInUser(id, pwd)
+
+        return service.signInUser(id.value, pwd.value)
             .then((token) => {
+                id.value = "";
+                pwd.value = "";
+
                 if (token.token !== "fail") {
                     window.sessionStorage.setItem("token", JSON.stringify(token));
                     return "success";
@@ -47,44 +51,45 @@ export class Auth {
     }
 
     signUp() {
-        const id = document.getElementById("sign-id").value;
-        const pwd = document.getElementById("sign-pwd").value;
-        const name = document.getElementById("sign-name").value;
-        const tel = document.getElementById("sign-tel").value;
+        const id = document.getElementById("sign-id");
+        const pwd = document.getElementById("sign-pwd");
+        const name = document.getElementById("sign-name");
+        const tel = document.getElementById("sign-tel");
 
-        if (!this.regex.isID(id)) {
+        if (!this.regex.isID(id.value)) {
             alert("아이디 형식이 잘못됨");
             return;
         }
 
-        if (!this.regex.isPassword(pwd)) {
+        if (!this.regex.isPassword(pwd.value)) {
             alert("비밀번호 형식이 잘못됨");
             return;
         }
 
-        if (!this.regex.isName(name)) {
+        if (!this.regex.isName(name.value)) {
             alert("이름 형식이 잘못됨");
             return;
         }
 
-        if (!this.regex.isTel(tel)) {
+        if (!this.regex.isTel(tel.value)) {
             alert("전화번호 형식이 잘못됨");
             return;
         }
         
-        if (!this.isNotDuplication || (this.authId !== id)) {
+        if (!this.isNotDuplication || (this.authId !== id.value)) {
             alert("아이디 중복 확인을 해주세요");
             return;
         }
 
-        
-        return service.signUpUser(id, pwd, name, tel)
+        return service.signUpUser(id.value, pwd.value, name.value, tel.value)
             .then(() => {
+                id.value = "";
+                pwd.value = "";
+                name.value = "";
+                tel.value = "";
+
                 return "success";
             })
-            .catch(() => {
-                alert("회원가입 실패");
-            });
     }
 
     signOut() {
@@ -210,30 +215,30 @@ export class Auth {
         const storeid = token.storeId;
         const memberid = token.memberId;
         const menus = menu.getMenus();
-        const title = document.getElementById("regist-name").value;
-        const desc = document.getElementById("regist-desc").value;
-        const tel = document.getElementById("regist-tel").value;
-        const addr = document.getElementById("regist-location").value;
+        const title = document.getElementById("regist-name");
+        const desc = document.getElementById("regist-desc");
+        const tel = document.getElementById("regist-tel");
+        const addr = document.getElementById("regist-location");
         const file = document.getElementById("regist-file").files[0];
 
         if (!menu.isOK) return;
 
-        if (!this.regex.isTitle(title)) {
+        if (!this.regex.isTitle(title.value)) {
             alert("1 - 20 글자 수의 가게명을 입력해주세요");
             return;
         }
 
-        if (!this.regex.isDescription(desc)) {
+        if (!this.regex.isDescription(desc.value)) {
             alert("2 - 40 글자 수의 가게 설명을 입력해주세요");
             return;
         }
 
-        if (!this.regex.isTel(tel)) {
+        if (!this.regex.isTel(tel.value)) {
             alert("잘못된 전화번호 형식입니다");
             return;
         }
 
-        if (!this.regex.isAddrress(addr)) {
+        if (!this.regex.isAddrress(addr.value)) {
             alert("2 - 40 글자 수의 가게 주소를 입력해주세요");
             return;
         }
@@ -249,14 +254,20 @@ export class Auth {
         }
 
         this.isSaving = true;
+
         return service.saveImageInStorage(file, memberid)
             .then((path) => {
                 return service.getStoreImageUrl(path);
             })
             .then((url) => {
-                return service.registerRestaurant(memberid, title, desc, tel, addr, map.addrX, map.addrY, menus, url, storeid);
+                return service.registerRestaurant(memberid, title.value, desc.value, tel.value, addr.value, map.addrX, map.addrY, menus, url, storeid);
             })
             .then((storeid) => {
+                title.value = "";
+                desc.value = "";
+                tel.value = "";
+                addr.value = "";
+
                 const token = JSON.parse(window.sessionStorage.getItem("token"));
                 token.storeId = storeid;
                 window.sessionStorage.setItem("token", JSON.stringify(token));

@@ -203,15 +203,20 @@ export class HomeNavigator {
 
     signoutHandler() {
         const token = this.auth.currentToken();
-        service.getStoreInfo(token).then((info) => {
-            if (info.opened !== 0) {
-                const answer = confirm("로그아웃 후에도 가게는 닫히지 않습니다. 가게를 오픈한 상태에서 로그아웃을 하시겠습니까?");
-                if (answer) {
-                    this.auth.signOut();
-                    this.view.goHome();
+        if (token.storeId !== 0) {
+            service.getStoreInfo(token).then((info) => {
+                if (info.opened !== 0) {
+                    const answer = confirm("로그아웃 후에도 가게는 닫히지 않습니다. 가게를 오픈한 상태에서 로그아웃을 하시겠습니까?");
+                    if (answer) {
+                        this.auth.signOut();
+                        this.view.goHome();
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            this.auth.signOut();
+            this.view.goHome();
+        }
     }
 
     manageHandler() {
