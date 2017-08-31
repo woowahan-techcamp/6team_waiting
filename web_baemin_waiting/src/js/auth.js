@@ -55,22 +55,22 @@ export class Auth {
         const tel = document.getElementById("sign-tel");
 
         if (!this.regex.isID(id.value)) {
-            alert("아이디 형식이 잘못됨");
+            alert("아이디는 대소문자의 알파벳과 숫자로 4-15 글자만 가능합니다");
             return;
         }
 
         if (!this.regex.isPassword(pwd.value)) {
-            alert("비밀번호 형식이 잘못됨");
+            alert("비밀번호는 문자와 숫자의 조합으로 6-16 자리로 입력해주세요");
             return;
         }
 
         if (!this.regex.isName(name.value)) {
-            alert("이름 형식이 잘못됨");
+            alert("이름은 공백과 숫자를 제외한 2-20 글자만 가능합니다");
             return;
         }
 
         if (!this.regex.isTel(tel.value)) {
-            alert("전화번호 형식이 잘못됨");
+            alert("전화번호는 0 으로 시작하는 7-12 글자 수 내로 입력해주세요");
             return;
         }
         

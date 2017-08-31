@@ -10,13 +10,13 @@ export class Regex {
 
     isDescription(desc) {
         // 모든 문자열에 대한 {2,40} 글자 수 확인
-        const regName = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
+        const regName = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣](.+\s?){2,40}$/;
         return regName.test(desc);
     }
 
     isID(id) {
-        // 대소문자의 알파벳과 숫자에 대한 {4,10} 글자 확인
-        const regId = /^[\w]{4,10}$/;
+        // 대소문자의 알파벳과 숫자에 대한 {4,15} 글자 확인
+        const regId = /^[\w]{4,15}$/;
         return regId.test(id);
     }
 
